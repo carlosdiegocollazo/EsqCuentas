@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>EsQProvee</title>
+
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <script type="text/javascript" src="lib/axios.min.js"></script>
+    <script type="text/javascript" src="lib/vue.js"></script>
+    <script type="text/javascript" src="lib/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <menu-item v-bind:title="titulo" v-bind:menu-items="arrMenu"></menu-item>
+
+        <div class="container">
+            <router-view></router-view>
+        </div>
+
+        <footer-item v-bind:title="footerTitle"></footer-item>
+    </div>
+
+    <!-- SERVICE -->
+    <!-- <script type="text/javascript" src="app/service.js"></script> -->
+
+    <!-- SHARED COMPONENTS -->
+    <script type="text/javascript" src="app/shared/footer.component.js"></script>
+    <script type="text/javascript" src="app/shared/menu.component.js"></script>
+
+    <!-- COMPONENTTS -->
+    <script type="text/javascript" src="app/components/login/login.component.js"></script>
+    <script type="text/javascript" src="app/components/registro/registro.component.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+</body>
+
+</html>
