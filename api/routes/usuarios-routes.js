@@ -7,7 +7,7 @@ module.exports = function(app){
 	//Procedimiento para la validación de credenciales de usuario (usuarioEmail y usuarioPassword)
 	// para el ingreso al sistema. Caso de éxito devuele objeto usuario asociado a cuenta de mail 
 	// ingresada y token de sesión generado. Caso de error retorna mensaje correspondiente.
-	app.post('/usuario/login', async function(req, res){
+	app.post('/usuarios/login', async function(req, res){
 		let usuarioLog 		= req.body;
 		const Usuario 		= require('../services/usuarios.js');
 		let response 		= await Usuario.usuarioLogin(usuarioLog.usuarioEmail, usuarioLog.usuarioPassword);
@@ -25,7 +25,7 @@ module.exports = function(app){
 
 	//Devuelve JSON con objeto "usuario" seleccionado por el valor de su campo Id.
 	//si se encuentra activo.
-	app.get('/usuario/:id', midd.rutasProtegidas, async function (req, res) {
+	app.get('/usuarios/:id', midd.rutasProtegidas, async function (req, res) {
 		let id 			= req.params.id;
 		let Usuario 	= require('../services/usuarios');
 		let response 	= await Usuario.obtenerUsuarioPorId(id);
@@ -36,7 +36,7 @@ module.exports = function(app){
 	//Devuelve JSON con objeto "usuario" seleccionado a partir del valor de su campo Id. 
 	// si se encuentra activo.
 	//Incluye sus respectivos objetos organizacion y rol del usuario.
-	app.get('/usuario/full/:id', midd.rutasProtegidas, async function (req, res) {
+	app.get('/usuarios/full/:id', midd.rutasProtegidas, async function (req, res) {
 		let id 			= req.params.id;
 		let Usuario 	= require('../services/usuarios');
 		let response 	= await Usuario.obtenerUsuarioPorIdFull(id);
@@ -45,7 +45,7 @@ module.exports = function(app){
 	});
 
 	//Devuelve JSON con objeto "usuarioEmail" seleccionado por el valor de su campo Email.
-	app.get('/usuario/mail/find', midd.rutasProtegidas, async function (req, res) {
+	app.get('/usuarios/mail/find', midd.rutasProtegidas, async function (req, res) {
 		let mail 		= req.body.usuarioEmail;
 		let Usuario 	= require('../services/usuarios');
 		let response 	= await Usuario.obtenerUsuarioPorEmail(mail);
@@ -54,7 +54,7 @@ module.exports = function(app){
 	});
 
 	//Permite dar de alta a un nuevo registo usuario.
-	app.post('/usuario/new', async function (req, res) {
+	app.post('/usuarios/new', async function (req, res) {
 		 let usuario	= req.body;
 		 let Usuario 	= require('../services/usuarios');
 		 let response	= await Usuario.ingresarUsuario(usuario);
@@ -64,7 +64,7 @@ module.exports = function(app){
 
 	//Permite editar los valores de los atributos del usuario seleccionado
 	// a partir del valor de su campo Id.
-	app.put('/usuario/edit/:id', midd.rutasProtegidas, async function(req, res){
+	app.put('/usuarios/edit/:id', midd.rutasProtegidas, async function(req, res){
 		let id 			= req.params.id;
 		let usuario		= req.body;
 		let Usuario 	= require('../services/usuarios.js');

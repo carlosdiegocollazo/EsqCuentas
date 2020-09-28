@@ -7,14 +7,15 @@ app.use(bodyParser.json());
 //REQUERIR EXPRESS ROUTES EN ARCHIVO EXTERNO
 require('./routes/usuarios-routes.js')(app);
 require('./routes/articulos-routes.js')(app);
-require('./routes/recomendaciones-routes.js')(app);
-require('./routes/devoluciones-routes.js')(app);
-require('./routes/preferencias-routes.js')(app);
+require('./routes/moneda-routes.js')(app);
+
 //DECLARAR COMO GLOBAL LA CONEXIÓN A DATA BASE
 global.conn 		= require('./config/conn.js');
+
 //REQUERIR CORS
 global.Cors 		= require('./services/cors.js');
 app.use(Cors.cors(Cors.corsOptions));
+
 //REQUERIR EL USO DE JWT Y SETEO DE CLAVE BASE PARA ENCRIPTACIÓN
 jwt 				= require('jsonwebtoken');
 app.set('llave', conn.llave);
@@ -27,6 +28,8 @@ try {
 		port: 3000
 	}
 }
+
+
 //LEVANTAR LA API
 app.listen(env.port,function(){
 	console.log(`EsQProvee en puerto ${env.port}`);

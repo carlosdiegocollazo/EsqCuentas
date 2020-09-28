@@ -20,20 +20,20 @@ let Usuario = {
 	usuarioLogin: async function(usuario, password){
 		let sql =  `
 				SELECT * 
-				FROM usuarios 
-				WHERE usuarios.usuarioEmail = '${usuario}'
+				FROM personas 
+				WHERE personas.email = '${usuario}'
 				&&
-				usuarios.usuarioPassword =MD5('${password}')
+				personas.pass =MD5('${password}')
 				&&
-				usuarios.usuarioActivo = 1
+				personas.activo = 1
 			`
 		let response = {error: "Usuario / Contraseña incorrectos"}
 		let usuarios = await conn.query(sql);
 		try {
-			if (usuarios.length>0) {
+			if (personas.length>0) {
 				let usuario 	= usuarios[0];
 				const payload 	= {usuario:  usuario};
-				const token 	= jwt.sign(payload, conn.llave, {expiresIn: 1800});
+				const token 	= jwt.sign(payload, conn.llave, {expiresIn: 18000});
 				response 		= {response: usuario,token: token};
 			}
 		} catch(e) {
@@ -44,8 +44,8 @@ let Usuario = {
 
 	obtenerUsuarios: async function(){
 		let sql 		= `
-							SELECT * FROM usuarios
-							WHERE usuarios.usuarioActivo = 1
+							SELECT * FROM personas
+							WHERE personas.activo = 1
 						`
 		let response 	= {error: "No se encontraron usuarios"}
 		let resultado 	= await conn.query(sql);
@@ -59,67 +59,35 @@ let Usuario = {
 
 	obtenerUsuarioPorId: async function (id){
 	 let sql = `
-	  			SELECT * FROM usuarios
+	  			SELECT * FROM personas
 	  			WHERE 
-	  			usuarios.usuarioId = '${id}' 
-	  			&& usuarios.usuarioActivo = 1
+	  			personas.idper = '${id}' 
+	  			&& personas.activo = 1
 	 		`
 	 let usuarios 	= []
 	 let response 	= {error: `No existe el usuario con ID: ${id}`}
 	 usuarios 		= await conn.query(sql)
-	 if (usuarios.code) {
+	 if (personas.code) {
 	 	response 	= {error: "Error en consulta SQL"};
-	 }else if (usuarios.length > 0) {
+	 }else if (personas.length > 0) {
 	 	response 	= {response: usuarios[0]}
 	 }
 	 return response;
 	},
 
-	obtenerUsuarioPorIdFull: async function(id){
-		let idUsuario 	= id;
-		let sql 		= `
-							SELECT
-							usuarios.usuarioId,
-							usuarios.usuarioOrg,
-							usuarios.usuarioRol
-							FROM usuarios
-							WHERE (usuarios.usuarioId = '${id}' 
-							&& usuarios.usuarioActivo = 1)
-						`
-		let response 	= {}
-		let result 		= {}
-		let resultado 	= await conn.query(sql);
-		if (resultado.code) {
-	 		response 	= {error: "Error en consulta SQL"};
-	 	}else if (resultado.length>0) {
-			let idOrg 	= resultado[0].usuarioOrg;
-			let idRol 	= resultado[0].usuarioRol;
-			result["usuario"] 		= await this.getRecordById('usuarios', 
-			 							'usuarios.usuarioId', idUsuario);
-			result["organizacion"] 	= await this.getRecordById('organizaciones', 
-										'organizaciones.organizacionId', idOrg);
-			result["rol"] 			= await this.getRecordById('roles', 
-			 							'roles.rolId', idRol);
-			response 				= {response: result}
-		}else {
-			response 				= {error: `No se encontró usuario con Id: ${id}`}
-		}
-		return response;
-	},
-
 	obtenerUsuarioPorEmail: async function (mail){
 	 let sql = `
-	  			SELECT usuarios.usuarioId 
-	  			FROM usuarios
+	  			SELECT personas.idper 
+	  			FROM personas
 	  			WHERE 
-	  			usuarios.usuarioEmail = '${mail}'
+	  			personas.email = '${mail}'
 	 		`
 	 let usuarios 	= []
 	 let response 	= {error: `No existe el usuario con mail : ${mail}`}
 	 usuarios 		= await conn.query(sql)
-	 if (usuarios.code) {
+	 if (personas.code) {
 	 	response 	= {error: "Error en consulta SQL"};
-	 }else if (usuarios.length > 0) {
+	 }else if (personas.length > 0) {
 	 	response 	= {response: usuarios[0]}
 	 }
 	 return response;
@@ -127,37 +95,49 @@ let Usuario = {
 
 	ingresarUsuario: async function(usuario){
 		let sql = `
-					INSERT INTO usuarios
+					INSERT INTO personas
 					  		(
-							usuarioNick,
-							usuarioNombre,
-							usuarioApellido,
-							usuarioEmail,
-							usuarioPassword,
-							usuarioKeywords,
-							usuarioEmpleo,
-							usuarioProfesion,
-							usuarioOrg,
-							usuarioPais,
-							usuarioNivelEduc
+							email,
+							nombre,
+							apellido,
+							razon,
+							rutced,
+							pass,
+							fechaingreso,
+							telefono,
+							direccion,
+							proveedor,
+							moneda,
+							seguridad,
+							saldoinicial,
+							retorno,
+							retactivo,
+							observaciones,
+							activo
 							 )
 		  			VALUES
 		  					(
-							'${usuario.usuarioNick}',
-							'${usuario.usuarioNombre}',
-							'${usuario.usuarioApellido}',
-							'${usuario.usuarioEmail}',
-							MD5('${usuario.usuarioPassword}'),
-							'${usuario.usuarioKeywords}',
-							'${usuario.usuarioEmpleo}',
-							'${usuario.usuarioProfesion}',
-							'${usuario.usuarioOrg}',
-							'${usuario.usuarioPais}',
-							'${usuario.usuarioNivelEduc}'
+							'${usuario.email}',
+							MD5('${usuario.pass}'),
+							'${usuario.nombre}',
+							'${usuario.apellido}',
+							'${usuario.razon}',
+							'${usuario.rutced}',
+							'${usuario.fechaingreso}',
+							'${usuario.telefono}',
+							'${usuario.direccion}',
+							'${usuario.proveedor}',
+							'${usuario.moneda}',
+							'${usuario.seguridad}',
+							'${usuario.saldoinicial}',
+							'${usuario.retorno}',
+							'${usuario.retactivo}',
+							'${usuario.observaciones}',
+							'${usuario.activo}'
 							)
 				`
 		let response 		= {error: "No se pudo crear el usuario"}
-		let mail 			= usuario.usuarioEmail;
+		let mail 			= usuario.email;
 		let existeUsuario 	= await this.obtenerUsuarioPorEmail(mail);
 		if (existeUsuario.error) {
 			try {
@@ -178,22 +158,46 @@ let Usuario = {
 
 	actualizarUsuario: async function(usuario, id){
 		let sql 		= `
-							UPDATE usuarios 
-							SET 
-							usuarioNick 		= '${usuario.usuarioNick}',
-							usuarioNombre 		= '${usuario.usuarioNombre}',
-							usuarioApellido 	= '${usuario.usuarioApellido}',
-							usuarioEmail 		= '${usuario.usuarioEmail}',
-							usuarioKeywords 	= '${usuario.usuarioKeywords}',
-							usuarioOrg 			= '${usuario.usuarioOrg}',
-							usuarioEmpleo 		= '${usuario.usuarioEmpleo}',
-							usuarioProfesion 	= '${usuario.usuarioProfesion}',
-							usuarioPais 		= '${usuario.usuarioPais}',
-							usuarioNivelEduc 	= '${usuario.usuarioNivelEduc}',
-							usuarioRol 			= '${usuario.usuarioRol}',
-							usuarioPerfil 		= '${usuario.usuarioPerfil}'
+							UPDATE personas 
+							SET (
+										email,
+										pass,
+										nombre,
+										apellido,
+										razon,
+										rutced,
+										fechaingreso,
+										telefono,
+										direccion,
+										proveedor,
+										moneda,
+										seguridad,
+										saldoinicial,
+										retorno,
+										retactivo,
+										observaciones,
+										activo
+							 	)
+
+										email 			= '${usuario.email}',
+										pas 			= MD5('${usuario.pass}'),
+										nombre 			= '${usuario.nombre}',
+										apellido 		= '${usuario.apellido}',
+										razon 			= '${usuario.razon}',
+										rutced			= '${usuario.rutced}',	
+										fechaingreso 	= '${usuario.fechaingreso}',
+										telefono	 	= '${usuario.telefono}',
+										direccion	 	= '${usuario.direccion}',
+										proveedor	 	= '${usuario.proveedor}',
+										moneda 			= '${usuario.moneda}',
+										seguridad 		= '${usuario.seguridad}',
+										saldoinicial 	= '${usuario.sadoinicial}',
+										retorno			= '${usuario.retorno},
+										retornoactivo 	= '${usuario.retornoactivo}',
+										observaciones 	= '${usuario.observaciones}',
+										activo 			= '${usuario.activo}'
 							WHERE
-							usuarios.usuarioId = '${id}'
+							personas.idper = '${id}'
 						`
 		let response 		= {error: "No se pudo actualizar usuario"}
 		let existeUsuario 	= await this.obtenerUsuarioPorId(id);
@@ -212,11 +216,11 @@ let Usuario = {
 
 	eliminarUsuario: async function(id){
 		let sql 		= `
-							UPDATE usuarios 
+							UPDATE personas 
 							SET 
-							usuarioActivo = 0 
+							activo = 0 
 							WHERE
-							usuarios.usuarioId = '${id}'
+							personas.idper = '${id}'
 						`
 		let response 			= {error: "No se pudo eliminar usuario"}
 		let existeUsuario 		= await this.obtenerUsuarioPorId(id);

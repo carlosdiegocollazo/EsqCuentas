@@ -3,6 +3,9 @@ let Middleware = {
     let ruta            = req.route.path;
     //Usuarios roles: admin = 0; revisor = 1; autor = 2
     let rutasUsuarios   = [{
+                
+                "/monedas/all": "Acceso Permitido",
+      
                 "/usuarios/all": "Acceso Permitido",
                 "/usuario/:id": "Acceso Permitido",
                 "/usuario/full/:id": "Acceso Permitido",
@@ -44,6 +47,9 @@ let Middleware = {
                 "/preferencia/delete/:id": "Acceso Permitido"
               },
               {
+
+                "/monedas/all": "Acceso Permitido",
+
                 "/usuarios/all": "Acceso Permitido",
                 "/usuario/:id": "Acceso Permitido",
                 "/usuario/full/:id": "Acceso Permitido",
@@ -85,6 +91,9 @@ let Middleware = {
                 "/preferencia/delete/:id": "Acceso Permitido"                
               },
               {
+                
+                "/monedas/all": "Acceso Permitido",
+                
                 "/usuarios/all": "Acceso Permitido",
                 "/usuario/:id": "Acceso Permitido",
                 "/usuario/full/:id": "Acceso Permitido",

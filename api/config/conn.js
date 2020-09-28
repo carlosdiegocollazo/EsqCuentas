@@ -1,4 +1,4 @@
-ql = require('mysql');
+const mysql = require('mysql');
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -28,7 +28,7 @@ let query = (sql) => {
 
 let Conn = {
     query: query,
-    llave: "mipassword123"
+    llave: "nokey"
 }
 
 module.exports = Conn
