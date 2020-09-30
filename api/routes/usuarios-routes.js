@@ -10,7 +10,7 @@ module.exports = function(app){
 	app.post('/usuarios/login', async function(req, res){
 		let usuarioLog 		= req.body;
 		const Usuario 		= require('../services/usuarios.js');
-		let response 		= await Usuario.usuarioLogin(usuarioLog.usuarioEmail, usuarioLog.usuarioPassword);
+		let response 		= await Usuario.usuarioLogin(usuarioLog.personaEmail, usuarioLog.personaPass);
 		res.set('Content-Type', 'aplication/json');
 		res.send(response);
 	})	

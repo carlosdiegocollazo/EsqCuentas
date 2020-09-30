@@ -28,7 +28,7 @@ let query = (sql) => {
 
 let Conn = {
     query: query,
-    llave: "nokey"
+    llave: "mipassword123"
 }
 
 module.exports = Conn

@@ -30,7 +30,7 @@ let Usuario = {
 		let response = {error: "Usuario / Contraseña incorrectos"}
 		let usuarios = await conn.query(sql);
 		try {
-			if (personas.length>0) {
+			if (usuarios.length>0) {
 				let usuario 	= usuarios[0];
 				const payload 	= {usuario:  usuario};
 				const token 	= jwt.sign(payload, conn.llave, {expiresIn: 18000});

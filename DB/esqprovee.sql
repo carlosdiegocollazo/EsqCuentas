@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 23-09-2020 a las 13:23:54
+-- Tiempo de generación: 28-09-2020 a las 22:17:05
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.3.1
 
@@ -39,15 +39,15 @@ CREATE TABLE IF NOT EXISTS `documentos` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `moneda`
+-- Estructura de tabla para la tabla `monedas`
 --
 
-DROP TABLE IF EXISTS `moneda`;
-CREATE TABLE IF NOT EXISTS `moneda` (
+DROP TABLE IF EXISTS `monedas`;
+CREATE TABLE IF NOT EXISTS `monedas` (
   `idmon` int(11) NOT NULL AUTO_INCREMENT,
   `moneda` int(11) NOT NULL,
   `divide` int(11) NOT NULL,
-  `activa` tinyint(1) NOT NULL,
+  `activo` tinyint(1) NOT NULL,
   PRIMARY KEY (`idmon`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -82,12 +82,15 @@ CREATE TABLE IF NOT EXISTS `movimientos` (
 DROP TABLE IF EXISTS `personas`;
 CREATE TABLE IF NOT EXISTS `personas` (
   `idper` int(11) NOT NULL AUTO_INCREMENT,
+  `email` text NOT NULL,
+  `pass` text NOT NULL,
   `nombre` text NOT NULL,
   `apellido` text NOT NULL,
   `razon` text NOT NULL,
   `rutced` text NOT NULL,
   `fechaingreso` date NOT NULL,
   `telefono` text NOT NULL,
+  `direccion` text NOT NULL,
   `proveedor` tinyint(1) NOT NULL,
   `moneda` int(11) NOT NULL,
   `seguridad` int(11) NOT NULL,
@@ -97,7 +100,14 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `observaciones` text NOT NULL,
   `activo` tinyint(1) NOT NULL,
   PRIMARY KEY (`idper`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `personas`
+--
+
+INSERT INTO `personas` (`idper`, `email`, `pass`, `nombre`, `apellido`, `razon`, `rutced`, `fechaingreso`, `telefono`, `direccion`, `proveedor`, `moneda`, `seguridad`, `saldoinicial`, `retorno`, `retactivo`, `observaciones`, `activo`) VALUES
+(1, 'admin@mail.com', '${usuario.rutced}', '827ccb0eea8a706c4c34a16891f84e7b', 'admin', '${usuario.apellido}', '${usuario.razon}', '2020-09-01', '${usuario.telefono}', '${usuario.direccion}', 1, 1, 1, 0, '2100-01-01', 1, '${usuario.observaciones}', 1);
 
 -- --------------------------------------------------------
 
@@ -109,7 +119,7 @@ DROP TABLE IF EXISTS `seguridad`;
 CREATE TABLE IF NOT EXISTS `seguridad` (
   `idseg` int(11) NOT NULL,
   `categoria` int(11) NOT NULL,
-  `Activo` tinyint(1) NOT NULL
+  `activo` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 COMMIT;
 
