@@ -8,6 +8,8 @@ app.use(bodyParser.json());
 require('./routes/usuarios-routes.js')(app);
 require('./routes/articulos-routes.js')(app);
 require('./routes/moneda-routes.js')(app);
+require('./routes/seguridad-routes.js')(app);
+require('./routes/documentos-routes.js')(app);
 
 //DECLARAR COMO GLOBAL LA CONEXIÓN A DATA BASE
 global.conn 		= require('./config/conn.js');
