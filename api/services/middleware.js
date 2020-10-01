@@ -152,9 +152,11 @@ let Middleware = {
           if (err) {
             return res.json({ error: "Token invalido" });
           } else {
-            req.decoded = decoded;
-            let usuarioRol = decoded.usuario.usuarioRol;
-            if (rutasUsuarios[usuarioRol - 1][ruta]) {
+                req.decoded = decoded;
+              let usuarioRol = decoded.usuario.seguridad;   
+              console.log(decoded.usuario.seguridad);
+              console.log(usuarioRol);
+            if (rutasUsuarios[usuarioRol][ruta]) {
               next();
             } else {
               return res.json({ error: "Usuario sin permisos sobre estar ruta / Token provisto correcto" });
