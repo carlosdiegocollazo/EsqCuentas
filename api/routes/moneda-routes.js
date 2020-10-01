@@ -27,7 +27,7 @@ module.exports = function(app){
 	app.post('/monedas/new', midd.rutasProtegidas, async function(req, res){
 		let moneda = req.body;
 		let monedas = require('../services/monedas.js');
-		let response = await moneda.crearmoneda(moneda);
+		let response = await monedas.crearmoneda(moneda);
 		res.set('Content-Type', 'aplication/json');
 		res.send(response);
 	})

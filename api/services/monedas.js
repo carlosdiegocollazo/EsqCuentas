@@ -48,24 +48,6 @@ let monedas = {
 		return response;
 	},
 
-	obtenermonedaPorIdFull: async function(id){
-		let idmoneda 	= id;
-		let sql 		= `
-							SELECT
-							monedas.idmon,
-							monedas.moneda,
-							monedas.divide,
-							monedas.activo
-							FROM monedas
-							WHERE (monedas.idmon = '${id}' 
-							&& monedas.activo = 1)
-						`
-		}else {
-			response 			= {error: "No se encontró moneda"}
-		}
-		return response;
-	},
-
 	crearmoneda: async function(moneda){
 		let sql = `
 					INSERT INTO monedas
@@ -76,7 +58,6 @@ let monedas = {
 					)
 					VALUES
 					(
-					NOW(),
 					'${moneda.moneda}',
 					'${moneda.divide}',
 					'${moneda.activo}'
@@ -84,10 +65,11 @@ let monedas = {
 				`
 		let response 	= {error: "No se pudo crear moneda"}
 		let resultado 	= await conn.query(sql);
+		console.log(resultado);
 		if (resultado.code) {
 	 		response 	= {error: "Error en consulta SQL"};
 	 	}else if (resultado.insertId) {
-			response 	= {response: "moneda creado correctamente"}
+			response 	= {response: "moneda creada correctamente"}
 		}
 		return response;
 	},
@@ -144,4 +126,4 @@ let monedas = {
 	},
 }
 
-module.exports = moneda;
+module.exports = monedas;

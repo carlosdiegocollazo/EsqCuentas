@@ -67,9 +67,9 @@ let Usuario = {
 	 let usuarios 	= []
 	 let response 	= {error: `No existe el usuario con ID: ${id}`}
 	 usuarios 		= await conn.query(sql)
-	 if (personas.code) {
+	 if (usuarios.code) {
 	 	response 	= {error: "Error en consulta SQL"};
-	 }else if (personas.length > 0) {
+	 }else if (usuarios.length > 0) {
 	 	response 	= {response: usuarios[0]}
 	 }
 	 return response;

@@ -33,17 +33,6 @@ module.exports = function(app){
 		res.send(response);
 	});
 
-	//Devuelve JSON con objeto "usuario" seleccionado a partir del valor de su campo Id. 
-	// si se encuentra activo.
-	//Incluye sus respectivos objetos organizacion y rol del usuario.
-	app.get('/usuarios/full/:id', midd.rutasProtegidas, async function (req, res) {
-		let id 			= req.params.id;
-		let Usuario 	= require('../services/usuarios');
-		let response 	= await Usuario.obtenerUsuarioPorIdFull(id);
-		res.set(['Content-Type', 'application/json']);
-		res.send(response);
-	});
-
 	//Devuelve JSON con objeto "usuarioEmail" seleccionado por el valor de su campo Email.
 	app.get('/usuarios/mail/find', midd.rutasProtegidas, async function (req, res) {
 		let mail 		= req.body.usuarioEmail;
