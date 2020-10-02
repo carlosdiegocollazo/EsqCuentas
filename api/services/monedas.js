@@ -58,9 +58,9 @@ let monedas = {
 					)
 					VALUES
 					(
-					'${moneda.moneda}',
-					'${moneda.divide}',
-					'${moneda.activo}'
+					'${monedas.moneda}',
+					'${monedas.divide}',
+					'${monedas.activo}'
 					)		
 				`
 		let response 	= {error: "No se pudo crear moneda"}
@@ -80,8 +80,7 @@ let monedas = {
 					SET
 					moneda		= '${moneda.moneda}',
 					divide		= '${moneda.divide}',
-					activo	 	= '${moneda.activo}'
-					
+					activo	 	= '${moneda.activo}'			
 					WHERE
 					monedas.idmon = '${id}'
 				`

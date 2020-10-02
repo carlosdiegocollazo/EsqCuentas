@@ -48,7 +48,7 @@ let seguridad = {
 		return response;
 	},
 
-	crearseguridad: async function(seguridad){
+	crearseguridad: async function(segurida){
 		let sql = `
 					INSERT INTO seguridad
 					(
@@ -58,9 +58,9 @@ let seguridad = {
 					)
 					VALUES
 					(
-					${seguridad.categoria},
+					'${seguridad.categoria}',
 					'${seguridad.descripcion}',
-					${seguridad.activo}
+					'${seguridad.activo}'
 					)		
 				`
 		let response 	= {error: "No se pudo crear seguridad"}
