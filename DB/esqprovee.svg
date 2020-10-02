@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg
+PUBLIC "-//W3C//DTD SVG 1.1//EN"
+       "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="10 28 831 708" width="821px" height="680px" xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <rect width="68" height="20" x="245" y="533" style="fill:#007;stroke:black;"/>
+   <text width="68" height="20" x="250" y="547" style="fill:#fff;" font-family="Arial" font-size="16px"> cheques</text>
+   <rect width="68" height="20" x="245" y="553" style="fill:#aea;stroke:black;"/>
+   <text width="68" height="20" x="250" y="567" style="fill:black;" font-family="Arial" font-size="16px">idcheq</text>
+   <rect width="68" height="20" x="245" y="573" style="fill:none;stroke:black;"/>
+   <text width="68" height="20" x="250" y="587" style="fill:black;" font-family="Arial" font-size="16px">nrocheq</text>
+   <rect width="68" height="20" x="245" y="593" style="fill:none;stroke:black;"/>
+   <text width="68" height="20" x="250" y="607" style="fill:black;" font-family="Arial" font-size="16px">banco</text>
+   <rect width="68" height="20" x="245" y="613" style="fill:none;stroke:black;"/>
+   <text width="68" height="20" x="250" y="627" style="fill:black;" font-family="Arial" font-size="16px">moneda</text>
+   <rect width="68" height="20" x="245" y="633" style="fill:none;stroke:black;"/>
+   <text width="68" height="20" x="250" y="647" style="fill:black;" font-family="Arial" font-size="16px">fechemi</text>
+   <rect width="68" height="20" x="245" y="653" style="fill:none;stroke:black;"/>
+   <text width="68" height="20" x="250" y="667" style="fill:black;" font-family="Arial" font-size="16px">fechpag</text>
+   <rect width="68" height="20" x="245" y="673" style="fill:none;stroke:black;"/>
+   <text width="68" height="20" x="250" y="687" style="fill:black;" font-family="Arial" font-size="16px">fechcob</text>
+   <rect width="82" height="20" x="96" y="46" style="fill:#007;stroke:black;"/>
+   <text width="82" height="20" x="101" y="60" style="fill:#fff;" font-family="Arial" font-size="16px"> cotizacion</text>
+   <rect width="82" height="20" x="96" y="66" style="fill:#aea;stroke:black;"/>
+   <text width="82" height="20" x="101" y="80" style="fill:black;" font-family="Arial" font-size="16px">idcot</text>
+   <rect width="82" height="20" x="96" y="86" style="fill:none;stroke:black;"/>
+   <text width="82" height="20" x="101" y="100" style="fill:black;" font-family="Arial" font-size="16px">fechcot</text>
+   <rect width="82" height="20" x="96" y="106" style="fill:none;stroke:black;"/>
+   <text width="82" height="20" x="101" y="120" style="fill:black;" font-family="Arial" font-size="16px">moneda</text>
+   <rect width="82" height="20" x="96" y="126" style="fill:none;stroke:black;"/>
+   <text width="82" height="20" x="101" y="140" style="fill:black;" font-family="Arial" font-size="16px">impcot</text>
+   <rect width="82" height="20" x="96" y="146" style="fill:none;stroke:black;"/>
+   <text width="82" height="20" x="101" y="160" style="fill:black;" font-family="Arial" font-size="16px">activo</text>
+   <rect width="96" height="20" x="249" y="185" style="fill:#007;stroke:black;"/>
+   <text width="96" height="20" x="254" y="199" style="fill:#fff;" font-family="Arial" font-size="16px"> documentos</text>
+   <rect width="96" height="20" x="249" y="205" style="fill:#aea;stroke:black;"/>
+   <text width="96" height="20" x="254" y="219" style="fill:black;" font-family="Arial" font-size="16px">Idtipdoc</text>
+   <rect width="96" height="20" x="249" y="225" style="fill:none;stroke:black;"/>
+   <text width="96" height="20" x="254" y="239" style="fill:black;" font-family="Arial" font-size="16px">tipodoc</text>
+   <rect width="96" height="20" x="249" y="245" style="fill:none;stroke:black;"/>
+   <text width="96" height="20" x="254" y="259" style="fill:black;" font-family="Arial" font-size="16px">moneda</text>
+   <rect width="96" height="20" x="249" y="265" style="fill:none;stroke:black;"/>
+   <text width="96" height="20" x="254" y="279" style="fill:black;" font-family="Arial" font-size="16px">activo</text>
+   <rect width="75" height="20" x="25" y="65" style="fill:#007;stroke:black;"/>
+   <text width="75" height="20" x="30" y="79" style="fill:#fff;" font-family="Arial" font-size="16px"> monedas</text>
+   <rect width="75" height="20" x="25" y="85" style="fill:#aea;stroke:black;"/>
+   <text width="75" height="20" x="30" y="99" style="fill:black;" font-family="Arial" font-size="16px">idmon</text>
+   <rect width="75" height="20" x="25" y="105" style="fill:none;stroke:black;"/>
+   <text width="75" height="20" x="30" y="119" style="fill:black;" font-family="Arial" font-size="16px">moneda</text>
+   <rect width="75" height="20" x="25" y="125" style="fill:none;stroke:black;"/>
+   <text width="75" height="20" x="30" y="139" style="fill:black;" font-family="Arial" font-size="16px">divide</text>
+   <rect width="75" height="20" x="25" y="145" style="fill:none;stroke:black;"/>
+   <text width="75" height="20" x="30" y="159" style="fill:black;" font-family="Arial" font-size="16px">activo</text>
+   <rect width="96" height="20" x="720" y="270" style="fill:#007;stroke:black;"/>
+   <text width="96" height="20" x="725" y="284" style="fill:#fff;" font-family="Arial" font-size="16px"> movimientos</text>
+   <rect width="96" height="20" x="720" y="290" style="fill:#aea;stroke:black;"/>
+   <text width="96" height="20" x="725" y="304" style="fill:black;" font-family="Arial" font-size="16px">idmov</text>
+   <rect width="96" height="20" x="720" y="310" style="fill:none;stroke:black;"/>
+   <text width="96" height="20" x="725" y="324" style="fill:black;" font-family="Arial" font-size="16px">proveedor</text>
+   <rect width="96" height="20" x="720" y="330" style="fill:none;stroke:black;"/>
+   <text width="96" height="20" x="725" y="344" style="fill:black;" font-family="Arial" font-size="16px">tipdoc</text>
+   <rect width="96" height="20" x="720" y="350" style="fill:none;stroke:black;"/>
+   <text width="96" height="20" x="725" y="364" style="fill:black;" font-family="Arial" font-size="16px">nrofac</text>
+   <rect width="96" height="20" x="720" y="370" style="fill:none;stroke:black;"/>
+   <text width="96" height="20" x="725" y="384" style="fill:black;" font-family="Arial" font-size="16px">fechemi</text>
+   <rect width="96" height="20" x="720" y="390" style="fill:none;stroke:black;"/>
+   <text width="96" height="20" x="725" y="404" style="fill:black;" font-family="Arial" font-size="16px">fechpag</text>
+   <rect width="96" height="20" x="720" y="410" style="fill:none;stroke:black;"/>
+   <text width="96" height="20" x="725" y="424" style="fill:black;" font-family="Arial" font-size="16px">moneda</text>
+   <rect width="96" height="20" x="720" y="430" style="fill:none;stroke:black;"/>
+   <text width="96" height="20" x="725" y="444" style="fill:black;" font-family="Arial" font-size="16px">fechcheq</text>
+   <rect width="96" height="20" x="720" y="450" style="fill:none;stroke:black;"/>
+   <text width="96" height="20" x="725" y="464" style="fill:black;" font-family="Arial" font-size="16px">nrocheq</text>
+   <rect width="96" height="20" x="720" y="470" style="fill:none;stroke:black;"/>
+   <text width="96" height="20" x="725" y="484" style="fill:black;" font-family="Arial" font-size="16px">debe</text>
+   <rect width="96" height="20" x="720" y="490" style="fill:none;stroke:black;"/>
+   <text width="96" height="20" x="725" y="504" style="fill:black;" font-family="Arial" font-size="16px">haber</text>
+   <rect width="96" height="20" x="720" y="510" style="fill:none;stroke:black;"/>
+   <text width="96" height="20" x="725" y="524" style="fill:black;" font-family="Arial" font-size="16px">saldo</text>
+   <rect width="96" height="20" x="720" y="530" style="fill:none;stroke:black;"/>
+   <text width="96" height="20" x="725" y="544" style="fill:black;" font-family="Arial" font-size="16px">saldtot</text>
+   <rect width="96" height="20" x="720" y="550" style="fill:none;stroke:black;"/>
+   <text width="96" height="20" x="725" y="564" style="fill:black;" font-family="Arial" font-size="16px">nrorec</text>
+   <rect width="113" height="20" x="322" y="43" style="fill:#007;stroke:black;"/>
+   <text width="113" height="20" x="327" y="57" style="fill:#fff;" font-family="Arial" font-size="16px"> personas</text>
+   <rect width="113" height="20" x="322" y="63" style="fill:#aea;stroke:black;"/>
+   <text width="113" height="20" x="327" y="77" style="fill:black;" font-family="Arial" font-size="16px">idper</text>
+   <rect width="113" height="20" x="322" y="83" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="97" style="fill:black;" font-family="Arial" font-size="16px">email</text>
+   <rect width="113" height="20" x="322" y="103" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="117" style="fill:black;" font-family="Arial" font-size="16px">pass</text>
+   <rect width="113" height="20" x="322" y="123" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="137" style="fill:black;" font-family="Arial" font-size="16px">nombre</text>
+   <rect width="113" height="20" x="322" y="143" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="157" style="fill:black;" font-family="Arial" font-size="16px">apellido</text>
+   <rect width="113" height="20" x="322" y="163" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="177" style="fill:black;" font-family="Arial" font-size="16px">razon</text>
+   <rect width="113" height="20" x="322" y="183" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="197" style="fill:black;" font-family="Arial" font-size="16px">rutced</text>
+   <rect width="113" height="20" x="322" y="203" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="217" style="fill:black;" font-family="Arial" font-size="16px">fechingr</text>
+   <rect width="113" height="20" x="322" y="223" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="237" style="fill:black;" font-family="Arial" font-size="16px">telefono</text>
+   <rect width="113" height="20" x="322" y="243" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="257" style="fill:black;" font-family="Arial" font-size="16px">direccion</text>
+   <rect width="113" height="20" x="322" y="263" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="277" style="fill:black;" font-family="Arial" font-size="16px">esprov</text>
+   <rect width="113" height="20" x="322" y="283" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="297" style="fill:black;" font-family="Arial" font-size="16px">moneda</text>
+   <rect width="113" height="20" x="322" y="303" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="317" style="fill:black;" font-family="Arial" font-size="16px">seguridad</text>
+   <rect width="113" height="20" x="322" y="323" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="337" style="fill:black;" font-family="Arial" font-size="16px">saldoinicial</text>
+   <rect width="113" height="20" x="322" y="343" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="357" style="fill:black;" font-family="Arial" font-size="16px">saldototal</text>
+   <rect width="113" height="20" x="322" y="363" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="377" style="fill:black;" font-family="Arial" font-size="16px">retorno</text>
+   <rect width="113" height="20" x="322" y="383" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="397" style="fill:black;" font-family="Arial" font-size="16px">retactivo</text>
+   <rect width="113" height="20" x="322" y="403" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="417" style="fill:black;" font-family="Arial" font-size="16px">observaciones</text>
+   <rect width="113" height="20" x="322" y="423" style="fill:none;stroke:black;"/>
+   <text width="113" height="20" x="327" y="437" style="fill:black;" font-family="Arial" font-size="16px">activo</text>
+   <rect width="91" height="20" x="339" y="96" style="fill:#007;stroke:black;"/>
+   <text width="91" height="20" x="344" y="110" style="fill:#fff;" font-family="Arial" font-size="16px"> seguridad</text>
+   <rect width="91" height="20" x="339" y="116" style="fill:#aea;stroke:black;"/>
+   <text width="91" height="20" x="344" y="130" style="fill:black;" font-family="Arial" font-size="16px">idseg</text>
+   <rect width="91" height="20" x="339" y="136" style="fill:none;stroke:black;"/>
+   <text width="91" height="20" x="344" y="150" style="fill:black;" font-family="Arial" font-size="16px">categoria</text>
+   <rect width="91" height="20" x="339" y="156" style="fill:none;stroke:black;"/>
+   <text width="91" height="20" x="344" y="170" style="fill:black;" font-family="Arial" font-size="16px">descripcion</text>
+   <rect width="91" height="20" x="339" y="176" style="fill:none;stroke:black;"/>
+   <text width="91" height="20" x="344" y="190" style="fill:black;" font-family="Arial" font-size="16px">activo</text>
+</svg>
