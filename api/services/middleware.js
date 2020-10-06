@@ -9,30 +9,38 @@ let Middleware = {
       //usuarios
       "/usuarios/all": "Acceso Permitido",
       "/usuarios/:id": "Acceso Permitido",
-      "/usuarios/mail/find": "Acceso Permitido",
       "/usuarios/new": "Acceso Permitido",
       "/usuarios/edit/:id": "Acceso Permitido",
 
       //monedas
       "/monedas/all": "Acceso Permitido",
       "/monedas/:id": "Acceso Permitido",
-      "/monedas/mail/find": "Acceso Permitido",
       "/monedas/new": "Acceso Permitido",
       "/monedas/edit/:id": "Acceso Permitido",
       
       //seguridad
       "/seguridad/all": "Acceso Permitido",
       "/seguridad/:id": "Acceso Permitido",
-      "/seguridad/mail/find": "Acceso Permitido",
       "/seguridad/new": "Acceso Permitido",
       "/seguridad/edit/:id": "Acceso Permitido",
 
       //documentos
       "/documentos/all": "Acceso Permitido",
       "/documentos/:id": "Acceso Permitido",
-      "/documentos/mail/find": "Acceso Permitido",
       "/documentos/new": "Acceso Permitido",
-      "/documentos/edit/:id": "Acceso Permitido"
+      "/documentos/edit/:id": "Acceso Permitido",
+      
+      //cotizaciones
+      "/cotizaciones/all": "Acceso Permitido",
+      "/cotizaciones/:id": "Acceso Permitido",
+      "/cotizaciones/new": "Acceso Permitido",
+      "/cotizaciones/edit/:id": "Acceso Permitido",
+
+      //cheques
+      "/cheques/all": "Acceso Permitido",
+      "/cheques/:id": "Acceso Permitido",
+      "/cheques/new": "Acceso Permitido",
+      "/cheques/edit/:id": "Acceso Permitido"
 
     },
     {

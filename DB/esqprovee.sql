@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 02-10-2020 a las 14:58:12
--- Versión del servidor: 5.7.24
--- Versión de PHP: 7.3.1
+-- Tiempo de generación: 06-10-2020 a las 14:07:57
+-- Versión del servidor: 8.0.21
+-- Versión de PHP: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -30,13 +29,14 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `cheques`;
 CREATE TABLE IF NOT EXISTS `cheques` (
-  `idcheq` int(11) NOT NULL AUTO_INCREMENT,
-  `nrocheq` int(11) NOT NULL,
+  `idcheq` int NOT NULL AUTO_INCREMENT,
+  `nrocheq` int NOT NULL,
   `banco` text NOT NULL,
-  `moneda` int(11) NOT NULL,
+  `moneda` int NOT NULL,
   `fechemi` date NOT NULL,
   `fechpag` date NOT NULL,
   `fechcob` date NOT NULL,
+  `activo` tinyint NOT NULL,
   PRIMARY KEY (`idcheq`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -48,11 +48,12 @@ CREATE TABLE IF NOT EXISTS `cheques` (
 
 DROP TABLE IF EXISTS `cotizacion`;
 CREATE TABLE IF NOT EXISTS `cotizacion` (
-  `idcot` int(11) NOT NULL AUTO_INCREMENT,
+  `idcot` int NOT NULL AUTO_INCREMENT,
   `fechcot` date NOT NULL,
-  `moneda` int(11) NOT NULL,
-  `impcot` int(11) NOT NULL,
-  `activo` int(11) NOT NULL,
+  `moneda` int NOT NULL,
+  `impcot` int NOT NULL,
+  `deldia` tinyint NOT NULL,
+  `activo` int NOT NULL,
   PRIMARY KEY (`idcot`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -64,9 +65,9 @@ CREATE TABLE IF NOT EXISTS `cotizacion` (
 
 DROP TABLE IF EXISTS `documentos`;
 CREATE TABLE IF NOT EXISTS `documentos` (
-  `Idtipdoc` int(11) NOT NULL AUTO_INCREMENT,
+  `Idtipdoc` int NOT NULL AUTO_INCREMENT,
   `tipodoc` text NOT NULL,
-  `moneda` int(11) NOT NULL,
+  `moneda` int NOT NULL,
   `activo` tinyint(1) NOT NULL,
   PRIMARY KEY (`Idtipdoc`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -79,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `documentos` (
 
 DROP TABLE IF EXISTS `monedas`;
 CREATE TABLE IF NOT EXISTS `monedas` (
-  `idmon` int(11) NOT NULL AUTO_INCREMENT,
+  `idmon` int NOT NULL AUTO_INCREMENT,
   `moneda` text NOT NULL,
   `divide` tinyint(1) NOT NULL,
   `activo` tinyint(1) NOT NULL,
@@ -102,20 +103,21 @@ INSERT INTO `monedas` (`idmon`, `moneda`, `divide`, `activo`) VALUES
 
 DROP TABLE IF EXISTS `movimientos`;
 CREATE TABLE IF NOT EXISTS `movimientos` (
-  `idmov` int(11) NOT NULL AUTO_INCREMENT,
-  `proveedor` int(11) NOT NULL,
-  `tipdoc` int(11) NOT NULL,
-  `nrofac` int(11) NOT NULL,
+  `idmov` int NOT NULL AUTO_INCREMENT,
+  `proveedor` int NOT NULL,
+  `tipdoc` int NOT NULL,
+  `nrofac` int NOT NULL,
   `fechemi` date NOT NULL,
   `fechpag` date NOT NULL,
-  `moneda` int(11) NOT NULL,
+  `moneda` int NOT NULL,
   `fechcheq` date NOT NULL,
-  `nrocheq` int(11) NOT NULL,
-  `debe` int(11) NOT NULL,
-  `haber` int(11) NOT NULL,
-  `saldo` int(11) NOT NULL,
-  `saldtot` int(11) NOT NULL,
-  `nrorec` int(11) NOT NULL,
+  `nrocheq` int NOT NULL,
+  `debe` int NOT NULL,
+  `haber` int NOT NULL,
+  `saldo` int NOT NULL,
+  `saldtot` int NOT NULL,
+  `nrorec` int NOT NULL,
+  `activo` tinyint NOT NULL,
   PRIMARY KEY (`idmov`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -127,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `movimientos` (
 
 DROP TABLE IF EXISTS `personas`;
 CREATE TABLE IF NOT EXISTS `personas` (
-  `idper` int(11) NOT NULL AUTO_INCREMENT,
+  `idper` int NOT NULL AUTO_INCREMENT,
   `email` text NOT NULL,
   `pass` text NOT NULL,
   `nombre` text NOT NULL,
@@ -138,11 +140,11 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `telefono` text NOT NULL,
   `direccion` text NOT NULL,
   `esprov` tinyint(1) NOT NULL,
-  `moneda` int(11) NOT NULL,
-  `seguridad` int(11) NOT NULL,
-  `saldoinicial` int(11) NOT NULL,
-  `saldototal` int(11) NOT NULL,
-  `retorno` int(11) NOT NULL,
+  `moneda` int NOT NULL,
+  `seguridad` int NOT NULL,
+  `saldoinicial` int NOT NULL,
+  `saldototal` int NOT NULL,
+  `retorno` int NOT NULL,
   `fechret` date NOT NULL,
   `retactivo` tinyint(1) NOT NULL,
   `observaciones` text NOT NULL,
@@ -165,7 +167,7 @@ INSERT INTO `personas` (`idper`, `email`, `pass`, `nombre`, `apellido`, `razon`,
 
 DROP TABLE IF EXISTS `seguridad`;
 CREATE TABLE IF NOT EXISTS `seguridad` (
-  `idseg` int(11) NOT NULL AUTO_INCREMENT,
+  `idseg` int NOT NULL AUTO_INCREMENT,
   `categoria` text NOT NULL,
   `descripcion` text NOT NULL,
   `activo` text NOT NULL,
