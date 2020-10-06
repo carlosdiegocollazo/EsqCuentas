@@ -1,4 +1,4 @@
-let Articulo = {
+let movimiento = {
 	
 	getRecordById: async function (tabla, idTabla, id){
 		let sql 		= `
@@ -17,11 +17,11 @@ let Articulo = {
 		return response; 
 	},
 	
-	obtenerArticulos: async function(){
+	obtenermovimientos: async function(){
 		let sql 		= `
-							SELECT * FROM articulos
+							SELECT * FROM movimientos
 							WHERE
-							articulos.articuloActivo = 1
+							movimientos.activo = 1
 						`
 		let response 	= {error: "No se encontraron artículos"}
 		let resultado 	= await conn.query(sql);
@@ -33,14 +33,14 @@ let Articulo = {
 		return response;
 	},
 
-	obtenerArticuloPorId: async function(id){
+	obtenermovimientoPorId: async function(id){
 		let sql 		= `
-							SELECT * FROM articulos
+							SELECT * FROM movimientos
 							WHERE
-							articulos.articuloId = '${id}' 
-							&& articulos.articuloActivo = 1
+							movimientos.idmov = '${id}' 
+							&& movimientos.activo = 1
 						`
-		let response 	= {error: `No se encontró articulo con Id: ${id}`}
+		let response 	= {error: `No se encontró movimiento con Id: ${id}`}
 		let resultado 	= await conn.query(sql);
 		if (resultado.code) {
 	 		response 	= {error: "Error en consulta SQL"};
@@ -50,19 +50,20 @@ let Articulo = {
 		return response;
 	},
 
-	obtenerArticuloPorIdFull: async function(id){
-		let idArticulo 	= id;
+	
+	obtenermovimientoPorIdFull: async function(id){
+		let idmovimiento 	= id;
 		let sql 		= `
 							SELECT
-							articulos.articuloId,
-							articulos.articuloTipo,
-							articulos.articuloTopico,
-							usuarios.usuarioId
-							FROM articulos
-							JOIN usuarios
-							ON articulos.articuloAutor = usuarios.usuarioId
-							WHERE (articulos.articuloId = '${id}' 
-							&& articulos.articuloActivo = 1)
+							movimientos.idmov,
+							movimientos.nrofac,
+							movimientos.fechemi,
+							personas.idper
+							FROM movimientos
+							JOIN personas
+							ON movimientos.nrocheq = personas.idper
+							WHERE (movimientos.idmov = '${id}' 
+							&& movimientos.activo = 1)
 						`
 		let response 	= {}
 		let result 		= {}
@@ -70,17 +71,17 @@ let Articulo = {
 		if (resultado.code) {
 	 		response 	= {error: "Error en consulta SQL"};
 	 	}else if (resultado.length>0) {
-			let idUsuario 		= resultado[0].usuarioId;
-			let idTipo 			= resultado[0].articuloTipo;
-			let idTopico 		= resultado[0].articuloTopico;
-			result["articulo"] 	= await this.getRecordById('articulos', 
-										'articulos.articuloId', idArticulo);
-			result["tipo"] 		= await this.getRecordById('tiposarticulos', 
-										'tiposarticulos.tipoArticuloId', idTipo);
+			let idUsuario 		= resultado[0].idper;
+			let idTipo 			= resultado[0].nrofac;
+			let idTopico 		= resultado[0].fechemi;
+			result["movimiento"] 	= await this.getRecordById('movimientos', 
+										'movimientos.idmov', idmovimiento);
+			result["tipo"] 		= await this.getRecordById('tiposmovimientos', 
+										'tiposmovimientos.tipoidmov', idTipo);
 			result["topico"] 	= await this.getRecordById('topicos', 
 										'topicos.topicoId', idTopico);
-			result["autor"] 	= await this.getRecordById('usuarios', 
-			 							'usuarios.usuarioId', idUsuario);
+			result["autor"] 	= await this.getRecordById('personas', 
+			 							'personas.idper', idUsuario);
 			response 			= {response: result}
 		}else {
 			response 			= {error: "No se encontró artículo"}
@@ -88,49 +89,49 @@ let Articulo = {
 		return response;
 	},
 
-	obtenerArticuloPorUsuarioId: async function(idUsuarioReq, idUsuarioToken){
+	obtenermovimientoPoridper: async function(idUsuarioReq, idUsuarioToken){
 		let response 		= { };
 		if (idUsuarioReq == idUsuarioToken) {
 			let idUsuario 	= idUsuarioReq;
 			let sql 		= `
 								SELECT
-								articulos.articuloId,
-								articulos.articuloTipo,
-								articulos.articuloTopico,
-								usuarios.usuarioId
-								FROM articulos
-								JOIN usuarios
-								ON articulos.articuloAutor = usuarios.usuarioId
-								WHERE (articulos.articuloAutor = '${idUsuario}' 
-								&& articulos.articuloActivo = 1)
+								movimientos.idmov,
+								movimientos.nrofac,
+								movimientos.fechemi,
+								personas.idper
+								FROM movimientos
+								JOIN personas
+								ON movimientos.nrocheq = personas.idper
+								WHERE (movimientos.nrocheq = '${idUsuario}' 
+								&& movimientos.activo = 1)
 							`
 			let resultados 	= await conn.query(sql);
 			if (resultados.code) {
 	 			response 	= {error: "Error en consulta SQL"};
 	 		}else {
 				let arrayResult 			= [];
-				let articuloEncontrado 		= {};
-				let articulosEncontrados 	= await conn.query(sql);
-				if (articulosEncontrados.length>0) {
-					for (let i = 0; i < articulosEncontrados.length; i++) {
-						articuloEncontrado 	= articulosEncontrados[i];
-						articuloEncontrado["articulo"] 	= await this.getRecordById('articulos', 
-												'articulos.articuloId', articuloEncontrado.articuloId);
-						articuloEncontrado["tipo"] 		= await this.getRecordById('tiposarticulos', 
-												'tiposarticulos.tipoArticuloId', articuloEncontrado.articuloTipo);
-						articuloEncontrado["topico"] 	= await this.getRecordById('topicos', 
-												'topicos.topicoId', articuloEncontrado.articuloTopico);
-						articuloEncontrado["autor"] 	= await this.getRecordById('usuarios', 
-					 							'usuarios.usuarioId', articuloEncontrado.usuarioId);
-						delete articuloEncontrado["articuloId"];
-						delete articuloEncontrado["articuloTipo"];
-						delete articuloEncontrado["articuloTopico"];
-						delete articuloEncontrado["usuarioId"];
-						arrayResult.push(articuloEncontrado);
+				let movimientoEncontrado 		= {};
+				let movimientosEncontrados 	= await conn.query(sql);
+				if (movimientosEncontrados.length>0) {
+					for (let i = 0; i < movimientosEncontrados.length; i++) {
+						movimientoEncontrado 	= movimientosEncontrados[i];
+						movimientoEncontrado["movimiento"] 	= await this.getRecordById('movimientos', 
+												'movimientos.idmov', movimientoEncontrado.idmov);
+						movimientoEncontrado["tipo"] 		= await this.getRecordById('tiposmovimientos', 
+												'tiposmovimientos.tipoidmov', movimientoEncontrado.nrofac);
+						movimientoEncontrado["topico"] 	= await this.getRecordById('topicos', 
+												'topicos.topicoId', movimientoEncontrado.fechemi);
+						movimientoEncontrado["autor"] 	= await this.getRecordById('personas', 
+					 							'personas.idper', movimientoEncontrado.idper);
+						delete movimientoEncontrado["idmov"];
+						delete movimientoEncontrado["nrofac"];
+						delete movimientoEncontrado["fechemi"];
+						delete movimientoEncontrado["idper"];
+						arrayResult.push(movimientoEncontrado);
 					}
 					response 	= {response: arrayResult};	
 				}else {
-					response 	= {error: "No se encontraron articulos de este autor"}
+					response 	= {error: "No se encontraron movimientos de este autor"}
 					}
 			}
 		}else{
@@ -139,52 +140,52 @@ let Articulo = {
 		return response;
 	},
 
-	obtenerArticulosPorTopicosUsuarioId: async function(id){
+	obtenermovimientosPorTopicosidper: async function(id){
 		let sql 		= `
 							SELECT
 							preferencias.preferenciaUsuario,
 							preferencias.preferenciaTopico,
-							articulos.articuloId,
-							articulos.articuloTipo,
-							articulos.articuloTopico,
-							articulos.articuloAutor
+							movimientos.idmov,
+							movimientos.nrofac,
+							movimientos.fechemi,
+							movimientos.nrocheq
 							FROM preferencias
-							JOIN articulos
-							ON preferencias.preferenciaTopico = articulos.articuloTopico
+							JOIN movimientos
+							ON preferencias.preferenciaTopico = movimientos.fechemi
 							WHERE (preferencias.preferenciaUsuario = '${id}' 
-							&& articulos.articuloActivo = 1)
+							&& movimientos.activo = 1)
 						`
 		let response 					= {};
 		let arrayResult 				= [];
-		let articuloEncontrado 			= {};
-		let Usuario 					= require('../services/usuarios'); 
+		let movimientoEncontrado 			= {};
+		let Usuario 					= require('../services/personas'); 
 		let existeUsuario 				= await Usuario.obtenerUsuarioPorId(id);
 		if (!existeUsuario.error) {
-			let articulosEncontrados 	= await conn.query(sql);
-			if (articulosEncontrados.code) {
+			let movimientosEncontrados 	= await conn.query(sql);
+			if (movimientosEncontrados.code) {
 	 			response 				= {error: "Error en consulta SQL"};
-	 		}else if (articulosEncontrados.length>0) {
-				for (let i = 0; i < articulosEncontrados.length; i++) {
-					articuloEncontrado 				= articulosEncontrados[i];
-					articuloEncontrado["articulo"] 	= await this.getRecordById('articulos', 
-											'articulos.articuloId', articuloEncontrado.articuloId);
-					articuloEncontrado["tipo"] 		= await this.getRecordById('tiposarticulos', 
-											'tiposarticulos.tipoArticuloId', articuloEncontrado.articuloTipo);
-					articuloEncontrado["topico"] 	= await this.getRecordById('topicos', 
-											'topicos.topicoId', articuloEncontrado.articuloTopico);
-					articuloEncontrado["autor"] 	= await this.getRecordById('usuarios', 
-				 							'usuarios.usuarioId', articuloEncontrado.articuloAutor);
-					delete articuloEncontrado["articuloId"];
-					delete articuloEncontrado["articuloTipo"];
-					delete articuloEncontrado["articuloTopico"];
-					delete articuloEncontrado["articuloAutor"];
-					delete articuloEncontrado["preferenciaUsuario"];
-					delete articuloEncontrado["preferenciaTopico"];
-					arrayResult.push(articuloEncontrado);
+	 		}else if (movimientosEncontrados.length>0) {
+				for (let i = 0; i < movimientosEncontrados.length; i++) {
+					movimientoEncontrado 				= movimientosEncontrados[i];
+					movimientoEncontrado["movimiento"] 	= await this.getRecordById('movimientos', 
+											'movimientos.idmov', movimientoEncontrado.idmov);
+					movimientoEncontrado["tipo"] 		= await this.getRecordById('tiposmovimientos', 
+											'tiposmovimientos.tipoidmov', movimientoEncontrado.nrofac);
+					movimientoEncontrado["topico"] 	= await this.getRecordById('topicos', 
+											'topicos.topicoId', movimientoEncontrado.fechemi);
+					movimientoEncontrado["autor"] 	= await this.getRecordById('personas', 
+				 							'personas.idper', movimientoEncontrado.nrocheq);
+					delete movimientoEncontrado["idmov"];
+					delete movimientoEncontrado["nrofac"];
+					delete movimientoEncontrado["fechemi"];
+					delete movimientoEncontrado["nrocheq"];
+					delete movimientoEncontrado["preferenciaUsuario"];
+					delete movimientoEncontrado["preferenciaTopico"];
+					arrayResult.push(movimientoEncontrado);
 				}
 				response 	= {response: arrayResult};	
 			}else {
-				response 	= {error: "No se encontraron articulos para las preferencias de este usuario"}
+				response 	= {error: "No se encontraron movimientos para las preferencias de este usuario"}
 				}
 		}else{
 			response 		= {error: `No existe usuario con Id: ${id}`}
@@ -192,118 +193,108 @@ let Articulo = {
 		return response;
 	},
 
-	crearArticulo: async function(articulo){
+	crearmovimiento: async function(movimiento){
 		let sql = `
-					INSERT INTO articulos
+					INSERT INTO movimientos
 					(
-					articuloFecha,
-					articuloEstado,					
-					articuloTipo,
-					articuloTopico,
-					articuloTitulo,
-					articuloResumen,
-					articuloKeywords,
-					articuloAutor,
-					articuloArchivo,
-					articuloPuntaje
+					proveedor,
+					tipdoc,					
+					nrofac,
+					fechemi,
+					fechpag,
+					moneda,
+					fechcheq,
+					nrocheq,
+					debe,
+					haber,
+					saldo,
+					saldtot,
+					nrorec,
+					activo
 					)
 					VALUES
 					(
-					NOW(),
-					'${articulo.articuloEstado}',
-					'${articulo.articuloTipo}',
-					'${articulo.articuloTopico}',
-					'${articulo.articuloTitulo}',
-					'${articulo.articuloResumen}',
-					'${articulo.articuloKeywords}',
-					'${articulo.articuloAutor}',
-					'${articulo.articuloArchivo}',
-					'${articulo.articuloPuntaje}'
+					'${movimiento.proveedor}',
+					'${movimiento.tipdoc}',
+					'${movimiento.nrofac}',
+					'${movimiento.fechemi}',
+					'${movimiento.fechpag}',
+					'${movimiento.moneda}',
+					'${movimiento.fechcheq}',
+					'${movimiento.nrocheq}',
+					'${movimiento.debe}',
+					'${movimiento.haber}',
+					'${movimiento.saldo}',
+					'${movimiento.saldotot}',
+					'${movimiento.nrorec}',
+					'${movimiento.activo}'
 					)		
 				`
-		let response 	= {error: "No se pudo crear el articulo"}
+		let response 	= {error: "No se pudo crear el movimiento"}
 		let resultado 	= await conn.query(sql);
 		if (resultado.code) {
 	 		response 	= {error: "Error en consulta SQL"};
 	 	}else if (resultado.insertId) {
-			response 	= {response: "Articulo creado correctamente"}
+			response 	= {response: "movimiento creado correctamente"}
 		}
 		return response;
 	},
 
-	actualizarArticulo: async function(articulo, id){
+	actualizarmovimiento: async function(movimiento, id){
 		let sql = `
-					UPDATE articulos
+					UPDATE movimientos
 					SET
-					articuloFecha 		= NOW(),
-					articuloTopico		= '${articulo.articuloTopico}',
-					articuloTitulo		= '${articulo.articuloTitulo}',
-					articuloResumen		= '${articulo.articuloResumen}',
-					articuloKeywords	= '${articulo.articuloKeywords}',
-					articuloAutor		= '${articulo.articuloAutor}',
-					articuloArchivo		= '${articulo.articuloArchivo}',
-					articuloPuntaje 	= '${articulo.articuloPuntaje}'
+					proveedor 	= '${movimiento.proveedor}',
+					tipdoc		= '${movimiento.tipdoc}',
+					fechemi		= '${movimiento.fechemi}',
+					fechpag		= '${movimiento.fechpag}',
+					moneda		= '${movimiento.moneda}',
+					fechcheq	= '${movimiento.fechcheq}',
+					nrocheq		= '${movimiento.nrocheq}',
+					debe		= '${movimiento.debe}',
+					haber		= '${movimiento.haber}',
+					saldo		= '${movimiento.saldo}',
+					saldotot	= '${movimiento.saldotot}',
+					nrorec		= '${movimiento.nrorec}',
+					activo 		= '${movimiento.activo}'
 					
 					WHERE
-					articulos.articuloId = '${id}'
+					movimientos.idmov = '${id}'
 				`
 		let response 		= {};
-		let existeArticulo 	= await this.obtenerArticuloPorId(id);
-		if (!existeArticulo.error) {
+		let existemovimiento 	= await this.obtenermovimientoPorId(id);
+		if (!existemovimiento.error) {
 			let resultado 	= await conn.query(sql);
 			if (resultado.code) {
 	 			response 	= {error: "Error en consulta SQL"};
 	 		}else if (resultado.affectedRows>0) {
-				response 	= {response: "Articulo actualizado correctamente"}
+				response 	= {response: "movimiento actualizado correctamente"}
 			}else{
-				response 	= {error: "No se pudo actualizar el articulo"}
+				response 	= {error: "No se pudo actualizar el movimiento"}
 			}
 		}else{
-			response 		= {error: `No existe articulo con Id: ${id}`}
+			response 		= {error: `No existe movimiento con Id: ${id}`}
 			}
 		return response;
 	},
 
-	publicarArticulo: async function(id){
-		let sql 		= `
-							UPDATE articulos 
-							SET 
-							articuloEstado = "Publicado" 
-							WHERE
-							articulos.articuloId = '${id}'
-						`
-		let response 		= {};
-		let existeArticulo 	= await this.obtenerArticuloPorId(id);
-		if (!existeArticulo.error) {
-			let resultado 	= await conn.query(sql);
-			if (resultado.code) {
-	 			response 	= {error: "Error en consulta SQL"};
-	 		}else if (resultado.affectedRows>0) {
-				response 	= {response: "Artículo publicado correctamente"}
-			}
-		}else{
-			response 		= {error: `No existe articulo con Id: ${id}`}
-			}
-		return response;
-	},
-
-	buscarArticulos: async function(consultaArray , parametro1){
+	buscarmovimientos: async function(consultaArray , parametro1){
 		let sql 		= `
 							SELECT *
-							FROM articulos
+							FROM movimientos
 							WHERE
-							articulos.articuloActivo = 1
+							movimientos.activo = 1
 							&&
-							articulos.articuloTopico = '${parametro1}'
+							movimientos.fechemi = '${parametro1}'
 							&&
-							articulos.articuloTitulo like '%${consultaArray[0]}%'
+							movimientos.fechpag like '%${consultaArray[0]}%'
 							`
 		for(let i=1; i<consultaArray.length; i++){
 		    if(consultaArray[i]) {
-			     sql += ` OR articulos.articuloTitulo like '%${consultaArray[i]}%'`;
+			     sql += ` OR movimientos.fechpag like '%${consultaArray[i]}%'`;
 			}
 		}
-		let response 		= {error: "No se encontraron articulos para esta búsqueda"}
+		let response 		= {error: "No se encontraron movimientos para esta búsqueda"}
 		if (consultaArray.length>0) {
 			let resultado 	= await conn.query(sql);
 			if (resultado.code) {
@@ -315,25 +306,25 @@ let Articulo = {
 		return response;
 	},
 
-	buscarArticulosFull: async function(consultaArray , parametro1){
+	buscarmovimientosFull: async function(consultaArray , parametro1){
 		let sql 		= `
 							SELECT 
-							articulos.articuloId,
-							articulos.articuloTipo,
-							articulos.articuloTopico,
-							articulos.articuloAutor
-							FROM articulos
+							movimientos.idmov,
+							movimientos.nrofac,
+							movimientos.fechemi,
+							movimientos.nrocheq
+							FROM movimientos
 							WHERE
-							articulos.articuloActivo = 1
+							movimientos.activo = 1
 							&&
-							articulos.articuloTopico = '${parametro1}'
+							movimientos.fechemi = '${parametro1}'
 							&&
-							(articulos.articuloTitulo like '%${consultaArray[0]}%'
+							(movimientos.fechpag like '%${consultaArray[0]}%'
 						`
 		if (consultaArray.length>1) {
 			for(let i=1; i<consultaArray.length; i++){
 			    if(consultaArray[i]) {
-				    sql += ` OR articulos.articuloTitulo like '%${consultaArray[i]}%'`;
+				    sql += ` OR movimientos.fechpag like '%${consultaArray[i]}%'`;
 				}
 			}
 			sql += ` )`;
@@ -342,168 +333,108 @@ let Articulo = {
 			}
 		let arrayResult 				= [];
 		let response 					= {};
-		let articuloEncontrado 			= {};
+		let movimientoEncontrado 			= {};
 		if (consultaArray.length>0) {
-			let articulosEncontrados 	= await conn.query(sql);
-			if (articulosEncontrados.code) {
+			let movimientosEncontrados 	= await conn.query(sql);
+			if (movimientosEncontrados.code) {
 	 			response 	= {error: "Error en consulta SQL"};
-	 		}else if (articulosEncontrados.length>0) {
-				for (let i = 0; i < articulosEncontrados.length; i++) {
-					articuloEncontrado 				= articulosEncontrados[i];
-					articuloEncontrado["articulo"] 	= await this.getRecordById('articulos', 
-											'articulos.articuloId', articuloEncontrado.articuloId);
-					articuloEncontrado["tipo"] 		= await this.getRecordById('tiposarticulos', 
-											'tiposarticulos.tipoArticuloId', articuloEncontrado.articuloTipo);
-					articuloEncontrado["topico"] 	= await this.getRecordById('topicos', 
-											'topicos.topicoId', articuloEncontrado.articuloTopico);
-					articuloEncontrado["autor"] 	= await this.getRecordById('usuarios', 
-				 							'usuarios.usuarioId', articuloEncontrado.articuloAutor);
-					delete articuloEncontrado["articuloId"];
-					delete articuloEncontrado["articuloTipo"];
-					delete articuloEncontrado["articuloTopico"];
-					delete articuloEncontrado["articuloAutor"];
-					arrayResult.push(articuloEncontrado);
+	 		}else if (movimientosEncontrados.length>0) {
+				for (let i = 0; i < movimientosEncontrados.length; i++) {
+					movimientoEncontrado 				= movimientosEncontrados[i];
+					movimientoEncontrado["movimiento"] 	= await this.getRecordById('movimientos', 
+											'movimientos.idmov', movimientoEncontrado.idmov);
+					movimientoEncontrado["tipo"] 		= await this.getRecordById('tiposmovimientos', 
+											'tiposmovimientos.tipoidmov', movimientoEncontrado.nrofac);
+					movimientoEncontrado["topico"] 	= await this.getRecordById('topicos', 
+											'topicos.topicoId', movimientoEncontrado.fechemi);
+					movimientoEncontrado["autor"] 	= await this.getRecordById('personas', 
+				 							'personas.idper', movimientoEncontrado.nrocheq);
+					delete movimientoEncontrado["idmov"];
+					delete movimientoEncontrado["nrofac"];
+					delete movimientoEncontrado["fechemi"];
+					delete movimientoEncontrado["nrocheq"];
+					arrayResult.push(movimientoEncontrado);
 				}
 				response 	= {response: arrayResult};	
 			}else {
-				response 	= {error: "No se encontraron articulos para esta búsqueda"}
+				response 	= {error: "No se encontraron movimientos para esta búsqueda"}
 				}
 
 		}else {
-			response 		= {error: "No se encontraron articulos para esta búsqueda"}
+			response 		= {error: "No se encontraron movimientos para esta búsqueda"}
 			}
 		return response;
 	},
 
-	buscarArticulosFullFlex: async function(consultaArray , parametro1){
+	buscarmovimientosFullFlex: async function(consultaArray , parametro1){
 		let sql 		= `
 							SELECT 
-							articulos.articuloId,
-							articulos.articuloTipo,
-							articulos.articuloTopico,
-							articulos.articuloAutor
-							FROM articulos
+							movimientos.idmov,
+							movimientos.nrofac,
+							movimientos.fechemi,
+							movimientos.nrocheq
+							FROM movimientos
 							WHERE
-							articulos.articuloActivo = 1
+							movimientos.activo = 1
 							&&
-							(articulos.articuloTitulo like '%${consultaArray[0]}%'
+							(movimientos.fechpag like '%${consultaArray[0]}%'
 							OR
-							articulos.articuloKeywords like '%${consultaArray[0]}%'
+							movimientos.fechcheq like '%${consultaArray[0]}%'
 						`
 		if (consultaArray.length>1) {
 			for(let i=1; i<consultaArray.length; i++){
 			    if(consultaArray[i]) {
-				    sql += ` OR articulos.articuloTitulo like '%${consultaArray[i]}%'`;
-					sql += ` OR articulos.articuloKeywords like '%${consultaArray[i]}%'`;
+				    sql += ` OR movimientos.fechpag like '%${consultaArray[i]}%'`;
+					sql += ` OR movimientos.fechcheq like '%${consultaArray[i]}%'`;
 				}
 			}
 			sql += ` )`;
 		}else{sql += ` )`;}
 		let arrayResult 				= [];
 		let response 					= { };
-		let articuloEncontrado 			= {};
+		let movimientoEncontrado 			= {};
 		if (consultaArray.length>0) {
-			let articulosEncontrados 	= await conn.query(sql);
-			if (articulosEncontrados.code) {
+			let movimientosEncontrados 	= await conn.query(sql);
+			if (movimientosEncontrados.code) {
 	 			response 	= {error: "Error en consulta SQL"};
-	 		}else if (articulosEncontrados.length>0) {
-				for (let i = 0; i < articulosEncontrados.length; i++) {
-					articuloEncontrado 	= articulosEncontrados[i];
-					articuloEncontrado["articulo"] 	= await this.getRecordById('articulos', 
-											'articulos.articuloId', articuloEncontrado.articuloId);
-					articuloEncontrado["tipo"] 		= await this.getRecordById('tiposarticulos', 
-											'tiposarticulos.tipoArticuloId', articuloEncontrado.articuloTipo);
-					articuloEncontrado["topico"] 	= await this.getRecordById('topicos', 
-											'topicos.topicoId', articuloEncontrado.articuloTopico);
-					articuloEncontrado["autor"] 	= await this.getRecordById('usuarios', 
-				 							'usuarios.usuarioId', articuloEncontrado.articuloAutor);
-					delete articuloEncontrado["articuloId"];
-					delete articuloEncontrado["articuloTipo"];
-					delete articuloEncontrado["articuloTopico"];
-					delete articuloEncontrado["articuloAutor"];
-					arrayResult.push(articuloEncontrado);
+	 		}else if (movimientosEncontrados.length>0) {
+				for (let i = 0; i < movimientosEncontrados.length; i++) {
+					movimientoEncontrado 	= movimientosEncontrados[i];
+					movimientoEncontrado["movimiento"] 	= await this.getRecordById('movimientos', 
+											'movimientos.idmov', movimientoEncontrado.idmov);
+					movimientoEncontrado["tipo"] 		= await this.getRecordById('tiposmovimientos', 
+											'tiposmovimientos.tipoidmov', movimientoEncontrado.nrofac);
+					movimientoEncontrado["topico"] 	= await this.getRecordById('topicos', 
+											'topicos.topicoId', movimientoEncontrado.fechemi);
+					movimientoEncontrado["autor"] 	= await this.getRecordById('personas', 
+				 							'personas.idper', movimientoEncontrado.nrocheq);
+					delete movimientoEncontrado["idmov"];
+					delete movimientoEncontrado["nrofac"];
+					delete movimientoEncontrado["fechemi"];
+					delete movimientoEncontrado["nrocheq"];
+					arrayResult.push(movimientoEncontrado);
 				}
 				response 	= {response: arrayResult};	
 			}else {
-				response 	= {error: "No se encontraron articulos para esta búsqueda"}
+				response 	= {error: "No se encontraron movimientos para esta búsqueda"}
 				}
 		}else{
-			response 		= {error: "No se encontraron articulos para esta búsqueda"}
+			response 		= {error: "No se encontraron movimientos para esta búsqueda"}
 			}
 		return response;
 	},
 
-	buscarArticulosPublicadosFullFlex: async function(consultaArray , parametro1){
+	eliminarmovimiento: async function(id){
 		let sql 		= `
-							SELECT 
-							articulos.articuloId,
-							articulos.articuloTipo,
-							articulos.articuloTopico,
-							articulos.articuloAutor
-							FROM articulos
-							WHERE
-							articulos.articuloActivo = 1
-							&&
-							articulos.articuloEstado = 'Publicado'
-							&&
-							(articulos.articuloTitulo like '%${consultaArray[0]}%'
-							OR
-							articulos.articuloKeywords like '%${consultaArray[0]}%'
-						`
-		if (consultaArray.length>1) {
-			for(let i=1; i<consultaArray.length; i++){
-			    if(consultaArray[i]) {
-				    sql += ` OR articulos.articuloTitulo like '%${consultaArray[i]}%'`;
-					sql += ` OR articulos.articuloKeywords like '%${consultaArray[i]}%'`;
-				}
-			}
-			sql += ` )`;
-		}else{sql += ` )`;}
-		let arrayResult 				= [];
-		let response 					= { };
-		let articuloEncontrado 			= {};
-		if (consultaArray.length>0) {
-			let articulosEncontrados 	= await conn.query(sql);
-			if (articulosEncontrados.code) {
-	 			response 	= {error: "Error en consulta SQL"};
-	 		}else if (articulosEncontrados.length>0) {
-				for (let i = 0; i < articulosEncontrados.length; i++) {
-					articuloEncontrado 	= articulosEncontrados[i];
-					articuloEncontrado["articulo"] 	= await this.getRecordById('articulos', 
-											'articulos.articuloId', articuloEncontrado.articuloId);
-					articuloEncontrado["tipo"] 		= await this.getRecordById('tiposarticulos', 
-											'tiposarticulos.tipoArticuloId', articuloEncontrado.articuloTipo);
-					articuloEncontrado["topico"] 	= await this.getRecordById('topicos', 
-											'topicos.topicoId', articuloEncontrado.articuloTopico);
-					articuloEncontrado["autor"] 	= await this.getRecordById('usuarios', 
-				 							'usuarios.usuarioId', articuloEncontrado.articuloAutor);
-					delete articuloEncontrado["articuloId"];
-					delete articuloEncontrado["articuloTipo"];
-					delete articuloEncontrado["articuloTopico"];
-					delete articuloEncontrado["articuloAutor"];
-					arrayResult.push(articuloEncontrado);
-				}
-				response 	= {response: arrayResult};	
-			}else {
-				response 	= {error: "No se encontraron articulos para esta búsqueda"}
-				}
-		}else{
-			response 		= {error: "No se encontraron articulos para esta búsqueda"}
-			}
-		return response;
-	},
-
-	eliminarArticulo: async function(id){
-		let sql 		= `
-							UPDATE articulos 
+							UPDATE movimientos 
 							SET 
-							articuloActivo = 0 
+							activo = 0 
 							WHERE
-							articulos.articuloId = '${id}'
+							movimientos.idmov = '${id}'
 						`
 		let response 		= {};
-		let existeArticulo 	= await this.obtenerArticuloPorId(id);
-		if (!existeArticulo.error) {
+		let existemovimiento 	= await this.obtenermovimientoPorId(id);
+		if (!existemovimiento.error) {
 			let resultado 	= await conn.query(sql);
 			if (resultado.code) {
 	 			response 	= {error: "Error en consulta SQL"};
@@ -511,10 +442,10 @@ let Articulo = {
 				response 	= {response: "Artículo eliminado correctamente"}
 			}
 		}else {
-			response 		= {error: `No existe articulo con Id: ${id}`}
+			response 		= {error: `No existe movimiento con Id: ${id}`}
 		}
 		return response;
 	},
 }
 
-module.exports = Articulo;
+module.exports = movimiento;
