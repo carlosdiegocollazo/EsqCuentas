@@ -64,7 +64,7 @@ module.exports = function(app){
 	//Permite dar de alta a un nuevo registo artículo.
 	app.post('/movimiento/new', midd.rutasProtegidas, async function(req, res){
 		let movimiento = req.body;
-		let movimiento = require('../services/movimientos.js');
+		let movimientos = require('../services/movimientos.js');
 		let response = await movimiento.crearmovimiento(movimiento);
 		res.set('Content-Type', 'aplication/json');
 		res.send(response);
@@ -75,7 +75,7 @@ module.exports = function(app){
 	app.put('/movimiento/edit/:id', midd.rutasProtegidas, async function(req, res){
 		let movimiento 	= req.body;
 		let id 			= req.params.id;
-		let movimiento 	= require('../services/movimientos.js');
+		let movimientos 	= require('../services/movimientos.js');
 		let response 	= await movimiento.actualizarmovimiento(movimiento, id);
 		res.set('Content-Type', 'aplication/json');
 		res.send(response);

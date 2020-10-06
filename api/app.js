@@ -6,10 +6,13 @@ app.use(bodyParser.json());
 
 //REQUERIR EXPRESS ROUTES EN ARCHIVO EXTERNO
 require('./routes/usuarios-routes.js')(app);
-require('./routes/articulos-routes.js')(app);
+require('./routes/movimientos-routes.js')(app);
 require('./routes/moneda-routes.js')(app);
 require('./routes/seguridad-routes.js')(app);
 require('./routes/documentos-routes.js')(app);
+require('./routes/cheques-routes.js')(app);
+require('./routes/cotizacion-routes.js')(app);
+
 
 //DECLARAR COMO GLOBAL LA CONEXIÓN A DATA BASE
 global.conn 		= require('./config/conn.js');
