@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 07-10-2020 a las 17:38:43
--- Versión del servidor: 8.0.21
--- Versión de PHP: 7.3.21
+-- Servidor: localhost:3306
+-- Tiempo de generación: 07-10-2020 a las 20:17:18
+-- Versión del servidor: 5.7.31
+-- Versión de PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `esqprovee`
+-- Base de datos: `esquemac_esqprovee`
 --
 
 -- --------------------------------------------------------
@@ -27,17 +28,15 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `cheques`
 --
 
-DROP TABLE IF EXISTS `cheques`;
-CREATE TABLE IF NOT EXISTS `cheques` (
-  `idcheq` int NOT NULL AUTO_INCREMENT,
-  `nrocheq` int NOT NULL,
+CREATE TABLE `cheques` (
+  `idcheq` int(11) NOT NULL,
+  `nrocheq` int(11) NOT NULL,
   `banco` text NOT NULL,
-  `moneda` int NOT NULL,
+  `moneda` int(11) NOT NULL,
   `fechemi` date NOT NULL,
   `fechpag` date NOT NULL,
   `fechcob` date NOT NULL,
-  `activo` tinyint NOT NULL,
-  PRIMARY KEY (`idcheq`)
+  `activo` tinyint(4) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -46,15 +45,13 @@ CREATE TABLE IF NOT EXISTS `cheques` (
 -- Estructura de tabla para la tabla `cotizacion`
 --
 
-DROP TABLE IF EXISTS `cotizacion`;
-CREATE TABLE IF NOT EXISTS `cotizacion` (
-  `idcot` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cotizacion` (
+  `idcot` int(11) NOT NULL,
   `fechcot` date NOT NULL,
-  `moneda` int NOT NULL,
-  `impcot` int NOT NULL,
-  `deldia` tinyint NOT NULL,
-  `activo` int NOT NULL,
-  PRIMARY KEY (`idcot`)
+  `moneda` int(11) NOT NULL,
+  `impcot` int(11) NOT NULL,
+  `deldia` tinyint(4) NOT NULL,
+  `activo` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -63,13 +60,11 @@ CREATE TABLE IF NOT EXISTS `cotizacion` (
 -- Estructura de tabla para la tabla `documentos`
 --
 
-DROP TABLE IF EXISTS `documentos`;
-CREATE TABLE IF NOT EXISTS `documentos` (
-  `Idtipdoc` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `documentos` (
+  `Idtipdoc` int(11) NOT NULL,
   `tipodoc` text NOT NULL,
-  `moneda` int NOT NULL,
-  `activo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`Idtipdoc`)
+  `moneda` int(11) NOT NULL,
+  `activo` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -78,14 +73,12 @@ CREATE TABLE IF NOT EXISTS `documentos` (
 -- Estructura de tabla para la tabla `monedas`
 --
 
-DROP TABLE IF EXISTS `monedas`;
-CREATE TABLE IF NOT EXISTS `monedas` (
-  `idmon` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `monedas` (
+  `idmon` int(11) NOT NULL,
   `moneda` text NOT NULL,
-  `divide` tinyint(1) NOT NULL,
-  `activo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`idmon`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `divide` int(11) NOT NULL,
+  `activo` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `monedas`
@@ -93,7 +86,9 @@ CREATE TABLE IF NOT EXISTS `monedas` (
 
 INSERT INTO `monedas` (`idmon`, `moneda`, `divide`, `activo`) VALUES
 (1, 'Pesos', 1, 1),
-(2, 'Dolares', 1, 1);
+(2, 'Dolares', 1, 1),
+(15, 'Australes', 1, 0),
+(14, 'Reales', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -101,24 +96,22 @@ INSERT INTO `monedas` (`idmon`, `moneda`, `divide`, `activo`) VALUES
 -- Estructura de tabla para la tabla `movimientos`
 --
 
-DROP TABLE IF EXISTS `movimientos`;
-CREATE TABLE IF NOT EXISTS `movimientos` (
-  `idmov` int NOT NULL AUTO_INCREMENT,
-  `proveedor` int NOT NULL,
-  `tipdoc` int NOT NULL,
-  `nrofac` int NOT NULL,
+CREATE TABLE `movimientos` (
+  `idmov` int(11) NOT NULL,
+  `proveedor` int(11) NOT NULL,
+  `tipdoc` int(11) NOT NULL,
+  `nrofac` int(11) NOT NULL,
   `fechemi` date NOT NULL,
   `fechpag` date NOT NULL,
-  `moneda` int NOT NULL,
+  `moneda` int(11) NOT NULL,
   `fechcheq` date NOT NULL,
-  `nrocheq` int NOT NULL,
-  `debe` int NOT NULL,
-  `haber` int NOT NULL,
-  `saldo` int NOT NULL,
-  `saldtot` int NOT NULL,
-  `nrorec` int NOT NULL,
-  `activo` tinyint NOT NULL,
-  PRIMARY KEY (`idmov`)
+  `nrocheq` int(11) NOT NULL,
+  `debe` int(11) NOT NULL,
+  `haber` int(11) NOT NULL,
+  `saldo` int(11) NOT NULL,
+  `saldtot` int(11) NOT NULL,
+  `nrorec` int(11) NOT NULL,
+  `activo` tinyint(4) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -127,37 +120,33 @@ CREATE TABLE IF NOT EXISTS `movimientos` (
 -- Estructura de tabla para la tabla `personas`
 --
 
-DROP TABLE IF EXISTS `personas`;
-CREATE TABLE IF NOT EXISTS `personas` (
-  `idper` int NOT NULL AUTO_INCREMENT,
-  `email` text NOT NULL,
-  `pass` text NOT NULL,
+CREATE TABLE `personas` (
+  `idper` int(11) NOT NULL,
+  `rutced` text NOT NULL,
+  `razon` text NOT NULL,
+  `nomfantasia` text NOT NULL,
   `nombre` text NOT NULL,
   `apellido` text NOT NULL,
-  `razon` text NOT NULL,
-  `rutced` text NOT NULL,
   `fechingr` date NOT NULL,
   `telefono` text NOT NULL,
   `direccion` text NOT NULL,
-  `esprov` tinyint(1) NOT NULL,
-  `moneda` int NOT NULL,
-  `seguridad` int NOT NULL,
-  `saldoinicial` int NOT NULL,
-  `saldototal` int NOT NULL,
-  `retorno` int NOT NULL,
+  `moneda` int(11) NOT NULL,
+  `seguridad` int(11) NOT NULL,
+  `saldoinicial` int(11) NOT NULL,
+  `saldototal` int(11) NOT NULL,
+  `retorno` int(11) NOT NULL,
   `fechret` date NOT NULL,
   `retactivo` tinyint(1) NOT NULL,
   `observaciones` text NOT NULL,
-  `activo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`idper`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `activo` tinyint(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `personas`
 --
 
-INSERT INTO `personas` (`idper`, `email`, `pass`, `nombre`, `apellido`, `razon`, `rutced`, `fechingr`, `telefono`, `direccion`, `esprov`, `moneda`, `seguridad`, `saldoinicial`, `saldototal`, `retorno`, `fechret`, `retactivo`, `observaciones`, `activo`) VALUES
-(1, 'admin@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Administrador de EsQProvee', 'Esquema Servicios', '${usuario.apellido}', '${usuario.razon}', '2020-09-01', '${usuario.telefono}', '${usuario.direccion}', 1, 1, 0, 0, 0, 1, '2021-12-31', 1, '${usuario.observaciones}', 1);
+INSERT INTO `personas` (`idper`, `rutced`, `razon`, `nomfantasia`, `nombre`, `apellido`, `fechingr`, `telefono`, `direccion`, `moneda`, `seguridad`, `saldoinicial`, `saldototal`, `retorno`, `fechret`, `retactivo`, `observaciones`, `activo`) VALUES
+(1, '${usuario.razon}', '${usuario.apellido}', '', 'Administrador de EsQProvee', 'Esquema Servicios', '2020-09-01', '${usuario.telefono}', '${usuario.direccion}', 1, 0, 0, 0, 1, '2021-12-31', 1, '${usuario.observaciones}', 1);
 
 -- --------------------------------------------------------
 
@@ -165,14 +154,12 @@ INSERT INTO `personas` (`idper`, `email`, `pass`, `nombre`, `apellido`, `razon`,
 -- Estructura de tabla para la tabla `seguridad`
 --
 
-DROP TABLE IF EXISTS `seguridad`;
-CREATE TABLE IF NOT EXISTS `seguridad` (
-  `idseg` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `seguridad` (
+  `idseg` int(11) NOT NULL,
   `categoria` text NOT NULL,
   `descripcion` text NOT NULL,
-  `activo` text NOT NULL,
-  PRIMARY KEY (`idseg`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `activo` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `seguridad`
@@ -182,6 +169,130 @@ INSERT INTO `seguridad` (`idseg`, `categoria`, `descripcion`, `activo`) VALUES
 (0, '0', 'Administrador', '1'),
 (1, '1', 'Administrativo', '1'),
 (2, '2', 'Consultante', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `idusu` int(11) NOT NULL,
+  `email` text NOT NULL,
+  `pass` text NOT NULL,
+  `apellidos` text NOT NULL,
+  `nombres` text NOT NULL,
+  `telefono` text NOT NULL,
+  `direccion` text NOT NULL,
+  `ciudad` text NOT NULL,
+  `fechnac` date NOT NULL,
+  `feching` date NOT NULL,
+  `activo` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `cheques`
+--
+ALTER TABLE `cheques`
+  ADD PRIMARY KEY (`idcheq`);
+
+--
+-- Indices de la tabla `cotizacion`
+--
+ALTER TABLE `cotizacion`
+  ADD PRIMARY KEY (`idcot`);
+
+--
+-- Indices de la tabla `documentos`
+--
+ALTER TABLE `documentos`
+  ADD PRIMARY KEY (`Idtipdoc`);
+
+--
+-- Indices de la tabla `monedas`
+--
+ALTER TABLE `monedas`
+  ADD PRIMARY KEY (`idmon`);
+
+--
+-- Indices de la tabla `movimientos`
+--
+ALTER TABLE `movimientos`
+  ADD PRIMARY KEY (`idmov`);
+
+--
+-- Indices de la tabla `personas`
+--
+ALTER TABLE `personas`
+  ADD PRIMARY KEY (`idper`);
+
+--
+-- Indices de la tabla `seguridad`
+--
+ALTER TABLE `seguridad`
+  ADD PRIMARY KEY (`idseg`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`idusu`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `cheques`
+--
+ALTER TABLE `cheques`
+  MODIFY `idcheq` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `cotizacion`
+--
+ALTER TABLE `cotizacion`
+  MODIFY `idcot` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `documentos`
+--
+ALTER TABLE `documentos`
+  MODIFY `Idtipdoc` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `monedas`
+--
+ALTER TABLE `monedas`
+  MODIFY `idmon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de la tabla `movimientos`
+--
+ALTER TABLE `movimientos`
+  MODIFY `idmov` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `personas`
+--
+ALTER TABLE `personas`
+  MODIFY `idper` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `seguridad`
+--
+ALTER TABLE `seguridad`
+  MODIFY `idseg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `idusu` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

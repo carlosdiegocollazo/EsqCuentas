@@ -1,9 +1,9 @@
 const mysql = require('mysql');
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'esqprovee'
+    host: 'esquema.com.uy',
+    user: 'esquemac_esqprovee',
+    password: 'Naci0nalB0ls0',
+    database: 'esquemac_esqprovee'
 });
 
 connection.connect(function (err) {
