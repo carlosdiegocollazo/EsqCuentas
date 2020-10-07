@@ -20,12 +20,12 @@ let Usuario = {
 	usuarioLogin: async function(usuario, password){
 		let sql =  `
 				SELECT * 
-				FROM personas 
-				WHERE personas.email = '${usuario}'
+				FROM usuarios 
+				WHERE usuarios.email = '${usuario}'
 				&&
-				personas.pass =MD5('${password}')
+				usuarios.pass =MD5('${password}')
 				&&
-				personas.activo = 1
+				usuarios.activo = 1
 			`
 		let response = {error: "Usuario / Contraseña incorrectos"}
 		let usuarios = await conn.query(sql);
@@ -44,8 +44,8 @@ let Usuario = {
 
 	obtenerUsuarios: async function(){
 		let sql 		= `
-							SELECT * FROM personas
-							WHERE personas.activo = 1
+							SELECT * FROM usuarios
+							WHERE usuarios.activo = 1
 						`
 		let response 	= {error: "No se encontraron usuarios"}
 		let resultado 	= await conn.query(sql);
@@ -59,7 +59,7 @@ let Usuario = {
 
 	obtenerUsuariosall: async function(){
 		let sql 		= `
-							SELECT * FROM personas
+							SELECT * FROM usuarios
 						`
 		let response 	= {error: "No se encontraron usuarios"}
 		let resultado 	= await conn.query(sql);
@@ -73,10 +73,10 @@ let Usuario = {
 
 	obtenerUsuarioPorId: async function (id){
 	 let sql = `
-	  			SELECT * FROM personas
+	  			SELECT * FROM usuarios
 	  			WHERE 
-	  			personas.idper = '${id}' 
-	  			&& personas.activo = 1
+	  			usuarios.idper = '${id}' 
+	  			&& usuarios.activo = 1
 	 		`
 	 let usuarios 	= []
 	 let response 	= {error: `No existe el usuario con ID: ${id}`}
@@ -91,10 +91,10 @@ let Usuario = {
 
 	obtenerUsuarioPorEmail: async function (mail){
 	 let sql = `
-	  			SELECT personas.idper 
-	  			FROM personas
+	  			SELECT usuarios.idper 
+	  			FROM usuarios
 	  			WHERE 
-	  			personas.email = '${mail}'
+	  			usuarios.email = '${mail}'
 	 		`
 	 let usuarios 	= []
 	 let response 	= {error: `No existe el usuario con mail : ${mail}`}
@@ -109,23 +109,18 @@ let Usuario = {
 
 	ingresarUsuario: async function(usuario){
 		let sql = `
-					INSERT INTO personas
+					INSERT INTO usuarios
 					  		(
 							email,
-							nombre,
-							apellido,
-							razon,
-							rutced,
 							pass,
-							fechaingreso,
+							apellidos,
+							nombres,							
 							telefono,
 							direccion,
-							proveedor,
-							moneda,
+							ciudad,
 							seguridad,
-							saldoinicial,
-							retorno,
-							retactivo,
+							fechnac,
+							feching,
 							observaciones,
 							activo
 							 )
@@ -133,19 +128,14 @@ let Usuario = {
 		  					(
 							'${usuario.email}',
 							MD5('${usuario.pass}'),
-							'${usuario.nombre}',
-							'${usuario.apellido}',
-							'${usuario.razon}',
-							'${usuario.rutced}',
-							'${usuario.fechaingreso}',
+							'${usuario.apellidos}',
+							'${usuario.nombres}',
 							'${usuario.telefono}',
 							'${usuario.direccion}',
-							'${usuario.proveedor}',
-							'${usuario.moneda}',
+							'${usuario.ciudad}',
 							'${usuario.seguridad}',
-							'${usuario.saldoinicial}',
-							'${usuario.retorno}',
-							'${usuario.retactivo}',
+							'${usuario.fechnac}',
+							'${usuario.feching}',
 							'${usuario.observaciones}',
 							'${usuario.activo}'
 							)
@@ -172,46 +162,22 @@ let Usuario = {
 
 	actualizarUsuario: async function(usuario, id){
 		let sql 		= `
-							UPDATE personas 
-							SET (
-										email,
-										pass,
-										nombre,
-										apellido,
-										razon,
-										rutced,
-										fechaingreso,
-										telefono,
-										direccion,
-										proveedor,
-										moneda,
-										seguridad,
-										saldoinicial,
-										retorno,
-										retactivo,
-										observaciones,
-										activo
-							 	)
-
-										email 			= '${usuario.email}',
-										pas 			= MD5('${usuario.pass}'),
-										nombre 			= '${usuario.nombre}',
-										apellido 		= '${usuario.apellido}',
-										razon 			= '${usuario.razon}',
-										rutced			= '${usuario.rutced}',	
-										fechaingreso 	= '${usuario.fechaingreso}',
-										telefono	 	= '${usuario.telefono}',
-										direccion	 	= '${usuario.direccion}',
-										proveedor	 	= '${usuario.proveedor}',
-										moneda 			= '${usuario.moneda}',
-										seguridad 		= '${usuario.seguridad}',
-										saldoinicial 	= '${usuario.sadoinicial}',
-										retorno			= '${usuario.retorno},
-										retornoactivo 	= '${usuario.retornoactivo}',
-										observaciones 	= '${usuario.observaciones}',
-										activo 			= '${usuario.activo}'
+							UPDATE usuarios 
+							SET 
+								email 			= '${usuario.email}',
+								pas 			= MD5('${usuario.pass}'),
+								nombres 		= '${usuario.nombres}',
+								apellidos 		= '${usuario.apellidos}',
+								telefono	 	= '${usuario.telefono}',
+								direccion	 	= '${usuario.direccion}',
+								ciudad			= '${usuario.ciudad}',
+								seguridad		= '${usuario.seguridad}',
+								fechnac			= '${usuario.fechnac}',
+								feching			= '${usuario.feching}',
+								observaciones 	= '${usuario.observaciones}',
+								activo 			= '${usuario.activo}'
 							WHERE
-							personas.idper = '${id}'
+							usuarios.idper = '${id}'
 						`
 		let response 		= {error: "No se pudo actualizar usuario"}
 		let existeUsuario 	= await this.obtenerUsuarioPorId(id);
@@ -230,11 +196,11 @@ let Usuario = {
 
 	eliminarUsuario: async function(id){
 		let sql 		= `
-							UPDATE personas 
+							UPDATE usuarios 
 							SET 
 							activo = 0 
 							WHERE
-							personas.idper = '${id}'
+							usuarios.idper = '${id}'
 						`
 		let response 			= {error: "No se pudo eliminar usuario"}
 		let existeUsuario 		= await this.obtenerUsuarioPorId(id);

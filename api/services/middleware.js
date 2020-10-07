@@ -14,6 +14,14 @@ let Middleware = {
       "/usuarios/edit/:id":     "Acceso Permitido",
       "/usuarios/delete/:id":   "Acceso Permitido",
 
+      //proveedores
+      "/proveedores/all":          "Acceso Permitido",
+      "/proveedores/allall":       "Acceso Permitido",
+      "/proveedores/:id":          "Acceso Permitido",
+      "/proveedores/new":          "Acceso Permitido",
+      "/proveedores/edit/:id":     "Acceso Permitido",
+      "/proveedores/delete/:id":   "Acceso Permitido",
+
       //monedas
       "/monedas/all":           "Acceso Permitido",
       "/monedas/allall":        "Acceso Permitido",
