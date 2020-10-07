@@ -38,7 +38,7 @@ module.exports = function(app){
 		let moneda 	= req.body;
 		let id 			= req.params.id;
 		let monedas 	= require('../services/monedas.js');
-		let response 	= await moneda.actualizarmoneda(moneda, id);
+		let response 	= await monedas.actualizarmoneda(moneda, id);
 		res.set('Content-Type', 'aplication/json');
 		res.send(response);
 	})
