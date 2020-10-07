@@ -58,9 +58,9 @@ let monedas = {
 					)
 					VALUES
 					(
-					'${monedas.moneda}',
-					'${monedas.divide}',
-					'${monedas.activo}'
+					"${moneda.moneda}",
+					'${moneda.divide}',
+					'${moneda.activo}'
 					)		
 				`
 		let response 	= {error: "No se pudo crear moneda"}
