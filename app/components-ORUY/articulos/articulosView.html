@@ -1,0 +1,53 @@
+<transition appear name="bounce-up">
+	<div class="container" style="display: flex; margin-top: 1rem; flex-direction: column; align-items: center;">
+		<ul class="nav" style="margin-top: 1rem; display: flex;">
+			<li><a v-on:click="articulosView" style="cursor: pointer;">Mis Artículos</a></li>
+			<li><a v-on:click="newArt" style="cursor: pointer;">Crear nuevo</a></li>
+		</ul>
+
+		<!--  -->
+		<div class="col-md-12 tab-content" style="margin-top: 1rem;"> 
+			<div id="arts" v-if="!isEdit && !isCreate">
+				<div class="row masonry-grid">
+					<div class="col-md-6 col-lg-3 masonry-column" v-for="(articulo, key ) in articulos" style="margin-bottom: 2.5rem;">
+						<router-link v-bind:to="'/backoffice/selected/'+articulo.articuloId" class="artcard" style="background-color: white;display: flex;padding: 1rem;color: darkslategrey;
+						border-radius: 0.5rem;text-decoration: none;">
+							<div class="card">
+								<h5><strong>{{articulo.articuloTitulo}}</strong></h5>
+								<img v-bind:src="articulo.artImg" style="width: 100%;">
+								<div class="col-md6">
+									<span style="display: block;bottom: 1rem;padding: 4px 10px;" v-bind:class="articulo.artStyle">{{articulo.articuloEstado}}</span>
+								</div>
+								<div class="col-md6" style="padding: 3px; font-family: 'nunito', sans-serif;">
+									<span>{{articulo.recomendacion}}</span>
+								</div>
+							</div>
+						</router-link>
+						<div class="dropdown" style="position: absolute;display: block;top: 1rem;right: 2rem;padding: 4px 10px;">
+							<button class="dropdown-toggle" type="button" data-toggle="dropdown" style="background: transparent;
+							border: none;position: absolute;right: 0;top: 0;">
+							<span class="glyphicon glyphicon-option-vertical"></span></button>
+							<ul class="dropdown-menu">
+								<li><a v-on:click="borrarArt(articulo.articuloId)" style="cursor:pointer;">Borrar</a></li>
+								<li><a data-toggle="tab" href="#create" v-on:click="editarArt(key)">Editar</a></li>
+							</ul>
+						</div>
+					</div>            
+				</div>
+			</div>   			
+			<editor-component 
+				v-if="isEdit || isCreate"
+				v-bind:obj-articulo="articulo"
+				>
+				
+			</editor-component>			
+		</div>
+		<div class="container" style="height: 90%; display: flex;" v-if="articulos == 0 && !isCreate">
+	        <div class="no-art text-center" style="margin: auto;">
+	            <img src="./assets/isempty.png" alt="" style="margin: auto; filter: invert(1); opacity: .3; width: 70%;">
+	            <h3 style="font-family: 'nunito', sans-serif; font-size: 4rem; font-weight: 700; color: #2f3b50;">
+	                No hay artículos aún =(</h3>
+	        </div>        
+	    </div>
+    </div>
+</transition>

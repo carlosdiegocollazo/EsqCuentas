@@ -1,0 +1,66 @@
+<div class="container-fluid" style="height: 100%; display:flex;">
+    <div class="col-md-3" style="height: 93%;" v-if="userRol">
+        <h3 style="color: white;">Devoluciones de Revisores</h3>
+        <div class="row" v-for="devolucion in resdevolucion"> <!-- si no hay devoluciones-->
+            <div class="form-group col-md-12">
+                <div class="card" style=" background: whitesmoke; padding: 3rem; border-radius: 1rem;">
+                    <div class="row">
+                        <div class="form-group col-md-6 pull-left">{{devolucion.nombrerevisor}}</div>
+                        <div class="form-group col-md-6 text-right">{{devolucion.devolucionFecha}}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <span class="text" v-html="devolucion.devolucionComentario">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row pull-right" style="color: darkorange; font-size: 18px;">
+                        <span class="glyphicon glyphicon-star">{{devolucion.devolucionValor}}</span>
+                    </div>
+                </div>    
+            </div>
+        </div>
+        
+    </div> 
+   <div class="col-md-12">
+    <button class="btn btn-primary pull-right" style="margin-top: 1rem;" v-on:click="recomendarArticulo" v-if="userRol">+Recomendar</button>
+        <div class="row" >
+            <h3 style="color: white;">{{title}} - {{autor}}</h3>
+            <div v-html="templateView" style="background: whitesmoke; padding: 2rem;"></div>
+        </div>
+        <div class="row" v-if="userRol == 2">
+            <div class="row" style="display: flex; align-items: center;">
+                <div class="form-group col-md-8"><h3 style="color: white;">Deja tu devolución a continuación</h3></div>
+                <div class="form-group col-md-2" style="margin-bottom: 0px;">
+                    <label for="estado">Cambiar Estado</label>
+                    <button class="btn cbtn cbtn-success form-control" v-on:click="cambiarEstado()">Publicar</button>
+                </div>
+                <div class="form-group col-md-2" style="margin-bottom: 0;">
+                    <label for="devolucion">Devolución</label>
+                    <button class="btn cbtn cbtn-danger pull-right form-control" name="devolucion" style="align-items: center;" v-on:click="devolucionInsert()">Enviar devolución</button></div>
+            </div>        
+            <div >
+                <div id="toolbar-container"></div>
+                <div id="editorx" style="background-color: white;border-radius:0; outline: none; box-shadow: none;"></div>
+            </div>
+        </div> 
+    </div>
+    <!-- <div class="col-md-2" v-if="userRol" style="display:none;">
+        <div class="row" v-if="archivo != '' && archivo != 'undefined'">
+            <div class="form-group col-md-12" style="display: flex; justify-content: center; margin-top: 6rem;">
+                <a v-bind:href="archivo" target="_blank">
+                <span class="glyphicon glyphicon-file" style="font-size: 8rem; color: white;"></span>
+                </a>
+            </div>
+            <div class="form-group col-md-12" style="display: flex;justify-content: center;">                
+                <a v-bind:href="archivo" target="_blank">[Archivo adjunto]</a>
+            </div>            
+        </div>
+        <div class="row" v-if="archivo == '' || archivo == 'undefined'">
+            <div class="form-group col-md-12" style="display: flex; justify-content: center; margin-top: 6rem;">
+                <span style="color: white;">No hay archivos adjuntos</span>
+            </div>
+        </div>
+    </div> -->
+</div>

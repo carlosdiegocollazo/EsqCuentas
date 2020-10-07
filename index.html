@@ -1,43 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <!-- Required meta tags -->
+	<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="./app/shared/style.css">
+	<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+	
+	<title>EsQ-Provee. Cuentas Proveedores.</title>
 
-    <title>EsQProvee</title>
-
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <script type="text/javascript" src="lib/axios.min.js"></script>
-    <script type="text/javascript" src="lib/vue.js"></script>
-    <script type="text/javascript" src="lib/vue-router.js"></script>
+    <script type="text/javascript" src="./lib/axios.min.js"></script>
+    <script type="text/javascript" src="./lib/vue.js"></script>
+    <script type="text/javascript" src="./lib/vue-router.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
+<body style="background: linear-gradient(to top, #003452, #cce64400),url(https://i0.wp.com/www.reverie.com.ar/wp-content/uploads/2017/01/landscape-3840x2160-flat-fog-forest-blue-11927.jpg); background-size: 100%; height: 100vh;">
+	<div id="app" style="height: 100%;display: flex; flex-direction: column; overflow-x: hidden;">
+		<!-- <menu-item></menu-item> -->
+		<router-view></router-view>
+	</div>
 
-<body>
-    <div id="app">
-        <menu-item v-bind:title="titulo" v-bind:menu-items="arrMenu"></menu-item>
+	<!-- SERVICE -->
+	<!-- <script type="text/javascript" src="app/service.js"></script> -->
 
-        <div class="container">
-            <router-view></router-view>
-        </div>
+	<!-- SHARED COMPONENTS -->
+	<!-- <script type="text/javascript" src="./app/shared/footer.component.js"></script> -->
+	<script type="text/javascript" src="./app/shared/menu.component.js"></script>
+	<script type="text/javascript" src="./app/shared/loghead.component.js"></script>
 
-        <footer-item v-bind:title="footerTitle"></footer-item>
-    </div>
+	<!-- COMPONENTTS -->
+	<script type="text/javascript" src="./app/components/home/home.component.js"></script>
+	<script type="text/javascript" src="./app/app.js"></script>
+	<!-- REQUIRED FROM COMPONENTS -->
 
-    <!-- SERVICE -->
-    <!-- <script type="text/javascript" src="app/service.js"></script> -->
-
-    <!-- SHARED COMPONENTS -->
-    <script type="text/javascript" src="app/shared/footer.component.js"></script>
-    <script type="text/javascript" src="app/shared/menu.component.js"></script>
-
-    <!-- COMPONENTTS -->
-    <script type="text/javascript" src="app/components/login/login.component.js"></script>
-    <script type="text/javascript" src="app/components/registro/registro.component.js"></script>
-    <script type="text/javascript" src="app/app.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	</script>
+	
+	<script src="./app/shared/css/waves/waves.min.js"></script>
+	<script type="text/javascript">
+		Waves.attach('.waves', ['waves-light']);
+		Waves.init();
+	</script>
+	<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit">
+		render()
+	</script>
 </body>
-
 </html>
