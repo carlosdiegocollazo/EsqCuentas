@@ -57,6 +57,20 @@ let Usuario = {
 		return response;
 	},
 
+	obtenerUsuariosall: async function(){
+		let sql 		= `
+							SELECT * FROM personas
+						`
+		let response 	= {error: "No se encontraron usuarios"}
+		let resultado 	= await conn.query(sql);
+		if (resultado.code) {
+	 		response 	= {error: "Error en consulta SQL"};
+	 	}else if (resultado.length>0) {
+			response 	= {response: resultado}
+			}
+		return response;
+	},
+
 	obtenerUsuarioPorId: async function (id){
 	 let sql = `
 	  			SELECT * FROM personas

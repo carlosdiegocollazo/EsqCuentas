@@ -23,6 +23,14 @@ module.exports = function(app){
 		res.send(response);
 	})
 
+		//Devuelve JSON con la colección de objetos "usuario" activos e inactivos
+		app.get('/usuarios/allall', midd.rutasProtegidas, async function(req, res){
+			let Usuario 	= require ('../services/usuarios.js');
+			let response 	= await Usuario.obtenerUsuariosall();
+			res.set('Content-Type', 'aplication/json');
+			res.send(response);
+		})
+
 	//Devuelve JSON con objeto "usuario" seleccionado por el valor de su campo Id.
 	//si se encuentra activo.
 	app.get('/usuarios/:id', midd.rutasProtegidas, async function (req, res) {

@@ -7,29 +7,33 @@ let Middleware = {
       //roles admin
 
       //usuarios
-      "/usuarios/all": "Acceso Permitido",
-      "/usuarios/:id": "Acceso Permitido",
-      "/usuarios/new": "Acceso Permitido",
-      "/usuarios/edit/:id": "Acceso Permitido",
-      "/usuarios/delete/:id": "Acceso Permitido",
+      "/usuarios/all":          "Acceso Permitido",
+      "/usuarios/allall":       "Acceso Permitido",
+      "/usuarios/:id":          "Acceso Permitido",
+      "/usuarios/new":          "Acceso Permitido",
+      "/usuarios/edit/:id":     "Acceso Permitido",
+      "/usuarios/delete/:id":   "Acceso Permitido",
 
       //monedas
-      "/monedas/all": "Acceso Permitido",
-      "/monedas/:id": "Acceso Permitido",
-      "/monedas/new": "Acceso Permitido",
-      "/monedas/edit/:id": "Acceso Permitido",
-      "/monedas/delete/:id": "Acceso Permitido",
+      "/monedas/all":           "Acceso Permitido",
+      "/monedas/allall":        "Acceso Permitido",
+      "/monedas/:id":           "Acceso Permitido",
+      "/monedas/new":           "Acceso Permitido",
+      "/monedas/edit/:id":      "Acceso Permitido",
+      "/monedas/delete/:id":    "Acceso Permitido",
 
       
       //seguridad
-      "/seguridad/all": "Acceso Permitido",
-      "/seguridad/:id": "Acceso Permitido",
-      "/seguridad/new": "Acceso Permitido",
-      "/seguridad/edit/:id": "Acceso Permitido",
-      "/seguridad/delete/:id": "Acceso Permitido",
+      "/seguridad/all":         "Acceso Permitido",
+      "/seguridad/allall":      "Acceso Permitido",
+      "/seguridad/:id":         "Acceso Permitido",
+      "/seguridad/new":         "Acceso Permitido",
+      "/seguridad/edit/:id":    "Acceso Permitido",
+      "/seguridad/delete/:id":  "Acceso Permitido",
 
       //documentos
       "/documentos/all":        "Acceso Permitido",
+      "/documentos/allall":     "Acceso Permitido",
       "/documentos/:id":        "Acceso Permitido",
       "/documentos/new":        "Acceso Permitido",
       "/documentos/edit/:id":   "Acceso Permitido",
@@ -37,6 +41,7 @@ let Middleware = {
 
       //cotizaciones
       "/cotizaciones/all":          "Acceso Permitido",
+      "/cotizaciones/allall":       "Acceso Permitido",
       "/cotizaciones/:id":          "Acceso Permitido",
       "/cotizaciones/new":          "Acceso Permitido",
       "/cotizaciones/edit/:id":     "Acceso Permitido",
@@ -44,6 +49,7 @@ let Middleware = {
 
       //cheques
       "/cheques/all":           "Acceso Permitido",
+      "/cheques/allall":        "Acceso Permitido",
       "/cheques/:id":           "Acceso Permitido",
       "/cheques/new":           "Acceso Permitido",
       "/cheques/edit/:id":      "Acceso Permitido",

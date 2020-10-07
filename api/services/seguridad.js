@@ -19,6 +19,20 @@ let seguridad = {
 	
 	obtenerseguridad: async function(){
 		let sql 		= `
+							SELECT * FROM seguridad where activo=1
+						`
+		let response 	= {error: "No se encontraron seguridad"}
+		let resultado 	= await conn.query(sql);
+		if (resultado.code) {
+	 		response 	= {error: "Error en consulta SQL"};
+	 	}else if (resultado.length>0) {
+			response 	= {response: resultado}
+		}
+		return response;
+	},
+
+	obtenerseguridadall: async function(){
+		let sql 		= `
 							SELECT * FROM seguridad
 						`
 		let response 	= {error: "No se encontraron seguridad"}

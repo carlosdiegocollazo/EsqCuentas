@@ -12,6 +12,14 @@ module.exports = function(app){
 		res.send(response);
 	})
 
+	//Devuelve JSON con colección de objetos "cotiza" activos.
+	app.get('/cotizacion/allall', midd.rutasProtegidas, async function(req, res){
+		let cotiza 	= require ('../services/cotizacion.js');
+		let response 	= await cotiza.obtenercotizacionall();
+		res.set('Content-Type', 'aplication/json');
+		res.send(response);
+	})
+
 	//Devuelve JSON con objeto "cotiza" seleccionado por el valor de su campo Id.
 	//si se encuentra activo.
 	app.get('/cotizacion/:id', midd.rutasProtegidas, async function(req, res){

@@ -19,8 +19,21 @@ let cotizacion = {
 	
 	obtenercotizacion: async function(){
 		let sql 		= `
+							SELECT * FROM cotizacion where activo=1	
+						`
+		let response 	= {error: "No se encontraron cotizaciones"}
+		let resultado 	= await conn.query(sql);
+		if (resultado.code) {
+	 		response 	= {error: "Error en consulta SQL"};
+	 	}else if (resultado.length>0) {
+			response 	= {response: resultado}
+		}
+		return response;
+	},
+
+	obtenercotizacionall: async function(){
+		let sql 		= `
 							SELECT * FROM cotizacion
-							
 						`
 		let response 	= {error: "No se encontraron cotizaciones"}
 		let resultado 	= await conn.query(sql);

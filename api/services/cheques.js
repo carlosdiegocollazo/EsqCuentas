@@ -19,8 +19,21 @@ let cheques = {
 	
 	obtenercheques: async function(){
 		let sql 		= `
-							SELECT * FROM cheques
-							
+							SELECT * FROM cheques where activo=1
+						`
+		let response 	= {error: "No se encontraron cheques"}
+		let resultado 	= await conn.query(sql);
+		if (resultado.code) {
+	 		response 	= {error: "Error en consulta SQL"};
+	 	}else if (resultado.length>0) {
+			response 	= {response: resultado}
+		}
+		return response;
+	},
+
+	obtenerchequesall: async function(){
+		let sql 		= `
+							SELECT * FROM cheques		
 						`
 		let response 	= {error: "No se encontraron cheques"}
 		let resultado 	= await conn.query(sql);

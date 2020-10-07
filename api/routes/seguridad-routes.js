@@ -12,6 +12,14 @@ module.exports = function(app){
 		res.send(response);
 	})
 
+	//Devuelve JSON con colección de objetos "seguridad" activos.
+	app.get('/seguridad/allall', midd.rutasProtegidas, async function(req, res){
+		let seguridad 	= require ('../services/seguridad.js');
+		let response 	= await seguridad.obtenerseguridadall();
+		res.set('Content-Type', 'aplication/json');
+		res.send(response);
+	})
+
 	//Devuelve JSON con objeto "seguridad" seleccionado por el valor de su campo Id.
 	//si se encuentra activo.
 	app.get('/seguridad/:id', midd.rutasProtegidas, async function(req, res){

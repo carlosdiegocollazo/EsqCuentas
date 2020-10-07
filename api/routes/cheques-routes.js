@@ -12,6 +12,14 @@ module.exports = function(app){
 		res.send(response);
 	})
 
+	//Devuelve JSON con colección de objetos "cheques" activos.
+	app.get('/cheques/allall', midd.rutasProtegidas, async function(req, res){
+		let cheques 	= require ('../services/cheques.js');
+		let response 	= await cheques.obtenerchequesall();
+		res.set('Content-Type', 'aplication/json');
+		res.send(response);
+	})
+
 	//Devuelve JSON con objeto "cheques" seleccionado por el valor de su campo Id.
 	//si se encuentra activo.
 	app.get('/cheques/:id', midd.rutasProtegidas, async function(req, res){

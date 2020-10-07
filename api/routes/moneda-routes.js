@@ -4,10 +4,19 @@ module.exports = function(app){
 	const Cors = require('../services/cors.js');
 	app.use(Cors.cors(Cors.corsOptions));
 
-	//Devuelve JSON con colección de objetos "moneda" activos.
+	//Devuelve JSON con colección de objetos "moneda" activos
 	app.get('/monedas/all', midd.rutasProtegidas, async function(req, res){
 		let moneda 	= require ('../services/monedas.js');
 		let response 	= await moneda.obtenermonedas();
+		res.set('Content-Type', 'aplication/json');
+		res.send(response);
+	})
+
+
+	//Devuelve JSON con colección de objetos "moneda" activos e inactivos.
+	app.get('/monedas/allall', midd.rutasProtegidas, async function(req, res){
+		let moneda 	= require ('../services/monedas.js');
+		let response 	= await moneda.obtenermonedasall();
 		res.set('Content-Type', 'aplication/json');
 		res.send(response);
 	})
