@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "3033ce94-6bf5-446b-9e66-242f8190c153",
+		"name": "EsqCuentas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuarios login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "mytoken",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkcGVyIjoxLCJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwicGFzcyI6IjgyN2NjYjBlZWE4YTcwNmM0YzM0YTE2ODkxZjg0ZTdiIiwibm9tYnJlIjoiODI3Y2NiMGVlYThhNzA2YzRjMzRhMTY4OTFmODRlN2IiLCJhcGVsbGlkbyI6ImFkbWluIiwicmF6b24iOiIke3VzdWFyaW8uYXBlbGxpZG99IiwicnV0Y2VkIjoiJHt1c3VhcmlvLnJhem9ufSIsImZlY2hhaW5ncmVzbyI6IjIwMjAtMDktMDFUMDM6MDA6MDAuMDAwWiIsInRlbGVmb25vIjoiJHt1c3VhcmlvLnRlbGVmb25vfSIsImRpcmVjY2lvbiI6IiR7dXN1YXJpby5kaXJlY2Npb259IiwicHJvdmVlZG9yIjoxLCJtb25lZGEiOjEsInNlZ3VyaWRhZCI6MSwic2FsZG9pbmljaWFsIjowLCJyZXRvcm5vIjoiMjEwMC0wMS0wMVQwMzowMDowMC4wMDBaIiwicmV0YWN0aXZvIjoxLCJvYnNlcnZhY2lvbmVzIjoiJHt1c3VhcmlvLm9ic2VydmFjaW9uZXN9IiwiYWN0aXZvIjoxfSwiaWF0IjoxNjAxNTAwOTcwLCJleHAiOjE2MDE1MTg5NzB9.mWhdiWOIgqRJWeKcoFMiIXemYd6CAWUk4VNzFWHNNbk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"personaEmail\": \"admin@mail.com\",\r\n\"personaPass\": \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/usuarios/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Monedas New",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "mytoken",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkcGVyIjoxLCJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwicGFzcyI6IjgyN2NjYjBlZWE4YTcwNmM0YzM0YTE2ODkxZjg0ZTdiIiwibm9tYnJlIjoiQWRtaW5pc3RyYWRvciBkZSBFc1FQcm92ZWUiLCJhcGVsbGlkbyI6IkVzcXVlbWEgU2VydmljaW9zIiwicmF6b24iOiIke3VzdWFyaW8uYXBlbGxpZG99IiwicnV0Y2VkIjoiJHt1c3VhcmlvLnJhem9ufSIsImZlY2hhaW5ncmVzbyI6IjIwMjAtMDktMDFUMDM6MDA6MDAuMDAwWiIsInRlbGVmb25vIjoiJHt1c3VhcmlvLnRlbGVmb25vfSIsImRpcmVjY2lvbiI6IiR7dXN1YXJpby5kaXJlY2Npb259IiwicHJvdmVlZG9yIjoxLCJtb25lZGEiOjEsInNlZ3VyaWRhZCI6MCwic2FsZG9pbmljaWFsIjowLCJyZXRvcm5vIjoiMjEwMC0wMS0wMVQwMzowMDowMC4wMDBaIiwicmV0YWN0aXZvIjoxLCJvYnNlcnZhY2lvbmVzIjoiJHt1c3VhcmlvLm9ic2VydmFjaW9uZXN9IiwiYWN0aXZvIjoxfSwiaWF0IjoxNjAyMDkxMjY4LCJleHAiOjE2MDIxMDkyNjh9.DgQE_LIFMNGZOYvvusx-ilXOtiGKXUeYDZPTzePMuMg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"moneda\": \"Euro\",\r\n\"divide\": \"1\",\r\n\"activo\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/monedas/new",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"monedas",
+						"new"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
