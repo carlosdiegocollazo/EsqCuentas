@@ -1,12 +1,5 @@
 const notfound	 = notfoundComponent;
 const home		 = componentehome;
-const usuario    = perfilComponent;
-const registro   = registroComponent;
-const backoffice = backofficeComponent;
-const articulos  = articulosComponent;
-const perfil  = perfilComponent;
-const selected = artselected;
-const busqueda = busquedaComponent;
 
 //const API = "https://server134-school.lexartlabs.com/api-or-dev/";
 const API = "/api/";
