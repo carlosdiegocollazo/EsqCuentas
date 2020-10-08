@@ -5,7 +5,7 @@ let componentehome = Vue.component('home-component', function (resolve){
 			data: function () {
 				return {
 					nombreUsuario: "login",
-					ruteoRegistro: "/registrarse"
+					ruteoRegistro: "/"
 				}
 			},
 			methods: {
