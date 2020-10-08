@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 08-10-2020 a las 14:55:18
+-- Tiempo de generación: 08-10-2020 a las 15:04:18
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -194,17 +194,17 @@ INSERT INTO `seguridad` (`idseg`, `categoria`, `descripcion`, `activo`) VALUES
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `idusu` int NOT NULL AUTO_INCREMENT,
-  `email` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `pass` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `apellidos` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nombres` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `telefono` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `direccion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `ciudad` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` text NOT NULL,
+  `pass` text NOT NULL,
+  `apellidos` text NOT NULL,
+  `nombres` text NOT NULL,
+  `telefono` text NOT NULL,
+  `direccion` text NOT NULL,
+  `ciudad` text NOT NULL,
   `seguridad` int NOT NULL,
   `fechnac` date NOT NULL,
   `feching` date NOT NULL,
-  `observaciones` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `observaciones` text NOT NULL,
   `activo` int NOT NULL,
   PRIMARY KEY (`idusu`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
