@@ -1,9 +1,10 @@
 const mysql = require('mysql');
 const connection = mysql.createConnection({
-    host: 'esquema.com.uy',
-    user: 'esquemac_esqprovee',
-    password: 'Naci0nalB0ls0',
-    database: 'esquemac_esqprovee'
+    host: 'localhost',
+    user: 'root',
+    //password: 'vw;_eDk8=3n)',
+    password: '',
+    database: 'esqprovee'
 });
 
 connection.connect(function (err) {
@@ -28,7 +29,7 @@ let query = (sql) => {
 
 let Conn = {
     query: query,
-    llave: "mipassword123"
+    llave: "NoKey"
 }
 
 module.exports = Conn

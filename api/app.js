@@ -6,6 +6,7 @@ app.use(bodyParser.json());
 
 //REQUERIR EXPRESS ROUTES EN ARCHIVO EXTERNO
 require('./routes/usuarios-routes.js')(app);
+require('./routes/proveedores-routes.js')(app);
 require('./routes/movimientos-routes.js')(app);
 require('./routes/moneda-routes.js')(app);
 require('./routes/seguridad-routes.js')(app);

@@ -4,17 +4,6 @@ module.exports = function(app){
 	const Cors = require('../services/cors.js');
 	app.use(Cors.cors(Cors.corsOptions));
 
-	//Procedimiento para la validación de credenciales de proveedor (proveedorEmail y proveedorPassword)
-	// para el ingreso al sistema. Caso de éxito devuele objeto proveedor asociado a cuenta de mail 
-	// ingresada y token de sesión generado. Caso de error retorna mensaje correspondiente.
-	app.post('/proveedores/login', async function(req, res){
-		let proveedorLog 		= req.body;
-		const proveedor 		= require('../services/proveedores.js');
-		let response 		= await proveedor.proveedorLogin(proveedorLog.proveedorEmail, proveedorLog.proveedorPass);
-		res.set('Content-Type', 'aplication/json');
-		res.send(response);
-	})	
-
 	//Devuelve JSON con la colección de objetos "proveedor" activos.
 	app.get('/proveedores/all', midd.rutasProtegidas, async function(req, res){
 		let proveedor 	= require ('../services/proveedores.js');
@@ -53,8 +42,8 @@ module.exports = function(app){
 	//Permite dar de alta a un nuevo registo proveedor.
 	app.post('/proveedores/new', async function (req, res) {
 		 let proveedor	= req.body;
-		 let proveedor 	= require('../services/proveedores');
-		 let response	= await proveedor.ingresarproveedor(proveedor);
+		 let proveedores 	= require('../services/proveedores');
+		 let response	= await proveedores.crearproveedor(proveedor);
 		 res.set(['Content-Type', 'application/json']);
 		 res.send(response);
 	});
@@ -64,8 +53,8 @@ module.exports = function(app){
 	app.put('/proveedores/edit/:id', midd.rutasProtegidas, async function(req, res){
 		let id 			= req.params.id;
 		let proveedor		= req.body;
-		let proveedor 	= require('../services/proveedores.js');
-		let response 	= await proveedor.actualizarproveedor(proveedor, id);
+		let proveedores 	= require('../services/proveedores.js');
+		let response 	= await proveedores.actualizarproveedor(proveedor, id);
 		res.set('Content-Type', 'aplication/json');
 		res.send(response);
 	})

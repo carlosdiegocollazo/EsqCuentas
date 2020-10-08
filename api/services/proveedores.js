@@ -17,31 +17,6 @@ let proveedor = {
 		return response; 
 	},
 
-	proveedorLogin: async function(proveedor, fechingrword){
-		let sql =  `
-				SELECT * 
-				FROM proveedores 
-				WHERE proveedores.email = '${proveedor}'
-				&&
-				proveedores.fechingr =MD5('${fechingrword}')
-				&&
-				proveedores.activo = 1
-			`
-		let response = {error: "proveedor / Contraseña incorrectos"}
-		let proveedores = await conn.query(sql);
-		try {
-			if (proveedores.length>0) {
-				let proveedor 	= proveedores[0];
-				const payload 	= {proveedor:  proveedor};
-				const token 	= jwt.sign(payload, conn.llave, {expiresIn: 18000});
-				response 		= {response: proveedor,token: token};
-			}
-		} catch(e) {
-			console.log(e);
-			}
-		return response;
-	},
-
 	obtenerproveedores: async function(){
 		let sql 		= `
 							SELECT * FROM proveedores
@@ -75,7 +50,7 @@ let proveedor = {
 	 let sql = `
 	  			SELECT * FROM proveedores
 	  			WHERE 
-	  			proveedores.idper = '${id}' 
+	  			proveedores.idpro = '${id}' 
 	  			&& proveedores.activo = 1
 	 		`
 	 let proveedores 	= []
@@ -91,7 +66,7 @@ let proveedor = {
 
 	obtenerproveedorPorEmail: async function (mail){
 	 let sql = `
-	  			SELECT proveedores.idper 
+	  			SELECT proveedores.idpro 
 	  			FROM proveedores
 	  			WHERE 
 	  			proveedores.email = '${mail}'
@@ -107,11 +82,10 @@ let proveedor = {
 	 return response;
 	},
 
-	ingresarproveedor: async function(proveedor){
+	crearproveedor: async function(proveedor){
 		let sql = `
 					INSERT INTO proveedores
 					  		(
-							email,
 							rutced,
 							razon,
 							nomfantasia,
@@ -132,7 +106,6 @@ let proveedor = {
 							 )
 		  			VALUES
 		  					(
-							'${proveedor.email}',
 							'${proveedor.rutced}',
 							'${proveedor.razon}',
 							'${proveedor.nomfantasia}',
@@ -176,7 +149,6 @@ let proveedor = {
 		let sql 		= `
 							UPDATE proveedores 
 							SET 
-								email 			= '${proveedor.email}',
 								rutced			= '${proveedor.rutced}',
 								razon			= '${proveedor.razon}',
 								nomfantasia		= '${proveedor.nomfantasia}',
@@ -191,12 +163,12 @@ let proveedor = {
 								saldototal		= '${proveedor.saldototal}',
 								retorno			= '${proveedor.retorno}',
 								fechret			= '${proveedor.fechret}',
-								retornoactivo 	= '${proveedor.retornoactivo}',
+								retactivo 		= '${proveedor.retactivo}',
 								observaciones 	= '${proveedor.observaciones}',
 								activo 			= '${proveedor.activo}'
 							
 							WHERE
-							proveedores.idper = '${id}'
+							proveedores.idpro = '${id}'
 						`
 		let response 		= {error: "No se pudo actualizar proveedor"}
 		let existeproveedor 	= await this.obtenerproveedorPorId(id);
@@ -219,7 +191,7 @@ let proveedor = {
 							SET 
 							activo = 0 
 							WHERE
-							proveedores.idper = '${id}'
+							proveedores.idpro = '${id}'
 						`
 		let response 			= {error: "No se pudo eliminar proveedor"}
 		let existeproveedor 		= await this.obtenerproveedorPorId(id);
