@@ -3,11 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 08-10-2020 a las 14:09:28
+-- Tiempo de generación: 08-10-2020 a las 14:12:00
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
