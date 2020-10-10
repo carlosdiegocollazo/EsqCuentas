@@ -1,0 +1,10 @@
+/* La pantalla de Home con Login */
+@media all{
+
+    .logo{
+        position: fixed;
+        margin-top: 0px;
+        margin-left:0px;
+    }
+
+}

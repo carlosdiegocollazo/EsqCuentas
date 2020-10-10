@@ -1,13 +1,13 @@
-const notfound	 = notfoundComponent;
+const notfound	 = componentenotfound;
 const home		 = componentehome;
 
 //const API = "https://server134-school.lexartlabs.com/api-or-dev/";
-const API = "/api/";
+const API = "./api/";
 
 const routes = [
   { path: '*', component: notfound},
   { path: '/', component: home},
-  { path: '/usuario/:id', component: perfilComponent },
+  //{ path: '/usuario/:id', component: perfilComponent },
 ]
 
 const router = new VueRouter({
