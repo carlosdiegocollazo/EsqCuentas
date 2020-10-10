@@ -1,10 +1,27 @@
 /* La pantalla de Home con Login */
 @media all{
+    .body{
+            background-color: rgb(101, 74, 175);
+            color: white;
+            margin: auto;
+        }
+    .logintbl{
+        margin-top: 50rem;
+        background-color: rgb(101, 74, 175);
+        color: white;
+        margin: auto;
+        align-items: center;
+            justify-content: center;
+        }
+    .logininp{
+            margin-top: 50rem;
+            border-radius: 8px;
+            border-color: darkblue;
+            color: darkgreen;
+            margin: auto;
+            align-items: center;
+            justify-content: center;
+            }
 
-    .logo{
-        position: fixed;
-        margin-top: 0px;
-        margin-left:0px;
-    }
 
 }
