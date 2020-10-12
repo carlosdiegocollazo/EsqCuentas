@@ -1,9 +1,17 @@
-/* La pantalla de Home con Login */
-@media all{
-    .fondo{
-            background-color: rgb(101, 74, 175);
-            color: white;
-            margin: auto;
-        }
-
+@media all {
+    body {
+        background-image: url(../../../shared/media/2560_3000login.jpg);
+        background-position: center;
+        /* Centro */
+        background-size: auto;
+        /* Ajuste automático */
+        background-size: cover;
+        /* Escalar sin recortar */
+        background-attachment: fixed;
+    }
+    login {
+        color: aliceblue;
+        align-items: center;
+        margin-top: 50px;
+    }
 }
