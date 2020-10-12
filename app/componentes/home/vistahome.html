@@ -1,27 +1,19 @@
 <div class="container-fluid"><!-- Div contenendor general-->
-    <body>
-        <div class="container" class="logintbl"><!--para login-->
-            <div class="row">
-              <div class="col"><img src="./../../shared/media/esqlogo_small.svg " alt=""></div><div class="col"></div><div class="col">{{nombrepassword}}</div>
-            </div>
-            <div class="row">
-                <div class="col"></div><div class="col">Mail</div><div class="col"></div>
-              </div>
-              <div class="row">
-                <div class="col"></div><div class="col"><input type="mail" type="text" class="logininp"></div><div class="col"></div>
-              </div>
-              <div class="row">
-                <div class="col"></div><div class="col">Password</div><div class="col"></div>
-              </div>
-              <div class="row">
-                <div class="col"></div><div class="col"><input type="mail" type="password" class="logininp" v-model="password"></div><div class="col"></div>
-              </div>
-              <div class="row">
-                <div class="col"></div><div class="col"></div><div class="col"></div>
-              </div>
-              <div class="row">
-                <div class="col" style="align-items:center justify-self: center;"><button>Cancelar</button></div><div class="col"></div><div class="col"style="align-items:center"><button>Ingresar</button></div>
-              </div>
-          </div><!--para login-->
-        </body>
+  <form class="fondo" > 
+    <div class="form-group">
+      <label for="email">E-Mail</label>
+      <input type="email" class="form-control" id="email" aria-describedby="ayudaemail">
+      <small id="ayudaemail" class="form-text text-muted">Ingrese su direccion de mail para ingresar al sistema, no revele esta informacion.</small>
+    </div>
+    <div class="form-group">
+      <label for="password">Cotraseña</label>
+      <input type="password" class="form-control" id="password">
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="recordar">
+      <label class="form-check-label" for="recordar">Recordar</label>
+    </div>
+    <button type="@leave-cancelled=" class="btn btn-primary">Cancelar</button>
+    <button type="submit" class="btn btn-primary">Ingresar</button>
+  </form>
 </div><!-- Div contenendor general-->
