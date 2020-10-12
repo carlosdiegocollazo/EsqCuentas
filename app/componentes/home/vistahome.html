@@ -1,35 +1,28 @@
-<div class="container">
+<div class="container-fluid">
     <!-- Div contenendor general-->
-    <img src="../../../shared/media/esqlogo_small.svg" alt="" class="logo">
-    <div class="row">
-        <div class="col-sm">
+    <img src="../../../shared/media/esqlogo_med.svg" alt="Esquema Servicios" class="img.logo" class="animate__animated animate__zoomIn">
+    <div class="row justify-content-center align-items-center">
 
-        </div>
-        <div class="col-xl">
-            <form>
-                <div class="form-group" class="login" style="color: azure;">
-                    <div>
-                        <label for="email">E-Mail</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="ayudaemail">
-                        <small id="ayudaemail" class="form-text text-muted">Ingrese su direccion de mail para ingresar al sistema, no revele esta informacion.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Contraseña</label>
-                        <input type="password" class="form-control" id="password">
-                    </div>
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="recordar">
-                        <label class="form-check-label" for="recordar">Recordar</label>
-                    </div>
-                    <button type="@leave-cancelled=" class="btn btn-primary">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Ingresar</button>
+        <form>
+            <div class="row" class="login">
+                <div>
+                    <label for="email" style="color: aliceblue;">E-Mail</label>
+                    <input type="email" class="form-control" name="email" v-model="usuario.email" placeholder="Ingrese Email">
                 </div>
-        </div>
+                <br>
+                <br>
+                <div class="form-group">
+                    <label for="password" style="color: aliceblue;">Contraseña</label>
+                    <input type="password" class="form-control" name="password" placeholder="Ingrese contraseña" v-model="usuario.password" v-on:keyup.13="loginUser()">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="recordar">
+                    <label class="form-check-label" for="recordar" style="color: aliceblue;">Recordar</label>
+                </div row justify-items-center align-items-center>
+                <button type="@leave-cancelled=" class="btn btn-primary">Cancelar</button>
+                <button type="submit" class="btn btn-primary" v-on:click="loginUser()">Ingresar</button>
+            </div>
         </form>
     </div>
-    <div class="col-sm">
-
-    </div>
-</div>
 </div>
 <!-- Div contenendor general-->

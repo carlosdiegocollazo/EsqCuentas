@@ -1,17 +1,5 @@
-@media all {
-    body {
-        background-image: url(../../../shared/media/2560_3000login.jpg);
-        background-position: center;
-        /* Centro */
-        background-size: auto;
-        /* Ajuste automático */
-        background-size: cover;
-        /* Escalar sin recortar */
-        background-attachment: fixed;
-    }
-    login {
-        color: aliceblue;
-        align-items: center;
-        margin-top: 50px;
-    }
+.login {
+    color: aliceblue;
+    align-items: center;
+    margin-top: 50px;
 }

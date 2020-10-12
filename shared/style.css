@@ -1,4 +1,31 @@
-@import  "../app/componentes/home/home.css";
-@import  "../shared/menu/menu.css";
+@media all {
+    html,
+    body {
+        /* imagen de fondo */
+        background-image: url(../../../shared/media/2560_3000login.jpg);
+        background-position: center;
+        /* Centro */
+        background-size: auto;
+        /* Ajuste automático */
+        background-size: cover;
+        /* Escalar sin recortar */
+        background-attachment: fixed;
+        /*normalizar*/
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+}
 
+img.logo {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+    animation-delay: 0ms;
+}
 
+@import "../app/componentes/home/home.css";
+@import "../app/componentes/mesatrabajo/mesa.css";
+@import "../shared/menu/menu.css";
