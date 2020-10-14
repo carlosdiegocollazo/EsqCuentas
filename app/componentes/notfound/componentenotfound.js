@@ -1,5 +1,5 @@
 const componentenotfound = Vue.component('not-found', function(resolve) {
-    axios.get('./app/components/notfound/vistanotfound.html').then(function(view) {
+    axios.get('./app/componentes/notfound/vistanotfound.html').then(function(view) {
         resolve({
             template: view.data,
             methods: {

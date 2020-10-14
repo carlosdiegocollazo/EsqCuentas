@@ -1,0 +1,12 @@
+img.nfimg {
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-items: center;
+}
+
+h1.nfh1 {
+    color: crimson;
+    font-size: large;
+    text-align: center;
+}

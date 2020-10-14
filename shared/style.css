@@ -28,4 +28,6 @@ img.logo {
 
 @import "../app/componentes/home/home.css";
 @import "../app/componentes/mesatrabajo/mesa.css";
+@import "../app/componentes/notfound/notfound.css";
+@import "../app/componentes/usuarios/usuario.css";
 @import "../shared/menu/menu.css";

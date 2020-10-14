@@ -6,11 +6,3 @@ Vue.component('menu-item', function(resolve, reject) {
         })
     })
 })
-
-/*var app = new Vue ({
-    el: '#app',
-    data: {
-      show: false
-    }
-  })
-  */

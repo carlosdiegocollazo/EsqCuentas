@@ -1,0 +1,65 @@
+<div class="container-fluid">
+    <!-- Div contenendor general-->
+    <div class="row justify-content-center align-items-center" style="margin-top: 300px;">
+
+        <form>
+            <div class="row" class="login">
+                <div>
+                    <label for="email" style="color: aliceblue;">E-Mail</label>
+                    <input type="email" class="form-control" name="email" v-model="usuario.email" placeholder="Ingrese Email">
+                </div>
+                <div class="form-group">
+                    <label for="password" style="color: aliceblue;">Contraseña</label>
+                    <input type="password" class="form-control" name="password" placeholder="Ingrese contraseña" v-model="usuario.password" v-on:keyup.13="loginUser()">
+                </div>
+                <div class="form-group">
+                    <label for="apellidos" style="color: aliceblue;">Apellidos</label>
+                    <input type="text" class="form-control" name="apellidos" placeholder="Ingrese Apellidos" v-model="usuario.apellidos">
+                </div>
+                <div class="form-group">
+                    <label for="nombres" style="color: aliceblue;">Nombres</label>
+                    <input type="text" class="form-control" name="nombres" placeholder="Ingrese Nombres" v-model="usuario.nombres">
+                </div>
+                <div class="form-group">
+                    <label for="telefono" style="color: aliceblue;">Telefonos</label>
+                    <input type="text" class="form-control" name="Telefono" placeholder="Ingrese numero de telefono/celular" v-model="usuario.telefono">
+                </div>
+                <div class="form-group">
+                    <label for="direccion" style="color: aliceblue;">Direccion</label>
+                    <input type="text" class="form-control" name="direccion" placeholder="Ingrese Direccion" v-model="usuario.direccion">
+                </div>
+                <div class="form-group">
+                    <label for="ciudad" style="color: aliceblue;">ciudad</label>
+                    <input type="text" class="form-control" name="ciudad" placeholder="Ingrese Ciudad" v-model="usuario.ciudad">
+                </div>
+                <div class="form-group">
+                    <label for="seguridad" style="color: aliceblue;">Codigo de Seguridad</label>
+                    <input type="text" class="form-control" name="seguridad" placeholder="Coigo de seguridad" v-model="usuario.seguridad">
+                </div>
+                <div class="form-group">
+                    <label for="fechnac" style="color: aliceblue;">Fecha de nacimiento</label>
+                    <input type="date" class="form-control" name="fechnac" placeholder="Ingrese fecha de nacimiento" v-model="usuario.fechanac">
+                </div>
+                <div class="form-group">
+                    <label for="feching" style="color: aliceblue;">Fecha de ingreso</label>
+                    <input type="date" class="form-control" name="feching" placeholder="Fecha de ingreso a la empresa" v-model="usuario.feching">
+                </div>
+                <div class="form-group">
+                    <label for="observaciones" style="color: aliceblue;">Observaciones</label>
+                    <input type="text" class="form-control" name="observaciones" placeholder="Ingrese Observaciones u otros datos" v-model="usuario.observaciones">
+                </div>
+                <div class="form-group">
+                    <label for="activo" style="color: aliceblue;">Activo</label>
+                    <input type="checkbox" class="form-control" name="activo" placeholder="1" v-model="usuario.activo">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="recordar">
+                    <label class="form-check-label" for="recordar" style="color: aliceblue;">Recordar</label>
+                </div row justify-items-center align-items-center>
+                <button type="@leave-cancelled=" class="btn btn-primary">Cancelar</button>
+                <button type="submit" class="btn btn-primary" v-on:click="loginUser()">Ingresar</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Div contenendor general-->
