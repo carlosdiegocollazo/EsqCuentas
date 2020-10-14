@@ -7,24 +7,27 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Movimientos <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">Movimientos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Cheques</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Monedas</a>
+                <router-link to="/monedas" class="nav-link" href="monedas">Monedas</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             más opciones
           </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/">Movimientos</a>
-                    <a class="dropdown-item" href="3">Personas</a>
+                    <router-link to="/notfound" class="nav-link" href="#">Not Found</router-link>
+                    <router-link to="/usuarios" class="dropdown-item" href="usuarios">Usuarios</router-link>
                     <a class="dropdown-item" href="4">Documentos</a>
                     <a class="dropdown-item" href="5">Seguridad</a>
                 </div>
+            </li>
+            <li style="text-align: right;" class="nav-item">
+                <router-link to="/" class="nav-link" href="#">Logoff</router-link>
             </li>
         </ul>
     </div>

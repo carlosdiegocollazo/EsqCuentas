@@ -15,29 +15,26 @@ let componentehome = Vue.component('home-component', function (resolve) {
                 loginUser: function () {
                     let usuario = {
                         usuarioEmail: this.usuario.email,
-                        usuarioPassword: this.usuario.password
+                        usuarioPass: this.usuario.password
                     }
-                    console.log(usuario)
-                    axios.post(API + 'usuarios/login', usuario).then((res) => {
+                    axios.post(API + '/usuarios/login', usuario).then((res) => {
                         let resultado = res.data;
-                        console.log(resultado)
 
                         if (resultado.response) {
                             usuario = resultado;
-                            console.log("Nombre de usuario:::", usuario.response.usuarioNombre)
-                            localStorage.setItem("user-name", usuario.response.usuarioNombre);
-                            localStorage.setItem("user-id", usuario.response.usuarioId);
-                            localStorage.setItem("user-rol", usuario.response.usuarioRol);
+                            console.log("Nombre de usuario:::", usuario.response.nombreusuario)
+                            localStorage.setItem("nombreusuario", usuario.response.nombre);
+                            localStorage.setItem("idusuario", usuario.response.usuarioId);
                             localStorage.setItem("token", usuario.token)
                             router.push({ path: '/mesa' });
+                            console.log("Resultado usuario" + usuario)
                         } else {
                             console.log(usuario)
                             alert("Usuario / Contraseña incorrectos");
-                            this.user = {};
+                            this.usuario.email = {};
                         }
                     })
-                },
-
+                }
             }
         })
     })

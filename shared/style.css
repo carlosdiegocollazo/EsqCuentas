@@ -30,4 +30,5 @@ img.logo {
 @import "../app/componentes/mesatrabajo/mesa.css";
 @import "../app/componentes/notfound/notfound.css";
 @import "../app/componentes/usuarios/usuario.css";
+@import "../app/componentes/usuarios/monedas.css";
 @import "../shared/menu/menu.css";

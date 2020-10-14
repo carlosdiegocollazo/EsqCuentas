@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <!-- Div contenendor general-->
+    <div class="row justify-content-center align-items-center" style="margin-top: 300px;">
+
+        <form>
+            <div class="row" class="login">
+                <div>
+                    <label for="moneda" style="color: aliceblue;">Moneda</label>
+                    <input type="text" class="form-control" name="moneda" v-model="monedas.moneda" placeholder="Descripcion">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" name="divide">
+                    <label class="form-check-label" for="divide" style="color: aliceblue;" v-model="monedas.divide">Divide al cotizar</label>
+                </div row justify-items-center align-items-center>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" name="activo" v-model="monedas.activo">
+                    <label class="form-check-label" for="activo" style="color: aliceblue;">Activo</label>
+                </div row justify-items-center align-items-center>
+                <button type="@leave-cancelled=" class="btn btn-primary" v-on:click="cerrarSesion()">Cancelar</button>
+                <button type="submit" class="btn btn-primary" v-on:click="registmoneda()">Ingresar</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Div contenendor general-->
