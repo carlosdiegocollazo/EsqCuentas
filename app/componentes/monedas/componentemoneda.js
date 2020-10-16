@@ -8,7 +8,8 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                         monedas: "",
                         divide: 1,
                         activo: 1
-                    }
+                    },
+
 
                 }
             },
@@ -58,6 +59,10 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                     this.divide = editomonedas.monedasdivide
                     this.activo = editomonedas.monedasactivo
 
+                },
+                cerrarsesion: function () {
+                 
+                    router.push('/mesa')
                 }
             },
 
@@ -68,12 +73,18 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                 this.seguridad = localStorage.getItem("seguridad")
                 let id = localStorage.getItem("idusuario")
                 const headtoken = { headers: { "mytoken": `${token}` } }
-                axios.get(API + '/monedas/all',headtoken).then((res) => {
-                        let monedas = res.data.response;
-                        console.log("contenido del for", monedas)
-                    })
-                this.monedas
-                console.log("monedas afuera",response.monedas)
+                axios.get(API + '/monedas/all', headtoken).then((res) => {
+                    let monedas = res.data.response;
+                                        console.log("contenido del for",monedas)
+                                        tablamonedas={
+                                            mon:monedas.monedas,
+                                            div:monedas.divide,
+                                            act:monedas.activo
+                                        }
+                                        console.log("tabla",tablamonedas)
+
+                    
+                })
             },
         })
     })

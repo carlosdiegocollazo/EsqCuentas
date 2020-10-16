@@ -20,7 +20,7 @@
                         <input type="checkbox" class="form-check-input" id="recordar">
                         <label class="form-check-label" for="recordar" style="color: aliceblue;">Recordar</label>
                     </div row justify-items-center align-items-center>
-                    <button type="@leave-cancelled=" class="btn btn-primary">Cancelar</button>
+                    <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()">Cancelar</button>
                     <button type="submit" class="btn btn-primary" v-on:click="loginUser()">Ingresar</button>
                 </div>
             </form>

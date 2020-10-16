@@ -34,7 +34,8 @@ let componentehome = Vue.component('home-component', function (resolve) {
                             this.usuario.email = {};
                         }
                     })
-                }
+                },
+
             }
         })
     })

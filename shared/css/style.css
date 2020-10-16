@@ -23,6 +23,11 @@ html, body {
     margin-right: 25px;
     animation-delay: 0ms;
 }
+.login {
+    color: aliceblue;
+    align-items: center;
+    margin-top: 100px;
+}
 
 @import "../app/componentes/home/home.css";
 @import "../app/componentes/mesatrabajo/mesa.css";
