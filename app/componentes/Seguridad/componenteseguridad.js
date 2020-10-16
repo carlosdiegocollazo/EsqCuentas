@@ -1,32 +1,32 @@
-let componentemoneda = Vue.component('moneda-component', function (resolve) {
-    axios.get('./app/componentes/monedas/vistamonedas.html').then(function (view) {
+let componenteseguridad = Vue.component('seguridad-component', function (resolve) {
+    axios.get('./app/componentes/seguridad/vistaseguridad.html').then(function (view) {
         resolve({
             template: view.data,
             data: function () {
                 return {
                     registro: {
-                        monedas: "",
+                        seguridad: "",
                         divide: 1,
-                        activo: 1
+                        activo:1
                     }
 
                 }
             },
             methods: {
-                crearmoneda: function () {
+                registsegurida: function () {
                     let registro = {
-                        monedas: this.registro.monedas,
+                        seguridad: this.registro.seguridad,
                         divide: this.registro.divide,
                         activo: this.registro.activo
                     }
 
                     console.log("registro", registro)
-                    if (this.registro.moneda !== "") {
-                        axios.post(API + 'monedas/new', registro).then((res) => {
+                    if (this.registro.segurida !== "") {
+                        axios.post(API + 'seguridad/new', registro).then((res) => {
+
                             let resultado = res.data;
-                            console.log("resultado", resultado)
                             if (resultado.response) {
-                                router.push({ path: '/monedas' });
+                                router.push({ path: '/mesa' });
                             } else {
                                 alert(res.data.error);
                             }

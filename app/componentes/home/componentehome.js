@@ -22,12 +22,11 @@ let componentehome = Vue.component('home-component', function (resolve) {
 
                         if (resultado.response) {
                             usuario = resultado;
-                            console.log("Nombre de usuario:::", usuario.response.nombreusuario)
-                            localStorage.setItem("nombreusuario", usuario.response.nombre);
-                            localStorage.setItem("idusuario", usuario.response.usuarioId);
+                            console.log("Nombre de usuario:::", usuario.response.nombres)
+                            localStorage.setItem("nombreusuario", usuario.response.nombres);
+                            localStorage.setItem("idusuario", usuario.response.idusu);
                             localStorage.setItem("token", usuario.token)
                             router.push({ path: '/mesa' });
-                            console.log("Resultado usuario" + usuario)
                         } else {
                             console.log(usuario)
                             alert("Usuario / Contraseña incorrectos");

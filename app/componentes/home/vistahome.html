@@ -14,7 +14,7 @@
                     <br>
                     <div class="form-group">
                         <label for="password" style="color: aliceblue;">Contraseña</label>
-                        <input type="password" class="form-control" name="password" placeholder="Ingrese contraseña" v-model="usuario.password">
+                        <input type="password" class="form-control" name="password" placeholder="Ingrese contraseña" v-model="usuario.password" v-on:keyup.13="loginUser()">
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="recordar">
@@ -24,6 +24,7 @@
                     <button type="submit" class="btn btn-primary" v-on:click="loginUser()">Ingresar</button>
                 </div>
             </form>
+<!--            <h3 style="justify-content: end; color: white;">{{nombreusuario}}</h3>
         </div>
     </body>
 </div>
