@@ -1,37 +1,36 @@
-
 html, body {
-        /* imagen de fondo */
-        background-image: url(../../../shared/media/2560_3000login.jpg);
-        background-position: center;
-        /* Centro */
-        background-size: auto;
-        /* Ajuste automático */
-        background-size: cover;
-        /* Escalar sin recortar */
-        background-attachment: fixed;
-        /*normalizar*/
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
+    /* imagen de fondo */
+    background-image: url(../../../shared/media/2560_3000login.jpg);
+    background-position: center;
+    /* Centro */
+    background-size: auto;
+    /* Ajuste automático */
+    background-size: cover;
+    /* Escalar sin recortar */
+    background-attachment: fixed;
+    /*normalizar*/
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
 .imglogo {
     margin-top: 25px;
     margin-bottom: 25px;
     margin-left: 25px;
     margin-right: 25px;
-    animation-delay: 0ms;
-}
-.login {
-    color: aliceblue;
-    align-items: center;
-    margin-top: 100px;
+    animation-delay: -10ms;
 }
 
-@import "../app/componentes/home/home.css";
+login {
+    margin: auto;
+    padding: 0;
+}
+
+/*@import "../app/componentes/home/home.css";
 @import "../app/componentes/mesatrabajo/mesa.css";
 @import "../app/componentes/notfound/notfound.css";
 @import "../app/componentes/usuarios/usuario.css";
 @import "../app/componentes/usuarios/monedas.css";
-@import "../shared/menu/menu.css";
+@import "../shared/menu/menu.css";*/

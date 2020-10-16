@@ -8,17 +8,11 @@ const monedas = componentemoneda;
 const API = "http://localhost:3000";
 
 const routes = [
-    { path: '*', component: notfound },
-    { path: '/', component: home },
-    { path: '/usuarios', component: usuario },
-    { path: '/monedas', component: monedas },
-    {
-        path: '/mesa',
-        component: mesa,
-        children: [
-            { path: '/mesa/usuarios', component: usuario },
-
-        ]
+    { path: '*',name:"NotFound", component: notfound },
+    { path: '/',name:"Login", component: home },
+    { path: '/usuarios',name:"Personas", component: usuario },
+    { path: '/monedas',name:"Finanzas", component: monedas },
+    { path: '/mesa',name:"Home", component: mesa,
     },
 ]
 
