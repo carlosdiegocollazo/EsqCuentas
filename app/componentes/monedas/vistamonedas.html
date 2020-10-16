@@ -7,19 +7,21 @@
          <div class="row" class="login">
             <div>
                <label for="monedas" style="color: aliceblue;">Moneda</label>
-               <input type="text" class="form-control" name="monedas" v-model="monedas.monedas"
+               <input type="text" class="form-control" name="monedas" v-model="registro.monedas"
                   placeholder="Descripcion">
             </div>
 
             <br>
             <div class="form-group form-check">
-               <input type="checkbox" class="form-check-input" name="divide">
-               <label class="form-check-label" for="divide" style="color: aliceblue;" v-model="monedas.divide">Divide al
+               <input type="checkbox" class="form-check-input" name="divide" checked>
+               <label class="form-check-label" for="divide" style="color: aliceblue;" v-model="registro.divide">Divide
+                  al
                   cotizar</label>
             </div row justify-items-center align-items-center>
 
             <div class="form-group form-check">
-               <input type="checkbox" class="form-check-input" name="activo" v-model="monedas.activo">
+
+               <input type="checkbox" class="form-check-input" name="activo" v-model="registro.activo" >
                <label class="form-check-label" for="activo" style="color: aliceblue;">Activo</label>
             </div row justify-items-center align-items-center>
 
@@ -49,10 +51,10 @@
                            <tbody>
                               <tr v-for="moneda in monedas">
                                  <!--<th scope="row">{{ moneda.idmon }}</th>-->
-                                 <td>{{ moneda.idmon }}</td>
-                                 <td>{{ moneda.moneda }}</td>
-                                 <td>{{ moneda.divide }}</td>
-                                 <td>{{ moneda.activo }}</td>
+                                 <td>{{ monedas.idmon }}</td>
+                                 <td>{{ monedas.moneda }}</td>
+                                 <td>{{ monedas.divide }}</td>
+                                 <td>{{ monedas.activo }}</td>
                                  <td><button class="btn btn-danger">Elimina</button></td>
                                  <td><button class="btn btn-success">Modifica</button></td>
                               </tr>

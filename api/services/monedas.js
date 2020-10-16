@@ -62,7 +62,7 @@ let monedas = {
 		return response;
 	},
 
-	crearmoneda: async function(moneda){
+	crearmoneda: async function(monedas){
 		let sql = `
 					INSERT INTO monedas
 					(
@@ -72,9 +72,9 @@ let monedas = {
 					)
 					VALUES
 					(
-					"${moneda.moneda}",
-					'${moneda.divide}',
-					'${moneda.activo}'
+					"${monedas.monedas}",
+					'${monedas.divide}',
+					'${monedas.activo}'
 					)		
 				`
 		let response 	= {error: "No se pudo crear moneda"}

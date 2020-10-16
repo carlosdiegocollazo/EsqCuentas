@@ -19,12 +19,15 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                         divide: this.registro.divide,
                         activo: this.registro.activo
                     }
+                    let token = localStorage.getItem("token");
+                    const headtoken = { headers: { "mytoken": `${token}` } }
 
-                    console.log("registro", registro)
                     if (this.registro.monedas !== "") {
-                        axios.post(API + 'monedas/new', registro).then((res) => {
+
+                        axios.post(API + '/monedas/new', registro, headtoken).then((res) => {
                             let resultado = res.data;
                             console.log("resultado", resultado)
+                            alert("Tipo de moneda creado correctamente");
                             if (resultado.response) {
                                 router.push({ path: '/monedas' });
                             } else {
@@ -59,17 +62,19 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
             },
 
             mounted: function () {
-                console.log(this.$router)
+                //console.log(this.$router)
+                let token = localStorage.getItem("token");
+
                 this.seguridad = localStorage.getItem("seguridad")
                 let id = localStorage.getItem("idusuario")
-                let token = localStorage.getItem("token");
-                axios.get(API + '/monedas/all',
-                    { headers: { "mytoken": `${token}` } }).then((res) => {
+                const headtoken = { headers: { "mytoken": `${token}` } }
+                axios.get(API + '/monedas/all',headtoken).then((res) => {
                         let monedas = res.data.response;
                         console.log("contenido del for", monedas)
                     })
-                    this.monedas
-                },
+                this.monedas
+                console.log("monedas afuera",response.monedas)
+            },
         })
     })
 })
