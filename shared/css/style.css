@@ -1,6 +1,5 @@
-@media all {
-    html,
-    body {
+
+html, body {
         /* imagen de fondo */
         background-image: url(../../../shared/media/2560_3000login.jpg);
         background-position: center;
@@ -16,9 +15,8 @@
         margin: 0;
         padding: 0;
     }
-}
 
-img.logo {
+.imglogo {
     margin-top: 25px;
     margin-bottom: 25px;
     margin-left: 25px;

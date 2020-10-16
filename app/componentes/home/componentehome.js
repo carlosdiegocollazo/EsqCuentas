@@ -24,6 +24,7 @@ let componentehome = Vue.component('home-component', function (resolve) {
                             usuario = resultado;
                             console.log("Nombre de usuario:::", usuario.response.nombres)
                             localStorage.setItem("nombreusuario", usuario.response.nombres);
+                            localStorage.setItem("seguridad", usuario.response.seguridad);
                             localStorage.setItem("idusuario", usuario.response.idusu);
                             localStorage.setItem("token", usuario.token)
                             router.push({ path: '/mesa' });

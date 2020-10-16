@@ -1,28 +1,71 @@
 <div class="container-fluid">
-    <menu-item></menu-item>
-    <router-view></router-view>
-    <!-- Div contenendor general-->
-    <div class="row justify-content-center align-items-center" style="margin-top: 300px;">
-        <form>
-            <div class="row" class="login">
-                <div>
-                    <label for="monedas" style="color: aliceblue;">Moneda</label>
-                    <input type="text" class="form-control" name="monedas" v-model="monedas.monedas"
-                        placeholder="Descripcion">
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" name="divide">
-                    <label class="form-check-label" for="divide" style="color: aliceblue;"
-                        v-model="monedas.divide">Divide al cotizar</label>
-                </div row justify-items-center align-items-center>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" name="activo" v-model="monedas.activo">
-                    <label class="form-check-label" for="activo" style="color: aliceblue;">Activo</label>
-                </div row justify-items-center align-items-center>
-                <button type="@leave-cancelled=" class="btn btn-primary" v-on:click="cerrarSesion()">Cancelar</button>
-                <button type="submit" class="btn btn-primary" v-on:click="crearmoneda()">Ingresar</button>
+   <menu-item></menu-item>
+   <router-view></router-view>
+   <!-- Div contenendor general-->
+   <div class="row justify-content-center align-items-center" style="margin-top: 100px;">
+      <form>
+         <div class="row" class="login">
+            <div>
+               <label for="monedas" style="color: aliceblue;">Moneda</label>
+               <input type="text" class="form-control" name="monedas" v-model="monedas.monedas"
+                  placeholder="Descripcion">
             </div>
-        </form>
-    </div>
+
+            <br>
+            <div class="form-group form-check">
+               <input type="checkbox" class="form-check-input" name="divide">
+               <label class="form-check-label" for="divide" style="color: aliceblue;" v-model="monedas.divide">Divide al
+                  cotizar</label>
+            </div row justify-items-center align-items-center>
+
+            <div class="form-group form-check">
+               <input type="checkbox" class="form-check-input" name="activo" v-model="monedas.activo">
+               <label class="form-check-label" for="activo" style="color: aliceblue;">Activo</label>
+            </div row justify-items-center align-items-center>
+
+            <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()">Cancelar</button>
+            <button type="submit" class="btn btn-success" v-on:click="crearmoneda()">Ingresar</button>
+            <br><br>
+         </div>
+      </form>
+      <div class="container-fluid">
+         <template>
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="table-responsive">
+
+                        <table class="table">
+                           <thead class="thead-dark">
+                              <tr>
+                                 <th scope="col">ID</th>
+                                 <th scope="col">Moneda</th>
+                                 <th scope="col">Divide</th>
+                                 <th scope="col">Activo</th>
+                                 <th scope="col">Acciones</th>
+                                 <th scope="col">Acciones</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr v-for="moneda in monedas">
+                                 <!--<th scope="row">{{ moneda.idmon }}</th>-->
+                                 <td>{{ moneda.idmon }}</td>
+                                 <td>{{ moneda.moneda }}</td>
+                                 <td>{{ moneda.divide }}</td>
+                                 <td>{{ moneda.activo }}</td>
+                                 <td><button class="btn btn-danger">Elimina</button></td>
+                                 <td><button class="btn btn-success">Modifica</button></td>
+                              </tr>
+                           </tbody>
+                        </table>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </template>
+
+      </div>
+   </div>
 </div>
 <!-- Div contenendor general-->
