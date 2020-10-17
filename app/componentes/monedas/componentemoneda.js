@@ -9,6 +9,7 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                         divide: 1,
                         activo: 1
                     },
+                    monedas: []
 
 
                 }
@@ -61,7 +62,7 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
 
                 },
                 cerrarsesion: function () {
-                 
+
                     router.push('/mesa')
                 }
             },
@@ -75,15 +76,10 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                 const headtoken = { headers: { "mytoken": `${token}` } }
                 axios.get(API + '/monedas/all', headtoken).then((res) => {
                     let monedas = res.data.response;
-                                        console.log("contenido del for",monedas)
-                                        tablamonedas={
-                                            mon:monedas.monedas,
-                                            div:monedas.divide,
-                                            act:monedas.activo
-                                        }
-                                        console.log("tabla",tablamonedas)
+                    console.log("contenido del for", monedas)
 
-                    
+                    this.monedas = monedas
+
                 })
             },
         })
