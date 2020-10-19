@@ -8,7 +8,7 @@
             <div>
                <label for="monedas" style="color: aliceblue;">Moneda</label>
                <input type="text" class="form-control" name="monedas" v-model="registro.monedas"
-                  placeholder="Descripcion">
+                placeholder="Descripcion" v-on:keyup.13="crearmoneda()">
             </div>
 
             <br>
@@ -26,11 +26,11 @@
             </div row justify-items-center align-items-center>
 
             <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()">Cancelar</button>
-            <button type="submit" class="btn btn-success" v-on:click="crearmoneda()">Ingresar</button>
+            <button type="submit" class="btn btn-success" style="margin-left: 30px;" v-on:click="crearmoneda()">Ingresar</button>
             <br><br>
          </div>
       </form>
-      <div class="container-fluid">
+      <div class="container-fluid" style="margin-top: 50;">
          <template>
             <div class="container">
                <div class="row">
@@ -54,8 +54,8 @@
                                  <td>{{ moneda.moneda }}</td>
                                  <td>{{ moneda.divide }}</td>
                                  <td>{{ moneda.activo }}</td>
-                                 <td><button class="btn btn-danger">Elimina</button></td>
-                                 <td><button class="btn btn-success">Modifica</button></td>
+                                 <td><button class="btn btn-danger" v-on:click="eliminarmoneda()">Elimina</button></td>
+                                 <td><button class="btn btn-success" v-on:click="actualizarmoneda()">Modifica</button></td>
                               </tr>
                            </tbody>
                         </table>

@@ -5,7 +5,9 @@ Vue.component('menu-item', function (resolve, reject) {
             template: view.data,
             data: function () {
                 return {
+                    idusu: localStorage.getItem('idusu'),
                     nombreusuario: localStorage.getItem('nombreusuario'),
+                    seguridad: localStorage.getItem('seguridad'),
 
                 }
             },

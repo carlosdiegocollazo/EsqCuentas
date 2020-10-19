@@ -28,7 +28,7 @@ login {
     padding: 0;
 }
 
-/*@import "../app/componentes/home/home.css";
+@import "../app/componentes/home/home.css";/*
 @import "../app/componentes/mesatrabajo/mesa.css";
 @import "../app/componentes/notfound/notfound.css";
 @import "../app/componentes/usuarios/usuario.css";

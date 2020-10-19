@@ -5,12 +5,12 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
             data: function () {
                 return {
                     registro: {
+                        idmon:"",
                         monedas: "",
                         divide: 1,
                         activo: 1
                     },
-                    monedas: []
-
+                    monedas: [],
 
                 }
             },
@@ -41,7 +41,10 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                     }
                 },
                 eliminarmoneda: function (res) {
-                    let idmon = res
+                    let eli = this.monedas
+                    console.log("this monedas dentro de eliminar", eli)
+                    console.log("recooro el data",eli.idmon)
+
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
 
@@ -62,7 +65,6 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
 
                 },
                 cerrarsesion: function () {
-
                     router.push('/mesa')
                 }
             },
@@ -77,7 +79,6 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                 axios.get(API + '/monedas/all', headtoken).then((res) => {
                     let monedas = res.data.response;
                     console.log("contenido del for", monedas)
-
                     this.monedas = monedas
 
                 })
