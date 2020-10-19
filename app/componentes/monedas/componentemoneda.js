@@ -5,7 +5,7 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
             data: function () {
                 return {
                     registro: {
-                        idmon:"",
+                        idmon: "",
                         monedas: "",
                         divide: 1,
                         activo: 1
@@ -28,7 +28,7 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
 
                         axios.post(API + '/monedas/new', registro, headtoken).then((res) => {
                             let resultado = res.data;
-                            console.log("resultado", resultado)
+                            //       console.log("resultado", resultado)
                             alert("Tipo de moneda creado correctamente");
                             if (resultado.response) {
                                 router.push({ path: '/monedas' });
@@ -40,29 +40,72 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                         alert("Descripcion de monedas no puede estar vacia");
                     }
                 },
-                eliminarmoneda: function (res) {
-                    let eli = this.monedas
-                    console.log("this monedas dentro de eliminar", eli)
-                    console.log("recooro el data",eli.idmon)
+                eliminarmoneda: function (res, res2) {
+                    let idmon = res
+                    let idmon2 = res2
+                    //console.log("recooro el data", idmon, idmon2)
 
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
+                    this.monedas.splice(idmon, 1) //elimina la linea de la table y espues de la base
+                    axios.put(API + '/monedas/delete/' + idmon2, {}, headtoken).then((res) => {
 
-                    axios.put(API + 'monedas/delete/' + idmon, {}, headtoken).then((res) => {
-                        window.location.reload()
+                        //    console.log("resdat delntro del xios", res.data)
                     })
 
                 },
-                actualizarmoneda: function (res) {
-                    let editomonedas = this.monedas[res]
-                    this.monedas = editomonedas;
+                actualizarmoneda: function (res2) {
+                    let modificomoneda = {}
+                    let monedas = this.monedas
 
-                    console.log("Valor de editomonedas", editomonedas)
+                    for (let index = 0; index < monedas.length; index++) {
+                        const element = monedas[index];
+                        if (element.divide == true) {
+                            element.divide = 1
+                        }
+                        if (element.activo == true) {
+                            element.activo = 1
+                        }
+                        if (index == res2) {
+                            modificomoneda = {
+                                idmon: element.idmon,
+                                moneda: element.moneda,
+                                divide: element.divide,
+                                activo: element.activo
+                            }
+                        }
+                    }
+                    let token = localStorage.getItem("token");
+                    const headtoken = { headers: { "mytoken": `${token}` } }
+                    axios.put(API + '/monedas/edit/' + modificomoneda.idmon, modificomoneda, headtoken).then((res) => {
+                        axios.get(API + '/monedas/all', headtoken).then((res) => {
 
-                    this.monedas = editomonedas.monedasmonedas
-                    this.divide = editomonedas.monedasdivide
-                    this.activo = editomonedas.monedasactivo
+                        })
+                    })
+                },
+                mostrartodos: function () {
+                    let token = localStorage.getItem("token");
 
+                    this.seguridad = localStorage.getItem("seguridad")
+                    let id = localStorage.getItem("idusuario")
+                    const headtoken = { headers: { "mytoken": `${token}` } }
+                    axios.get(API + '/monedas/allall', headtoken).then((res) => {
+                        let monedas = res.data.response;
+                        //   console.log("contenido del for", monedas)
+                        this.monedas = monedas
+                    })
+                },
+                mostraractivos: function () {
+                    let token = localStorage.getItem("token");
+
+                    this.seguridad = localStorage.getItem("seguridad")
+                    let id = localStorage.getItem("idusuario")
+                    const headtoken = { headers: { "mytoken": `${token}` } }
+                    axios.get(API + '/monedas/all', headtoken).then((res) => {
+                        let monedas = res.data.response;
+                        // console.log("contenido del for", monedas)
+                        this.monedas = monedas
+                    })
                 },
                 cerrarsesion: function () {
                     router.push('/mesa')
@@ -78,7 +121,7 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                 const headtoken = { headers: { "mytoken": `${token}` } }
                 axios.get(API + '/monedas/all', headtoken).then((res) => {
                     let monedas = res.data.response;
-                    console.log("contenido del for", monedas)
+                    //console.log("contenido del for", monedas)
                     this.monedas = monedas
 
                 })

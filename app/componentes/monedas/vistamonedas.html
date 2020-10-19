@@ -1,4 +1,5 @@
 <div class="container-fluid">
+
    <menu-item></menu-item>
    <router-view></router-view>
    <!-- Div contenendor general-->
@@ -6,9 +7,10 @@
       <form>
          <div class="row" class="login">
             <div>
-               <label for="monedas" style="color: aliceblue;">Moneda</label>
-               <input type="text" class="form-control" name="monedas" v-model="registro.monedas"
-                placeholder="Descripcion" v-on:keyup.13="crearmoneda()">
+               <H1 style="justify-content:center; color: aliceblue;">Gestion de Formas de Pago</H1>
+               <label for="monedas" style="color: aliceblue;" title="Ingrese el nombe de la moneda">Moneda</label>
+               <input type="text" class="form-control" name="monedas" title="Ingrese el nombe de la moneda" v-model="registro.monedas"
+                  placeholder="Descripcion" v-on:keyup.13="crearmoneda()">
             </div>
 
             <br>
@@ -21,12 +23,14 @@
 
             <div class="form-group form-check">
 
-               <input type="checkbox" class="form-check-input" name="activo" v-model="registro.activo" >
+               <input type="checkbox" class="form-check-input" name="activo" v-model="registro.activo">
                <label class="form-check-label" for="activo" style="color: aliceblue;">Activo</label>
             </div row justify-items-center align-items-center>
-
-            <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()">Cancelar</button>
-            <button type="submit" class="btn btn-success" style="margin-left: 30px;" v-on:click="crearmoneda()">Ingresar</button>
+            <button class="btn btn-primary" v-on:click="mostraractivos()" style="margin-left: 30px;">Mostrar Activos</button>
+            <button class="btn btn-primary" v-on:click="mostrartodos()" style="margin-left: 30px;">Mostrar Todos</button>
+                        <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()" style="margin-left: 30px;">Cancelar</button>
+            <button type="submit" class="btn btn-success" style="margin-left: 30px;"
+               v-on:click="crearmoneda()">Ingresar</button>
             <br><br>
          </div>
       </form>
@@ -35,7 +39,7 @@
             <div class="container">
                <div class="row">
                   <div class="col-md-12">
-                     <div class="table-responsive table-striped table-dark" >
+                     <div class="table-responsive table-striped table-dark">
 
                         <table class="table">
                            <thead class="thead-dark">
@@ -46,16 +50,21 @@
                                  <th scope="col">Activo</th>
                                  <th scope="col">Acciones</th>
                                  <th scope="col">Acciones</th>
+
                               </tr>
                            </thead>
                            <tbody>
-                              <tr v-for="moneda in monedas" style="color: aquamarine;">
-                                 <td>{{ moneda.idmon }}</td>
-                                 <td>{{ moneda.moneda }}</td>
-                                 <td>{{ moneda.divide }}</td>
-                                 <td>{{ moneda.activo }}</td>
-                                 <td><button class="btn btn-danger" v-on:click="eliminarmoneda()">Elimina</button></td>
-                                 <td><button class="btn btn-success" v-on:click="actualizarmoneda()">Modifica</button></td>
+                              <tr v-for="(moneda,index) in monedas" style="color: aquamarine;">
+                                 <td><input class="inputtabla" type="text" v-model="moneda.idmon" size="3" disabled>
+                                 </td>
+                                 <td><input class="inputtabla" type="text" v-model="moneda.moneda" title="Haga click para editar y luego presione el botón Modificar"></td>
+                                 <td><input class="inputtabla" type="checkbox" v-model="moneda.divide"></td>
+                                 <td><input class="inputtabla" type="checkbox" v-model="moneda.activo"></td>
+                                 <td><button class="btn btn-danger"
+                                       v-on:click="eliminarmoneda(index,moneda.idmon)">Elimina</button></td>
+                                 <td><button class="btn btn-success"
+                                       v-on:click="actualizarmoneda(index)">Modifica</button>
+                                 </td>
                               </tr>
                            </tbody>
                         </table>

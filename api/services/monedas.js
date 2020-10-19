@@ -89,6 +89,7 @@ let monedas = {
 	},
 
 	actualizarmoneda: async function(moneda, id){
+		
 		let sql = `
 					UPDATE monedas
 					SET
@@ -102,6 +103,7 @@ let monedas = {
 		let existemoneda 	= await this.obtenermonedaPorId(id);
 		if (!existemoneda.error) {
 			let resultado 	= await conn.query(sql);
+		
 			if (resultado.code) {
 	 			response 	= {error: "Error en consulta SQL"};
 	 		}else if (resultado.affectedRows>0) {

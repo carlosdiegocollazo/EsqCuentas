@@ -1,3 +1,12 @@
+
+@import "../../app/componentes/home/home.css";
+@import "../../app/componentes/monedas/monedas.css";
+@import "../../app/componentes/mesatrabajo/mesa.css";
+@import "../../app/componentes/notfound/notfound.css";
+@import "../../app/componentes/usuarios/usuario.css";
+
+@import "../menu/menu.css";*/
+
 html, body {
     /* imagen de fondo */
     background-image: url(../../../shared/media/2560_3000login.jpg);
@@ -27,10 +36,3 @@ login {
     margin: auto;
     padding: 0;
 }
-
-@import "../app/componentes/home/home.css";/*
-@import "../app/componentes/mesatrabajo/mesa.css";
-@import "../app/componentes/notfound/notfound.css";
-@import "../app/componentes/usuarios/usuario.css";
-@import "../app/componentes/usuarios/monedas.css";
-@import "../shared/menu/menu.css";*/
