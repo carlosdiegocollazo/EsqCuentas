@@ -37,7 +37,7 @@ let componentehome = Vue.component('home-component', function (resolve) {
                 },
                 cerrarsesion: function () {
                     localStorage.clear();
-                    router.push('/')
+                    router.push('/home')
                 }
 
             }

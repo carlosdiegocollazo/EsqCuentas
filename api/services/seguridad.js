@@ -62,7 +62,8 @@ let seguridad = {
 		return response;
 	},
 
-	crearseguridad: async function(segurida){
+	crearseguridad: async function(seguridad){
+		console.log("Seguridad que vbinen de la app",seguridad)
 		let sql = `
 					INSERT INTO seguridad
 					(
@@ -92,7 +93,7 @@ let seguridad = {
 		let sql = `
 					UPDATE seguridad
 					SET
-					seguridad		= '${seguridad.seguridad}',
+					categoria		= '${seguridad.categoria}',
 					descripcion		= '${seguridad.descripcion}',
 					activo	 	= '${seguridad.activo}'
 					

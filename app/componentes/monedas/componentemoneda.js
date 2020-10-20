@@ -49,12 +49,12 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     this.monedas.splice(idmon, 1) //elimina la linea de la table y espues de la base
                     axios.put(API + '/monedas/delete/' + idmon2, {}, headtoken).then((res) => {
-
+                        alert("Moneda",idmon2," eliminada correcatmente.");
                         //    console.log("resdat delntro del xios", res.data)
                     })
 
                 },
-                actualizarmoneda: function (res2) {
+                actualizarmonedas: function (res2) {
                     let modificomoneda = {}
                     let monedas = this.monedas
 
@@ -79,7 +79,7 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.put(API + '/monedas/edit/' + modificomoneda.idmon, modificomoneda, headtoken).then((res) => {
                         axios.get(API + '/monedas/all', headtoken).then((res) => {
-
+                            alert("Moneda",modificomoneda,moneda," modificada correctamente");
                         })
                     })
                 },
@@ -110,7 +110,7 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                 cerrarsesion: function () {
                     router.push('/mesa')
                 }
-            },
+            },// fin el method
 
             mounted: function () {
                 //console.log(this.$router)
@@ -125,7 +125,7 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                     this.monedas = monedas
 
                 })
-            },
+            },//fin del mounted
         })
     })
 })

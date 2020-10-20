@@ -35,7 +35,7 @@ module.exports = function(app){
 	app.post('/seguridad/new', midd.rutasProtegidas, async function(req, res){
 		let segurida = req.body;
 		let seguridad = require('../services/seguridad.js');
-		let response = await seguridad.crearseguridad(seguridad);
+		let response = await seguridad.crearseguridad(segurida);
 		res.set('Content-Type', 'aplication/json');
 		res.send(response);
 	})
@@ -46,7 +46,7 @@ module.exports = function(app){
 		let segurida 	= req.body;
 		let id 			= req.params.id;
 		let seguridad 	= require('../services/seguridad.js');
-		let response 	= await seguridad.actualizarseguridad(seguridad, id);
+		let response 	= await seguridad.actualizarseguridad(segurida, id);
 		res.set('Content-Type', 'aplication/json');
 		res.send(response);
 	})

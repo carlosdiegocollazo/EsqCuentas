@@ -1,11 +1,10 @@
-
+@import "../menu/menu.css";
 @import "../../app/componentes/home/home.css";
+@import "../../app/componentes/seguridad/seguridad.css";
 @import "../../app/componentes/monedas/monedas.css";
 @import "../../app/componentes/mesatrabajo/mesa.css";
 @import "../../app/componentes/notfound/notfound.css";
 @import "../../app/componentes/usuarios/usuario.css";
-
-@import "../menu/menu.css";*/
 
 html, body {
     /* imagen de fondo */

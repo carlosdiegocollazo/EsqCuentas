@@ -30,7 +30,6 @@ let Middleware = {
       "/monedas/edit/:id": "Acceso Permitido",
       "/monedas/delete/:id": "Acceso Permitido",
 
-
       //seguridad
       "/seguridad/all": "Acceso Permitido",
       "/seguridad/allall": "Acceso Permitido",

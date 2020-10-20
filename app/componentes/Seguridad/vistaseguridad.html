@@ -1,4 +1,5 @@
 <div class="container-fluid">
+
    <menu-item></menu-item>
    <router-view></router-view>
    <!-- Div contenendor general-->
@@ -6,57 +7,61 @@
       <form>
          <div class="row" class="login">
             <div>
-               <label for="monedas" style="color: aliceblue;">Moneda</label>
-               <input type="text" class="form-control" name="monedas" v-model="registro.monedas"
-                  placeholder="Descripcion">
+               <H1 style="text-align-last: center; color: aliceblue;">Gestion de Seguridad</H1>
+               <label for="categoria" style="color: aliceblue;" title="Ingrese Nº para Categoria">Categoria</label>
+               <input type="number" style="width:100px" class="form-control" name="categoria"
+                  title="Ingrese Nº para Categoria" v-model="registro.categoria" placeholder="Nº" value="3">
+
+               <label for="descripcion" style="color: aliceblue;"
+                  title="Ingrese descripcion de seguridad">Descripcion</label>
+               <input type="text" class="form-control" name="descripcion" title="Ingrese descripcion de seguridad"
+                  v-model="registro.descripcion" placeholder="Descripcion" v-on:keyup.13="crearseguridad()">
             </div>
-
-            <br>
             <div class="form-group form-check">
-               <input type="checkbox" class="form-check-input" name="divide" checked>
-               <label class="form-check-label" for="divide" style="color: aliceblue;" v-model="registro.divide">Divide
-                  al
-                  cotizar</label>
-            </div row justify-items-center align-items-center>
-
-            <div class="form-group form-check">
-
-               <input type="checkbox" class="form-check-input" name="activo" v-model="registro.activo" >
+               <input type="checkbox" class="form-check-input" name="activo" v-model="registro.activo">
                <label class="form-check-label" for="activo" style="color: aliceblue;">Activo</label>
             </div row justify-items-center align-items-center>
-
-            <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()">Cancelar</button>
-            <button type="submit" class="btn btn-success" v-on:click="crearmoneda()">Ingresar</button>
+            <!--            <button class="btn btn-primary" v-on:click="mostraractivos()" style="margin-left: 30px;">Mostrar Activos</button>
+            <button class="btn btn-primary" v-on:click="mostrartodos()" style="margin-left: 30px;">Mostrar Todos</button>-->
+            <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()"
+               style="margin-left: 30px;">Cancelar</button>
+            <button type="submit" class="btn btn-success" style="margin-left: 30px;"
+               v-on:click="crearseguridad()">Ingresar</button>
             <br><br>
          </div>
       </form>
-      <div class="container-fluid">
+      <div class="container-fluid" style="margin-top: 50;">
          <template>
             <div class="container">
                <div class="row">
                   <div class="col-md-12">
-                     <div class="table-responsive">
+                     <div class="table-responsive table-striped table-dark">
 
                         <table class="table">
                            <thead class="thead-dark">
                               <tr>
-                                 <th scope="col">ID</th>
-                                 <th scope="col">Moneda</th>
-                                 <th scope="col">Divide</th>
+                                 <th scope="col" hidden>ID</th>
+                                 <th scope="col">Categoria</th>
+                                 <th scope="col">Descripcion</th>
                                  <th scope="col">Activo</th>
                                  <th scope="col">Acciones</th>
                                  <th scope="col">Acciones</th>
+
                               </tr>
                            </thead>
                            <tbody>
-                              <tr v-for="moneda in monedas">
-                                 <th scope="row">{{ moneda.idmon }}</th>
-                                 <td>{{ monedas.idmon }}</td>
-                                 <td>{{ monedas.moneda }}</td>
-                                 <td>{{ monedas.divide }}</td>
-                                 <td>{{ monedas.activo }}</td>
-                                 <td><button class="btn btn-danger">Elimina</button></td>
-                                 <td><button class="btn btn-success">Modifica</button></td>
+                              <tr v-for="(segurida,index) in seguridad" style="color: aquamarine;">
+                                 <td hidden><input class="inputtabla" type="text" v-model="segurida.idseg" disabled>
+                                 </td>
+                                 <td><input class="inputtabla" type="number" v-model="segurida.categoria" 
+                                       title="Haga click para editar y luego presione el botón Modificar"></td>
+                                 <td><input class="inputtabla" type="text" v-model="segurida.descripcion" title="Haga click para editar y luego presione el botón Modificar"></td>
+                                 <td><input class="inputtabla" type="checkbox" v-model="segurida.activo"></td>
+                                 <td><button class="btn btn-danger"
+                                       v-on:click="eliminarseguridad(index,segurida.idseg)">Elimina</button></td>
+                                 <td><button class="btn btn-success"
+                                       v-on:click="actualizarseguridad(index)">Modifica</button>
+                                 </td>
                               </tr>
                            </tbody>
                         </table>

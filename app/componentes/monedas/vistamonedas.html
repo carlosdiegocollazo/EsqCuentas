@@ -7,10 +7,10 @@
       <form>
          <div class="row" class="login">
             <div>
-               <H1 style="justify-content:center; color: aliceblue;">Gestion de Formas de Pago</H1>
-               <label for="monedas" style="color: aliceblue;" title="Ingrese el nombe de la moneda">Moneda</label>
-               <input type="text" class="form-control" name="monedas" title="Ingrese el nombe de la moneda" v-model="registro.monedas"
-                  placeholder="Descripcion" v-on:keyup.13="crearmoneda()">
+               <H1 style="text-align-last: center; color: aliceblue;">Gestion de Monedas</H1>
+               <label for="monedas" style="color: aliceblue;" title="Ingrese el nombe de la moneda">Nombre de Moneda</label>
+               <input type="text" class="form-control" name="monedas" title="Ingrese el nombe de la monedas" v-model="registro.monedas"
+                  placeholder="Descripcion" v-on:keyup.13="crearmonedas()">
             </div>
 
             <br>
@@ -30,7 +30,7 @@
             <button class="btn btn-primary" v-on:click="mostrartodos()" style="margin-left: 30px;">Mostrar Todos</button>
                         <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()" style="margin-left: 30px;">Cancelar</button>
             <button type="submit" class="btn btn-success" style="margin-left: 30px;"
-               v-on:click="crearmoneda()">Ingresar</button>
+               v-on:click="crearmonedas()">Ingresar</button>
             <br><br>
          </div>
       </form>
@@ -45,7 +45,7 @@
                            <thead class="thead-dark">
                               <tr>
                                  <th scope="col">ID</th>
-                                 <th scope="col">Moneda</th>
+                                 <th scope="col">monedas</th>
                                  <th scope="col">Divide</th>
                                  <th scope="col">Activo</th>
                                  <th scope="col">Acciones</th>
@@ -54,16 +54,16 @@
                               </tr>
                            </thead>
                            <tbody>
-                              <tr v-for="(moneda,index) in monedas" style="color: aquamarine;">
-                                 <td><input class="inputtabla" type="text" v-model="moneda.idmon" size="3" disabled>
+                              <tr v-for="(monedas,index) in monedas" style="color: aquamarine;">
+                                 <td><input class="inputtabla" type="text" v-model="monedas.idmon" size="3" disabled>
                                  </td>
-                                 <td><input class="inputtabla" type="text" v-model="moneda.moneda" title="Haga click para editar y luego presione el botón Modificar"></td>
-                                 <td><input class="inputtabla" type="checkbox" v-model="moneda.divide"></td>
-                                 <td><input class="inputtabla" type="checkbox" v-model="moneda.activo"></td>
+                                 <td><input class="inputtabla" type="text" v-model="monedas.moneda" title="Haga click para editar y luego presione el botón Modificar"></td>
+                                 <td><input class="inputtabla" type="checkbox" v-model="monedas.divide"></td>
+                                 <td><input class="inputtabla" type="checkbox" v-model="monedas.activo"></td>
                                  <td><button class="btn btn-danger"
-                                       v-on:click="eliminarmoneda(index,moneda.idmon)">Elimina</button></td>
+                                       v-on:click="eliminarmonedas(index,monedas.idmon)">Elimina</button></td>
                                  <td><button class="btn btn-success"
-                                       v-on:click="actualizarmoneda(index)">Modifica</button>
+                                       v-on:click="actualizarmonedas(index)">Modifica</button>
                                  </td>
                               </tr>
                            </tbody>
