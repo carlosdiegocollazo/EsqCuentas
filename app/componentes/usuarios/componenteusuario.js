@@ -8,8 +8,8 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                         email: "",
                         pwd: "",
                         rpwd: "",
-                        apellido: "",
-                        nombre: "",
+                        apellidos: "",
+                        nombres: "",
                         telefono: "",
                         direccion: "",
                         ciudad: "",
@@ -17,20 +17,20 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                         fechnac: "",
                         feching: "",
                         observaciones: "",
-                        activo: ""
+                        activo: 1
                     },
                     devuelvoseguridad: {
-                        idseg:"",
-                        categoria:"",
-                        descripcion:"",
-                        activo:1
+                        idseg: "",
+                        categoria: "",
+                        descripcion: "",
+                        activo: 1
                     },
                     usuarios: {
                         email: "",
                         pwd: "",
                         rpwd: "",
-                        apellido: "",
-                        nombre: "",
+                        apellidos: "",
+                        nombres: "",
                         telefono: "",
                         direccion: "",
                         ciudad: "",
@@ -39,32 +39,38 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                         feching: "",
                         observaciones: "",
                         activo: ""
-                    }
+                    },
+
+                    codigoseguridad: ""
                 }
 
             },
             methods: {
                 registUser: function () {
                     let registro = {
-                        Email: this.registro.email,
-                        Password: this.registro.pwd,
-                        Apellido: this.registro.apellido,
-                        Nombre: this.registro.nombre,
+                        email: this.registro.email,
+                        password: this.registro.pwd,
+                        apellidos: this.registro.apellidos,
+                        nombres: this.registro.nombres,
                         telefono: this.registro.telefono,
                         direccion: this.registro.direccion,
                         ciudad: this.registro.ciudad,
-                        seguridad: this.registro.seguridad,
+                        seguridad: this.codigoseguridad.categoria,
                         fechnac: this.registro.fechnac,
                         feching: this.registro.feching,
                         observaciones: this.registro.observaciones,
-                        activo: this.registro.activo,
+                        activo: 1,
                     }
-                    if (this.registro.nombre !== "" & this.registro.apellido !== "" & this.registro.email !== "" & this.registro.seguridad !== "") {
+                    console.log("lo que guarda en usuario", registro)
+                    if (this.registro.nombres !== "" & this.registro.apellidos !== "" & this.registro.email !== "" & this.codigoseguridad.categoria !== "") {
                         if (this.registro.pwd !== "" & this.registro.pwd == this.registro.rpwd) {
-                            axios.post(API + 'usuarios/new', registro).then((res) => {
+                            if (this.registro.activo == true) {
+                                this.registro.activo = 1
+                            }
+                            axios.post(API + '/usuarios/new/', registro).then((res) => {
                                 let resultado = res.data;
                                 if (!res.data.error) {
-                                    router.push({ path: '/mesa' });
+                                    router.push({ path: '/mesa/' });
                                 } else {
                                     alert(res.data.error);
                                 }
@@ -73,7 +79,7 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                             alert("Los passwords no coinciden o estan vacios");
                         }
                     } else {
-                        alert("Debe ingresar Nombre, Apellido, Seguridad y E-mail");
+                        alert("Debe ingresar nombres, apellidos, Seguridad y E-mail");
                     }
                 },
                 limpiar: function () {
@@ -81,8 +87,8 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                         email: "",
                         pwd: "",
                         rpwd: "",
-                        apellido: "",
-                        nombre: "",
+                        apellidos: "",
+                        nombres: "",
                         telefono: "",
                         direccion: "",
                         ciudad: "",
@@ -97,8 +103,7 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                 eliminarusuario: function (res, res2) {
                     let idusu = res
                     let idusu2 = res2
-                    //console.log("recooro el data", idusu, idusu2)
-
+                    //console.log("recorro el data", idusu, idusu2)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     this.usuarios.splice(idusu, 1) //elimina la linea de la table y espues de la base
@@ -111,21 +116,25 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                 actualizarusuario: function (res2) {
                     let modificousuario = {}
                     let usuarios = this.usuarios
-
+                    console.log("esto devuelve de ususarios", usuarios)
                     for (let index = 0; index < usuarios.length; index++) {
                         const element = usuarios[index];
-                        if (element.divide == true) {
-                            element.divide = 1
-                        }
+                        console.log("contenido de element", element)
                         if (element.activo == true) {
                             element.activo = 1
                         }
                         if (index == res2) {
                             modificousuario = {
-                                idusu: element.idusu,
-                                usuario: element.usuario,
-                                divide: element.divide,
-                                activo: element.activo
+                                email: this.element.email,
+                                apellidos: this.element.apellidos,
+                                nombres: this.element.nombres,
+                                telefono: this.element.telefono,
+                                direccion: this.element.direccion,
+                                ciudad: this.element.ciudad,
+                                seguridad: this.codigoseguridad.categoria,
+                                fechnac: this.element.fechnac,
+                                feching: this.element.feching,
+                                observaciones: this.element.observaciones,
                             }
                         }
                     }
@@ -160,48 +169,46 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                     })
                 },
                 obtenerseguridad: function () {
- 
-                    console.log("devuelvoseguridad vacio", devuelvoseguridad)                    
                     let token = localStorage.getItem("token");
                     this.seguridad = localStorage.getItem("seguridad")
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.get(API + '/seguridad/all', headtoken).then((res) => {
                         devuelvoseguridad = res.data.response;
-                        console.log("contenido del for del axios devuelvo", devuelvoseguridad)
                         this.devuelvoseguridad = devuelvoseguridad
                         console.log("devuelvoseguridad", devuelvoseguridad)
+                        console.log("la devoucion de lo que selecciona", this.obtenerseguridad.codigoseguridad)
                     })
-                        
-                    },
-                        cerrarsesion: function () {
-                            router.push('/mesa')
-                        }
+
+                },
+                cerrarsesion: function () {
+                    router.push('/mesa')
+                }
             },// fin el method
 
-                mounted: function () {
-                    //console.log(this.$router)
-                    let token = localStorage.getItem("token");
-                    this.seguridad = localStorage.getItem("seguridad")
-                    const headtoken = { headers: { "mytoken": `${token}` } }
+            mounted: function () {
+                //console.log(this.$router)
+                let token = localStorage.getItem("token");
+                this.seguridad = localStorage.getItem("seguridad")
+                const headtoken = { headers: { "mytoken": `${token}` } }
 
-                    axios.get(API + '/usuarios/all', headtoken).then((res) => {
-                        let usuarios = res.data.response;
-                        //console.log("contenido del for", usuarios)
-                        this.usuarios = usuarios
-                    })
+                axios.get(API + '/usuarios/all', headtoken).then((res) => {
+                    let usuarios = res.data.response;
+                    //console.log("contenido del for", usuarios)
+                    this.usuarios = usuarios
+                })
 
-                    axios.get(API + '/seguridad/all', headtoken).then((res) => {
-                        devuelvoseguridad = res.data.response;
-                       // console.log("contenido del for devuelvo", devuelvoseguridad)
-                        this.devuelvoseguridad = devuelvoseguridad
-                    })
+                axios.get(API + '/seguridad/all', headtoken).then((res) => {
+                    devuelvoseguridad = res.data.response;
+                    // console.log("contenido del for devuelvo", devuelvoseguridad)
+                    this.devuelvoseguridad = devuelvoseguridad
+                })
 
-                },//fin del mounted
-
-
+            },//fin del mounted
 
 
 
-            }) //fin del resolve
+
+
+        }) //fin del resolve
     })
 })

@@ -72,7 +72,7 @@ module.exports = function(app){
 
 	//Permite borrar de manera lógia al usuario identificado por el valor de su campo Id.
 	//(pasa a inactivo).
-	app.put('/usuario/delete/:id', midd.rutasProtegidas, async function(req, res){
+	app.put('/usuarios/delete/:id', midd.rutasProtegidas, async function(req, res){
 		let id 			= req.params.id;
 		let Usuario 	= require('../services/usuarios.js');
 		let response 	= await Usuario.eliminarUsuario(id);
