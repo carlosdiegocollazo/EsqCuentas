@@ -1,63 +1,132 @@
 <div class="container-fluid">
     <menu-item></menu-item>
     <router-view></router-view>
-    <!-- Div contenendor general-->
-    <div class="row justify-content-center align-items-center" style="margin-top: 300px;">
-
-        <form>
-            <div class="row" class="login">
-                <div>
-                    <label for="email" style="color: aliceblue;">E-Mail</label>
-                    <input type="email" class="form-control" name="email" v-model="usuario.email" placeholder="Ingrese Email">
-                </div>
-                <div class="form-group">
-                    <label for="password" style="color: aliceblue;">Contraseña</label>
-                    <input type="password" class="form-control" name="password" placeholder="Ingrese contraseña" v-model="usuario.password" v-on:keyup.13="loginUser()">
-                </div>
-                <div class="form-group">
-                    <label for="apellidos" style="color: aliceblue;">Apellidos</label>
-                    <input type="text" class="form-control" name="apellidos" placeholder="Ingrese Apellidos" v-model="usuario.apellidos">
-                </div>
-                <div class="form-group">
-                    <label for="nombres" style="color: aliceblue;">Nombres</label>
-                    <input type="text" class="form-control" name="nombres" placeholder="Ingrese Nombres" v-model="usuario.nombres">
-                </div>
-                <div class="form-group">
-                    <label for="telefono" style="color: aliceblue;">Telefonos</label>
-                    <input type="text" class="form-control" name="Telefono" placeholder="Ingrese numero de telefono/celular" v-model="usuario.telefono">
-                </div>
-                <div class="form-group">
-                    <label for="direccion" style="color: aliceblue;">Direccion</label>
-                    <input type="text" class="form-control" name="direccion" placeholder="Ingrese Direccion" v-model="usuario.direccion">
-                </div>
-                <div class="form-group">
-                    <label for="ciudad" style="color: aliceblue;">ciudad</label>
-                    <input type="text" class="form-control" name="ciudad" placeholder="Ingrese Ciudad" v-model="usuario.ciudad">
-                </div>
-                <div class="form-group">
-                    <label for="seguridad" style="color: aliceblue;">Codigo de Seguridad</label>
-                    <input type="text" class="form-control" name="seguridad" placeholder="Codigo de seguridad" v-model="usuario.seguridad">
-                </div>
-                <div class="form-group">
-                    <label for="fechnac" style="color: aliceblue;">Fecha de nacimiento</label>
-                    <input type="date" class="form-control" name="fechnac" placeholder="Ingrese fecha de nacimiento" v-model="usuario.fechanac">
-                </div>
-                <div class="form-group">
-                    <label for="feching" style="color: aliceblue;">Fecha de ingreso</label>
-                    <input type="date" class="form-control" name="feching" placeholder="Fecha de ingreso a la empresa" v-model="usuario.feching">
-                </div>
-                <div class="form-group">
-                    <label for="observaciones" style="color: aliceblue;">Observaciones</label>
-                    <input type="text" class="form-control" name="observaciones" placeholder="Observaciones" v-model="usuario.observaciones">
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" name="activo">
-                    <label class="form-check-label" for="activo" style="color: aliceblue;">Activo</label>
-                </div row justify-items-center align-items-center>
-                <button type="@leave-cancelled=" class="btn btn-primary" v-on:click="limpiar()">Cancelar</button>
-                <button type="submit" class="btn btn-primary" v-on:click="registUser()">Ingresar</button>
+<br>
+<br>
+<H1 style="text-align-last: center; color: aliceblue;">Gestion de Usuarios del Sistema</H1>
+    <form style="color: aliceblue;">
+        <div class="form-row" >
+            <div class="form-group col-md-6">
+                <label for="email" style="color: aliceblue;">E-Mail</label>
+                <input type="email" class="form-control" name="email" v-model="registro.email"
+                    placeholder="Ingrese Email">
             </div>
-        </form>
+            <div class="form-group col-md-3">
+                <label for="pwd" style="color: aliceblue;">Contraseña</label>
+                <input type="password" class="form-control" name="pwd" placeholder="Ingrese contraseña"
+                    v-model="registro.password" >
+            </div>
+            <div class="form-group col-md-3">
+                <label for="rpwd" style="color: aliceblue;">Reingrese Contraseña</label>
+                <input type="password" class="form-control" name="rpwd" placeholder="Reingrese contraseña"
+                    v-model="registro.rpwd" >
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="apellidos" style="color: aliceblue;">Apellidos</label>
+                <input type="text" class="form-control" name="apellidos" placeholder="Ingrese Apellidos"
+                    v-model="registro.apellidos">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="nombres" style="color: aliceblue;">Nombres</label>
+                <input type="text" class="form-control" name="nombres" placeholder="Ingrese Nombres"
+                    v-model="registro.nombres">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="direccion" style="color: aliceblue;">Direccion</label>
+                <input type="text" class="form-control" name="direccion" placeholder="Ingrese Direccion"
+                    v-model="registro.direccion">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="telefono" style="color: aliceblue;">Telefono</label>
+                <input type="tel" class="form-control" name="telefono" placeholder="Ingrese telefono"
+                    v-model="registro.telefono">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="direccion" style="color: aliceblue;">Direccion</label>
+            <input type="text" class="form-control" id="direccion" placeholder="Ingrese direccion">
+        </div>
+        <div class="form-group">
+            <label for="ciudad" style="color: aliceblue;">Ciudad</label>
+            <input type="text" class="form-control" id="ciudad" placeholder="Ingrese Ciudad">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="fechnac" style="color: aliceblue;">Fecha Nacimiento</label>
+                <input type="date" class="form-control" id="fechnac" v-model="registro.fechnac">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="seguridad" style="color: aliceblue;">Seguridad</label>
+                <select v-model="seguridad">
+                    <option v-for="(option in devuelvoseguridad" v-bind:value="option">
+                      {{ option.categoria }} | {{option.descripcion}}
+                    </option>
+                  </select>
+                  <span>Seleccionado: {{ seguridad }}</span>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="feching" style="color: aliceblue;">Fecha Ingreso</label>
+                <input type="date" class="form-control" id="feching" v-model="registro.feching">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="activo"style="text-align-last: center; color: aliceblue;">Activo</label>
+                <input type="checkbox" class="form-control" id="activo" v-model="registro.activo">
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 30;"> 
+        <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="limpiar()">Cancelar</button>
+        <button type="submit" class="btn btn-success" v-on:click="registUser()">Ingresar</button>
     </div>
+    </form>
+
+    <div class="container-fluid" > <!--comienzo de tabla-->
+        <template>
+           <div class="container">
+              <div class="row">
+                 <div class="col-md-12">
+                    <div class="table-sm accordion active table-striped table-dark">
+                          <thead class="thead-dark">
+                             <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col">Apellidos</th>
+                                <th scope="col">Nombres</th>
+                                <th scope="col">Direccion</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col">Activo</th>
+                                <th scope="col">Gestion</th>
+                                <th scope="col">Gestion</th>
+                             </tr>
+                          </thead>
+                          <tbody>
+                             <tr v-for="(usuarios,index) in usuarios" style="color: aquamarine;">
+                                <td><input class="inputtabla" type="text" v-model="usuarios.idusu" size="3" disabled>
+                                </td>
+                                <td><input class="inputtabla" type="text" v-model="usuarios.email" title="Haga click para editar y luego presione el botón Modificar"></td>
+                                <td><input class="inputtabla" type="text" v-model="usuarios.apellidos"></td>
+                                <td><input class="inputtabla" type="text" v-model="usuarios.nombres"></td>
+                                <td><input class="inputtabla" type="text" v-model="usuarios.direccion"></td>
+                                <td><input class="inputtabla" type="tel" v-model="usuarios.telefono"></td>
+                                <td><input class="inputtabla" type="checkbox" v-model="usuarios.activo"></td>
+                                <td><button class="btn btn-danger"
+                                      v-on:click="eliminarusuarios(index,usuarios.idusu)">Elimina</button></td>
+                                <td><button class="btn btn-success"
+                                      v-on:click="actualizarusuarios(index)">Modifica</button>
+                                </td>
+                             </tr>
+                          </tbody>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </template>
+
+     </div> <!--find de tabla-->
+
+</div>
 </div>
 <!-- Div contenendor general-->

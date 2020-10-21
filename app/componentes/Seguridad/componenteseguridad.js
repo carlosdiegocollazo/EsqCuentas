@@ -22,7 +22,7 @@ let componenteseguridad = Vue.component('seguridad-component', function (resolve
                         activo: this.registro.activo
                     }
 
-                    console.log("registro afuera del if", registro)
+                    //  console.log("registro afuera del if", registro)
 
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
@@ -30,12 +30,12 @@ let componenteseguridad = Vue.component('seguridad-component', function (resolve
                     if (registro.activo == true) {
                         registro.activo = 1
                     }
-                    console.log("registro afuera del if aNTES DEL axios", registro, headtoken)
+                    //   console.log("registro afuera del if aNTES DEL axios", registro, headtoken)
                     if (this.registro.categoria !== 00 & this.registro.categoria !== 0 & this.registro.descripcion !== "") {
-                        console.log("registro dentro el if", registro)
+                        //    console.log("registro dentro el if", registro)
                         axios.post(API + '/seguridad/new', registro, headtoken).then((res) => {
                             let resultado = res.data;
-                            console.log("resultado", resultado)
+                            //   console.log("resultado", resultado)
                             alert("Seguridad creada correctamente");
                             if (resultado.response) {
                                 router.push({ path: '/mesa' });
@@ -77,12 +77,12 @@ let componenteseguridad = Vue.component('seguridad-component', function (resolve
                                 descripcion: element.descripcion,
                                 activo: element.activo
                             }
-                            console.log("moficio seguridad", modificoseguridad)
+                            // console.log("moficio seguridad", modificoseguridad)
                         }
                     }
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
-                    console.log("id se seguridad que llega",modificoseguridad.idseg)
+                    //  console.log("id se seguridad que llega",modificoseguridad.idseg)
                     axios.put(API + '/seguridad/edit/' + modificoseguridad.idseg, modificoseguridad, headtoken).then((res) => {
                         axios.get(API + '/seguridad/all', headtoken).then((res) => {
                             alert("Indice de seguridad modificada.");
