@@ -4,6 +4,7 @@
 @import "../../app/componentes/monedas/monedas.css";
 @import "../../app/componentes/mesatrabajo/mesa.css";
 @import "../../app/componentes/notfound/notfound.css";
+@import "../../app/componentes/documentos/documento.css";
 @import "../../app/componentes/usuarios/usuario.css";
 
 html, body {

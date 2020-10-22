@@ -33,6 +33,20 @@ let documentos = {
 
 	obtenerdocumentosall: async function(){
 		let sql 		= `
+							SELECT * FROM documentos where documentos.activo = 1 
+						`
+		let response 	= {error: "No se encontraron documentos"}
+		let resultado 	= await conn.query(sql);
+		if (resultado.code) {
+	 		response 	= {error: "Error en consulta SQL"};
+	 	}else if (resultado.length>0) {
+			response 	= {response: resultado}
+		}
+		return response;
+	},
+
+	obtenerdocumentosallall: async function(){
+		let sql 		= `
 							SELECT * FROM documentos
 						`
 		let response 	= {error: "No se encontraron documentos"}
@@ -44,6 +58,7 @@ let documentos = {
 		}
 		return response;
 	},
+
 
 	obtenerdocumentoPorId: async function(id){
 		let sql 		= `
@@ -62,7 +77,8 @@ let documentos = {
 		return response;
 	},
 
-	creardocumento: async function(documento){
+	creardocumentos: async function(documento){
+		//console.log("viene de la app",documento)
 		let sql = `
 					INSERT INTO documentos
 					(

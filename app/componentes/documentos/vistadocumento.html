@@ -1,0 +1,80 @@
+<div class="container-fluid">
+
+   <menu-item></menu-item>
+   <router-view></router-view>
+   <!-- Div contenendor general-->
+   <div class="row justify-content-center align-items-center" style="margin-top: 100px;">
+      <form>
+         <div class="row" class="login">
+            <div>
+               <H1 style="text-align-last: center; color: aliceblue;">Gestion de Documentos</H1>
+               <label for="tipodoc" style="color: aliceblue;" title="Ingrese el tipo de Documento">Tipo de Documento</label>
+               <input type="text" class="form-control" name="tipodoc" title="Ingrese el nombe de la tipodoc" v-model="registro.tipodoc"
+                  placeholder="Descripcion" v-on:keyup.13="creardocumento()">
+            </div>
+
+            <br>
+            <select v-model="codigomoneda"><!--codigomoneda-->
+               <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
+                   {{codigomoneda.descripcion}}
+               </option>
+           </select>
+
+            <div class="form-group form-check">
+
+               <input type="checkbox" class="form-check-input" name="activo" v-model="registro.activo">
+               <label class="form-check-label" for="activo" style="color: aliceblue;">Activo</label>
+            </div row justify-items-center align-items-center>
+            <button class="btn btn-primary" v-on:click="mostraractivos()" style="margin-left: 30px;">Mostrar Activos</button>
+            <button class="btn btn-primary" v-on:click="mostrartodos()" style="margin-left: 30px;">Mostrar Todos</button>
+                        <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()" style="margin-left: 30px;">Cancelar</button>
+            <button type="submit" class="btn btn-success" style="margin-left: 30px;"
+               v-on:click="creardocumento()">Ingresar</button>
+            <br><br>
+         </div>
+      </form>
+      <div class="container-fluid" style="margin-top: 50;"> <!--comienzo de de tabla-->
+         <template>
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="table-responsive small table-striped accordion table-dark">
+
+                        <table class="table">
+                           <thead class="thead-dark">
+                              <tr>
+                                 <th scope="col">ID</th>
+                                 <th scope="col">tipodoc</th>
+                                 <th scope="col">moneda</th>
+                                 <th scope="col">Activo</th>
+                                 <th scope="col">Acciones</th>
+                                 <th scope="col">Acciones</th>
+
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr v-for="(tipodoc,index) in tipodoc" style="color: aquamarine;">
+                                 <td><input class="inputtabla" type="text" v-model="tipodoc.idmon" size="3" disabled>
+                                 </td>
+                                 <td><input class="inputtabla" type="text" v-model="tipodoc.moneda" title="Haga click para editar y luego presione el botón Modificar"></td>
+                                 <td><input class="inputtabla" type="checkbox" v-model="tipodoc.moneda"></td>
+                                 <td><input class="inputtabla" type="checkbox" v-model="tipodoc.activo"></td>
+                                 <td><button class="btn btn-danger"
+                                       v-on:click="eliminartipodoc(index,tipodoc.idmon)">Elimina</button></td>
+                                 <td><button class="btn btn-success"
+                                       v-on:click="actualizartipodoc(index)">Modifica</button>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </template>
+
+      </div> <!--find de tabla-->
+   </div>
+</div>
+<!-- Div contenendor general-->

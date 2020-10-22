@@ -4,6 +4,7 @@ const mesa = componentemesa;
 const usuario = componenteusuario;
 const monedas = componentemoneda;
 const seguridad = componenteseguridad;
+const documento = componentedocumento;
 
 //const API = "https://server134-school.lexartlabs.com/api-or-dev/";
 const API = "http://localhost:3000";
@@ -14,8 +15,8 @@ const routes = [
     { path: '/usuarios',name:"Personas", component: usuario },
     { path: '/monedas',name:"Finanzas", component: monedas },
     { path: '/seguridad',name:"Seguridad", component: seguridad },
-    { path: '/mesa',name:"Home", component: mesa,
-    },
+    { path: '/mesa',name:"Home", component: mesa,},
+    { path: '/documentos',name:"Documentos", component: documento,},
 ]
 
 const router = new VueRouter({
@@ -25,6 +26,6 @@ const router = new VueRouter({
 let app = new Vue({
     router,
     data: {
-        currentRoute: window.location.pathname
+      //  currentRoute: window.location.pathname
     }
 }).$mount('#app')
