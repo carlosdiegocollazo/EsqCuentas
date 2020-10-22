@@ -33,7 +33,7 @@ let documentos = {
 
 	obtenerdocumentosall: async function(){
 		let sql 		= `
-							SELECT * FROM documentos where documentos.activo = 1 
+							SELECT * FROM documentos  
 						`
 		let response 	= {error: "No se encontraron documentos"}
 		let resultado 	= await conn.query(sql);
@@ -44,21 +44,6 @@ let documentos = {
 		}
 		return response;
 	},
-
-	obtenerdocumentosallall: async function(){
-		let sql 		= `
-							SELECT * FROM documentos
-						`
-		let response 	= {error: "No se encontraron documentos"}
-		let resultado 	= await conn.query(sql);
-		if (resultado.code) {
-	 		response 	= {error: "Error en consulta SQL"};
-	 	}else if (resultado.length>0) {
-			response 	= {response: resultado}
-		}
-		return response;
-	},
-
 
 	obtenerdocumentoPorId: async function(id){
 		let sql 		= `
@@ -67,7 +52,7 @@ let documentos = {
 							documentos.idtipdoc = '${id}' 
 							&& documentos.activo = 1
 						`
-		let response 	= {error: `No se encontró documento con Id: ${id}`}
+		let response 	= {error: `No se encontró documentos con Id: ${id}`}
 		let resultado 	= await conn.query(sql);
 		if (resultado.code) {
 	 		response 	= {error: "Error en consulta SQL"};
@@ -77,8 +62,7 @@ let documentos = {
 		return response;
 	},
 
-	creardocumentos: async function(documento){
-		//console.log("viene de la app",documento)
+	creardocumentos: async function(documentos){
 		let sql = `
 					INSERT INTO documentos
 					(
@@ -88,29 +72,30 @@ let documentos = {
 					)
 					VALUES
 					(
-					'${documento.tipodoc}',
-					'${documento.moneda}',
-					'${documento.activo}'
+					'${documentos.tipodoc}',
+					'${documentos.moneda}',
+					'${documentos.activo}'
 					)		
 				`
-		let response 	= {error: "No se pudo crear documento"}
+		let response 	= {error: "No se pudo crear documentos"}
 		let resultado 	= await conn.query(sql);
-		console.log(resultado);
+		console.log("resultado de api",resultado);
 		if (resultado.code) {
 	 		response 	= {error: "Error en consulta SQL"};
 	 	}else if (resultado.insertId) {
-			response 	= {response: "documento creada correctamente"}
+			response 	= {response: "documentos creado correctamente"}
 		}
 		return response;
+		console.log("response de la api",response)
 	},
 
-	actualizardocumento: async function(documento, id){
+	actualizardocumento: async function(documentos, id){
 		let sql = `
 					UPDATE documentos
 					SET
-					tipodoc		= '${documento.tipodoc}',
-					moneda		= '${documento.moneda}',
-					activo	 	= '${documento.activo}'
+					tipodoc		= '${documentos.tipodoc}',
+					moneda		= '${documentos.moneda}',
+					activo	 	= '${documentos.activo}'
 					
 					WHERE
 					documentos.idtipdoc = '${id}'
@@ -122,12 +107,12 @@ let documentos = {
 			if (resultado.code) {
 	 			response 	= {error: "Error en consulta SQL"};
 	 		}else if (resultado.affectedRows>0) {
-				response 	= {response: "documento actualizado correctamente"}
+				response 	= {response: "documentos actualizado correctamente"}
 			}else{
-				response 	= {error: "No se pudo actualizar el documento"}
+				response 	= {error: "No se pudo actualizar el documentos"}
 			}
 		}else{
-			response 		= {error: `No existe documento con Id: ${id}`}
+			response 		= {error: `No existe documentos con Id: ${id}`}
 			}
 		return response;
 	},
@@ -147,10 +132,10 @@ let documentos = {
 			if (resultado.code) {
 	 			response 	= {error: "Error en consulta SQL"};
 	 		}else if (resultado.affectedRows>0) {
-				response 	= {response: "documento eliminado correctamente"}
+				response 	= {response: "documentos eliminado correctamente"}
 			}
 		}else {
-			response 		= {error: `No existe documento con Id: ${id}`}
+			response 		= {error: `No existe documentos con Id: ${id}`}
 		}
 		return response;
 	},

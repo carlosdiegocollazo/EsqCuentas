@@ -5,7 +5,7 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
             data: function () {
                 return {
                     registro: {
-                        idmon: "",
+                        idtipdoc: "",
                         tipodoc: "",
                         moneda: "",
                         activo: 1
@@ -17,8 +17,8 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                         activo: 1
                     },
 
-                    codigomoneda: "", //revisar que devuelva
-                    tipodoc: []
+                    codigomoneda: "", 
+                    tipodoc: [],
 
                 }
             },
@@ -32,13 +32,12 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                     console.log("registro que viene desde el html",registro)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
-
                     if (this.registro.tipodoc !== "") {
-
-                        axios.post(API + '/documentos/new/', registro, headtoken).then((res) => {
+                        console.log("resultado antes del axios", registro)
+                        axios.post(API + '/documentos/new', registro, headtoken).then((res) => {
                             let resultado = res.data;
-                                  console.log("resultado", resultado)
-                            alert("Tipo de documento creado correctamente");
+                            console.log("lo que resutla del axios despues",resultado)
+                            alert("Tipo de documentos creado correctamente");
                             if (resultado.response) {
                                 router.push({ path: '/mesa' });
                             } else {
@@ -50,15 +49,15 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                     }
                 },
                 eliminardocumento: function (res, res2) {
-                    let idmon = res
-                    let idmon2 = res2
-                    //console.log("recooro el data", idmon, idmon2)
+                    let idtipdoc = res
+                    let idtipdoc2 = res2
+                    //console.log("recooro el data", idtipdoc, idtipdoc2)
 
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
-                    this.documentos.splice(idmon, 1) //elimina la linea de la table y espues de la base
-                    axios.put(API + '/documentos/delete/' + idmon2, {}, headtoken).then((res) => {
-                        alert("documento", idmon2, " eliminada correcatmente.");
+                    this.documentos.splice(idtipdoc, 1) //elimina la linea de la table y espues de la base
+                    axios.put(API + '/documentos/delete/' + idtipdoc2, {}, headtoken).then((res) => {
+                        alert("documentos", idtipdoc2, " eliminada correcatmente.");
                         //    console.log("resdat delntro del xios", res.data)
                     })
 
@@ -74,8 +73,8 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                         }
                         if (index == res2) {
                             modificodocumento = {
-                                idmon: element.idmon,
-                                documento: element.documento,
+                                idtipdoc: element.idtipdoc,
+                                documentos: element.documentos,
                                 moneda: element.moneda,
                                 activo: element.activo
                             }
@@ -83,9 +82,9 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                     }
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
-                    axios.put(API + '/documentos/edit/' + modificodocumento.idmon, modificodocumento, headtoken).then((res) => {
+                    axios.put(API + '/documentos/edit/' + modificodocumento.idtipdoc, modificodocumento, headtoken).then((res) => {
                         axios.get(API + '/documentos/all', headtoken).then((res) => {
-                            alert("documento", modificodocumento, documento, " modificada correctamente");
+                            alert("documentos", modificodocumento, documentos, " modificada correctamente");
                         })
                     })
                 },
@@ -115,13 +114,13 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                 },
                 obtenermoneda: function () {//cambiar para usar con monedas
                     let token = localStorage.getItem("token");
-                    this.monedas = localStorage.getItem("seguridad")
+                    this.seguridad = localStorage.getItem("seguridad")
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.get(API + '/monedas/all', headtoken).then((res) => {
                         devuelvomoneda = res.data.response;
                         this.devuelvomoneda = devuelvomoneda
-                        console.log("la devoucion de lo que selecciona", this.obtenermonedas.codigomoneda)
-                        console.log("devuelvomoneda", devuelvomoneda)
+                        //console.log("la devoucion de lo que selecciona", obtenermonedas.codigomoneda)
+                        //console.log("devuelvomoneda", devuelvomoneda)
                     })
 
                 },
@@ -133,14 +132,19 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
             mounted: function () {
                 //console.log(this.$router)
                 let token = localStorage.getItem("token");
-
-                this.monedas = localStorage.getItem("monedas")
+                this.seguridad = localStorage.getItem("seguridad")
                 const headtoken = { headers: { "mytoken": `${token}` } }
                 axios.get(API + '/documentos/all', headtoken).then((res) => {
                     let documentos = res.data.response;
                     //console.log("contenido del for", documentos)
                     this.documentos = documentos
 
+                })
+                axios.get(API + '/monedas/all', headtoken).then((res) => {
+                    devuelvomoneda = res.data.response;
+                    this.devuelvomoneda = devuelvomoneda
+                    //console.log("la devoucion de lo que selecciona", this.obtenermonedas.codigomoneda)
+                    //console.log("devuelvomoneda", devuelvomoneda)
                 })
             },//fin del mounted
         })

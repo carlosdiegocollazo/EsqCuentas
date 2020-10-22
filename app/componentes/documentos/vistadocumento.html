@@ -1,5 +1,5 @@
+<div class="inside">
 <div class="container-fluid">
-
    <menu-item></menu-item>
    <router-view></router-view>
    <!-- Div contenendor general-->
@@ -10,13 +10,13 @@
                <H1 style="text-align-last: center; color: aliceblue;">Gestion de Documentos</H1>
                <label for="tipodoc" style="color: aliceblue;" title="Ingrese el tipo de Documento">Tipo de Documento</label>
                <input type="text" class="form-control" name="tipodoc" title="Ingrese el nombe de la tipodoc" v-model="registro.tipodoc"
-                  placeholder="Descripcion" v-on:keyup.13="creardocumento()">
+                  placeholder="Descripcion">
             </div>
 
             <br>
-            <select v-model="codigomoneda"><!--codigomoneda-->
+            <select v-model="codigomoneda">
                <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
-                   {{codigomoneda.descripcion}}
+                   {{codigomoneda.moneda}}
                </option>
            </select>
 
@@ -78,3 +78,4 @@
    </div>
 </div>
 <!-- Div contenendor general-->
+</div>
