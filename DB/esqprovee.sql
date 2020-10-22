@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 14-10-2020 a las 15:42:29
+-- Tiempo de generación: 22-10-2020 a las 15:37:05
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `monedas` (
   `divide` int NOT NULL,
   `activo` int NOT NULL,
   PRIMARY KEY (`idmon`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `monedas`
@@ -93,9 +93,15 @@ CREATE TABLE IF NOT EXISTS `monedas` (
 
 INSERT INTO `monedas` (`idmon`, `moneda`, `divide`, `activo`) VALUES
 (1, 'Pesos', 1, 1),
-(2, 'Dolares', 1, 1),
-(15, 'Australes', 1, 0),
-(14, 'Reales', 1, 1);
+(2, 'Peso Argentino', 1, 1),
+(3, 'definido', 1, 0),
+(4, 'Reales', 1, 1),
+(5, 'Euros', 1, 1),
+(35, 'Realiños ', 1, 1),
+(34, 'Australes', 1, 1),
+(33, 'undefined', 0, 0),
+(32, 'Libras esterlinas', 1, 1),
+(31, 'Patacones', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -170,20 +176,22 @@ INSERT INTO `proveedores` (`idpro`, `rutced`, `razon`, `nomfantasia`, `nombre`, 
 DROP TABLE IF EXISTS `seguridad`;
 CREATE TABLE IF NOT EXISTS `seguridad` (
   `idseg` int NOT NULL AUTO_INCREMENT,
-  `categoria` text NOT NULL,
+  `categoria` int DEFAULT NULL,
   `descripcion` text NOT NULL,
   `activo` text NOT NULL,
   PRIMARY KEY (`idseg`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `seguridad`
 --
 
 INSERT INTO `seguridad` (`idseg`, `categoria`, `descripcion`, `activo`) VALUES
-(0, '0', 'Administrador', '1'),
-(1, '1', 'Administrativo', '1'),
-(2, '2', 'Consultante', '1');
+(0, 0, 'Administrador', '1'),
+(1, 1, 'Administrativo', '1'),
+(2, 2, 'Consultante', '1'),
+(50, 5, 'Categoria 5', '1'),
+(49, 6, 'Categoria 6', '0');
 
 -- --------------------------------------------------------
 
@@ -202,20 +210,26 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `direccion` text NOT NULL,
   `ciudad` text NOT NULL,
   `seguridad` int NOT NULL,
-  `fechnac` date NOT NULL,
-  `feching` date NOT NULL,
+  `fechnac` varchar(10) NOT NULL,
+  `feching` varchar(10) NOT NULL,
   `observaciones` text NOT NULL,
   `activo` int NOT NULL,
   PRIMARY KEY (`idusu`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`idusu`, `email`, `pass`, `apellidos`, `nombres`, `telefono`, `direccion`, `ciudad`, `seguridad`, `fechnac`, `feching`, `observaciones`, `activo`) VALUES
-(1, 'admin@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Collazo', 'Diego', '099550624', 'Salto1262', 'Montevideo', 0, '0000-00-00', '0000-00-00', '', 1),
-(2, 'admini@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Collazo', 'Diego', '099550624', 'Salto1262', 'Montevideo', 0, '0000-00-00', '0000-00-00', '', 1);
+(1, 'admin@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Collazo', 'Diego', '099550624', 'Salto1262', 'Montevideo', 0, '2000-01-01', '2000-01-01', '', 1),
+(2, 'admini@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Collazo', 'Diego', '099550624', 'Salto1262', 'Montevideo', 0, '2000-02-02', '2000-01-02', '', 1),
+(3, '2@2.com', '5e543256c480ac577d30f76f9120eb74', 'undefined', 'undefined', '2', '2', '2', 2, '2020-01-01', '2021-01-01', '', 1),
+(4, '3@3.com', '5e543256c480ac577d30f76f9120eb74', '${usuario.apellidos}', '${usuario.nombres}', '${usuario.telefono}', '${usuario.direccion}', 'Montevideo', 0, '1977-03-18', '2020-01-01', '${usuario.observaciones}', 0),
+(5, '5@55', '5e543256c480ac577d30f76f9120eb74', '5', 'undefined', '5', '5', '5', 5, '2005-05-05', '2020-05-05', '', 1),
+(6, '5@555', '5e543256c480ac577d30f76f9120eb74', '5', 'undefined', '5', '5', '5', 5, '0005-05-05', '0006-06-06', '', 1),
+(7, '55@55', '5e543256c480ac577d30f76f9120eb74', 'q', 'q', 'q', 'q', 'q', 2, '2001-01-01', '2002-01-01', '', 0),
+(8, 'Pblo@mail', '5e543256c480ac577d30f76f9120eb74', 'ledesma', 'pablo', 'lkjklj', 'lkjklj', 'lkjklj', 2, '2020-01-01', '2021-01-01', 'no tiene', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
