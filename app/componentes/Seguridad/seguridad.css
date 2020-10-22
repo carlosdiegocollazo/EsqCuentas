@@ -1,11 +1,11 @@
-input.inputtabla{
-border: none;
-background: transparent;
-color: white;
+input.inputtabla {
+    border: none;
+    background: transparent;
+    color: white;
 }
 
-input.inputtabla:hover{
+input.inputtabla:hover {
     border: none;
     background: seagreen;
     color: white;
-    }
+}

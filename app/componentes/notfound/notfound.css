@@ -10,3 +10,14 @@ h1.nfh1 {
     font-size: large;
     text-align: center;
 }
+input.inputtabla {
+    border: none;
+    background: transparent;
+    color: white;
+}
+
+input.inputtabla:hover {
+    border: none;
+    background: seagreen;
+    color: white;
+}

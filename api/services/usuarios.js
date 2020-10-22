@@ -162,11 +162,12 @@ let Usuario = {
     },
 
     actualizarUsuario: async function(usuario, id) {
+        console.log("lo que llega de app",usuario)
         let sql = `
 							UPDATE usuarios 
 							SET 
 								email 			= '${usuario.email}',
-								pas 			= MD5('${usuario.pass}'),
+								pass 			= MD5('${usuario.pass}'),
 								nombres 		= '${usuario.nombres}',
 								apellidos 		= '${usuario.apellidos}',
 								telefono	 	= '${usuario.telefono}',

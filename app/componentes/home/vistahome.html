@@ -1,32 +1,31 @@
-<div class="container-fluid ">
-    <!-- Div contenendor general-->
-    <div class="imglogo container-fluid animate__animated zoomIn justify-content-center"  >
-    <img src="../../../shared/media/esqlogo_med.svg" alt=""></a>
-</div>
-    <body>
+<div class="alogin">
+    <div class="container-fluid">
+        <!-- Div contenendor general-->
+        <div class="imglogo container-fluid animate__animated zoomIn justify-content-center">
+            <img src="../../../shared/media/esqlogo_med.svg" alt=""></a>
+        </div>
         <div class="row justify-content-center align-items-center">
-
             <form>
                 <div class="row" class="login">
                     <div>
                         <label for="email" style="color: aliceblue;">E-Mail</label>
-                        <input type="email" class="form-control" name="email" v-model="usuario.email" placeholder="Ingrese Email">
+                        <input type="email" class="form-control" name="email" v-model="usuario.email"
+                            placeholder="Ingrese Email">
                     </div>
                     <br>
                     <br>
                     <div class="form-group">
                         <label for="password" style="color: aliceblue;">Contraseña</label>
-                        <input type="password" class="form-control" name="password" placeholder="Ingrese contraseña" v-model="usuario.password" v-on:keyup.13="loginUser()">
+                        <input v-on:keyup.enter="loginUser()" type="password" class="form-control" name="password"
+                            placeholder="Ingrese contraseña" v-model="usuario.password">
                     </div>
-  <!--<div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="recordar">
-                        <label class="form-check-label" for="recordar" style="color: aliceblue;">Recordar</label>
-                    </div row justify-items-center align-items-center> -->                  
-                    <button type="@leave-cancelled=" style="margin-top: 15px;" class="btn btn-danger" v-on:click="cerrarsesion()">Cancelar</button>
-                    <button type="submit" style="margin-top: 15px; margin-left: 30px;" class="btn btn-primary" v-on:click="loginUser()">Ingresar</button>
+                    <button type="@leave-cancelled=" style="margin-top: 15px;" class="btn btn-danger"
+                        v-on:click="cerrarsesion()">Cancelar</button>
+                    <button type="submit" style="margin-top: 15px; margin-left: 30px;" class="btn btn-primary"
+                        v-on:click="loginUser()">Ingresar</button>
                 </div>
             </form>
         </div>
-    </body>
+    </div>
+    <!-- Div contenendor general-->
 </div>
-<!-- Div contenendor general-->
