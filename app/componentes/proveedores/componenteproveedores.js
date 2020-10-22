@@ -1,21 +1,27 @@
-let componenteusuario = Vue.component('usuario-component', function (resolve) {
-    axios.get('./app/componentes/usuarios/vistausuario.html').then(function (view) {
+let componenteproveedor = Vue.component('proveedor-component', function (resolve) {
+    axios.get('./app/componentes/proveedores/vistaproveedores.html').then(function (view) {
         resolve({
             template: view.data,
             data: function () {
                 return {
                     registro: {
+                        rutced: "",
+                        razon: "",
+                        fantasia: "",
                         email: "",
-                        pwd: "",
-                        rpwd: "",
-                        apellidos: "",
                         nombres: "",
+                        apellidos: "",
+                        feching: "",
                         telefono: "",
                         direccion: "",
                         ciudad: "",
+                        moneda: "",
                         seguridad: "",
-                        fechnac: "",
-                        feching: "",
+                        saldoincial: "",
+                        saldototal: "",
+                        retorno: "",
+                        fechret:"",
+                        retactivo:"",
                         observaciones: "",
                         activo: 1
                     },
@@ -25,33 +31,33 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                         descripcion: "",
                         activo: 1
                     },
-                    usuarios: {
+                    proveedores: {
                         email: "",
-                        pwd: "",
-                        rpwd: "",
+                        moneda: "",
+                        saldoincial: "",
                         apellidos: "",
                         nombres: "",
                         telefono: "",
                         direccion: "",
                         ciudad: "",
                         seguridad: "",
-                        fechnac: "",
+                        saldototal: "",
                         feching: "",
                         observaciones: "",
                         activo: ""
                     },
 
-                    modificousuario: {
+                    modificoproveedor: {
                         email: "",
-                        pwd: "",
-                        rpwd: "",
+                        moneda: "",
+                        saldoincial: "",
                         apellidos: "",
                         nombres: "",
                         telefono: "",
                         direccion: "",
                         ciudad: "",
                         seguridad: "",
-                        fechnac: "",
+                        saldototal: "",
                         feching: "",
                         observaciones: "",
                         activo: ""
@@ -65,25 +71,25 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                 registUser: function () {
                     let registro = {
                         email: this.registro.email,
-                        password: this.registro.pwd,
+                        password: this.registro.moneda,
                         apellidos: this.registro.apellidos,
                         nombres: this.registro.nombres,
                         telefono: this.registro.telefono,
                         direccion: this.registro.direccion,
                         ciudad: this.registro.ciudad,
                         seguridad: this.codigoseguridad.categoria,
-                        fechnac: this.registro.fechnac,
+                        saldototal: this.registro.saldototal,
                         feching: this.registro.feching,
                         observaciones: this.registro.observaciones,
                         activo: 1,
                     }
-                    console.log("lo que guarda en usuario", registro)
+                    console.log("lo que guarda en proveedor", registro)
                     if (this.registro.nombres !== "" & this.registro.apellidos !== "" & this.registro.email !== "" & this.codigoseguridad.categoria !== "") {
-                        if (this.registro.pwd !== "" & this.registro.pwd == this.registro.rpwd) {
+                        if (this.registro.moneda !== "" & this.registro.moneda == this.registro.saldoincial) {
                             if (this.registro.activo == true) {
                                 this.registro.activo = 1
                             }
-                            axios.post(API + '/usuarios/new/', registro).then((res) => {
+                            axios.post(API + '/proveedores/new/', registro).then((res) => {
                                 let resultado = res.data;
                                 if (!res.data.error) {
                                     router.push({ path: '/mesa/' });
@@ -101,47 +107,47 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                 limpiar: function () {
                     this.registro = {
                         email: "",
-                        pwd: "",
-                        rpwd: "",
+                        moneda: "",
+                        saldoincial: "",
                         apellidos: "",
                         nombres: "",
                         telefono: "",
                         direccion: "",
                         ciudad: "",
                         seguridad: "",
-                        fechnac: "",
+                        saldototal: "",
                         feching: "",
                         observaciones: "",
                         activo: ""
                     }
                 },
 
-                eliminarusuario: function (res, res2) {
-                    let idusu = res
-                    let idusu2 = res2
-                    //console.log("recorro el data", idusu, idusu2)
+                eliminarproveedor: function (res, res2) {
+                    let idpro = res
+                    let idpro2 = res2
+                    //console.log("recorro el data", idpro, idpro2)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
-                    this.usuarios.splice(idusu, 1) //elimina la linea de la table y espues de la base
-                    axios.put(API + '/usuarios/delete/' + idusu2, {}, headtoken).then((res) => {
+                    this.proveedores.splice(idpro, 1) //elimina la linea de la table y espues de la base
+                    axios.put(API + '/proveedores/delete/' + idpro2, {}, headtoken).then((res) => {
 
                         //    console.log("resdat delntro del xios", res.data)
                     })
                 },
 
-                actualizarusuario: function (res2) {
-                    let usuarios = this.usuarios
-                    console.log("esto devuelve de ususarios", usuarios)
-                    for (let index = 0; index < usuarios.length; index++) {
-                        const element = usuarios[index];
+                actualizarproveedor: function (res2) {
+                    let proveedores = this.proveedores
+                    console.log("esto devuelve de ususarios", proveedores)
+                    for (let index = 0; index < proveedores.length; index++) {
+                        const element = proveedores[index];
                         console.log("contenido de element email", element.email)
                         if (element.activo == true) {
                             element.activo = 1
                         }
                         if (index == res2) {
                             //console.log("contenido de element email dentro del if", element,index,res2)
-                            modificousuario = {
-                                idusu: element.idusu,
+                            modificoproveedor = {
+                                idpro: element.idpro,
                                 email: element.email,
                                 apellidos: element.apellidos,
                                 nombres: element.nombres,
@@ -149,19 +155,18 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                                 direccion: element.direccion,
                                 ciudad: element.ciudad,
                                 seguridad: this.codigoseguridad,
-                                fechnac: element.fechnac,
+                                saldototal: element.saldototal,
                                 feching: element.feching,
                                 observaciones: element.observaciones,
-                                activo: 1
                             }
                         }
                     }
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
-                    console.log("antes del axios", modificousuario, modificousuario.idusu, modificousuario.email)
-                    axios.put(API + '/usuarios/edit/' + modificousuario.idusu, modificousuario, headtoken).then((res) => {
+                    console.log("antes del axios", modificoproveedor, modificoproveedor.idpro, modificoproveedor.email)
+                    axios.put(API + '/proveedores/edit/' + modificoproveedor.idpro, modificoproveedor, headtoken).then((res) => {
                             console.log("dentro del put",res)
-                        axios.get(API + '/usuarios/all', headtoken).then((res) => {
+                        axios.get(API + '/proveedores/all', headtoken).then((res) => {
                             console.log("dentro del get",res)
                         })
                     })
@@ -172,20 +177,20 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                     this.seguridad = localStorage.getItem("seguridad")
 
                     const headtoken = { headers: { "mytoken": `${token}` } }
-                    axios.get(API + '/usuarios/allall', headtoken).then((res) => {
-                        let usuarios = res.data.response;
-                        //   console.log("contenido del for", usuarios)
-                        this.usuarios = usuarios
+                    axios.get(API + '/proveedores/allall', headtoken).then((res) => {
+                        let proveedores = res.data.response;
+                        //   console.log("contenido del for", proveedores)
+                        this.proveedores = proveedores
                     })
                 },
                 mostraractivos: function () {
                     let token = localStorage.getItem("token");
                     this.seguridad = localStorage.getItem("seguridad")
                     const headtoken = { headers: { "mytoken": `${token}` } }
-                    axios.get(API + '/usuarios/all', headtoken).then((res) => {
-                        let usuarios = res.data.response;
-                        // console.log("contenido del for", usuarios)
-                        this.usuarios = usuarios
+                    axios.get(API + '/proveedores/all', headtoken).then((res) => {
+                        let proveedores = res.data.response;
+                        // console.log("contenido del for", proveedores)
+                        this.proveedores = proveedores
                     })
                 },
                 obtenerseguridad: function () {
@@ -211,10 +216,10 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                 this.seguridad = localStorage.getItem("seguridad")
                 const headtoken = { headers: { "mytoken": `${token}` } }
 
-                axios.get(API + '/usuarios/all', headtoken).then((res) => {
-                    let usuarios = res.data.response;
-                    //console.log("contenido del for", usuarios)
-                    this.usuarios = usuarios
+                axios.get(API + '/proveedores/all', headtoken).then((res) => {
+                    let proveedores = res.data.response;
+                    //console.log("contenido del for", proveedores)
+                    this.proveedores = proveedores
                 })
 
                 axios.get(API + '/seguridad/all', headtoken).then((res) => {

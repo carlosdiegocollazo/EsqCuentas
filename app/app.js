@@ -5,6 +5,7 @@ const usuario = componenteusuario;
 const monedas = componentemoneda;
 const seguridad = componenteseguridad;
 const documento = componentedocumento;
+const proveedores = componenteproveedor;
 
 //const API = "https://server134-school.lexartlabs.com/api-or-dev/";
 const API = "http://localhost:3000";
@@ -13,7 +14,8 @@ const routes = [
     { path: '*',name:"NotFound", component: notfound },
     { path: '/',name:"Login", component: home },
     { path: '/usuarios',name:"Personas", component: usuario },
-    { path: '/monedas',name:"Finanzas", component: monedas },
+    { path: '/proveedores',name:"Proveedores", component: proveedores },
+    { path: '/monedas',name:"Finanzas", component: monedas s},
     { path: '/seguridad',name:"Seguridad", component: seguridad },
     { path: '/mesa',name:"Home", component: mesa,},
     { path: '/documentos',name:"Documentos", component: documento,},
