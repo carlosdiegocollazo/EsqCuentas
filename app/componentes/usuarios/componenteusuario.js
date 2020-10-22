@@ -41,6 +41,22 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                         activo: ""
                     },
 
+                    modificousuario: {
+                        email: "",
+                        pwd: "",
+                        rpwd: "",
+                        apellidos: "",
+                        nombres: "",
+                        telefono: "",
+                        direccion: "",
+                        ciudad: "",
+                        seguridad: "",
+                        fechnac: "",
+                        feching: "",
+                        observaciones: "",
+                        activo: ""
+                    },
+
                     codigoseguridad: ""
                 }
 
@@ -114,35 +130,38 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                 },
 
                 actualizarusuario: function (res2) {
-                    let modificousuario = {}
                     let usuarios = this.usuarios
                     console.log("esto devuelve de ususarios", usuarios)
                     for (let index = 0; index < usuarios.length; index++) {
                         const element = usuarios[index];
-                        console.log("contenido de element", element)
+                        console.log("contenido de element email", element.email)
                         if (element.activo == true) {
                             element.activo = 1
                         }
                         if (index == res2) {
+                            //console.log("contenido de element email dentro del if", element,index,res2)
                             modificousuario = {
-                                email: this.element.email,
-                                apellidos: this.element.apellidos,
-                                nombres: this.element.nombres,
-                                telefono: this.element.telefono,
-                                direccion: this.element.direccion,
-                                ciudad: this.element.ciudad,
-                                seguridad: this.codigoseguridad.categoria,
-                                fechnac: this.element.fechnac,
-                                feching: this.element.feching,
-                                observaciones: this.element.observaciones,
+                                idusu: element.idusu,
+                                email: element.email,
+                                apellidos: element.apellidos,
+                                nombres: element.nombres,
+                                telefono: element.telefono,
+                                direccion: element.direccion,
+                                ciudad: element.ciudad,
+                                seguridad: this.codigoseguridad,
+                                fechnac: element.fechnac,
+                                feching: element.feching,
+                                observaciones: element.observaciones,
                             }
                         }
                     }
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
+                    console.log("antes del axios", modificousuario, modificousuario.idusu, modificousuario.email)
                     axios.put(API + '/usuarios/edit/' + modificousuario.idusu, modificousuario, headtoken).then((res) => {
+                            console.log("dentro del put",res)
                         axios.get(API + '/usuarios/all', headtoken).then((res) => {
-
+                            console.log("dentro del get",res)
                         })
                     })
                 },

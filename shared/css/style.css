@@ -8,15 +8,6 @@
 @import "../../app/componentes/usuarios/usuario.css";
 
 html, body {
-    /* imagen de fondo */
-    background-image: url(../../../shared/media/2560_3000login.jpg);
-    background-position: center;
-    /* Centro */
-    background-size: auto;
-    /* Ajuste automático */
-    background-size: cover;
-    /* Escalar sin recortar */
-    background-attachment: fixed;
     /*normalizar*/
     width: 100%;
     height: 100%;
@@ -24,15 +15,6 @@ html, body {
     padding: 0;
 }
 
-.imglogo {
-    margin-top: 25px;
-    margin-bottom: 25px;
-    margin-left: 25px;
-    margin-right: 25px;
-    animation-delay: -10ms;
-}
-
-login {
-    margin: auto;
-    padding: 0;
+#app{
+    height: 100%;
 }

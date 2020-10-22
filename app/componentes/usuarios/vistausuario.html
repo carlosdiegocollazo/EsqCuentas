@@ -5,6 +5,7 @@
     <br>
     <H1 style="text-align-last: center; color: aliceblue;">Gestion de Usuarios del Sistema</H1>
     <form style="color: aliceblue;">
+        
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email" style="color: aliceblue;">E-Mail</label>
@@ -55,12 +56,12 @@
             <div class="form-group col-md-2">
                 <label for="fechnac" style="color: aliceblue;">Fecha Nacimiento</label>
                 <input type="date" class="form-control" id="fechnac" v-model="registro.fechnac"
-                    v-model="registro.fechnac">
+                    v-model="registro.fechnac" data-date-format="DD-MM-YYYY" min="01-01-2000" max="31-12-2020">
             </div>
             <div class="form-group col-md-2">
                 <label for="feching" style="color: aliceblue;">Fecha Ingreso</label>
                 <input type="date" class="form-control" id="feching" v-model="registro.feching"
-                    v-model="registro.feching">
+                    v-model="registro.feching" data-date-format="DD-MM-YYYY" min="01-01-2000">
             </div>
             <div class="form-group col-md-2" style="text-align: center;">
 
@@ -128,8 +129,7 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="(usuarios,index) in usuarios" style="color: aquamarine;">
-                                        <td><input class="inputtabla" type="text" v-model="usuarios.idusu" size="3"
-                                                disabled>
+                                        <td><input class="inputtabla" type="text" v-model="usuarios.idusu" size="3">
                                         </td>
                                         <td><input class="inputtabla" type="mail" v-model="usuarios.email"
                                                 title="Haga click para editar y luego presione el botón Modificar"></td>
@@ -146,9 +146,11 @@
                                         <td><input class="inputtabla" type="text" v-model="usuarios.seguridad"
                                                 title="Haga click para editar y luego presione el botón Modificar"></td>
                                         <td><input class="inputtabla" type="date" v-model="usuarios.feching"
-                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                                title="Haga click para editar y luego presione el botón Modificar"
+                                                data-date-format="DD-MM-YYYY"></td>
                                         <td><input class="inputtabla" type="date" v-model="usuarios.fechnac"
-                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                                title="Haga click para editar y luego presione el botón Modificar"
+                                                data-date-format="DD-MM-YYYY"></td>
                                         <td><input class="inputtabla" type="text" v-model="usuarios.observaciones"
                                                 title="Haga click para editar y luego presione el botón Modificar"></td>
                                         <td><input class="inputtabla" type="checkbox" v-model="usuarios.activo"
