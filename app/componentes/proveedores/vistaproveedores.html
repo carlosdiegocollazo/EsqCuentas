@@ -1,0 +1,178 @@
+<div class="inside">
+<div class="container-fluid">
+    <menu-item></menu-item>
+    <router-view></router-view>
+    <br>
+    <br>
+    <H1 style="text-align-last: center; color: aliceblue;">Gestion de Proveedores</H1>
+    <form style="color: aliceblue;">
+        
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="email" style="color: aliceblue;">E-Mail</label>
+                <input type="email" class="form-control" name="email" v-model="registro.email"
+                    placeholder="Ingrese Email">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="pwd" style="color: aliceblue;">Contraseña</label>
+                <input type="password" class="form-control" name="pwd" placeholder="Ingrese contraseña"
+                    v-model="registro.pwd">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="rpwd" style="color: aliceblue;">Reingrese Contraseña</label>
+                <input type="password" class="form-control" name="rpwd" placeholder="Reingrese contraseña"
+                    v-model="registro.rpwd">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="apellidos" style="color: aliceblue;">Apellidos</label>
+                <input type="text" class="form-control" name="apellidos" placeholder="Ingrese Apellidos"
+                    v-model="registro.apellidos">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="nombres" style="color: aliceblue;">Nombres</label>
+                <input type="text" class="form-control" name="nombres" placeholder="Ingrese Nombres"
+                    v-model="registro.nombres">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="direccion" style="color: aliceblue;">Direccion</label>
+                <input type="text" class="form-control" name="direccion" placeholder="Ingrese Direccion"
+                    v-model="registro.direccion">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="telefono" style="color: aliceblue;">Telefono</label>
+                <input type="tel" class="form-control" name="telefono" placeholder="Ingrese telefono"
+                    v-model="registro.telefono">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="ciudad" style="color: aliceblue;">Ciudad</label>
+                <input type="text" class="form-control" id="ciudad" placeholder="Ingrese Ciudad"
+                    v-model="registro.ciudad">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="fechnac" style="color: aliceblue;">Fecha Nacimiento</label>
+                <input type="date" class="form-control" id="fechnac" v-model="registro.fechnac"
+                    v-model="registro.fechnac" data-date-format="DD-MM-YYYY" min="01-01-2000" max="31-12-2020">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="feching" style="color: aliceblue;">Fecha Ingreso</label>
+                <input type="date" class="form-control" id="feching" v-model="registro.feching"
+                    v-model="registro.feching" data-date-format="DD-MM-YYYY" min="01-01-2000">
+            </div>
+            <div class="form-group col-md-2" style="text-align: center;">
+
+                <label for="codigoseguridad" style="color: aliceblue;" v-model="codigoseguridad.categoria">Seguridad
+                    tipo: {{ codigoseguridad.categoria }}</label>
+                <br>
+                <select v-model="codigoseguridad">
+                    <option v-for="(codigoseguridad,index) in devuelvoseguridad" v-bind:value="codigoseguridad">
+                        {{codigoseguridad.descripcion}}
+                    </option>
+                </select>
+
+            </div>
+            <div class="form-group col-md-2" style="text-align: center;">
+                <label for="activo" style=" color: aliceblue;">Activo</label>
+                <input type="checkbox" class="form-control" id="activo" v-model="registro.activo">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="observaciones" style="color: aliceblue;">Observaciones</label>
+                <input type="text" class="form-control" id="observaciones"
+                    placeholder="Ingrese observaciones o comentarios" v-model="registro.observaciones">
+            </div>
+
+            <button class="btn btn-primary" v-on:click="mostraractivos()" style="margin-left: 30px;">Mostrar
+                Activos</button>
+            <button class="btn btn-primary" v-on:click="mostrartodos()" style="margin-left: 30px;">Mostrar
+                Todos</button>
+            <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="limpiar()"
+                style="margin-left: 30px;">Cancelar</button>
+            <button type="submit" class="btn btn-success"
+                v-on:click="registUser(registro,codigoseguridad.devuelvoseguridad)"
+                style="margin-left: 30px;">Ingresar</button>
+
+    </form>
+    <br>
+
+    <div class="container-fluid" style="margin-top: 50;">
+        <!--comienzo de de tabla-->
+        <template>
+            <div class="container-fluid" style="text-align: center;">
+                <div class="row">
+                    <div class="col-mg-12">
+                        <div class="table-responsive small table-striped  table-dark">
+
+                            <table class="table-responsive">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">E-mail</th>
+                                        <th scope="col">Apellidos</th>
+                                        <th scope="col">Nombres</th>
+                                        <th scope="col">Telefono</th>
+                                        <th scope="col">Direccion</th>
+                                        <th scope="col">Ciudad</th>
+                                        <th scope="col">Seguridad</th>
+                                        <th scope="col">Fecha Ingreso</th>
+                                        <th scope="col">Fecha Nacimiento</th>
+                                        <th scope="col">Observaciones</th>
+                                        <th scope="col">Activo</th>
+                                        <th scope="col">Gestion</th>
+                                        <th scope="col">Gestion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(proveedores,index) in proveedores" style="color: aquamarine;">
+                                        <td><input class="inputtabla" type="text" v-model="proveedores.idpro" size="3">
+                                        </td>
+                                        <td><input class="inputtabla" type="mail" v-model="proveedores.email"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="text" v-model="proveedores.apellidos"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="text" v-model="proveedores.nombres"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="tel" v-model="proveedores.telefono"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="text" v-model="proveedores.direccion"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="text" v-model="proveedores.ciudad"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="text" v-model="proveedores.seguridad"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="date" v-model="proveedores.feching"
+                                                title="Haga click para editar y luego presione el botón Modificar"
+                                                data-date-format="DD-MM-YYYY"></td>
+                                        <td><input class="inputtabla" type="date" v-model="proveedores.fechnac"
+                                                title="Haga click para editar y luego presione el botón Modificar"
+                                                data-date-format="DD-MM-YYYY"></td>
+                                        <td><input class="inputtabla" type="text" v-model="proveedores.observaciones"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="checkbox" v-model="proveedores.activo"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><button class="btn btn-danger"
+                                                v-on:click="eliminarusuario(index,proveedores.idpro)">Elimina</button></td>
+                                        <td><button class="btn btn-success"
+                                                v-on:click="actualizarusuario(index)">Modifica</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+    </div>
+    <!--find de tabla-->
+
+</div>
+</div>
+<!-- Div contenendor general-->
+</div>

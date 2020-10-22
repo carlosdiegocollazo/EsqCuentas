@@ -75,7 +75,7 @@ let componenteseguridad = Vue.component('seguridad-component', function (resolve
                                 idseg: element.idseg,
                                 categoria: element.categoria,
                                 descripcion: element.descripcion,
-                                activo: element.activo
+                                activo: 1
                             }
                             // console.log("moficio seguridad", modificoseguridad)
                         }

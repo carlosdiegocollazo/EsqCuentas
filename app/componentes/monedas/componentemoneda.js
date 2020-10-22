@@ -71,7 +71,7 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                                 idmon: element.idmon,
                                 moneda: element.moneda,
                                 divide: element.divide,
-                                activo: element.activo
+                                activo: 1
                             }
                         }
                     }
