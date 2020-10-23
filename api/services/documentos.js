@@ -89,13 +89,13 @@ let documentos = {
 		console.log("response de la api",response)
 	},
 
-	actualizardocumento: async function(documentos, id){
+	actualizardocumentos: async function(documentos, id){
 		let sql = `
 					UPDATE documentos
 					SET
 					tipodoc		= '${documentos.tipodoc}',
 					moneda		= '${documentos.moneda}',
-					activo	 	= '${documentos.activo}'
+					activo	 	= 1
 					
 					WHERE
 					documentos.idtipdoc = '${id}'

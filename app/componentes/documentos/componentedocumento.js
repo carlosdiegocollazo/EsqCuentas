@@ -10,15 +10,20 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                         moneda: "",
                         activo: 1
                     },
-                    devuelvomoneda: { 
+                    devuelvomoneda: {
                         idmon: "",
                         moneda: "",
                         divide: "",
                         activo: 1
                     },
-
-                    codigomoneda: "", 
-                    tipodoc: [],
+                    documentos: {
+                        idtipdoc: "",
+                        tipodoc: "",
+                        moneda: "",
+                        activo: ""
+                    },
+                    codigomoneda: "",
+                    //tipodoc: [],
 
                 }
             },
@@ -29,14 +34,14 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                         moneda: this.codigomoneda.idmon,
                         activo: this.registro.activo
                     }
-                    console.log("registro que viene desde el html",registro)
+                    console.log("registro que viene desde el html", registro)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     if (this.registro.tipodoc !== "") {
                         console.log("resultado antes del axios", registro)
                         axios.post(API + '/documentos/new', registro, headtoken).then((res) => {
                             let resultado = res.data;
-                            console.log("lo que resutla del axios despues",resultado)
+                            console.log("lo que resutla del axios despues", resultado)
                             alert("Tipo de documentos creado correctamente");
                             if (resultado.response) {
                                 router.push({ path: '/mesa' });
@@ -62,7 +67,7 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                     })
 
                 },
-                actualizardocumento: function (res2) {
+                actualizardocumentos: function (res2) {
                     let modificodocumento = {}
                     let documentos = this.documentos
 
@@ -76,7 +81,7 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                                 idtipdoc: element.idtipdoc,
                                 documentos: element.documentos,
                                 moneda: element.moneda,
-                                activo: element.activo
+                                activo: 1
                             }
                         }
                     }
@@ -84,14 +89,14 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.put(API + '/documentos/edit/' + modificodocumento.idtipdoc, modificodocumento, headtoken).then((res) => {
                         axios.get(API + '/documentos/all', headtoken).then((res) => {
-                            alert("documentos", modificodocumento, documentos, " modificada correctamente");
+                            alert("Tipo de documento modificado y activado correctamente");
                         })
                     })
                 },
                 mostrartodos: function () {
                     let token = localStorage.getItem("token");
 
-                    this.monedas = localStorage.getItem("monedas")
+                    this.seguridad = localStorage.getItem("seguridad")
                     let id = localStorage.getItem("idusuario")
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.get(API + '/documentos/allall', headtoken).then((res) => {
@@ -102,8 +107,7 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                 },
                 mostraractivos: function () {
                     let token = localStorage.getItem("token");
-
-                    this.monedas = localStorage.getItem("monedas")
+                    this.seguridad = localStorage.getItem("seguridad")
                     let id = localStorage.getItem("idusuario")
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.get(API + '/documentos/all', headtoken).then((res) => {
@@ -136,16 +140,16 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                 const headtoken = { headers: { "mytoken": `${token}` } }
                 axios.get(API + '/documentos/all', headtoken).then((res) => {
                     let documentos = res.data.response;
-                    //console.log("contenido del for", documentos)
+                    console.log("contenido del for", documentos)
                     this.documentos = documentos
 
-                })
-                axios.get(API + '/monedas/all', headtoken).then((res) => {
-                    devuelvomoneda = res.data.response;
-                    this.devuelvomoneda = devuelvomoneda
-                    //console.log("la devoucion de lo que selecciona", this.obtenermonedas.codigomoneda)
-                    //console.log("devuelvomoneda", devuelvomoneda)
-                })
+                }),
+                    axios.get(API + '/monedas/all', headtoken).then((res) => {
+                        devuelvomoneda = res.data.response;
+                        this.devuelvomoneda = devuelvomoneda
+                        //console.log("la devoucion de lo que selecciona", obtenermonedas.codigomoneda)
+                        //console.log("devuelvomoneda", devuelvomoneda)
+                    })
             },//fin del mounted
         })
     })

@@ -16,7 +16,7 @@
             <br>
             <select v-model="codigomoneda">
                <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
-                   {{codigomoneda.moneda}}
+                   {{codigomoneda.idmon}} {{codigomoneda.moneda}}
                </option>
            </select>
 
@@ -41,11 +41,11 @@
                      <div class="table-responsive small table-striped accordion table-dark">
 
                         <table class="table">
-                           <thead class="thead-dark">
+                           <thead class="thead-dark" style="text-align: center;">
                               <tr>
                                  <th scope="col">ID</th>
-                                 <th scope="col">tipodoc</th>
-                                 <th scope="col">moneda</th>
+                                 <th scope="col">Documento</th>
+                                 <th scope="col">Cod.Moneda</th>
                                  <th scope="col">Activo</th>
                                  <th scope="col">Acciones</th>
                                  <th scope="col">Acciones</th>
@@ -53,16 +53,16 @@
                               </tr>
                            </thead>
                            <tbody>
-                              <tr v-for="(tipodoc,index) in tipodoc" style="color: aquamarine;">
-                                 <td><input class="inputtabla" type="text" v-model="tipodoc.idmon" size="3" disabled>
+                              <tr v-for="(documento,index) in documentos" style="color: aquamarine;">
+                                 <td ><input class="inputtabla" type="number" v-model="documento.Idtipdoc" size="3" disabled>
                                  </td>
-                                 <td><input class="inputtabla" type="text" v-model="tipodoc.moneda" title="Haga click para editar y luego presione el botón Modificar"></td>
-                                 <td><input class="inputtabla" type="checkbox" v-model="tipodoc.moneda"></td>
-                                 <td><input class="inputtabla" type="checkbox" v-model="tipodoc.activo"></td>
+                                 <td><input class="inputtabla" type="text" v-model="documento.tipodoc" title="Haga click para editar y luego presione el botón Modificar"></td>
+                                 <td><input class="inputtabla" type="number" v-model="documento.moneda" disabled></td>
+                                 <td><input class="inputtabla" type="checkbox" v-model="documento.activo"></td>
                                  <td><button class="btn btn-danger"
-                                       v-on:click="eliminartipodoc(index,tipodoc.idmon)">Elimina</button></td>
+                                       v-on:click="eliminardcumentos(index,documentos.idtipdoc)">Elimina</button></td>
                                  <td><button class="btn btn-success"
-                                       v-on:click="actualizartipodoc(index)">Modifica</button>
+                                       v-on:click="actualizardocumentos(index)">Modifica</button>
                                  </td>
                               </tr>
                            </tbody>
