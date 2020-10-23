@@ -33,7 +33,7 @@ let documentos = {
 
 	obtenerdocumentosall: async function(){
 		let sql 		= `
-							SELECT * FROM documentos  
+							SELECT * FROM documentos
 						`
 		let response 	= {error: "No se encontraron documentos"}
 		let resultado 	= await conn.query(sql);
@@ -45,7 +45,7 @@ let documentos = {
 		return response;
 	},
 
-	obtenerdocumentoPorId: async function(id){
+	obtenerdocumentosPorId: async function(id){
 		let sql 		= `
 							SELECT * FROM documentos
 							WHERE
@@ -63,6 +63,7 @@ let documentos = {
 	},
 
 	creardocumentos: async function(documentos){
+		console.log("viene de html",this.creardocumentos)
 		let sql = `
 					INSERT INTO documentos
 					(
@@ -72,38 +73,38 @@ let documentos = {
 					)
 					VALUES
 					(
-					'${documentos.tipodoc}',
+					"${documentos.tipodoc}",
 					'${documentos.moneda}',
-					'${documentos.activo}'
+					1
 					)		
 				`
 		let response 	= {error: "No se pudo crear documentos"}
 		let resultado 	= await conn.query(sql);
-		console.log("resultado de api",resultado);
+		console.log(resultado);
 		if (resultado.code) {
 	 		response 	= {error: "Error en consulta SQL"};
 	 	}else if (resultado.insertId) {
-			response 	= {response: "documentos creado correctamente"}
+			response 	= {response: "documentos creada correctamente"}
 		}
 		return response;
-		console.log("response de la api",response)
 	},
 
 	actualizardocumentos: async function(documentos, id){
+		
 		let sql = `
 					UPDATE documentos
 					SET
-					tipodoc		= '${documentos.tipodoc}',
+					tipodoc		= '${documentos.tipdoc}',
 					moneda		= '${documentos.moneda}',
-					activo	 	= 1
-					
+					activo	 	= '${documentos.activo}'			
 					WHERE
 					documentos.idtipdoc = '${id}'
 				`
 		let response 		= {};
-		let existedocumento 	= await this.obtenerdocumentoPorId(id);
-		if (!existedocumento.error) {
+		let existedocumentos 	= await this.obtenerdocumentosPorId(id);
+		if (!existedocumentos.error) {
 			let resultado 	= await conn.query(sql);
+		
 			if (resultado.code) {
 	 			response 	= {error: "Error en consulta SQL"};
 	 		}else if (resultado.affectedRows>0) {
@@ -117,7 +118,7 @@ let documentos = {
 		return response;
 	},
 
-	eliminardocumento: async function(id){
+	eliminardocumentos: async function(id){
 		let sql 		= `
 							UPDATE documentos 
 							SET 
@@ -126,8 +127,8 @@ let documentos = {
 							documentos.idtipdoc = '${id}'
 						`
 		let response 		= {};
-		let existedocumento 	= await this.obtenerdocumentoPorId(id);
-		if (!existedocumento.error) {
+		let existedocumentos 	= await this.obtenerdocumentosPorId(id);
+		if (!existedocumentos.error) {
 			let resultado 	= await conn.query(sql);
 			if (resultado.code) {
 	 			response 	= {error: "Error en consulta SQL"};

@@ -29,7 +29,7 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
             },
             methods: {
                 creardocumento: function () {
-                    let registro = {
+                    registro = {
                         tipodoc: this.registro.tipodoc,
                         moneda: this.codigomoneda.idmon,
                         activo: this.registro.activo
@@ -37,20 +37,20 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                     console.log("registro que viene desde el html", registro)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
-                    if (this.registro.tipodoc !== "") {
+                    if (this.registro.tipodoc !== "" & this.codigomoneda.idmon !== "") {
                         console.log("resultado antes del axios", registro)
-                        axios.post(API + '/documentos/new', registro, headtoken).then((res) => {
+                        axios.post(API + '/documentos/new/', registro, headtoken).then((res) => {
                             let resultado = res.data;
                             console.log("lo que resutla del axios despues", resultado)
                             alert("Tipo de documentos creado correctamente");
                             if (resultado.response) {
-                                router.push({ path: '/mesa' });
+                                router.push({ path: '/mesa/' });
                             } else {
                                 alert(res.data.error);
                             }
                         })
                     } else {
-                        alert("Descripcion de documentos no puede estar vacia");
+                        alert("Descripcion de documentos y Moneda no puede estar vacios");
                     }
                 },
                 eliminardocumento: function (res, res2) {
@@ -79,7 +79,7 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                         if (index == res2) {
                             modificodocumento = {
                                 idtipdoc: element.idtipdoc,
-                                documentos: element.documentos,
+                                tipodoc: element.tipodoc,
                                 moneda: element.moneda,
                                 activo: 1
                             }
