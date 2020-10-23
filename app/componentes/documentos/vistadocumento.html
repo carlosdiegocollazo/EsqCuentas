@@ -9,8 +9,8 @@
             <div>
                <H1 style="text-align-last: center; color: aliceblue;">Gestion de Documentos</H1>
                <label for="tipodoc" style="color: aliceblue;" title="Ingrese el tipo de Documento">Tipo de Documento</label>
-               <input type="text" class="form-control" name="tipodoc" title="Ingrese el nombe de la tipodoc" v-model="registro.tipodoc"
-                  placeholder="Descripcion">
+               <input type="text" class="form-control" name="tipodoc" title="Ingrese el tipo de documento" v-model="registro.tipodoc"
+                  placeholder="Descripcion del documento">
             </div>
 
             <br>
@@ -29,7 +29,7 @@
             <button class="btn btn-primary" v-on:click="mostrartodos()" style="margin-left: 30px;">Mostrar Todos</button>
                         <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()" style="margin-left: 30px;">Cancelar</button>
             <button type="submit" class="btn btn-success" style="margin-left: 30px;"
-               v-on:click="creardocumento()">Ingresar</button>
+               v-on:click="creardocumentos()">Ingresar</button>
             <br><br>
          </div>
       </form>
@@ -60,7 +60,7 @@
                                  <td><input class="inputtabla" type="number" v-model="documento.moneda" disabled></td>
                                  <td><input class="inputtabla" type="checkbox" v-model="documento.activo"></td>
                                  <td><button class="btn btn-danger"
-                                       v-on:click="eliminardcumentos(index,documentos.idtipdoc)">Elimina</button></td>
+                                       v-on:click="eliminardcumentos(index,documento.idtipdoc)">Elimina</button></td>
                                  <td><button class="btn btn-success"
                                        v-on:click="actualizardocumentos(index)">Modifica</button>
                                  </td>

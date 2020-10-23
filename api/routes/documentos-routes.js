@@ -35,7 +35,7 @@ module.exports = function(app){
 	app.post('/documentos/new', midd.rutasProtegidas, async function(req, res){
 		let documento = req.body;
 		let documentos = require('../services/documentos.js');
-		let response = await documentos.creardocumentos(documentos);
+		let response = await documentos.creardocumentos(documento);
 		res.set('Content-Type', 'aplication/json');
 		res.send(response);
 	})
@@ -46,7 +46,7 @@ module.exports = function(app){
 		let documento 	= req.body;
 		let id 			= req.params.id;
 		let documentos 	= require('../services/documentos.js');
-		let response 	= await documentos.actualizardocumentos(documentos, id);
+		let response 	= await documentos.actualizardocumentos(documento, id);
 		res.set('Content-Type', 'aplication/json');
 		res.send(response);
 	})
