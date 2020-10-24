@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 22-10-2020 a las 18:58:45
+-- Tiempo de generación: 24-10-2020 a las 20:09:54
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -65,12 +65,21 @@ CREATE TABLE IF NOT EXISTS `cotizacion` (
 
 DROP TABLE IF EXISTS `documentos`;
 CREATE TABLE IF NOT EXISTS `documentos` (
-  `Idtipdoc` int NOT NULL AUTO_INCREMENT,
+  `idtipdoc` int NOT NULL AUTO_INCREMENT,
   `tipodoc` text NOT NULL,
   `moneda` int NOT NULL,
   `activo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`Idtipdoc`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`idtipdoc`)
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `documentos`
+--
+
+INSERT INTO `documentos` (`idtipdoc`, `tipodoc`, `moneda`, `activo`) VALUES
+(32, 'Factura Contado', 1, 1),
+(33, 'cambio de tareas', 0, 0),
+(34, 'Factura a paar con especias', 32, 1);
 
 -- --------------------------------------------------------
 
@@ -92,14 +101,14 @@ CREATE TABLE IF NOT EXISTS `monedas` (
 --
 
 INSERT INTO `monedas` (`idmon`, `moneda`, `divide`, `activo`) VALUES
-(1, 'Pesos', 1, 1),
+(0, 'Pesos', 1, 1),
 (2, 'Peso Argentino', 1, 1),
 (3, 'definido', 1, 0),
 (4, 'Reales', 1, 1),
 (5, 'Euros', 1, 1),
 (35, 'Realiños ', 1, 1),
 (34, 'Australes', 1, 1),
-(33, 'undefined', 0, 0),
+(1, 'Dolares', 1, 1),
 (32, 'Libras esterlinas', 1, 1),
 (31, 'Patacones', 1, 1);
 

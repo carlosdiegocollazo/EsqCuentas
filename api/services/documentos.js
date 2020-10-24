@@ -63,7 +63,7 @@ let documentos = {
 	},
 
 	creardocumentos: async function(documentos){
-		console.log("viene de html",this.creardocumentos)
+		//console.log("viene de html",this.creardocumentos)
 		let sql = `
 					INSERT INTO documentos
 					(
@@ -80,7 +80,7 @@ let documentos = {
 				`
 		let response 	= {error: "No se pudo crear documentos"}
 		let resultado 	= await conn.query(sql);
-		console.log(resultado);
+		//console.log(resultado);
 		if (resultado.code) {
 	 		response 	= {error: "Error en consulta SQL"};
 	 	}else if (resultado.insertId) {
@@ -90,13 +90,12 @@ let documentos = {
 	},
 
 	actualizardocumentos: async function(documentos, id){
-		
 		let sql = `
 					UPDATE documentos
 					SET
-					tipodoc		= '${documentos.tipdoc}',
+					tipodoc		= '${documentos.tipodoc}',
 					moneda		= '${documentos.moneda}',
-					activo	 	= '${documentos.activo}'			
+					activo	 	= 1			
 					WHERE
 					documentos.idtipdoc = '${id}'
 				`
@@ -116,6 +115,7 @@ let documentos = {
 			response 		= {error: `No existe documentos con Id: ${id}`}
 			}
 		return response;
+		//console.log("respose de api",response)
 	},
 
 	eliminardocumentos: async function(id){

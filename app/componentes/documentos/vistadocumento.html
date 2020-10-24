@@ -15,6 +15,7 @@
 
             <br>
             <select v-model="codigomoneda">
+               <option disabled value="">Moneda par el tipo de documento</option>
                <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
                    {{codigomoneda.idmon}} {{codigomoneda.moneda}}
                </option>
@@ -54,13 +55,14 @@
                            </thead>
                            <tbody>
                               <tr v-for="(documento,index) in documentos" style="color: aquamarine;">
-                                 <td ><input class="inputtabla" type="number" v-model="documento.Idtipdoc" size="3" disabled>
+                                 <td ><input class="inputtabla" type="number" v-model="documento.idtipdoc" size="3" disabled>
                                  </td>
                                  <td><input class="inputtabla" type="text" v-model="documento.tipodoc" title="Haga click para editar y luego presione el botón Modificar"></td>
-                                 <td><input class="inputtabla" type="number" v-model="documento.moneda" disabled></td>
+                                 <td style="text-align: center;"> 
+                                    <input class="inputtabla" type="number" v-model="documento.moneda" disabled></td>
                                  <td><input class="inputtabla" type="checkbox" v-model="documento.activo"></td>
                                  <td><button class="btn btn-danger"
-                                       v-on:click="eliminardcumentos(index,documento.idtipdoc)">Elimina</button></td>
+                                       v-on:click="eliminardocumentos(index,documento.idtipdoc)">Elimina</button></td>
                                  <td><button class="btn btn-success"
                                        v-on:click="actualizardocumentos(index)">Modifica</button>
                                  </td>
