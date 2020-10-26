@@ -61,7 +61,7 @@
                               <thead class="thead-dark" style="text-align: center;">
                                  <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">banco</th>
+                                    <th scope="col">Banco</th>
                                     <th scope="col">Cod.Moneda</th>
                                     <th scope="col">Nº Cuenta</th>
                                     <th scope="col">Nº y Nom. Sucursal</th>
@@ -73,8 +73,7 @@
                               </thead>
                               <tbody>
                                  <tr v-for="(banco,index) in bancos" style="color: aquamarine;">
-                                    <td><input class="inputtabla" type="number" v-model="banco.idbanco" size="3"
-                                          disabled>
+                                    <td><input class="inputtabla" type="number" v-model="banco.idbanco" size="3">
                                     </td>
                                     <td><input class="inputtabla" type="text" v-model="banco.banco"
                                           title="Haga click para editar y luego presione el botón Modificar"></td>

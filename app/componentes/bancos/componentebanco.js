@@ -13,12 +13,10 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                         activo: 1
                     },
                     devuelvomoneda: {
-                        idbanco: "",
-                        banco: "",
+                        idmon: "",
                         moneda: "",
-                        cuenta:"",
-                        sucursal:"",
-                        activo: 1
+                        divide: "",
+                        activo: ""
                     },
                     bancos: {
                         idbanco: "",
@@ -92,7 +90,7 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.put(API + '/bancos/edit/' + modificobanco.idbanco, modificobanco, headtoken).then((res) => {
                         axios.get(API + '/bancos/all', headtoken).then((res) => {
-                            alert("Documento, modificado y activo en forma correcta.");
+                            alert("BANCO, modificado y activo en forma correcta.");
                         })
                     })
                 },
