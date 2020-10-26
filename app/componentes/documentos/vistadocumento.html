@@ -8,14 +8,15 @@
          <div class="row" class="login">
             <div>
                <H1 style="text-align-last: center; color: aliceblue;">Gestion de Documentos</H1>
-               <label for="tipodoc" style="color: aliceblue;" title="Ingrese el tipo de Documento">Tipo de Documento</label>
+               <label for="tipodoc" style=" color: aliceblue; text-align: center;" title="Ingrese el tipo de Documento">Tipo de Documento</label>
                <input type="text" class="form-control" name="tipodoc" title="Ingrese el tipo de documento" v-model="registro.tipodoc"
                   placeholder="Descripcion del documento">
             </div>
 
             <br>
+            <label for="codigomoneda" style=" color: aliceblue; text-align: center;">Moneda predeterminada</label>
             <select v-model="codigomoneda">
-               <option disabled value="">Moneda par el tipo de documento</option>
+               <option disabled value="" >Seleccione</option>
                <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
                    {{codigomoneda.idmon}} {{codigomoneda.moneda}}
                </option>
@@ -24,7 +25,7 @@
             <div class="form-group form-check">
 
                <input type="checkbox" class="form-check-input" name="activo" v-model="registro.activo">
-               <label class="form-check-label" for="activo" style="color: aliceblue;">Activo</label>
+               <label class="form-check-label" for="activo" style=" color: aliceblue; text-align: center;">Activo</label>
             </div row justify-items-center align-items-center>
             <button class="btn btn-primary" v-on:click="mostraractivos()" style="margin-left: 30px;">Mostrar Activos</button>
             <button class="btn btn-primary" v-on:click="mostrartodos()" style="margin-left: 30px;">Mostrar Todos</button>

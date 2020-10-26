@@ -5,7 +5,7 @@ const usuario = componenteusuario;
 const monedas = componentemoneda;
 const seguridad = componenteseguridad;
 const documento = componentedocumento;
-const proveedores = componenteproveedor;
+const proveedores = componenteproveedores;
 
 //const API = "https://server134-school.lexartlabs.com/api-or-dev/";
 const API = "http://localhost:3000";

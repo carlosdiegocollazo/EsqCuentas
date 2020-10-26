@@ -25,3 +25,10 @@ input.inputtabla:hover {
     background: seagreen;
     color: white;
 }
+
+input.inputform:focus-visible {
+    border-style: solid;
+    border-color: rgb(0, 255, 13);
+    background: rgb(161, 219, 241);
+    color: white;
+}

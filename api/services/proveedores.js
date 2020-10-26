@@ -1,6 +1,6 @@
 let proveedor = {
 	
-	getRecordById: async function (tabla, idTabla, id){
+	getRecordByid: async function (tabla, idTabla, id){
 		let sql 		= `
 							SELECT *
 							FROM ${tabla}
@@ -46,7 +46,7 @@ let proveedor = {
 		return response;
 	},
 
-	obtenerproveedorPorId: async function (id){
+	obtenerproveedorPorid: async function (id){
 	 let sql = `
 	  			SELECT * FROM proveedores
 	  			WHERE 
@@ -88,14 +88,15 @@ let proveedor = {
 					  		(
 							rutced,
 							razon,
-							nomfantasia,
+							fantasia,
+							email,
 							nombre,
 							apellido,
-							fechingr,
+							feching,
 							telefono,
 							direccion,
+							ciudad,
 							moneda,
-							seguridad,
 							saldoinicial,
 							saldototal,
 							retorno,
@@ -108,21 +109,22 @@ let proveedor = {
 		  					(
 							'${proveedor.rutced}',
 							'${proveedor.razon}',
-							'${proveedor.nomfantasia}',
+							'${proveedor.fantasia}',
+							'${proveedor.email}',
 							'${proveedor.nombre}',
 							'${proveedor.apellido}',
-							'${proveedor.fechingr}',
+							'${proveedor.feching}',
 							'${proveedor.telefono}',
 							'${proveedor.direccion}',
+							'${proveedor.ciudad}',
 							'${proveedor.moneda}',
-							'${proveedor.seguridad}',
 							'${proveedor.saldoinicial}',
 							'${proveedor.saldototal}',
 							'${proveedor.retorno}',
 							'${proveedor.fechret}',
 							'${proveedor.retactivo}',
 							'${proveedor.observaciones}',
-							'${proveedor.activo}'
+							1
 							)
 				`
 		let response 		= {error: "No se pudo crear el proveedor"}
@@ -133,7 +135,7 @@ let proveedor = {
 				let resultado 	= await conn.query(sql);
 				if (resultado.code) {
 		 			response 	= {error: "Error en consulta SQL"};
-		 		}else if (resultado.insertId) {
+		 		}else if (resultado.insertid) {
 					response 	= {response: "proveedor creado correctamente"}
 				}
 			} catch(error) {
@@ -151,27 +153,27 @@ let proveedor = {
 							SET 
 								rutced			= '${proveedor.rutced}',
 								razon			= '${proveedor.razon}',
-								nomfantasia		= '${proveedor.nomfantasia}',
+								fantasia		= '${proveedor.fantasia}',
 								nombre			= '${proveedor.nombre}',
 								apellido		= '${proveedor.apellido}',
-								fechingr		= '${proveedor.feching}',
+								feching		= '${proveedor.feching}',
 								telefono	 	= '${proveedor.telefono}',
 								direccion	 	= '${proveedor.direccion}',
+								ciudad 			= '${proveedor.ciudad}',
 								moneda 			= '${proveedor.moneda}',
-								seguridad 		= '${proveedor.seguridad}',
 								saldoinicial 	= '${proveedor.sadoinicial}',
 								saldototal		= '${proveedor.saldototal}',
 								retorno			= '${proveedor.retorno}',
 								fechret			= '${proveedor.fechret}',
 								retactivo 		= '${proveedor.retactivo}',
 								observaciones 	= '${proveedor.observaciones}',
-								activo 			= '${proveedor.activo}'
+								1
 							
 							WHERE
 							proveedores.idpro = '${id}'
 						`
 		let response 		= {error: "No se pudo actualizar proveedor"}
-		let existeproveedor 	= await this.obtenerproveedorPorId(id);
+		let existeproveedor 	= await this.obtenerproveedorPorid(id);
 		if (!existeproveedor.error) {
 			let resultado 	= await conn.query(sql);
 			if (resultado.code) {
@@ -180,7 +182,7 @@ let proveedor = {
 				response 	= {response: "proveedor actualizado correctamente"}
 			}
 		}else{
-			response 		= {error: `No existe proveedor con Id: ${id}`}
+			response 		= {error: `No existe proveedor con id: ${id}`}
 			}
 		return response;
 	},	
@@ -194,7 +196,7 @@ let proveedor = {
 							proveedores.idpro = '${id}'
 						`
 		let response 			= {error: "No se pudo eliminar proveedor"}
-		let existeproveedor 		= await this.obtenerproveedorPorId(id);
+		let existeproveedor 		= await this.obtenerproveedorPorid(id);
 		if (!existeproveedor.error) {
 			let resultado 		= await conn.query(sql);
 			if (resultado.code) {
@@ -203,7 +205,7 @@ let proveedor = {
 					response 	= {response: "proveedor eliminado correctamente"}
 				}
 		}else {
-			response 			= {error: `No existe proveedor con Id: ${id}`}
+			response 			= {error: `No existe proveedor con id: ${id}`}
 			}
 		return response;
 	},

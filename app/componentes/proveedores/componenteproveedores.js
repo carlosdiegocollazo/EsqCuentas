@@ -1,4 +1,4 @@
-let componenteproveedor = Vue.component('proveedor-component', function (resolve) {
+let componenteproveedores = Vue.component('proveedor-component', function (resolve) {
     axios.get('./app/componentes/proveedores/vistaproveedores.html').then(function (view) {
         resolve({
             template: view.data,
@@ -9,116 +9,131 @@ let componenteproveedor = Vue.component('proveedor-component', function (resolve
                         razon: "",
                         fantasia: "",
                         email: "",
-                        nombres: "",
-                        apellidos: "",
+                        nombre: "",
+                        apellido: "",
                         feching: "",
                         telefono: "",
                         direccion: "",
                         ciudad: "",
                         moneda: "",
-                        seguridad: "",
                         saldoincial: "",
                         saldototal: "",
                         retorno: "",
-                        fechret:"",
-                        retactivo:"",
+                        fechret: "",
+                        retactivo: "",
                         observaciones: "",
                         activo: 1
                     },
-                    devuelvoseguridad: {
-                        idseg: "",
-                        categoria: "",
-                        descripcion: "",
+                    devuelvomoneda: {
+                        idmon: "",
+                        moneda: "",
+                        divide: "",
                         activo: 1
                     },
                     proveedores: {
+                        rutced: "",
+                        razon: "",
+                        fantasia: "",
                         email: "",
-                        moneda: "",
-                        saldoincial: "",
-                        apellidos: "",
-                        nombres: "",
+                        nombre: "",
+                        apellido: "",
+                        feching: "",
                         telefono: "",
                         direccion: "",
                         ciudad: "",
-                        seguridad: "",
+                        moneda: "",
+                        saldoincial: "",
                         saldototal: "",
-                        feching: "",
+                        retorno: "",
+                        fechret: "",
+                        retactivo: "",
                         observaciones: "",
-                        activo: ""
+                        activo: 1
                     },
 
                     modificoproveedor: {
+                        rutced: "",
+                        razon: "",
+                        fantasia: "",
                         email: "",
-                        moneda: "",
-                        saldoincial: "",
-                        apellidos: "",
-                        nombres: "",
+                        nombre: "",
+                        apellido: "",
+                        feching: "",
                         telefono: "",
                         direccion: "",
                         ciudad: "",
-                        seguridad: "",
+                        moneda: "",
+                        saldoincial: "",
                         saldototal: "",
-                        feching: "",
+                        retorno: "",
+                        fechret: "",
+                        retactivo: "",
                         observaciones: "",
-                        activo: ""
+                        activo: 1
                     },
-
-                    codigoseguridad: ""
+                    codigomoneda: "",
                 }
-
             },
             methods: {
                 registUser: function () {
                     let registro = {
+                        rutced: this.registro.rutced,
+                        razon: this.registro.razon,
+                        fantasia: this.registro.fantasia,
                         email: this.registro.email,
-                        password: this.registro.moneda,
-                        apellidos: this.registro.apellidos,
-                        nombres: this.registro.nombres,
+                        nombre: this.registro.nombre,
+                        apellido: this.registro.apellido,
+                        feching: this.registro.feching,
                         telefono: this.registro.telefono,
                         direccion: this.registro.direccion,
                         ciudad: this.registro.ciudad,
-                        seguridad: this.codigoseguridad.categoria,
+                        moneda: this.devuelvomoneda.idmon,
+                        saldoinicial: this.registro.saldoinicial,
                         saldototal: this.registro.saldototal,
-                        feching: this.registro.feching,
+                        retorno: this.registro.retorno,
+                        fechret: this.registro.fechret,
+                        retactivo: this.registro.retactivo,
                         observaciones: this.registro.observaciones,
                         activo: 1,
                     }
-                    console.log("lo que guarda en proveedor", registro)
-                    if (this.registro.nombres !== "" & this.registro.apellidos !== "" & this.registro.email !== "" & this.codigoseguridad.categoria !== "") {
-                        if (this.registro.moneda !== "" & this.registro.moneda == this.registro.saldoincial) {
-                            if (this.registro.activo == true) {
-                                this.registro.activo = 1
-                            }
-                            axios.post(API + '/proveedores/new/', registro).then((res) => {
-                                let resultado = res.data;
-                                if (!res.data.error) {
-                                    router.push({ path: '/mesa/' });
-                                } else {
-                                    alert(res.data.error);
-                                }
-                            })
-                        } else {
-                            alert("Los passwords no coinciden o estan vacios");
+                    console.log("lo que guarda en usuario", registro)
+                    if (this.registro.nombres !== "" & this.registro.apellidos !== "" & this.registro.email !== "" & this.devuelvomoneda.idmon !== "") {
+                        if (this.registro.activo == true) {
+                            this.registro.activo = 1
                         }
+                        axios.post(API + '/proveedores/new/', registro).then((res) => {
+                            let resultado = res.data;
+                            if (!res.data.error) {
+                                router.push({ path: '/mesa/' });
+                            } else {
+                                alert(res.data.error);
+                            }
+                        })
                     } else {
-                        alert("Debe ingresar nombres, apellidos, Seguridad y E-mail");
+                        alert("Debe ingresar nombres, apellidos, Moneda y E-mail");
                     }
                 },
+
                 limpiar: function () {
                     this.registro = {
+                        rutced: "",
+                        razon: "",
+                        fantasia: "",
                         email: "",
-                        moneda: "",
-                        saldoincial: "",
-                        apellidos: "",
-                        nombres: "",
+                        nombre: "",
+                        apellido: "",
+                        feching: "",
                         telefono: "",
                         direccion: "",
                         ciudad: "",
-                        seguridad: "",
+                        moneda: "",
+                        saldoincial: "",
                         saldototal: "",
-                        feching: "",
+                        retorno: "",
+                        fechret: "",
+                        retactivo: "",
                         observaciones: "",
-                        activo: ""
+                        activo: 1
                     }
                 },
 
@@ -147,17 +162,24 @@ let componenteproveedor = Vue.component('proveedor-component', function (resolve
                         if (index == res2) {
                             //console.log("contenido de element email dentro del if", element,index,res2)
                             modificoproveedor = {
-                                idpro: element.idpro,
+                                rutced: element.rutced,
+                                razon: element.razon,
+                                fantasia: element.fantasia,
                                 email: element.email,
-                                apellidos: element.apellidos,
-                                nombres: element.nombres,
+                                nombre: element.nombre,
+                                apellido: element.apellido,
+                                feching: element.feching,
                                 telefono: element.telefono,
                                 direccion: element.direccion,
                                 ciudad: element.ciudad,
-                                seguridad: this.codigoseguridad,
+                                moneda: this.devuelvomoneda.idmon,
+                                saldoinicial: element.saldoinicial,
                                 saldototal: element.saldototal,
-                                feching: element.feching,
+                                retorno: element.retorno,
+                                fechret: element.fechret,
+                                retactivo: element.retactivo,
                                 observaciones: element.observaciones,
+                                activo: 1,
                             }
                         }
                     }
@@ -165,17 +187,15 @@ let componenteproveedor = Vue.component('proveedor-component', function (resolve
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     console.log("antes del axios", modificoproveedor, modificoproveedor.idpro, modificoproveedor.email)
                     axios.put(API + '/proveedores/edit/' + modificoproveedor.idpro, modificoproveedor, headtoken).then((res) => {
-                            console.log("dentro del put",res)
+                        console.log("dentro del put", res)
                         axios.get(API + '/proveedores/all', headtoken).then((res) => {
-                            console.log("dentro del get",res)
+                            console.log("dentro del get", res)
                         })
                     })
                 },
                 mostrartodos: function () {
                     let token = localStorage.getItem("token");
-
                     this.seguridad = localStorage.getItem("seguridad")
-
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.get(API + '/proveedores/allall', headtoken).then((res) => {
                         let proveedores = res.data.response;
@@ -193,18 +213,7 @@ let componenteproveedor = Vue.component('proveedor-component', function (resolve
                         this.proveedores = proveedores
                     })
                 },
-                obtenerseguridad: function () {
-                    let token = localStorage.getItem("token");
-                    this.seguridad = localStorage.getItem("seguridad")
-                    const headtoken = { headers: { "mytoken": `${token}` } }
-                    axios.get(API + '/seguridad/all', headtoken).then((res) => {
-                        devuelvoseguridad = res.data.response;
-                        this.devuelvoseguridad = devuelvoseguridad
-                        console.log("devuelvoseguridad", devuelvoseguridad)
-                        console.log("la devoucion de lo que selecciona", this.obtenerseguridad.codigoseguridad)
-                    })
 
-                },
                 cerrarsesion: function () {
                     router.push('/mesa')
                 }
@@ -222,10 +231,11 @@ let componenteproveedor = Vue.component('proveedor-component', function (resolve
                     this.proveedores = proveedores
                 })
 
-                axios.get(API + '/seguridad/all', headtoken).then((res) => {
-                    devuelvoseguridad = res.data.response;
-                    // console.log("contenido del for devuelvo", devuelvoseguridad)
-                    this.devuelvoseguridad = devuelvoseguridad
+                axios.get(API + '/monedas/all', headtoken).then((res) => {
+                    devuelvomoneda = res.data.response;
+                    this.devuelvomoneda = devuelvomoneda
+                    //////console.log("la devoucion de lo que selecciona", obtenermonedas.codigomoneda)
+                    //////console.log("devuelvomoneda", devuelvomoneda)
                 })
 
             },//fin del mounted

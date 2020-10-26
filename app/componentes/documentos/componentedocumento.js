@@ -14,7 +14,7 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                         idmon: "",
                         moneda: "",
                         divide: "",
-                        activo: 1
+                        activo: ""
                     },
                     documentos: {
                         idtipdoc: "",
