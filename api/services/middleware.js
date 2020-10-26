@@ -30,6 +30,15 @@ let Middleware = {
       "/monedas/edit/:id": "Acceso Permitido",
       "/monedas/delete/:id": "Acceso Permitido",
 
+      //bancos
+      "/bancos/all": "Acceso Permitido",
+      "/bancos/allall": "Acceso Permitido",
+      "/bancos/:id": "Acceso Permitido",
+      "/bancos/new": "Acceso Permitido",
+      "/bancos/edit/:id": "Acceso Permitido",
+      "/bancos/delete/:id": "Acceso Permitido",
+      
+
       //seguridad
       "/seguridad/all": "Acceso Permitido",
       "/seguridad/allall": "Acceso Permitido",
@@ -136,7 +145,8 @@ let Middleware = {
       "/movimientos/:id": "Acceso Permitido",
       "/movimientos/new": "Acceso Permitido",
       "/movimientos/edit/:id": "Acceso Permitido",
-      "/movimientos/delete/:id": "Acceso Permitido"
+      "/movimientos/delete/:id": "Acceso Permitido",
+
 
     },
     {

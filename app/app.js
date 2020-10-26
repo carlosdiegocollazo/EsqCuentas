@@ -5,6 +5,7 @@ const usuario = componenteusuario;
 const monedas = componentemoneda;
 const seguridad = componenteseguridad;
 const documento = componentedocumento;
+const banco = componentebanco;
 const proveedores = componenteproveedores;
 
 //const API = "https://server134-school.lexartlabs.com/api-or-dev/";
@@ -19,6 +20,7 @@ const routes = [
     { path: '/seguridad',name:"Seguridad", component: seguridad },
     { path: '/mesa',name:"Home", component: mesa,},
     { path: '/documentos',name:"Documentos", component: documento,},
+    { path: '/bancos',name:"Banco", component: banco,},
 ]
 
 const router = new VueRouter({

@@ -6,17 +6,16 @@
         <br>
         <H1 style="text-align-last: center; color: aliceblue;">Gestion de Proveedores</H1>
         <form style=" color: aliceblue; text-align: center;">
-
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="rutced" style=" color: aliceblue; text-align: center;">R.U.T. - Cedula</label>
-                    <input type="rutced" class="form-control inputform" name="rutced" v-model="registro.rutced"
+                    <input type="number" class="form-control inputform" name="rutced" v-model="registro.rutced"
                         placeholder="Ingrese RUT o Cedula del proveedor">
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="pwd" style=" color: aliceblue; text-align: center;">Razon Social</label>
-                    <input type="text" class="form-control inputform" name="pwd"
-                        placeholder="Razón Social del Proveedor" v-model="registro.pwd">
+                    <label for="razon" style=" color: aliceblue; text-align: center;">Razon Social</label>
+                    <input type="text" class="form-control inputform" name="razon"
+                        placeholder="Razón Social del Proveedor" v-model="registro.razon">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="fantasia" style=" color: aliceblue; text-align: center;">Nombre Fantasia</label>
@@ -31,14 +30,14 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
-                    <label for="nombres" style=" color: aliceblue; text-align: center;">Nombres</label>
-                    <input type="text" class="form-control inputform" name="nombres" placeholder="Ingrese Nombres"
-                        v-model="registro.nombres">
+                    <label for="nombre" style=" color: aliceblue; text-align: center;">Nombres</label>
+                    <input type="text" class="form-control inputform" name="nombre" placeholder="Ingrese Nombres"
+                        v-model="registro.nombre">
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="apellidos" style=" color: aliceblue; text-align: center;">Apellidos</label>
-                    <input type="text" class="form-control inputform" name="apellidos" placeholder="Ingrese Apellidos"
-                        v-model="registro.apellidos">
+                    <label for="apellido" style=" color: aliceblue; text-align: center;">apellido</label>
+                    <input type="text" class="form-control inputform" name="apellido" placeholder="Ingrese Apellido"
+                        v-model="registro.apellido">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="feching" style=" color: aliceblue; text-align: center;">Fecha Ingreso</label>
@@ -79,16 +78,18 @@
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label for="saldoincial" style=" color: aliceblue; text-align: center;">Saldo Inicial</label>
-                        <input type="number" class="form-control inputform" id="saldoincial" v-model="registro.saldoincial"
-                        v-model="registro.saldoincial">
+                        <input type="number" class="form-control inputform" id="saldoincial"
+                            v-model="registro.saldoincial" v-model="registro.saldoincial">
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="saldototal" style=" color: aliceblue; text-align: center;">Saldo Total o Actual</label>
-                        <input type="number" class="form-control inputform" id="saldototal" v-model="registro.saldototal"
-                        v-model="registro.saldototal">
+                        <label for="saldototal" style=" color: aliceblue; text-align: center;">Saldo Total o
+                            Actual</label>
+                        <input type="number" class="form-control inputform" id="saldototal"
+                            v-model="registro.saldototal" v-model="registro.saldototal">
                     </div>
                     <div class="form-group col-md-3" style="text-align: center;">
-                        <label for="codigomoneda" style=" color: aliceblue; text-align: center;">Moneda predeterminada</label>
+                        <label for="codigomoneda" style=" color: aliceblue; text-align: center;">Moneda
+                            predeterminada</label>
                         <select v-model="codigomoneda">
                             <option disabled value="">Moneda del Proveedor</option>
                             <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
@@ -130,19 +131,26 @@
                         <div class="col-mg-12">
                             <div class="table-responsive small table-striped  table-dark">
 
-                                <table class="table-responsive">
+                                <tr class="table-responsive">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th scope="col">ID</th>
+                                            <th scope="col" disabled>ID</th>
+                                            <th scope="col">R.U.T. - Cedula</th>
+                                            <th scope="col">Razon Social</th>
+                                            <th scope="col">Nombre Fantasia</th>
                                             <th scope="col">E-mail</th>
-                                            <th scope="col">Apellidos</th>
                                             <th scope="col">Nombres</th>
+                                            <th scope="col">Apellidos</th>
+                                            <th scope="col">Fecha Ingreso</th>
+                                            <th scope="col">Retorno Hasta</th>
                                             <th scope="col">Telefono</th>
                                             <th scope="col">Direccion</th>
                                             <th scope="col">Ciudad</th>
-                                            <th scope="col">Seguridad</th>
-                                            <th scope="col">Fecha Ingreso</th>
-                                            <th scope="col">Fecha Nacimiento</th>
+                                            <th scope="col">Moneda</th>
+                                            <th scope="col">Saldo Inicial</th>
+                                            <th scope="col">Saldo Total</th>
+                                            <th scope="col">% Ret.</th>
+                                            <th scope="col">Ret.Activo</th>
                                             <th scope="col">Observaciones</th>
                                             <th scope="col">Activo</th>
                                             <th scope="col">Gestion</th>
@@ -152,17 +160,32 @@
                                     <tbody>
                                         <tr v-for="(proveedores,index) in proveedores" style="color: aquamarine;">
                                             <td><input class="inputtabla" type="text" v-model="proveedores.idpro"
-                                                    size="3">
+                                                    size="3" disabled>
                                             </td>
-                                            <td><input class="inputtabla" type="mail" v-model="proveedores.rutced"
+                                            <td><input class="inputtabla" type="number" v-model="proveedores.rutced"
                                                     title="Haga click para editar y luego presione el botón Modificar">
                                             </td>
-                                            <td><input class="inputtabla" type="text" v-model="proveedores.apellidos"
+                                            <td><input class="inputtabla" type="mail" v-model="proveedores.razon"
                                                     title="Haga click para editar y luego presione el botón Modificar">
                                             </td>
-                                            <td><input class="inputtabla" type="text" v-model="proveedores.nombres"
+                                            <td><input class="inputtabla" type="mail" v-model="proveedores.fantasia"
                                                     title="Haga click para editar y luego presione el botón Modificar">
                                             </td>
+                                            <td><input class="inputtabla" type="mail" v-model="proveedores.email"
+                                                    title="Haga click para editar y luego presione el botón Modificar">
+                                            </td>
+                                            <td><input class="inputtabla" type="text" v-model="proveedores.nombre"
+                                                    title="Haga click para editar y luego presione el botón Modificar">
+                                            </td>
+                                            <td><input class="inputtabla" type="text" v-model="proveedores.apellido"
+                                                    title="Haga click para editar y luego presione el botón Modificar">
+                                            </td>
+                                            <td><input class="inputtabla" type="date" v-model="proveedores.feching"
+                                                    title="Haga click para editar y luego presione el botón Modificar"
+                                                    data-date-format="DD-MM-YYYY"></td>
+                                            <td><input class="inputtabla" type="date" v-model="proveedores.fechret"
+                                                    title="Haga click para editar y luego presione el botón Modificar"
+                                                    data-date-format="DD-MM-YYYY"></td>
                                             <td><input class="inputtabla" type="tel" v-model="proveedores.telefono"
                                                     title="Haga click para editar y luego presione el botón Modificar">
                                             </td>
@@ -172,15 +195,19 @@
                                             <td><input class="inputtabla" type="text" v-model="proveedores.ciudad"
                                                     title="Haga click para editar y luego presione el botón Modificar">
                                             </td>
-                                            <td><input class="inputtabla" type="text" v-model="proveedores.seguridad"
+                                            <td><input class="inputtabla" type="text" v-model="proveedores.retorno"
                                                     title="Haga click para editar y luego presione el botón Modificar">
                                             </td>
-                                            <td><input class="inputtabla" type="date" v-model="proveedores.feching"
-                                                    title="Haga click para editar y luego presione el botón Modificar"
-                                                    data-date-format="DD-MM-YYYY"></td>
-                                            <td><input class="inputtabla" type="date" v-model="proveedores.fechret"
-                                                    title="Haga click para editar y luego presione el botón Modificar"
-                                                    data-date-format="DD-MM-YYYY"></td>
+                                            <td><input class="inputtabla" type="text" v-model="proveedores.saldoincial"
+                                                    disabled
+                                                    title="Haga click para editar y luego presione el botón Modificar">
+                                            </td>
+                                            <td><input class="inputtabla" type="text" v-model="proveedores.saldototal"
+                                                    title="Haga click para editar y luego presione el botón Modificar">
+                                            </td>
+                                            <td><input class="inputtabla" type="text" v-model="proveedores.moneda"
+                                                    title="Haga click para editar y luego presione el botón Modificar">
+                                            </td>
                                             <td><input class="inputtabla" type="text"
                                                     v-model="proveedores.observaciones"
                                                     title="Haga click para editar y luego presione el botón Modificar">

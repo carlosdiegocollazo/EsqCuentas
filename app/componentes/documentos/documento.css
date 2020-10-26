@@ -14,14 +14,23 @@
     margin: 0;
     padding: 0;
 }
-input.inputtabla{
-border: none;
-background: transparent;
-color: white;
+input.inputtabla {
+    border: none;
+    background: transparent;
+    color: white;
+    text-align: right;
 }
 
-input.inputtabla:hover{
+input.inputtabla:hover {
     border: none;
     background: seagreen;
     color: white;
-    }
+}
+
+input.inputform:focus-visible {
+    border-style: solid;
+    border: 0;
+    border-color: rgb(0, 255, 13);
+    background: #dfe;
+    color: white;
+}

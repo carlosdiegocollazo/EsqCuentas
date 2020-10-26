@@ -18,10 +18,19 @@ input.inputtabla {
     border: none;
     background: transparent;
     color: white;
+    text-align: right;
 }
 
 input.inputtabla:hover {
     border: none;
     background: seagreen;
+    color: white;
+}
+
+input.inputform:focus-visible {
+    border-style: solid;
+    border: 0;
+    border-color: rgb(0, 255, 13);
+    background: #dfe;
     color: white;
 }

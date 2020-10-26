@@ -18,6 +18,7 @@ input.inputtabla {
     border: none;
     background: transparent;
     color: white;
+    text-align: right;
 }
 
 input.inputtabla:hover {
@@ -28,7 +29,8 @@ input.inputtabla:hover {
 
 input.inputform:focus-visible {
     border-style: solid;
+    border: 0;
     border-color: rgb(0, 255, 13);
-    background: rgb(161, 219, 241);
+    background: #dfe;
     color: white;
 }

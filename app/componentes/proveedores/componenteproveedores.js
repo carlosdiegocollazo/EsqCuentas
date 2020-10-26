@@ -97,10 +97,7 @@ let componenteproveedores = Vue.component('proveedor-component', function (resol
                         activo: 1,
                     }
                     console.log("lo que guarda en usuario", registro)
-                    if (this.registro.nombres !== "" & this.registro.apellidos !== "" & this.registro.email !== "" & this.devuelvomoneda.idmon !== "") {
-                        if (this.registro.activo == true) {
-                            this.registro.activo = 1
-                        }
+                    if (this.registro.rutced !== "" & this.registro.razon !== "" & this.registro.apellido !== "" & this.registro.nombre !== "" & this.devuelvomoneda.idmon !== "") {
                         axios.post(API + '/proveedores/new/', registro).then((res) => {
                             let resultado = res.data;
                             if (!res.data.error) {
@@ -110,7 +107,7 @@ let componenteproveedores = Vue.component('proveedor-component', function (resol
                             }
                         })
                     } else {
-                        alert("Debe ingresar nombres, apellidos, Moneda y E-mail");
+                        alert("Debe ingresar nombre, apellido, Moneda y E-mail");
                     }
                 },
 
@@ -239,11 +236,6 @@ let componenteproveedores = Vue.component('proveedor-component', function (resol
                 })
 
             },//fin del mounted
-
-
-
-
-
         }) //fin del resolve
     })
 })

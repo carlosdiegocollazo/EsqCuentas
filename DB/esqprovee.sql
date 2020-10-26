@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 24-10-2020 a las 20:09:54
+-- Tiempo de generación: 26-10-2020 a las 18:36:59
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -20,6 +20,33 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `esqprovee`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `bancos`
+--
+
+DROP TABLE IF EXISTS `bancos`;
+CREATE TABLE IF NOT EXISTS `bancos` (
+  `idbanco` int NOT NULL AUTO_INCREMENT,
+  `banco` text NOT NULL,
+  `moneda` int NOT NULL,
+  `cuenta` text NOT NULL,
+  `sucursal` text NOT NULL,
+  `activo` int NOT NULL,
+  PRIMARY KEY (`idbanco`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `bancos`
+--
+
+INSERT INTO `bancos` (`idbanco`, `banco`, `moneda`, `cuenta`, `sucursal`, `activo`) VALUES
+(1, 'undefined', 1, 'undefined', 'undefined', 1),
+(2, 'BROU DOLARES', 1, '0', '', 1),
+(3, '002 - Cordon', 0, 'undefined', 'undefined', 1),
+(4, '115 - Centro', 0, 'undefined', 'undefined', 1);
 
 -- --------------------------------------------------------
 
@@ -51,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `cotizacion` (
   `idcot` int NOT NULL AUTO_INCREMENT,
   `fechcot` varchar(10) NOT NULL,
   `moneda` int NOT NULL,
-  `impcot` int NOT NULL,
+  `cotizacion` int NOT NULL,
   `deldia` tinyint NOT NULL,
   `activo` int NOT NULL,
   PRIMARY KEY (`idcot`)
@@ -153,12 +180,11 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
   `email` text NOT NULL,
   `nombre` text NOT NULL,
   `apellido` text NOT NULL,
-  `fechingr` varchar(10) NOT NULL,
+  `feching` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `telefono` text NOT NULL,
   `direccion` text NOT NULL,
   `ciudad` text NOT NULL,
   `moneda` int NOT NULL,
-  `seguridad` int NOT NULL,
   `saldoinicial` int NOT NULL,
   `saldototal` int NOT NULL,
   `retorno` int NOT NULL,
@@ -167,16 +193,14 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
   `observaciones` text NOT NULL,
   `activo` tinyint(1) NOT NULL,
   PRIMARY KEY (`idpro`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `proveedores`
 --
 
-INSERT INTO `proveedores` (`idpro`, `rutced`, `razon`, `fantasia`, `email`, `nombre`, `apellido`, `fechingr`, `telefono`, `direccion`, `ciudad`, `moneda`, `seguridad`, `saldoinicial`, `saldototal`, `retorno`, `fechret`, `retactivo`, `observaciones`, `activo`) VALUES
-(1, '${usuario.razon}', '${usuario.apellido}', '', '', 'Administrador de EsQProvee', 'Esquema Servicios', '2020-09-01', '${usuario.telefono}', '${usuario.direccion}', '', 1, 0, 0, 0, 1, '2021-12-31', 1, '${usuario.observaciones}', 1),
-(3, '${proveedor.rutced}', '${proveedor.razon}', '${proveedor.nomfantasia}', '', '${proveedor.nombre}', '${proveedor.apellido}', '2020-09-01', '${proveedor.telefono}', '${proveedor.direccion}', '', 0, 0, 0, 0, 0, '2020-09-01', 0, '${proveedor.observaciones}', 0),
-(4, '${usuario.razon}', '${usuario.apellido}', '', '', 'Administrador de EsQProvee', 'Esquema Servicios', '0000-00-00', '${usuario.telefono}', '${usuario.direccion}', '', 1, 0, 0, 1000, 1, '2021-12-31', 1, '${usuario.observaciones}', 1);
+INSERT INTO `proveedores` (`idpro`, `rutced`, `razon`, `fantasia`, `email`, `nombre`, `apellido`, `feching`, `telefono`, `direccion`, `ciudad`, `moneda`, `saldoinicial`, `saldototal`, `retorno`, `fechret`, `retactivo`, `observaciones`, `activo`) VALUES
+(5, '123456789', 'Correa Hnos', 'Supermercado 18', 'mail@mail.com', 'Sergio ', 'Correa', '1985-01-01', '2413075', 'Sarandi y 18 de Julio', 'Rosario', 0, 0, 1500, 5, '2020-12-31', 0, '', 1);
 
 -- --------------------------------------------------------
 
