@@ -8,8 +8,8 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                         idbanco: "",
                         banco: "",
                         moneda: "",
-                        cuenta:"",
-                        sucursal:"",
+                        cuenta: "",
+                        sucursal: "",
                         activo: 1
                     },
                     devuelvomoneda: {
@@ -22,8 +22,8 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                         idbanco: "",
                         banco: "",
                         moneda: "",
-                        cuenta:"",
-                        sucursal:"",
+                        cuenta: "",
+                        sucursal: "",
                         activo: 1
                     },
                     codigomoneda: "",
@@ -36,10 +36,11 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                     registro = {
                         banco: this.registro.banco,
                         moneda: this.codigomoneda.idmon,
-                        banco: this.registro.cuenta,
-                        banco: this.registro.sucursal,
+                        cuenta: this.registro.cuenta,
+                        sucursal: this.registro.sucursal,
                         activo: this.registro.activo
                     }
+                    console.log("regsitro uqe viene del thml", this.registro)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     if (this.registro.banco !== "" & this.registro.cuenta !== "" & this.codigomoneda.idmon !== "") {
@@ -79,8 +80,8 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                                 idbanco: element.idbanco,
                                 banco: element.banco,
                                 moneda: element.moneda,
-                                banco: element.cuenta,
-                                banco: element.sucursal,
+                                cuenta: element.cuenta,
+                                sucursal: element.sucursal,
                                 activo: 1
                             }
                         }
@@ -140,7 +141,7 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                 const headtoken = { headers: { "mytoken": `${token}` } }
                 axios.get(API + '/bancos/all', headtoken).then((res) => {
                     let bancos = res.data.response;
-
+                    console.log("Bancos que devuevle el axios", bancos)
                     this.bancos = bancos
 
                 }),

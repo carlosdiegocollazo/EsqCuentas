@@ -11,17 +11,17 @@
                   <label for="banco" style=" color: aliceblue; text-align: center;"
                      title="Ingrese Nombre del Banco">Nombre del Banco</label>
                   <input type="text" class="form-control" name="banco" title="Nombre del Banco" v-model="registro.banco"
-                     placeholder="Ingrese el nombre del Banco">
+                     placeholder="Ingrese el nombre del Banco" style="text-align: left;">
                </div>
                <div>
                   <label for="cuenta" style=" color: aliceblue; text-align: center;"
-                     title="Nº de cuenta bancaria">Número de cuenta</label>
+                     title="Num de cuenta bancaria">Número de cuenta</label>
                   <input type="text" class="form-control" name="cuenta" title="Numero de cuenta"
-                     v-model="registro.cuenta" placeholder="Nº. Cuenta Bancaria">
+                     v-model="registro.cuenta" placeholder="Num. Cuenta Bancaria">
                </div>
                <div>
                   <label for="sucursal" style=" color: aliceblue; text-align: center;"
-                     title="Nº y Nombre de sucursal bancaria">Número y Nombre de sucursal</label>
+                     title="Num y Nombre de sucursal bancaria">Número y Nombre de sucursal</label>
                   <input type="text" class="form-control" name="sucursal" title="Número y Nombre de sucursal"
                      v-model="registro.sucursal" placeholder="Número y Nombre de sucursal">
                </div>
@@ -52,10 +52,10 @@
          <div class="container-fluid" style="margin-top: 50;">
             <!--comienzo de de tabla-->
             <template>
-               <div class="container">
+               <div class="container-fluid">
                   <div class="row">
                      <div class="col-md-12">
-                        <div class="table-responsive small table-striped accordion table-dark">
+                        <div class="table-responsive small table-striped  table-dark">
 
                            <table class="table">
                               <thead class="thead-dark" style="text-align: center;">
@@ -63,8 +63,8 @@
                                     <th scope="col">ID</th>
                                     <th scope="col">Banco</th>
                                     <th scope="col">Cod.Moneda</th>
-                                    <th scope="col">Nº Cuenta</th>
-                                    <th scope="col">Nº y Nom. Sucursal</th>
+                                    <th scope="col">Num Cuenta</th>
+                                    <th scope="col">Num y Nom. Sucursal</th>
                                     <th scope="col">Activo</th>
                                     <th scope="col">Acciones</th>
                                     <th scope="col">Acciones</th>
@@ -79,7 +79,7 @@
                                           title="Haga click para editar y luego presione el botón Modificar"></td>
                                     <td style="text-align: center;">
                                        <input class="inputtabla" type="number" v-model="banco.moneda"></td>
-                                    <input class="inputtabla" type="number" v-model="banco.cuenta"></td>
+                                    <input class="inputtabla" type="text" v-model="banco.cuenta"></td>
                                     <td><input class="inputtabla" type="text" v-model="banco.sucursal"
                                           title="Haga click para editar y luego presione el botón Modificar"></td>
                                     <td style="text-align: center;">
