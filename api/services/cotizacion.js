@@ -67,21 +67,19 @@ let cotizacion = {
 		let sql = `
 					INSERT INTO cotizacion
 					(
-					nrocheq,
 					fechcot,
 					moneda,
-					impcot,
+					cotizacion,
 					deldia,					
 					activo
 					)
 					VALUES
 					(
-					'${cotiza.nrocheq}',
 					'${cotiza.fechcot}',
 					'${cotiza.moneda}',
-					'${cotiza.impcot}',
+					'${cotiza.cotizacion}',
 					'${cotiza.deldia}',
-					'${cotiza.activo}'
+					1
 					)		
 				`
 		let response 	= {error: "No se pudo crear cotizacion"}
@@ -95,36 +93,7 @@ let cotizacion = {
 		return response;
 	},
 
-	actualizarcotiza: async function(cotiza, id){
-		let sql = `
-					UPDATE cotizacion
-					SET
-
-					nrocheq			='${cotiza.nrocheq}',
-					fechcot			='${cotiza.fechcot}',
-					moneda			='${cotiza.moneda}',
-					impcot			='${cotiza.impcot}',
-					deldia			='${cotiza.deldia}',
-					activo			='${cotiza.activo}
-					WHERE
-					cotizacion.idcot = '${id}'
-				`
-		let response 		= {};
-		let existecotiza 	= await this.obtenercotizaPorId(id);
-		if (!existecotiza.error) {
-			let resultado 	= await conn.query(sql);
-			if (resultado.code) {
-	 			response 	= {error: "Error en consulta SQL"};
-	 		}else if (resultado.affectedRows>0) {
-				response 	= {response: "Cotizacion actualizada correctamente"}
-			}else{
-				response 	= {error: "No se pudo actualizar el cotizacion"}
-			}
-		}else{
-			response 		= {error: `No existe cotizacion con Id: ${id}`}
-			}
-		return response;
-	},
+	
 
 	eliminarcotiza: async function(id){
 		let sql 		= `
