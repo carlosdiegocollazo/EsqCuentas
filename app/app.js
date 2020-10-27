@@ -1,8 +1,10 @@
+
 const notfound = componentenotfound;
 const home = componentehome;
 const mesa = componentemesa;
 const usuario = componenteusuario;
 const monedas = componentemoneda;
+const cheques = componentecheque;
 const seguridad = componenteseguridad;
 const documento = componentedocumento;
 const banco = componentebanco;
@@ -17,6 +19,7 @@ const routes = [
     { path: '/usuarios',name:"Personas", component: usuario },
     { path: '/proveedores',name:"Proveedores", component: proveedores },
     { path: '/monedas',name:"Finanzas", component: monedas },
+    { path: '/cheques',name:"Finanzas", component: cheques },
     { path: '/seguridad',name:"Seguridad", component: seguridad },
     { path: '/mesa',name:"Home", component: mesa,},
     { path: '/documentos',name:"Documentos", component: documento,},

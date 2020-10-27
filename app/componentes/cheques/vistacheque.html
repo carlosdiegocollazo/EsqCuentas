@@ -1,0 +1,142 @@
+<div class="inside">
+   <div class="container-fluid">
+      <menu-item></menu-item>
+      <router-view></router-view>
+      <!-- Div contenendor general-->
+      <H1 style="text-align-last: center; color: aliceblue;">Gestion de Cheques</H1>
+      <div class="row justify-content-center align-items-center" style="margin-top: 50px;">
+         <form>
+            <div class="form-row">
+               <div class="form-group col-md-4"></div>
+               <div class="form-group col-md-12">
+                  <label for="cheque" style=" color: aliceblue; text-align: center;"
+                     title="Ingrese Numero de Cheque">Numero de Cheque</label>
+                  <input type="text" class="form-control" name="cheque" title="Numero de Cheque"
+                     v-model="registro.cheque" placeholder="Ingrese el Numero de Cheque" style="text-align: left;">
+               </div>
+            </div>
+            <div class="form-row">
+
+               <div class="form-group col-md-2">
+                  <label for="codigobanco" style=" color: aliceblue; text-align: center;margin-top: 20px;">Banco</label>
+                  <select v-model="codigobanco">
+                     <option disabled value="">Seleccione</option>
+                     <option v-for="(codigobanco,index) in devuelvobanco" v-bind:value="codigobanco">
+                        {{codigobanco.idbanco}} {{codigobanco.banco}}
+                     </option>
+                  </select>
+               </div>
+               <div class="form-group col-md-6"></div>
+               <div class="form-group col-md-2">
+                  <label for="codigomoneda"
+                     style=" color: aliceblue; text-align: center;margin-top: 20px;">Moneda</label>
+                  <select v-model="codigomoneda">
+                     <option disabled value="">Seleccione</option>
+                     <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
+                        {{codigomoneda.idmon}} {{codigomoneda.moneda}}
+                     </option>
+                  </select>
+               </div>
+            </div>
+            <div class="form-row">
+               <div class="form-group col-md-4">
+                  <label for="fechemi" style="color: aliceblue; text-align: center;">Fecha Emision</label>
+                  <input type="date" class="form-control" id="fechemi" v-model="registro.fechemi"
+                     data-date-format="DD-MM-YYYY" min="01-01-2000">
+               </div>
+               <div class="form-group col-md-4"></div>
+               <div class="form-group col-md-4">
+                  <label for="fechpag" style="color: aliceblue; text-align: center;">Fecha Pago</label>
+                  <input type="date" class="form-control" id="fechpag" v-model="registro.fechpag"
+                     data-date-format="DD-MM-YYYY" min="01-01-2000">
+               </div>
+            </div>
+            <div class="form-row">
+               <div class="form-group col-md-4">
+                  <label for="fechcob" style="color: aliceblue; text-align: center;">Fecha Cobro</label>
+                  <input type="date" class="form-control" id="fechcob" v-model="registro.fechcob"
+                     data-date-format="DD-MM-YYYY" min="01-01-2000">
+               </div>
+               <div class="form-group col-md-4"></div>
+               <div class="form-group form-check col-md-4">
+                  <input type="checkbox" class="form-check-input" name="activo" v-model="registro.activo">
+                  <label class="form-check-label" for="activo"
+                     style="color: aliceblue; text-align: left;">Activo</label>
+               </div>
+            </div>
+            <button class="btn btn-primary" v-on:click="mostraractivos()" style="margin-left: 30px;">Mostrar
+               Activos</button>
+            <button class="btn btn-primary" v-on:click="mostrartodos()" style="margin-left: 30px;">Mostrar
+               Todos</button>
+            <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()"
+               style="margin-left: 30px;">Cancelar</button>
+            <button type="submit" class="btn btn-success" style="margin-left: 30px;"
+               v-on:click="crearcheques()">Ingresar</button>
+            <br><br>
+      </div>
+      </form>
+      <div class="container-fluid" style="margin-top: 50;">
+         <!--comienzo de de tabla-->
+         <template>
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="table-responsive small table-striped  table-dark">
+
+                        <table class="table">
+                           <thead class="thead-dark" style="text-align: center;">
+                              <tr>
+                                 <th scope="col">ID</th>
+                                 <th scope="col">Nro. Cheque</th>
+                                 <th scope="col">Banco</th>
+                                 <th scope="col">Moneda</th>
+                                 <th scope="col">F.Emision</th>
+                                 <th scope="col">F.Pago</th>
+                                 <th scope="col">F.Cobro</th>
+                                 <th scope="col">Activo</th>
+                                 <th scope="col">Acciones</th>
+                                 <th scope="col">Acciones</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr v-for="(cheque,index) in cheques" style="color: aquamarine;">
+                                 <td style="text-align: center;">
+                                    <input class="inputtabla" type="number" v-model="cheque.idbanco" size="3">
+                                 </td>
+                                 <td><input class="inputtabla" type="text" v-model="cheque.nrocheq"
+                                       title="Haga click para editar y luego presione el botón Modificar"></td>
+                                 <td><input class="inputtabla" type="text" v-model="cheque.banco"
+                                       title="Haga click para editar y luego presione el botón Modificar"></td>
+                                 <td style="text-align: center;">
+                                    <input class="inputtabla" type="number" v-model="cheque.moneda"></td>
+                                 <td style="text-align: center;">
+                                    <input class="inputtabla" type="date" v-model="cheque.fechemi"></td>
+                                 <td style="text-align: center;">
+                                    <input class="inputtabla" type="date" v-model="cheque.fechpag"
+                                       title="Haga click para editar y luego presione el botón Modificar"></td>
+                                 <td style="text-align: center;">
+                                    <input class="inputtabla" type="date" v-model="cheque.fechcob"
+                                       title="Haga click para editar y luego presione el botón Modificar"></td>
+                                 <td style="text-align: center;">
+                                    <input class="inputtabla" type="checkbox" v-model="banco.activo"></td>
+                                 <td><button class="btn btn-danger"
+                                       v-on:click="eliminarbancos(index,banco.idbanco)">Elimina</button></td>
+                                 <td><button class="btn btn-success"
+                                       v-on:click="actualizarbancos(index)">Modifica</button>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </template>
+
+      </div>
+      <!--find de tabla-->
+   </div>
+</div>
+<!-- Div contenendor general-->
+</div>

@@ -14,7 +14,8 @@
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.6",
-    "stack": "^0.1.0"
+    "stack": "^0.1.0",
+    "vue-simple-alert": "^1.1.1"
   },
   "devDependencies": {},
   "scripts": {

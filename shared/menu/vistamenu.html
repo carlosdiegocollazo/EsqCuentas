@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
     <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >-->
-    <a class="navbar-brand" href="#"><img src="../../../shared/media/esqlogo_med.svg" class="animate__animated zoomIn" alt=""></a>
+    <a class="navbar-brand" href="#"><img src="../../../shared/media/esqlogo_med.svg" class="animate__animated zoomIn"
+            alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -11,25 +12,25 @@
                 <a class="nav-link" href="#">Movimientos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Cheques</a>
+                <router-link to="/cheques" class="nav-link" href="cheques">Cheques</a>
             </li>
             <li class="nav-item">
-                <router-link to="/monedas" class="nav-link" href="monedas" >Monedas</a>
+                <router-link to="/monedas" class="nav-link" href="monedas">Monedas</a>
             </li>
             <li class="nav-item">
-                <router-link to="/bancos" class="nav-link" href="bancos" >Bancos</a>
+                <router-link to="/bancos" class="nav-link" href="bancos">Bancos</a>
             </li>
             <li class="nav-item">
-                <router-link to="/seguridad" class="nav-link" href="seguridad" >Seguridad</a>
+                <router-link to="/documentos" class="nav-link" href="documentos">Documentos</a>
             </li>
             <li class="nav-item">
-                <router-link to="/documentos" class="nav-link" href="documentos" >Documentos</a>
+                <router-link to="/proveedores" class="nav-link" href="proveedores">Proveedores</a>
             </li>
             <li class="nav-item">
-                <router-link to="/usuarios" class="nav-link" href="usuarios" >Usuarios</a>
+                <router-link to="/usuarios" class="nav-link" href="usuarios">Usuarios</a>
             </li>
             <li class="nav-item">
-                <router-link to="/proveedores" class="nav-link" href="proveedores" >Proveedores</a>
+                <router-link to="/seguridad" class="nav-link" href="seguridad">Seguridad</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -47,7 +48,9 @@
                 <router-link to="/" class="nav-link" href="#">Logoff</router-link>
             </li>
         </ul>
-        <div class="container-fluid animate__animated animate__backInLeft " style="justify-content: flex-end;"><h4 style="color: whitesmoke;">  {{nombreusuario}}</h4></div>
-        
+        <div class="container-fluid animate__animated animate__backInLeft " style="justify-content: flex-end;">
+            <h4 style="color: whitesmoke;"> {{nombreusuario}}</h4>
+        </div>
+
     </div>
 </nav>

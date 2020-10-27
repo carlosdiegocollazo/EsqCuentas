@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 26-10-2020 a las 18:36:59
+-- Tiempo de generación: 27-10-2020 a las 13:57:01
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -30,23 +30,21 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `bancos`;
 CREATE TABLE IF NOT EXISTS `bancos` (
   `idbanco` int NOT NULL AUTO_INCREMENT,
-  `banco` text NOT NULL,
+  `banco` text CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `moneda` int NOT NULL,
-  `cuenta` text NOT NULL,
-  `sucursal` text NOT NULL,
+  `cuenta` text CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `sucursal` text CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `activo` int NOT NULL,
   PRIMARY KEY (`idbanco`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `bancos`
 --
 
 INSERT INTO `bancos` (`idbanco`, `banco`, `moneda`, `cuenta`, `sucursal`, `activo`) VALUES
-(1, 'undefined', 1, 'undefined', 'undefined', 1),
-(2, 'BROU DOLARES', 1, '0', '', 1),
-(3, '002 - Cordon', 0, 'undefined', 'undefined', 1),
-(4, '115 - Centro', 0, 'undefined', 'undefined', 1);
+(1, 'BROU Pesos', 0, '123456789101112', '001 - Centro', 1),
+(2, 'BROUDolares', 1, '987654321123', '001 - Centro', 1);
 
 -- --------------------------------------------------------
 
@@ -58,7 +56,7 @@ DROP TABLE IF EXISTS `cheques`;
 CREATE TABLE IF NOT EXISTS `cheques` (
   `idcheq` int NOT NULL AUTO_INCREMENT,
   `nrocheq` int NOT NULL,
-  `banco` text NOT NULL,
+  `banco` int NOT NULL,
   `moneda` int NOT NULL,
   `fechemi` varchar(10) NOT NULL,
   `fechpag` varchar(10) NOT NULL,
@@ -93,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `cotizacion` (
 DROP TABLE IF EXISTS `documentos`;
 CREATE TABLE IF NOT EXISTS `documentos` (
   `idtipdoc` int NOT NULL AUTO_INCREMENT,
-  `tipodoc` text NOT NULL,
+  `tipodoc` text CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `moneda` int NOT NULL,
   `activo` tinyint(1) NOT NULL,
   PRIMARY KEY (`idtipdoc`)

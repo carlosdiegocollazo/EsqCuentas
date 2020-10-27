@@ -13,6 +13,7 @@ require('./routes/seguridad-routes.js')(app);
 require('./routes/documentos-routes.js')(app);
 require('./routes/cheques-routes.js')(app);
 require('./routes/bancos-routes.js')(app);
+require('./routes/cheques-routes.js')(app);
 require('./routes/cotizacion-routes.js')(app);
 
 

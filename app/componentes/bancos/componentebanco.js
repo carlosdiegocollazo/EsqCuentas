@@ -18,6 +18,7 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                         divide: "",
                         activo: ""
                     },
+
                     bancos: {
                         idbanco: "",
                         banco: "",
@@ -27,8 +28,6 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                         activo: 1
                     },
                     codigomoneda: "",
-                    //banco: [],
-
                 }
             },
             methods: {
@@ -40,7 +39,7 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                         sucursal: this.registro.sucursal,
                         activo: this.registro.activo
                     }
-                    console.log("regsitro uqe viene del thml", this.registro)
+                    //console.log("regsitro uqe viene del thml", this.registro)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     if (this.registro.banco !== "" & this.registro.cuenta !== "" & this.codigomoneda.idmon !== "") {
@@ -62,7 +61,7 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                     let idbanco2 = res2
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
-                    this.bancos.splice(idbanco, 1) //elimina la linea de la table y espues de la base
+                    this.bancos.splice(idbanco, 1)
                     axios.put(API + '/bancos/delete/' + idbanco2, {}, headtoken).then((res) => {
                         alert("Tipo de banco eliminado correctamente");
 
@@ -118,7 +117,7 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                         this.bancos = bancos
                     })
                 },
-                obtenermoneda: function () {//cambiar para usar con monedas
+                obtenermoneda: function () {
                     let token = localStorage.getItem("token");
                     this.seguridad = localStorage.getItem("seguridad")
                     const headtoken = { headers: { "mytoken": `${token}` } }
@@ -129,19 +128,19 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                     })
 
                 },
+
                 cerrarsesion: function () {
                     router.push('/mesa')
                 }
             },// fin el method
 
             mounted: function () {
-                //////console.log(this.$router)
                 let token = localStorage.getItem("token");
                 this.seguridad = localStorage.getItem("seguridad")
                 const headtoken = { headers: { "mytoken": `${token}` } }
                 axios.get(API + '/bancos/all', headtoken).then((res) => {
                     let bancos = res.data.response;
-                    console.log("Bancos que devuevle el axios", bancos)
+                    //console.log("Bancos que devuevle el axios", bancos)
                     this.bancos = bancos
 
                 }),
