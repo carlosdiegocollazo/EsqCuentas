@@ -130,7 +130,6 @@
                     <div class="row">
                         <div class="col-mg-12">
                             <div class="table-responsive small table-striped  table-dark">
-
                                 <tr class="table-responsive">
                                     <thead class="thead-dark">
                                         <tr>
@@ -158,7 +157,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(proveedores,index) in proveedores" style="color: aquamarine;">
+                                        <tr v-for="(proveedores,index) in proveedores">
                                             <td><input class="inputtabla" type="text" v-model="proveedores.idpro"
                                                     size="3" disabled>
                                             </td>
@@ -195,7 +194,7 @@
                                             <td><input class="inputtabla" type="text" v-model="proveedores.ciudad"
                                                     title="Haga click para editar y luego presione el botón Modificar">
                                             </td>
-                                            <td><input class="inputtabla" type="text" v-model="proveedores.retorno"
+                                            <td><input class="inputtabla" type="text" v-model="proveedores.moneda"
                                                     title="Haga click para editar y luego presione el botón Modificar">
                                             </td>
                                             <td><input class="inputtabla" type="text" v-model="proveedores.saldoincial"
@@ -205,8 +204,11 @@
                                             <td><input class="inputtabla" type="text" v-model="proveedores.saldototal"
                                                     title="Haga click para editar y luego presione el botón Modificar">
                                             </td>
-                                            <td><input class="inputtabla" type="text" v-model="proveedores.moneda"
+                                            <td><input class="inputtabla" type="text" v-model="proveedores.retorno"
                                                     title="Haga click para editar y luego presione el botón Modificar">
+                                            </td>
+                                            <td><input class="inputtabla" type="checkbox" v-model="proveedores.retactivo"
+                                                title="Haga click para editar y luego presione el botón Modificar">
                                             </td>
                                             <td><input class="inputtabla" type="text"
                                                     v-model="proveedores.observaciones"

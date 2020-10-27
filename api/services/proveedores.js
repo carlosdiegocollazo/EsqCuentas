@@ -19,8 +19,7 @@ let proveedor = {
 
 	obtenerproveedores: async function(){
 		let sql 		= `
-							SELECT * FROM proveedores
-							WHERE proveedores.activo = 1
+		SELECT * FROM proveedores INNER JOIN monedas ON proveedores.moneda = monedas.idmon where proveedores.activo =1 order by proveedores.idpro asc
 						`
 		let response 	= {error: "No se encontraron proveedores"}
 		let resultado 	= await conn.query(sql);
@@ -34,7 +33,7 @@ let proveedor = {
 
 	obtenerproveedoresall: async function(){
 		let sql 		= `
-							SELECT * FROM proveedores
+		SELECT * FROM proveedores INNER JOIN monedas ON proveedores.moneda = monedas.idmon order by proveedores.idpro asc
 						`
 		let response 	= {error: "No se encontraron proveedores"}
 		let resultado 	= await conn.query(sql);

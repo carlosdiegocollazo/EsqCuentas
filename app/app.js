@@ -19,7 +19,7 @@ const routes = [
     { path: '/usuarios',name:"Personas", component: usuario },
     { path: '/proveedores',name:"Proveedores", component: proveedores },
     { path: '/monedas',name:"Finanzas", component: monedas },
-    { path: '/cheques',name:"Finanzas", component: cheques },
+    { path: '/cheques',name:"Cheques", component: cheques },
     { path: '/seguridad',name:"Seguridad", component: seguridad },
     { path: '/mesa',name:"Home", component: mesa,},
     { path: '/documentos',name:"Documentos", component: documento,},

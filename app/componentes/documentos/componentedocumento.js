@@ -78,7 +78,7 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                                 idtipdoc: element.idtipdoc,
                                 tipodoc: element.tipodoc,
                                 moneda: element.moneda,
-                                activo: 1
+                                activo: element.activo,
                             }
                         }
                     }
