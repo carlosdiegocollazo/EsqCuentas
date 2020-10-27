@@ -19,7 +19,7 @@ let monedas = {
 	
 	obtenermonedas: async function(){
 		let sql 		= `
-							SELECT * FROM monedas where activo=1
+							SELECT * FROM monedas where monedas.activo=1 order by monedas.idmon asc
 						`
 		let response 	= {error: "No se encontraron monedas"}
 		let resultado 	= await conn.query(sql);
@@ -33,7 +33,7 @@ let monedas = {
 
 	obtenermonedasall: async function(){
 		let sql 		= `
-							SELECT * FROM monedas
+							SELECT * FROM monedas order by monedas.idmon asc
 						`
 		let response 	= {error: "No se encontraron monedas"}
 		let resultado 	= await conn.query(sql);

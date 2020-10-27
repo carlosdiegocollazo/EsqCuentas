@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 27-10-2020 a las 13:57:01
+-- Tiempo de generación: 27-10-2020 a las 17:45:17
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -102,9 +102,9 @@ CREATE TABLE IF NOT EXISTS `documentos` (
 --
 
 INSERT INTO `documentos` (`idtipdoc`, `tipodoc`, `moneda`, `activo`) VALUES
-(32, 'Factura Contado', 1, 1),
+(32, 'Factura Contado', 0, 1),
 (33, 'cambio de tareas', 0, 0),
-(34, 'Factura a paar con especias', 32, 1);
+(34, 'Factura Credito', 0, 1);
 
 -- --------------------------------------------------------
 

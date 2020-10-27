@@ -19,7 +19,7 @@ let cheques = {
 
 	obtenercheques: async function () {
 		let sql = `
-							SELECT * FROM cheques where activo=1
+		SELECT *from cheques INNER JOIN monedas ON cheques.moneda = monedas.idmon JOIN bancos ON cheques.banco = bancos.idbanco where cheques.activo=1 order by cheques.fechemi DESC 
 						`
 		let response = { error: "No se encontraron cheques" }
 		let resultado = await conn.query(sql);
@@ -33,7 +33,7 @@ let cheques = {
 
 	obtenerchequesall: async function () {
 		let sql = `
-							SELECT * FROM cheques		
+		SELECT *from cheques INNER JOIN monedas ON cheques.moneda = monedas.idmon JOIN bancos ON cheques.banco = bancos.idbanco order by cheques.fechemi DESC 		
 						`
 		let response = { error: "No se encontraron cheques" }
 		let resultado = await conn.query(sql);
