@@ -9,82 +9,82 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="rutced" style=" color: aliceblue; text-align: center;">R.U.T. - Cedula</label>
-                    <input type="number" class="form-control inputform" name="rutced" v-model="registro.rutced"
+                    <input type="number" class="form-control inputformu" name="rutced" v-model="registro.rutced"
                         placeholder="Ingrese RUT o Cedula del proveedor">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="razon" style=" color: aliceblue; text-align: center;">Razon Social</label>
-                    <input type="text" class="form-control inputform" name="razon"
+                    <input type="text" class="form-control inputformu" name="razon"
                         placeholder="Razón Social del Proveedor" v-model="registro.razon">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="fantasia" style=" color: aliceblue; text-align: center;">Nombre Fantasia</label>
-                    <input type="text" class="form-control inputform" name="fantasia"
+                    <input type="text" class="form-control inputformu" name="fantasia"
                         placeholder="Nombre Fantasia del proveedor" v-model="registro.fantasia">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="email" style=" color: aliceblue; text-align: center;">E-Mail</label>
-                    <input type="text" class="form-control inputform" name="email"
+                    <input type="text" class="form-control inputformu" name="email"
                         placeholder="Ingrese direccion de E-mail" v-model="registro.email">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="nombre" style=" color: aliceblue; text-align: center;">Nombres</label>
-                    <input type="text" class="form-control inputform" name="nombre" placeholder="Ingrese Nombres"
+                    <input type="text" class="form-control inputformu" name="nombre" placeholder="Ingrese Nombres"
                         v-model="registro.nombre">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="apellido" style=" color: aliceblue; text-align: center;">apellido</label>
-                    <input type="text" class="form-control inputform" name="apellido" placeholder="Ingrese Apellido"
+                    <input type="text" class="form-control inputformu" name="apellido" placeholder="Ingrese Apellido"
                         v-model="registro.apellido">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="feching" style=" color: aliceblue; text-align: center;">Fecha Ingreso</label>
-                    <input type="date" class="form-control inputform" id="feching" v-model="registro.feching"
+                    <input type="date" class="form-control inputformu" id="feching" v-model="registro.feching"
                         v-model="registro.feching" data-date-format="DD-MM-YYYY" min="01-01-2000">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="fechret" style=" color: aliceblue; text-align: center;">Fecha Retorno</label>
-                    <input type="date" class="form-control inputform" id="fechret" v-model="registro.fechret"
+                    <input type="date" class="form-control inputformu" id="fechret" v-model="registro.fechret"
                         v-model="registro.fechret" data-date-format="DD-MM-YYYY" min="01-01-2000" max="31-12-2020">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="telefono" style=" color: aliceblue; text-align: center;">Telefono</label>
-                    <input type="tel" class="form-control inputform" name="telefono" placeholder="Ingrese telefono"
+                    <input type="tel" class="form-control inputformu" name="telefono" placeholder="Ingrese telefono"
                         v-model="registro.telefono">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="direccion" style=" color: aliceblue; text-align: center;">Direccion</label>
-                    <input type="text" class="form-control inputform" name="direccion" placeholder="Ingrese Direccion"
+                    <input type="text" class="form-control inputformu" name="direccion" placeholder="Ingrese Direccion"
                         v-model="registro.direccion">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="ciudad" style=" color: aliceblue; text-align: center;">Ciudad</label>
-                    <input type="text" class="form-control inputform" id="ciudad" placeholder="Ingrese Ciudad"
+                    <input type="text" class="form-control inputformu" id="ciudad" placeholder="Ingrese Ciudad"
                         v-model="registro.ciudad">
                 </div>
                 <div class="form-group col-md-2">
                     <label for="retorno" style=" color: aliceblue; text-align: center;">% de Retorno</label>
-                    <input type="number" class="form-control inputform" id="retorno" placeholder="% de retorno"
+                    <input type="number" class="form-control inputformu" id="retorno" placeholder="% de retorno"
                         v-model="registro.retorno">
                 </div>
                 <div class="form-group col-md-1" style="text-align: center;">
                     <label for="retactivo" style=" color: aliceblue; text-align: center;">Retorno Activo</label>
-                    <input type="checkbox" class="form-control inputform" id="retactivo" v-model="registro.retactivo">
+                    <input type="checkbox" class="form-control inputformu" id="retactivo" v-model="registro.retactivo">
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label for="saldoincial" style=" color: aliceblue; text-align: center;">Saldo Inicial</label>
-                        <input type="number" class="form-control inputform" id="saldoincial"
+                        <input type="number" class="form-control inputformu" id="saldoincial"
                             v-model="registro.saldoincial" v-model="registro.saldoincial">
                     </div>
                     <div class="form-group col-md-3">
                         <label for="saldototal" style=" color: aliceblue; text-align: center;">Saldo Total o
                             Actual</label>
-                        <input type="number" class="form-control inputform" id="saldototal"
+                        <input type="number" class="form-control inputformu" id="saldototal"
                             v-model="registro.saldototal" v-model="registro.saldototal">
                     </div>
                     <div class="form-group col-md-3" style="text-align: center;">
@@ -99,14 +99,14 @@
                     </div>
                     <div class="form-group col-md-3" style="text-align: center;">
                         <label for="activo" style=" color: aliceblue;">Activo</label>
-                        <input type="checkbox" class="form-control inputform" id="activo" v-model="registro.activo">
+                        <input type="checkbox" class="form-control inputformu" id="activo" v-model="registro.activo">
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="observaciones" style=" color: aliceblue; text-align: center;">Observaciones</label>
-                    <input type="text" class="form-control inputform" id="observaciones"
+                    <input type="text" class="form-control inputformu" id="observaciones"
                         placeholder="Ingrese observaciones o comentarios" v-model="registro.observaciones">
                 </div>
 
