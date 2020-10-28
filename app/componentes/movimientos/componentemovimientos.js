@@ -47,6 +47,7 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         activo: 1
                     },
                     devuelvoproveedor: {
+                        idprov:"",
                         rutced: "",
                         razon: "",
                         fantasia: "",

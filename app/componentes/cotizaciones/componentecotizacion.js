@@ -1,48 +1,52 @@
-let componentedocumento = Vue.component('documentos-component', function (resolve) {
-    axios.get('./app/componentes/documentos/vistadocumento.html').then(function (view) {
+let componentecotizacion = Vue.component('cotizaciones-component', function (resolve) {
+    axios.get('./app/componentes/cotizaciones/vistacotizacion.html').then(function (view) {
         resolve({
             template: view.data,
             data: function () {
                 return {
                     registro: {
                         idcot: "",
-                        tipodfehcaoc: "",
+                        fechcot: "",
                         moneda: "",
+                        cotizacion: "",
+                        deldia: 0,
                         activo: 1
                     },
                     devuelvomoneda: {
                         idmon: "",
                         moneda: "",
                         divide: "",
-                        activo: ""
+                        activo: 1
                     },
-                    documentos: {
-                        idtipdoc: "",
-                        tipodoc: "",
+                    cotizaciones: {
+                        idcot: "",
+                        fechcot: "",
                         moneda: "",
-                        activo: ""
+                        cotizacion: "",
+                        deldia: 0,
+                        activo: 1
                     },
                     codigomoneda: "",
-                    tipodoc: [],
+                    codigocotizacion:"",
+
 
                 }
             },
             methods: {
-                creardocumentos: function () {
+                crearcotizaciones: function () {
                     registro = {
-                        tipodoc: this.registro.tipodoc,
+                        fechcot: this.registro.fechcot,
                         moneda: this.codigomoneda.idmon,
+                        cotizacion: this.registro.cotizacion,
+                        deldia: this.registro.deldia,
                         activo: this.registro.activo
                     }
-                    //  ////console.log("registro que viene desde el html", registro)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     if (this.registro.tipodoc !== "" & this.codigomoneda.idmon !== "") {
-                        //////console.log("resultado antes del axios", registro)
-                        axios.post(API + '/documentos/new', registro, headtoken).then((res) => {
+                        axios.post(API + '/cotizacion/new', registro, headtoken).then((res) => {
                             let resultado = res.data;
-                            ////console.log("lo que resutla del axios despues", resultado)
-                            alert("Tipo de documentos creado correctamente");
+                            alert("Tipo de cotizaciones creado correctamente");
                             if (resultado.response) {
                                 router.push({ path: '/mesa/' });
                             } else {
@@ -50,51 +54,32 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                             }
                         })
                     } else {
-                        alert("Descripcion de documentos y Moneda no puede estar vacios");
+                        alert("Descripcion de cotizaciones y Moneda no puede estar vacios");
                     }
                 },
-                eliminardocumentos: function (res, res2) {
-                    let idtipdoc = res
-                    let idtipdoc2 = res2
+                eliminarcotizacion: function (res, res2) {
+                    let idcot = res
+                    let idcot2 = res2
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
-                    this.documentos.splice(idtipdoc, 1) //elimina la linea de la table y espues de la base
-                    axios.put(API + '/documentos/delete/' + idtipdoc2, {}, headtoken).then((res) => {
-                        alert("Tipo de documento eliminado correctamente");
+                    this.cotizaciones.splice(idcot, 1) //elimina la linea de la table y espues de la base
+                    axios.put(API + '/cotizacion/delete/' + idcot2, {}, headtoken).then((res) => {
+                        alert("cotizaciones", idcot2, " eliminada correcatmente.");
+
                     })
 
                 },
-                actualizardocumentos: function (res2) {
-                    let modificodocumento = {}
-                    let documentos = this.documentos
-                    for (let index = 0; index < documentos.length; index++) {
-                        const element = documentos[index];
-                        if (index == res2) {
-                            modificodocumento = {
-                                idtipdoc: element.idtipdoc,
-                                tipodoc: element.tipodoc,
-                                moneda: element.moneda,
-                                activo: element.activo,
-                            }
-                        }
-                    }
-                    let token = localStorage.getItem("token");
-                    const headtoken = { headers: { "mytoken": `${token}` } }
-                    axios.put(API + '/documentos/edit/' + modificodocumento.idtipdoc, modificodocumento, headtoken).then((res) => {
-                        axios.get(API + '/documentos/all', headtoken).then((res) => {
-                            alert("Documento, modificado y activo en forma correcta.");
-                        })
-                    })
-                },
+
                 mostrartodos: function () {
                     let token = localStorage.getItem("token");
 
                     this.seguridad = localStorage.getItem("seguridad")
                     let id = localStorage.getItem("idusuario")
                     const headtoken = { headers: { "mytoken": `${token}` } }
-                    axios.get(API + '/documentos/allall', headtoken).then((res) => {
-                        let documentos = res.data.response;
-                        this.documentos = documentos
+                    axios.get(API + '/cotizacion/allall', headtoken).then((res) => {
+                        let cotizaciones = res.data.response;
+
+                        this.cotizaciones = cotizaciones
                     })
                 },
                 mostraractivos: function () {
@@ -102,9 +87,10 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                     this.seguridad = localStorage.getItem("seguridad")
                     let id = localStorage.getItem("idusuario")
                     const headtoken = { headers: { "mytoken": `${token}` } }
-                    axios.get(API + '/documentos/all', headtoken).then((res) => {
-                        let documentos = res.data.response;
-                        this.documentos = documentos
+                    axios.get(API + '/cotizacion/all', headtoken).then((res) => {
+                        let cotizaciones = res.data.response;
+
+                        this.cotizaciones = cotizaciones
                     })
                 },
                 obtenermoneda: function () {//cambiar para usar con monedas
@@ -114,6 +100,7 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                     axios.get(API + '/monedas/all', headtoken).then((res) => {
                         devuelvomoneda = res.data.response;
                         this.devuelvomoneda = devuelvomoneda
+
                     })
 
                 },
@@ -123,12 +110,13 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
             },// fin el method
 
             mounted: function () {
+
                 let token = localStorage.getItem("token");
                 this.seguridad = localStorage.getItem("seguridad")
                 const headtoken = { headers: { "mytoken": `${token}` } }
-                axios.get(API + '/documentos/all', headtoken).then((res) => {
-                    let documentos = res.data.response;
-                    this.documentos = documentos
+                axios.get(API + '/cotizacion/all', headtoken).then((res) => {
+                    let cotizaciones = res.data.response;
+                    this.cotizaciones = cotizaciones
 
                 }),
                     axios.get(API + '/monedas/all', headtoken).then((res) => {

@@ -7,40 +7,81 @@
         <H1 style="text-align-last: center; color: aliceblue;">Ingreso de Movimientos por Proveedor</H1>
         <form style=" color: aliceblue; text-align: center;">
             <div class="form-row">
-                <div class="form-group col-md-3">
-                    <select v-model="codigodocumento">
-                        <option disabled value="">Tipo Documento</option>
-                        <option v-for="(documento,index) in devuelvodocumento" v-bind:value="codigodocumento">
+                <div class="form-group col-md-12">
+                    <select v-model="codigoproveedor" title="Proveedor que sera asociado a estas facturas ingresadas">
+                        <option value="">Proveedor</option>
+                        <option v-for="(codigoproveedor,index) in devuelvoproveedor" v-bind:value="codigoproveedor">
+                            {{codigoproveedor.idpro}} | {{codigoproveedor.razon}}
+                        </option>
+                        <h4 v-bind:value="codigoproveedor"></h4>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <select v-model="codigodocumento" title="Seleccione el tipo de documento">
+                        <option value="">Tipo Documento</option>
+                        <option v-for="(codigodocumento,index) in devuelvodocumento" v-bind:value="codigodocumento">
                             {{codigodocumento.idtipdoc}} | {{codigodocumento.tipodoc}}
                         </option>
                     </select>
                 </div>
-                <div class="form-group col-md-3">
-                    <input type="text" style="text-align: center;" class="form-control movimientofrm" name="rutced"
-                        v-model="registro.rutced" placeholder="Ingrese Nº Factura">
+                <div class="form-group col-md-2">
+                    <input type="text" style="text-align: center;" class="form-control movimientofrm" name="nrofac"
+                        v-model="registro.nrofac" placeholder="Ingrese Nº Factura" title="Ingresar número de factura">
                 </div>
-                <div class="form-group col-md-3" style="text-align: center;">
-                    <label for="codigomoneda" style=" color: aliceblue; text-align: center;">Moneda
-                        predeterminada</label>
-                    <select v-model="codigomoneda">
-                        <option disabled value="">Moneda del Proveedor</option>
+                <div class="form-group col-md-2">
+                    <input type="date" style="text-align: center;" class="form-control movimientofrm" name="feching"
+                        v-model="registro.feching" placeholder="Fecha Ingreso"
+                        title="Ingresar fecha de ingreso de factura">
+                </div>
+                <div class="form-group col-md-2">
+                    <input type="date" style="text-align: center;" class="form-control movimientofrm" name="fechpag"
+                        v-model="registro.fechpag" placeholder="Fecha Ingreso"
+                        title="Ingresar fecha en que pago de la factura">
+                </div>
+                <div class="form-group col-md-2" style="text-align: center; margin-left: 0px;">
+                    <select v-model="codigomoneda" title="Seleccionar moneda de la factura">
+                        <option disabled value="">Moneda</option>
                         <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
                             {{codigomoneda.idmon}} {{codigomoneda.moneda}}
                         </option>
                     </select>
                 </div>
-                <div class="form-group col-md-3" style="text-align: center;">
-                    <label for="activo" style=" color: aliceblue;">Activo</label>
-                    <input type="checkbox" class="form-control inputform" id="activo" v-model="registro.activo">
+                <div class="form-group col-md-1">
+                    <input type="text" style="text-align: center;" class="form-control movimientofrm" name="nrocheq"
+                        v-model="registro.nrocheq" placeholder="Nª Cheque" title="Numero de cheque">
+                </div>
+                <div class="form-group col-md-1">
+                    <input type="date" style="text-align: center;" class="form-control movimientofrm" name="fechcheq"
+                        v-model="registro.fechcheq" placeholder="Fecha Cheque" title="Fecha del cheque">
+                </div>
+                <div class="form-group col-md-1">
+                    <input type="number" style="text-align: center;" class="form-control movimientofrm" name="debe"
+                        v-model="registro.debe" placeholder="Debe" title="Debe">
+                </div>
+                <div class="form-group col-md-1">
+                    <input type="number" style="text-align: center;" class="form-control movimientofrm" name="haber"
+                        v-model="registro.haber" placeholder="Haber" title="Haber">
+                </div>
+                <div class="form-group col-md-1">
+                    <input type="number" style="text-align: center;" class="form-control movimientofrm" name="saldo"
+                        v-model="registro.saldo" placeholder="Saldo" title="Saldo">
+                </div>
+                <div class="form-group col-md-1">
+                    <input type="number" style="text-align: center;" class="form-control movimientofrm" name="saldtot"
+                        v-model="registro.saldtot" placeholder="Saldo Total" title="Saldo Total">
+                </div>
+                <div class="form-group col-md-1">
+                    <input type="number" style="text-align: center;" class="form-control movimientofrm" name="nrorec"
+                        v-model="registro.nrorec" placeholder="Recibo Nº" title="Recibo Nº">
+                </div>
+                <div class="form-group col-md-12">
+                    <input type="text" class="form-control inputform movimientofrm" id="observaciones"
+                        placeholder="Ingrese observaciones o comentarios" v-model="registro.observaciones">
                 </div>
             </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-12">
-            <label for="observaciones" style=" color: aliceblue; text-align: center;">Observaciones</label>
-            <input type="text" class="form-control inputform" id="observaciones"
-                placeholder="Ingrese observaciones o comentarios" v-model="registro.observaciones">
-        </div>
+
 
         <button class="btn btn-primary" v-on:click="mostraractivos()" style="margin-left: 30px;">Mostrar
             Activos</button>
@@ -78,7 +119,6 @@
                                         <th scope="col">% Ret.</th>
                                         <th scope="col">Ret.Activo</th>
                                         <th scope="col">Observaciones</th>
-                                        <th scope="col">Activo</th>
                                         <th scope="col">Gestion</th>
                                         <th scope="col">Gestion</th>
                                     </tr>
