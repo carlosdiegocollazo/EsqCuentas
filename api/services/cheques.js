@@ -19,7 +19,7 @@ let cheques = {
 
 	obtenercheques: async function () {
 		let sql = `
-		SELECT *from cheques INNER JOIN monedas ON cheques.moneda = monedas.idmon JOIN bancos ON cheques.banco = bancos.idbanco where cheques.activo=1 order by cheques.fechemi DESC 
+		SELECT * from cheques INNER JOIN monedas ON cheques.moneda = monedas.idmon JOIN bancos ON cheques.banco = bancos.idbanco where cheques.activo=1 order by cheques.fechemi DESC 
 						`
 		let response = { error: "No se encontraron cheques" }
 		let resultado = await conn.query(sql);
@@ -33,7 +33,7 @@ let cheques = {
 
 	obtenerchequesall: async function () {
 		let sql = `
-		SELECT *from cheques INNER JOIN monedas ON cheques.moneda = monedas.idmon JOIN bancos ON cheques.banco = bancos.idbanco order by cheques.fechemi DESC 		
+		SELECT * from cheques INNER JOIN monedas ON cheques.moneda = monedas.idmon JOIN bancos ON cheques.banco = bancos.idbanco order by cheques.fechemi DESC 		
 						`
 		let response = { error: "No se encontraron cheques" }
 		let resultado = await conn.query(sql);
@@ -67,6 +67,7 @@ let cheques = {
 					INSERT INTO cheques
 					(
 					nrocheq,
+					importe,
 					banco,
 					moneda,
 					fechemi,
@@ -77,6 +78,7 @@ let cheques = {
 					VALUES
 					(
 					'${cheque.nrocheq}',
+					'${cheque.importe}',
 					'${cheque.banco}',
 					'${cheque.moneda}',
 					'${cheque.fechemi}',
@@ -101,6 +103,7 @@ let cheques = {
 					UPDATE cheques
 					SET
 					nrocheq			='${cheque.nrocheq}',
+					importe			='${cheque.importe},
 					banco			='${cheque.banco}',
 					moneda			='${cheque.moneda}',
 					fechemi			='${cheque.fechemi}',

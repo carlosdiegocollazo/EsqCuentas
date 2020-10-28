@@ -35,7 +35,7 @@ module.exports = function(app){
 	app.post('/cheques/new', midd.rutasProtegidas, async function(req, res){
 		let cheque = req.body;
 		let cheques = require('../services/cheques.js');
-		let response = await cheques.crearcheques(cheques);
+		let response = await cheques.crearcheque(cheque);
 		res.set('Content-Type', 'aplication/json');
 		res.send(response);
 	})
@@ -46,7 +46,7 @@ module.exports = function(app){
 		let cheque 	= req.body;
 		let id 			= req.params.id;
 		let cheques 	= require('../services/cheques.js');
-		let response 	= await cheques.actualizarcheques(cheques, id);
+		let response 	= await cheques.actualizarcheque(cheque, id);
 		res.set('Content-Type', 'aplication/json');
 		res.send(response);
 	})

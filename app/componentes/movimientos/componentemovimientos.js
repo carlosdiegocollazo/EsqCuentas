@@ -39,6 +39,7 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                     devuelvocheque: {
                         idcheq: "",
                         nrocheq: "",
+                        importe:"",
                         banco: "",
                         moneda: "",
                         fechemi: "",

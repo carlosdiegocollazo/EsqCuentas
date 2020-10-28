@@ -7,6 +7,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                     registro: {
                         idcheq: "",
                         nrocheq: "",
+                        importe: "",
                         banco: "",
                         moneda: "",
                         fechemi: "",
@@ -31,6 +32,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                     cheques: {
                         idcheq: "",
                         nrocheq: "",
+                        importe: "",
                         moneda: "",
                         fechemi: "",
                         fechpag: "",
@@ -44,8 +46,8 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
             methods: {
                 crearcheques: function () {
                     registro = {
-                        idcheq: this.registro.idcheq,
                         nrocheq: this.registro.nrocheq,
+                        nrocheq: this.registro.importe,
                         banco: this.codigobanco.idbanco,
                         moneda: this.codigomoneda.idmon,
                         fechemi: this.registro.fechemi,
@@ -58,6 +60,10 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     if (this.registro.nrocheq !== "" & this.registro.fechemi !== "" & this.codigomoneda.idmon !== "" & this.codigobanco.idbanco !== "") {
                         axios.post(API + '/cheques/new', registro, headtoken).then((res) => {
+                            axios.get(API + '/cheques/all', headtoken).then((res) => {
+                                let cheques = res.data.response;
+                                this.cheques = cheques
+                            })
                             let resultado = res.data;
                             alert("cheque creado correctamente");
                             if (resultado.response) {
@@ -90,8 +96,8 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                         const element = cheques[index];
                         if (index == res2) {
                             modificocheque = {
-                                idcheq: element.idcheq,
                                 nrocheq: element.nrocheq,
+                                nrocheq: element.importe,
                                 banco: element.banco,
                                 moneda: element.moneda,
                                 fechemi: element.fechemi,
@@ -160,7 +166,6 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                 const headtoken = { headers: { "mytoken": `${token}` } }
                 axios.get(API + '/cheques/all', headtoken).then((res) => {
                     let cheques = res.data.response;
-                    //console.log("cheques que devuevle el axios", cheques)
                     this.cheques = cheques
                 }),
                     axios.get(API + '/monedas/all', headtoken).then((res) => {

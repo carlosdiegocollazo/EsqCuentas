@@ -12,7 +12,7 @@
                         class="form-control muestroprov">
                         <option disabled value="">Selecione Proveedor</option>
                         <option v-for="(codigoproveedor,index) in devuelvoproveedor" v-bind:value="codigoproveedor">
-                            Nº: {{codigoproveedor.idpro}} | Razon Social: {{codigoproveedor.razon}} | Saldo:
+                            Nº: {{codigoproveedor.idpro}} | Razon Social: {{codigoproveedor.razon}} | Saldo total:
                             {{codigoproveedor.moneda}} {{codigoproveedor.saldototal}}
                         </option>
                     </select>
@@ -68,10 +68,10 @@
                     <input type="number" style="text-align: center;" class="form-control movimientofrm" name="saldo"
                         v-model="registro.saldo" placeholder="Saldo" title="Saldo">
                 </div>
-                <div class="form-group col-md-1">
+<!--                <div class="form-group col-md-1">
                     <input type="number" style="text-align: center;" class="form-control movimientofrm" name="saldtot"
                         v-model="registro.saldtot" placeholder="Saldo Total" title="Saldo Total">
-                </div>
+                </div>-->
                 <div class="form-group col-md-1">
                     <input type="number" style="text-align: center;" class="form-control movimientofrm" name="nrorec"
                         v-model="registro.nrorec" placeholder="Recibo Nº" title="Recibo Nº">
@@ -117,7 +117,7 @@
                                         <th scope="col">Ciudad</th>
                                         <th scope="col">Moneda</th>
                                         <th scope="col">Saldo Inicial</th>
-                                        <th scope="col">Saldo Total</th>
+                                        <!--<th scope="col">Saldo Total</th>-->
                                         <th scope="col">% Ret.</th>
                                         <th scope="col">Ret.Activo</th>
                                         <th scope="col">Observaciones</th>
@@ -173,9 +173,9 @@
                                                 disabled
                                                 title="Haga click para editar y luego presione el botón Modificar">
                                         </td>
-                                        <td><input class="inputtabla" type="text" v-model="proveedores.saldototal"
+                                    <!--    <td><input class="inputtabla" type="text" v-model="proveedores.saldototal"
                                                 title="Haga click para editar y luego presione el botón Modificar">
-                                        </td>
+                                        </td>-->
                                         <td><input class="inputtabla" type="text" v-model="proveedores.retorno"
                                                 title="Haga click para editar y luego presione el botón Modificar">
                                         </td>

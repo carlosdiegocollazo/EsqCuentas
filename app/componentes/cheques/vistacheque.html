@@ -8,17 +8,24 @@
          <form>
             <div class="form-row">
                <div class="form-group col-md-2"></div>
-               <div class="form-group col-md-8">
+               <div class="form-group col-md-4">
                   <label for="nrocheq" style=" color: aliceblue; text-align: center;"
                      title="Ingrese Numero de Cheque">Numero de Cheque</label>
                   <input type="text" class="form-control" name="nrocheq" title="Numero de Cheque"
-                     v-model="registro.nrocheq" placeholder="Ingrese el Numero de Cheque" style="text-align: left;">
+                     v-model="registro.nrocheq" placeholder="Numero de Cheque" style="text-align: left;">
+               </div>
+
+               <div class="form-group col-md-4">
+                  <label for="importe" style=" color: aliceblue; text-align: center;"
+                     title="Importe del cheque">Importe</label>
+                  <input type="number" class="form-control" name="importe" title="Importe del Cheque"
+                     v-model="registro.importe" placeholder="Importe" style="text-align: left;">
                </div>
             </div>
             <div class="form-row">
                <div class="form-group col-md-2"></div>
                <div class="form-group col-md-4" style=" color: aliceblue; text-align: center;">
-                  <label for="codigobanco" style=" color: aliceblue; text-align: center;margin-top: 20px;">Banco</label>
+                  <label for="codigobanco" style=" color: aliceblue; text-align: center;">Banco</label>
                   <select v-model="codigobanco" class="form-control selectcombo">
                      <option disabled value="">Seleccione</option>
                      <option v-for="(codigobanco,index) in devuelvobanco" v-bind:value="codigobanco">
@@ -29,7 +36,7 @@
 
                <div class="form-group col-md-4" style=" color: aliceblue; text-align: center;">
                   <label for="codigomoneda"
-                     style=" color: aliceblue; text-align: center;margin-top: 20px;">Moneda</label>
+                     style=" color: aliceblue; text-align: center;">Moneda</label>
                   <select v-model="codigomoneda" class="form-control selectcombo">
                      <option disabled value="">Seleccione</option>
                      <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
@@ -88,6 +95,7 @@
                               <tr>
                                  <th scope="col">ID</th>
                                  <th scope="col">Nro. Cheque</th>
+                                 <th scope="col">Importe</th>
                                  <th scope="col">Banco</th>
                                  <th scope="col">Moneda</th>
                                  <th scope="col">F.Emision</th>
@@ -104,6 +112,8 @@
                                     <input class="inputtabla" type="number" v-model="cheque.idcheq" size="3">
                                  </td>
                                  <td><input class="inputtabla" type="text" v-model="cheque.nrocheq"
+                                       title="Haga click para editar y luego presione el botón Modificar"></td>
+                                 <td><input class="inputtabla" type="number" v-model="cheque.importe"
                                        title="Haga click para editar y luego presione el botón Modificar"></td>
                                  <td><input class="inputtabla" type="text" v-model="cheque.banco"
                                        title="Haga click para editar y luego presione el botón Modificar"></td>
@@ -122,7 +132,7 @@
                                  <td><button class="btn btn-danger"
                                        v-on:click="eliminarcheques(index,cheque.idcheq)">Elimina</button></td>
                                  <td><button class="btn btn-success"
-                                       v-on:click="actualizarchequess(index)">Modifica</button>
+                                       v-on:click="actualizarcheques(index)">Modifica</button>
                                  </td>
                               </tr>
                            </tbody>
