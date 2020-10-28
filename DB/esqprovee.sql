@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 27-10-2020 a las 17:45:17
+-- Tiempo de generación: 28-10-2020 a las 23:54:34
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -56,6 +56,7 @@ DROP TABLE IF EXISTS `cheques`;
 CREATE TABLE IF NOT EXISTS `cheques` (
   `idcheq` int NOT NULL AUTO_INCREMENT,
   `nrocheq` int NOT NULL,
+  `importe` int NOT NULL,
   `banco` int NOT NULL,
   `moneda` int NOT NULL,
   `fechemi` varchar(10) NOT NULL,
@@ -63,7 +64,14 @@ CREATE TABLE IF NOT EXISTS `cheques` (
   `fechcob` varchar(10) NOT NULL,
   `activo` tinyint NOT NULL,
   PRIMARY KEY (`idcheq`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cheques`
+--
+
+INSERT INTO `cheques` (`idcheq`, `nrocheq`, `importe`, `banco`, `moneda`, `fechemi`, `fechpag`, `fechcob`, `activo`) VALUES
+(1, 1000, 0, 1, 0, '2020-12-20', '2021-01-01', '', 1);
 
 -- --------------------------------------------------------
 
@@ -80,7 +88,15 @@ CREATE TABLE IF NOT EXISTS `cotizacion` (
   `deldia` tinyint NOT NULL,
   `activo` int NOT NULL,
   PRIMARY KEY (`idcot`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cotizacion`
+--
+
+INSERT INTO `cotizacion` (`idcot`, `fechcot`, `moneda`, `cotizacion`, `deldia`, `activo`) VALUES
+(1, '2020-10-28', 2, 10, 0, 1),
+(2, '2020-10-28', 0, 4, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -102,9 +118,9 @@ CREATE TABLE IF NOT EXISTS `documentos` (
 --
 
 INSERT INTO `documentos` (`idtipdoc`, `tipodoc`, `moneda`, `activo`) VALUES
-(32, 'Factura Contado', 0, 1),
-(33, 'cambio de tareas', 0, 0),
-(34, 'Factura Credito', 0, 1);
+(1, 'Factura Contado', 0, 1),
+(2, 'cambio de tareas', 0, 0),
+(3, 'Factura Credito', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -119,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `monedas` (
   `divide` int NOT NULL,
   `activo` int NOT NULL,
   PRIMARY KEY (`idmon`)
-) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1002 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `monedas`
@@ -131,6 +147,8 @@ INSERT INTO `monedas` (`idmon`, `moneda`, `divide`, `activo`) VALUES
 (3, 'definido', 1, 0),
 (4, 'Reales', 1, 1),
 (5, 'Euros', 1, 1),
+(1001, 'Cheque', 0, 1),
+(1000, 'Cheque', 0, 1),
 (35, 'Realiños ', 1, 1),
 (34, 'Australes', 1, 1),
 (1, 'Dolares', 1, 1),
@@ -152,13 +170,14 @@ CREATE TABLE IF NOT EXISTS `movimientos` (
   `fechemi` varchar(10) NOT NULL,
   `fechpag` varchar(10) NOT NULL,
   `moneda` int NOT NULL,
-  `fechcheq` varchar(10) NOT NULL,
   `nrocheq` int NOT NULL,
+  `fechcheq` varchar(10) NOT NULL,
   `debe` int NOT NULL,
   `haber` int NOT NULL,
   `saldo` int NOT NULL,
   `saldtot` int NOT NULL,
   `nrorec` int NOT NULL,
+  `observaciones` text NOT NULL,
   `activo` tinyint NOT NULL,
   PRIMARY KEY (`idmov`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -191,14 +210,15 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
   `observaciones` text NOT NULL,
   `activo` tinyint(1) NOT NULL,
   PRIMARY KEY (`idpro`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `proveedores`
 --
 
 INSERT INTO `proveedores` (`idpro`, `rutced`, `razon`, `fantasia`, `email`, `nombre`, `apellido`, `feching`, `telefono`, `direccion`, `ciudad`, `moneda`, `saldoinicial`, `saldototal`, `retorno`, `fechret`, `retactivo`, `observaciones`, `activo`) VALUES
-(5, '123456789', 'Correa Hnos', 'Supermercado 18', 'mail@mail.com', 'Sergio ', 'Correa', '1985-01-01', '2413075', 'Sarandi y 18 de Julio', 'Rosario', 0, 0, 1500, 5, '2020-12-31', 0, '', 1);
+(5, '123456789', 'Correa Hnos', 'Supermercado 18', 'mail@mail.com', 'Sergio ', 'Correa', '1985-01-01', '2413075', 'Sarandi y 18 de Julio', 'Rosario', 0, 0, 1500, 5, '2020-12-31', 0, '', 1),
+(6, '2313212332132165465', 'FNC', 'FNC', 'unmail@mail', 'Fabrica Nacional decErvezas', 'FNC', '2020-01-01', '321231321', '2313213', 'Montevideo', 0, 0, 0, 10, '2020-01-01', 0, '', 1);
 
 -- --------------------------------------------------------
 
