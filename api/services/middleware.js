@@ -64,12 +64,12 @@ let Middleware = {
       "/documentos/delete/:id": "Acceso Permitido",
 
       //cotizaciones
-      "/cotizaciones/all": "Acceso Permitido",
-      "/cotizaciones/allall": "Acceso Permitido",
-      "/cotizaciones/:id": "Acceso Permitido",
-      "/cotizaciones/new": "Acceso Permitido",
-      "/cotizaciones/edit/:id": "Acceso Permitido",
-      "/cotizaciones/delete/:id": "Acceso Permitido",
+      "/cotizacion/all": "Acceso Permitido",
+      "/cotizacion/allall": "Acceso Permitido",
+      "/cotizacion/:id": "Acceso Permitido",
+      "/cotizacion/new": "Acceso Permitido",
+      "/cotizacion/edit/:id": "Acceso Permitido",
+      "/cotizacion/delete/:id": "Acceso Permitido",
 
       //cheques
       "/cheques/all": "Acceso Permitido",

@@ -28,6 +28,7 @@ let componentecotizacion = Vue.component('cotizaciones-component', function (res
                     },
                     codigomoneda: "",
                     codigocotizacion:"",
+                    fecha:"",
 
 
                 }
@@ -46,9 +47,12 @@ let componentecotizacion = Vue.component('cotizaciones-component', function (res
                     if (this.registro.tipodoc !== "" & this.codigomoneda.idmon !== "") {
                         axios.post(API + '/cotizacion/new', registro, headtoken).then((res) => {
                             let resultado = res.data;
+                            axios.get(API + '/cotizacion/all', headtoken).then((res) => {
+                                let cotizaciones = res.data.response;
+                                this.cotizaciones = cotizaciones })
                             alert("Tipo de cotizaciones creado correctamente");
                             if (resultado.response) {
-                                router.push({ path: '/mesa/' });
+                                router.push({ path: '/cotizaciones' });
                             } else {
                                 alert(res.data.error);
                             }
@@ -110,6 +114,11 @@ let componentecotizacion = Vue.component('cotizaciones-component', function (res
             },// fin el method
 
             mounted: function () {
+
+                fecha=new Date().toISOString().substr(0,10)
+                this.registro.fechcot=fecha
+                
+
 
                 let token = localStorage.getItem("token");
                 this.seguridad = localStorage.getItem("seguridad")

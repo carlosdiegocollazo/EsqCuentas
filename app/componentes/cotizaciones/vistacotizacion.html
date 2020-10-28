@@ -1,39 +1,45 @@
 <div class="inside">
-<div class="container-fluid">
-   <menu-item></menu-item>
-   <router-view></router-view>
-   <!-- Div contenendor general-->
-   <div class="row justify-content-center align-items-center" style="margin-top: 100px;">
-      <form>
-         <div class="row" class="login">
-            <div>
-               <H1 style="text-align-last: center; color: aliceblue;">Cotizacion de Monedas</H1>
-               <label for="tipodoc" style="color: aliceblue;" title="Ingrese el tipo de Cotizacion">Tipo de Cotizacion</label>
-               <input type="text" class="form-control" name="tipodoc" title="Ingrese el tipo de cotizacion" v-model="registro.tipodoc"
-                  placeholder="Descripcion del cotizacion">
+   <div class="container-fluid">
+      <menu-item></menu-item>
+      <router-view></router-view>
+      <!-- Div contenendor general-->
+      <H1 style="text-align-last: center; color: aliceblue;">Cotizacion de Monedas</H1>
+      
+      <div class="row justify-content-center align-items-center" style="margin-top: 100px;">
+         <form>
+         <form class="form-row">
+            <div class="form-group col-md-4">
+               <label for="fechcot" style="color: aliceblue;" title="Fecha cotizacion">Fecha</label>
+               <input type="date" data-date-format="DD-MM-YYYY" class="form-control" name="fechcot" v-model="registro.fechcot" >
             </div>
-
-            <br>
-            <select v-model="codigomoneda">
-               <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
-                   {{codigomoneda.idmon}} {{codigomoneda.moneda}}
-               </option>
-           </select>
-
-            <div class="form-group form-check">
-
-               <input type="checkbox" class="form-check-input" name="activo" v-model="registro.activo">
-               <label class="form-check-label" for="activo" style="color: aliceblue;">Activo</label>
-            </div row justify-items-center align-items-center>
-            <button class="btn btn-primary" v-on:click="mostraractivos()" style="margin-left: 30px;">Mostrar Activos</button>
-            <button class="btn btn-primary" v-on:click="mostrartodos()" style="margin-left: 30px;">Mostrar Todos</button>
-                        <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()" style="margin-left: 30px;">Cancelar</button>
+            <div class="form-group col-md-4">
+               <label for="tipodoc" style="color: aliceblue;" title="Ingrese el tipo de Cotizacion">Importe</label>
+               <input type="text" class="form-control" name="cotizacion" v-model="registro.cotizacion">
+            </div>
+            
+            <div class="form-group col-md-4">
+               <label for="codigomoneda" style="color: aliceblue;" title="x 1">Moneda</label>
+               <select v-model="codigomoneda" class="form-control">
+                  <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
+                     {{codigomoneda.idmon}} {{codigomoneda.moneda}}
+                  </option>
+               </select>
+            </div>
+         </form>
+            <form class="form-row">
+            <button class="btn btn-primary" v-on:click="mostraractivos()" style="margin-left: 30px;">Mostrar
+               Activos</button>
+            <button class="btn btn-primary" v-on:click="mostrartodos()" style="margin-left: 30px;">Mostrar
+               Todos</button>
+            <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()"
+               style="margin-left: 30px;">Cancelar</button>
             <button type="submit" class="btn btn-success" style="margin-left: 30px;"
                v-on:click="crearcotizaciones()">Ingresar</button>
             <br><br>
-         </div>
+      </div>
       </form>
-      <div class="container-fluid" style="margin-top: 50;"> <!--comienzo de de tabla-->
+      <div class="container-fluid" style="margin-top: 50;">
+         <!--comienzo de de tabla-->
          <template>
             <div class="container">
                <div class="row">
@@ -54,13 +60,17 @@
                            </thead>
                            <tbody>
                               <tr v-for="(cotizacion,index) in cotizaciones" style="color: aquamarine;">
-                                 <td ><input class="inputtabla" type="number" v-model="cotizacion.idcot" size="3" disabled>
+                                 <td><input class="inputtabla" type="number" v-model="cotizacion.idcot" size="3"
+                                       disabled>
                                  </td>
                                  <td><input class="inputtabla" type="text" v-model="cotizacion.fechcot" disabled></td>
                                  <td><input class="inputtabla" type="text" v-model="cotizacion.moneda" disabled></td>
-                                 <td><input class="inputtabla" type="number" v-model="cotizacion.cotizacion" disabled></td>
-                                 <td><input class="inputtabla" type="checkbox" v-model="cotizacion.deldia" disabled></td>
-                                 <td><input class="inputtabla" type="checkbox" v-model="cotizacion.activo" disabled></td>
+                                 <td><input class="inputtabla" type="number" v-model="cotizacion.cotizacion" disabled>
+                                 </td>
+                                 <td><input class="inputtabla" type="checkbox" v-model="cotizacion.deldia" disabled>
+                                 </td>
+                                 <td><input class="inputtabla" type="checkbox" v-model="cotizacion.activo" disabled>
+                                 </td>
                                  <td><button class="btn btn-danger"
                                        v-on:click="eliminarcotizacion(index,cotizacion.idcot)">Eliminar</button></td>
 
@@ -73,8 +83,9 @@
                </div>
             </div>
          </template>
-
-      </div> <!--find de tabla-->
+      </form>
+      </div>
+      <!--find de tabla-->
    </div>
 </div>
 <!-- Div contenendor general-->
