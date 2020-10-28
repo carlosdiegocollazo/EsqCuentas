@@ -49,7 +49,7 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     this.monedas.splice(idmon, 1) //elimina la linea de la table y espues de la base
                     axios.put(API + '/monedas/delete/' + idmon2, {}, headtoken).then((res) => {
-                        alert("Moneda",idmon2," eliminada correcatmente.");
+                        alert("Moneda eliminada correcatmente.");
                         //    console.log("resdat delntro del xios", res.data)
                     })
 

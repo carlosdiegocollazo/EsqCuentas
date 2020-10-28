@@ -31,6 +31,6 @@ input.inputformu:focus-visible {
     border-style: solid;
     border: 0;
     border-color: rgb(0, 255, 13);
-    background: rgb(255, 255, 255);
-    color: rgb(4, 0, 255);
+    background: lightgreen;
+    color: black;
 }
