@@ -6,6 +6,10 @@
 @import "../../app/componentes/notfound/notfound.css";
 @import "../../app/componentes/documentos/documento.css";
 @import "../../app/componentes/proveedores/proveedores.css";
+@import "../../app/componentes/cheques/cheque.css";
+@import "../../app/componentes/movimientos/movimientos.css";
+@import "../../app/componentes/bancos/banco.css";
+@import "../../app/componentes/proveedores/proveedores.css";
 @import "../../app/componentes/usuarios/usuario.css";
 
 html, body {

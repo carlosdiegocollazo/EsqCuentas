@@ -203,13 +203,14 @@ let movimiento = {
 					fechemi,
 					fechpag,
 					moneda,
-					fechcheq,
 					nrocheq,
+					fechcheq,
 					debe,
 					haber,
 					saldo,
 					saldtot,
 					nrorec,
+					observaciones,
 					activo
 					)
 					VALUES
@@ -220,14 +221,15 @@ let movimiento = {
 					'${movimiento.fechemi}',
 					'${movimiento.fechpag}',
 					'${movimiento.moneda}',
-					'${movimiento.fechcheq}',
 					'${movimiento.nrocheq}',
+					'${movimiento.fechcheq}',
 					'${movimiento.debe}',
 					'${movimiento.haber}',
 					'${movimiento.saldo}',
-					'${movimiento.saldotot}',
+					'${movimiento.saldtot}',
 					'${movimiento.nrorec}',
-					'${movimiento.activo}'
+					'${movimiento.observaciones}',
+					1
 					)		
 				`
 		let response 	= {error: "No se pudo crear el movimiento"}
@@ -249,13 +251,14 @@ let movimiento = {
 					fechemi		= '${movimiento.fechemi}',
 					fechpag		= '${movimiento.fechpag}',
 					moneda		= '${movimiento.moneda}',
-					fechcheq	= '${movimiento.fechcheq}',
 					nrocheq		= '${movimiento.nrocheq}',
+					fechcheq	= '${movimiento.fechcheq}',
 					debe		= '${movimiento.debe}',
 					haber		= '${movimiento.haber}',
 					saldo		= '${movimiento.saldo}',
-					saldotot	= '${movimiento.saldotot}',
+					saldtot		= '${movimiento.saldtot}',
 					nrorec		= '${movimiento.nrorec}',
+					observaciones = '${movimiento.observaciones}',
 					activo 		= '${movimiento.activo}'
 					
 					WHERE

@@ -101,6 +101,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                             }
                         }
                     }
+
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.put(API + '/cheques/edit/' + modificocheque.idcheq, modificocheque, headtoken).then((res) => {

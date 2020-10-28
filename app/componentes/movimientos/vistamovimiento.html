@@ -1,0 +1,169 @@
+<div class="inside">
+    <div class="container-fluid">
+        <menu-item></menu-item>
+        <router-view></router-view>
+        <br>
+        <br>
+        <H1 style="text-align-last: center; color: aliceblue;">Ingreso de Movimientos por Proveedor</H1>
+        <form style=" color: aliceblue; text-align: center;">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <select v-model="codigodocumento">
+                        <option disabled value="">Tipo Documento</option>
+                        <option v-for="(documento,index) in devuelvodocumento" v-bind:value="codigodocumento">
+                            {{codigodocumento.idtipdoc}} | {{codigodocumento.tipodoc}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="text" style="text-align: center;" class="form-control movimientofrm" name="rutced"
+                        v-model="registro.rutced" placeholder="Ingrese Nº Factura">
+                </div>
+                <div class="form-group col-md-3" style="text-align: center;">
+                    <label for="codigomoneda" style=" color: aliceblue; text-align: center;">Moneda
+                        predeterminada</label>
+                    <select v-model="codigomoneda">
+                        <option disabled value="">Moneda del Proveedor</option>
+                        <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
+                            {{codigomoneda.idmon}} {{codigomoneda.moneda}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3" style="text-align: center;">
+                    <label for="activo" style=" color: aliceblue;">Activo</label>
+                    <input type="checkbox" class="form-control inputform" id="activo" v-model="registro.activo">
+                </div>
+            </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="observaciones" style=" color: aliceblue; text-align: center;">Observaciones</label>
+            <input type="text" class="form-control inputform" id="observaciones"
+                placeholder="Ingrese observaciones o comentarios" v-model="registro.observaciones">
+        </div>
+
+        <button class="btn btn-primary" v-on:click="mostraractivos()" style="margin-left: 30px;">Mostrar
+            Activos</button>
+        <button class="btn btn-primary" v-on:click="mostrartodos()" style="margin-left: 30px;">Mostrar
+            Todos</button>
+        <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="limpiar()"
+            style="margin-left: 30px;">Cancelar</button>
+        <button type="submit" class="btn btn-success" v-on:click="registUser(registro,codigomoneda.devuelvoseguridad)"
+            style="margin-left: 30px;">Ingresar</button>
+        </form>
+        <!--comienzo de de tabla-->
+        <template>
+            <div class="container-fluid" style="text-align: center;">
+                <div class="row">
+                    <div class="col-mg-12">
+                        <div class="table-responsive small table-striped  table-dark">
+                            <tr class="table-responsive">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col" disabled>ID</th>
+                                        <th scope="col">Documento</th>
+                                        <th scope="col">Nº Factura</th>
+                                        <th scope="col">Nombre Fantasia</th>
+                                        <th scope="col">E-mail</th>
+                                        <th scope="col">Nombres</th>
+                                        <th scope="col">Apellidos</th>
+                                        <th scope="col">Fecha Ingreso</th>
+                                        <th scope="col">Retorno Hasta</th>
+                                        <th scope="col">Telefono</th>
+                                        <th scope="col">Direccion</th>
+                                        <th scope="col">Ciudad</th>
+                                        <th scope="col">Moneda</th>
+                                        <th scope="col">Saldo Inicial</th>
+                                        <th scope="col">Saldo Total</th>
+                                        <th scope="col">% Ret.</th>
+                                        <th scope="col">Ret.Activo</th>
+                                        <th scope="col">Observaciones</th>
+                                        <th scope="col">Activo</th>
+                                        <th scope="col">Gestion</th>
+                                        <th scope="col">Gestion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(movimiento,index) in movimientos">
+                                        <td><input class="inputtabla" type="text" v-model="movimiento.idmov" size="3"
+                                                disabled>
+                                        </td>
+                                        <td>
+                                            <select v-model="codigodocumento">
+                                                <option disabled value="">Proveedor</option>
+                                                <option v-for="(codigodocumento,index) in devuelvodocumento"
+                                                    v-bind:value="codigodocumento">
+                                                    {{codigodocumento.tipodoc}}
+                                                </option>
+                                            </select>
+                                        </td>
+                                        <td><input class="inputtabla" type="mail" v-model="movimiento.nrofac"
+                                                title="Haga click para editar y luego presione el botón Modificar">
+                                        </td>
+                                        <td><input class="inputtabla" type="date" v-model="movimiento.fechemi">
+                                        </td>
+                                        <td><input class="inputtabla" type="date" v-model="movimiento.fechpag">
+                                        </td>
+                                        <td><input class="inputtabla" type="text" v-model="movimiento.moneda">
+                                        </td>
+                                        <td><input class="inputtabla" type="text" v-model="proveedores.apellido"
+                                                title="Haga click para editar y luego presione el botón Modificar">
+                                        </td>
+                                        <td><input class="inputtabla" type="date" v-model="proveedores.feching"
+                                                title="Haga click para editar y luego presione el botón Modificar"
+                                                data-date-format="DD-MM-YYYY"></td>
+                                        <td><input class="inputtabla" type="date" v-model="proveedores.fechret"
+                                                title="Haga click para editar y luego presione el botón Modificar"
+                                                data-date-format="DD-MM-YYYY"></td>
+                                        <td><input class="inputtabla" type="tel" v-model="proveedores.telefono"
+                                                title="Haga click para editar y luego presione el botón Modificar">
+                                        </td>
+                                        <td><input class="inputtabla" type="text" v-model="proveedores.direccion"
+                                                title="Haga click para editar y luego presione el botón Modificar">
+                                        </td>
+                                        <td><input class="inputtabla" type="text" v-model="proveedores.ciudad"
+                                                title="Haga click para editar y luego presione el botón Modificar">
+                                        </td>
+                                        <td><input class="inputtabla" type="text" v-model="proveedores.moneda"
+                                                title="Haga click para editar y luego presione el botón Modificar">
+                                        </td>
+                                        <td><input class="inputtabla" type="text" v-model="proveedores.saldoincial"
+                                                disabled
+                                                title="Haga click para editar y luego presione el botón Modificar">
+                                        </td>
+                                        <td><input class="inputtabla" type="text" v-model="proveedores.saldototal"
+                                                title="Haga click para editar y luego presione el botón Modificar">
+                                        </td>
+                                        <td><input class="inputtabla" type="text" v-model="proveedores.retorno"
+                                                title="Haga click para editar y luego presione el botón Modificar">
+                                        </td>
+                                        <td><input class="inputtabla" type="checkbox" v-model="proveedores.retactivo"
+                                                title="Haga click para editar y luego presione el botón Modificar">
+                                        </td>
+                                        <td><input class="inputtabla" type="text" v-model="proveedores.observaciones"
+                                                title="Haga click para editar y luego presione el botón Modificar">
+                                        </td>
+                                        <td><input class="inputtabla" type="checkbox" v-model="proveedores.activo"
+                                                title="Haga click para editar y luego presione el botón Modificar">
+                                        </td>
+                                        <td><button class="btn btn-danger"
+                                                v-on:click="eliminarusuario(index,proveedores.idpro)">Elimina</button>
+                                        </td>
+                                        <td><button class="btn btn-success"
+                                                v-on:click="actualizarusuario(index)">Modifica</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+    </div>
+    <!--find de tabla-->
+
+</div>
+</div>
+<!-- Div contenendor general-->
+</div>
