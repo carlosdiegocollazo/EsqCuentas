@@ -10,7 +10,7 @@
          <form class="form-row">
             <div class="form-group col-md-4">
                <label for="fechcot" style="color: aliceblue;" title="Fecha cotizacion">Fecha</label>
-               <input type="date" data-date-format="DD-MM-YYYY" class="form-control" name="fechcot" v-model="registro.fechcot" >
+               <input type="date" data-date-format="DD-MM-YYYY" min="01-01-2000" max="31-12-2050" class="form-control" name="fechcot" v-model="registro.fechcot" >
             </div>
             <div class="form-group col-md-4">
                <label for="tipodoc" style="color: aliceblue;" title="Ingrese el tipo de Cotizacion">Importe</label>
@@ -63,7 +63,7 @@
                                  <td><input class="inputtabla" type="number" v-model="cotizacion.idcot" size="3"
                                        disabled>
                                  </td>
-                                 <td><input class="inputtabla" type="text" v-model="cotizacion.fechcot" disabled></td>
+                                 <td><input class="inputtabla" type="date" data-date-format="DD-MM-YYYY" min="01-01-2000" max="31-12-2050" v-model="cotizacion.fechcot" disabled></td>
                                  <td><input class="inputtabla" type="text" v-model="cotizacion.moneda" disabled></td>
                                  <td><input class="inputtabla" type="number" v-model="cotizacion.cotizacion" disabled>
                                  </td>
