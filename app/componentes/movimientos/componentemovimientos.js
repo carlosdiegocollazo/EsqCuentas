@@ -112,6 +112,7 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                     codigocheque: "",
                     codigoproveedor: "",
                     codigodocumento: "",
+                    fecha:"",
                 }
             },
             methods: {
@@ -280,6 +281,11 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
             },// fin el method
 
             mounted: function () {
+                fecha=new Date().toISOString().substr(0,10)
+                this.registro.feching=fecha
+                console.log("today",fecha)
+
+
                 let token = localStorage.getItem("token");
                 this.seguridad = localStorage.getItem("seguridad")
                 const headtoken = { headers: { "mytoken": `${token}` } }
