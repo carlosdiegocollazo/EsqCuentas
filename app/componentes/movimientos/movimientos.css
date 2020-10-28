@@ -41,3 +41,14 @@ input.movimientofrm{
     margin: 0;
     padding: 0;
 }
+
+ .muestroprov{
+    color: #ea02ff;
+    border: solid;
+    border-color: rgb(123, 255, 0);
+    text-align-last: center;
+    text-justify: auto;
+    border-radius: 22px;
+    padding: 5px;
+    margin: 2px;
+ }

@@ -4,21 +4,22 @@
         <router-view></router-view>
         <br>
         <br>
-        <H1 style="text-align-last: center; color: aliceblue;">Ingreso de Movimientos por Proveedor</H1>
+        <H1 style="text-align-last: center; color: aliceblue;">Ingreso de Movimientos por:</H1>
         <form style=" color: aliceblue; text-align: center;">
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <select v-model="codigoproveedor" title="Proveedor que sera asociado a estas facturas ingresadas">
-                        <option value="">Proveedor</option>
+                    <select v-model="codigoproveedor" title="Proveedor que sera asociado a estas facturas ingresadas"
+                        class="form-control muestroprov">
+                        <option disabled value="">Selecione Proveedor</option>
                         <option v-for="(codigoproveedor,index) in devuelvoproveedor" v-bind:value="codigoproveedor">
-                            {{codigoproveedor.idpro}} | {{codigoproveedor.razon}}
+                            Nº: {{codigoproveedor.idpro}} | Razon Social: {{codigoproveedor.razon}} | Saldo:
+                            {{codigoproveedor.moneda}} {{codigoproveedor.saldototal}}
                         </option>
-                        <h4 v-bind:value="codigoproveedor"></h4>
                     </select>
                 </div>
                 <div class="form-group col-md-2">
-                    <select v-model="codigodocumento" title="Seleccione el tipo de documento">
-                        <option value="">Tipo Documento</option>
+                    <select v-model="codigodocumento" title="Seleccione el tipo de documento" style="width:100%;">
+                        <option disabled value="">Tipo Documento</option>
                         <option v-for="(codigodocumento,index) in devuelvodocumento" v-bind:value="codigodocumento">
                             {{codigodocumento.idtipdoc}} | {{codigodocumento.tipodoc}}
                         </option>
@@ -39,7 +40,8 @@
                         title="Ingresar fecha en que pago de la factura">
                 </div>
                 <div class="form-group col-md-2" style="text-align: center; margin-left: 0px;">
-                    <select v-model="codigomoneda" title="Seleccionar moneda de la factura">
+                    <select v-model="codigomoneda" title="Seleccionar moneda de la factura" style="width:100%;"
+                        v-on:focus="obtenerproveedor(codigoproveedor.idpro,codigoproveedor.razon,codigoproveedor.moneda,codigoproveedor.saldototal)">
                         <option disabled value="">Moneda</option>
                         <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
                             {{codigomoneda.idmon}} {{codigomoneda.moneda}}
@@ -48,7 +50,7 @@
                 </div>
                 <div class="form-group col-md-1">
                     <input type="text" style="text-align: center;" class="form-control movimientofrm" name="nrocheq"
-                        v-model="registro.nrocheq" placeholder="Nª Cheque" title="Numero de cheque">
+                        v-on:focus="" v-model="registro.nrocheq" placeholder="Nª Cheque" title="Numero de cheque">
                 </div>
                 <div class="form-group col-md-1">
                     <input type="date" style="text-align: center;" class="form-control movimientofrm" name="fechcheq"

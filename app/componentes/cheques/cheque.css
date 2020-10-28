@@ -34,3 +34,7 @@ input.inputform:focus-visible {
     background: #dfe;
     color: white;
 }
+
+selectcombo{
+    width: 100%;
+}
