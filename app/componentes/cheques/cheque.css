@@ -18,7 +18,15 @@ input.inputtabla {
     border: none;
     background: transparent;
     color: white;
+    text-align: right;ç
+}
+
+input.inputtablasm {
+    border: none;
+    background: transparent;
+    color: white;
     text-align: right;
+    width: 50px;
 }
 
 input.inputtabla:hover {

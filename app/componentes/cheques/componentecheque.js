@@ -8,7 +8,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                         idcheq: "",
                         nrocheq: "",
                         importe: "",
-                        banco: "",
+                        banco:"",
                         moneda: "",
                         fechemi: "",
                         fechpag: "",
@@ -33,6 +33,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                         idcheq: "",
                         nrocheq: "",
                         importe: "",
+                        banco:"",
                         moneda: "",
                         fechemi: "",
                         fechpag: "",
@@ -47,7 +48,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                 crearcheques: function () {
                     registro = {
                         nrocheq: this.registro.nrocheq,
-                        nrocheq: this.registro.importe,
+                        importe: this.registro.importe,
                         banco: this.codigobanco.idbanco,
                         moneda: this.codigomoneda.idmon,
                         fechemi: this.registro.fechemi,
@@ -88,18 +89,19 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                     })
 
                 },
-                actualizarcheques: function (res2) {
+                actualizarcheques: function (res) {
                     let modificocheque = {}
                     let cheques = this.cheques
-
+                    console.log("cheuqes que trae del html", cheques)
                     for (let index = 0; index < cheques.length; index++) {
                         const element = cheques[index];
-                        if (index == res2) {
+                        if (index == res) {
                             modificocheque = {
+                                idcheq:element.idcheq,
                                 nrocheq: element.nrocheq,
-                                nrocheq: element.importe,
-                                banco: element.banco,
-                                moneda: element.moneda,
+                                importe: element.importe,
+                                banco: element.idbanco,
+                                moneda: element.idmoneda,
                                 fechemi: element.fechemi,
                                 fechpag: element.fechpag,
                                 fechcob: element.fechcob,
@@ -113,6 +115,8 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                     axios.put(API + '/cheques/edit/' + modificocheque.idcheq, modificocheque, headtoken).then((res) => {
                         axios.get(API + '/cheques/all', headtoken).then((res) => {
                             alert("cheque, modificado y activo en forma correcta.");
+                            let cheques = res.data.response;
+                            this.cheques = cheques
                         })
                     })
                 },
