@@ -98,7 +98,7 @@ let cheques = {
 		return response;
 	},
 
-	actualizarcheque: async function (cheque, id) {
+	actualizarcheques: async function (cheque, id) {
 		let sql = `
 					UPDATE cheques
 					SET

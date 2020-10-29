@@ -33,29 +33,28 @@
                      </option>
                   </select>
                </div>
-
                <div class="form-group col-md-4" style=" color: aliceblue; text-align: center;">
-                  <label for="codigomoneda" style=" color: aliceblue; text-align: center;">Moneda</label>
-                  <select v-model="codigomoneda" class="form-control selectcombo">
-                     <option disabled value="">Seleccione</option>
-                     <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
-                        {{codigomoneda.idmon}} {{codigomoneda.moneda}}
+                  <label for="codigobanco" style=" color: aliceblue; text-align: center;">Moneda Banco</label>
+                  <select disabled v-model="codigobanco" class="form-control selectcombo">
+                     <option v-for="(codigobanco,index) in devuelvobanco" v-bind:value="codigobanco">
+                        {{codigobanco.idmoneda}} {{codigobanco.moneda}}
                      </option>
                   </select>
                </div>
+
             </div>
             <div class="form-row">
                <div class="form-group col-md-2"></div>
                <div class="form-group col-md-4">
                   <label for="fechemi" style="color: aliceblue; text-align: center;">Fecha Emision</label>
                   <input type="date" class="form-control" id="fechemi" v-model="registro.fechemi"
-                     data-date-format="DD-MM-YYYY" min="01-01-2000">
+                     data-date-format="DD-MM-YYYY" min="01-01-1900" max="01-01-2050">
                </div>
 
                <div class="form-group col-md-4">
                   <label for="fechpag" style="color: aliceblue; text-align: center;">Fecha Pago</label>
                   <input type="date" class="form-control" id="fechpag" v-model="registro.fechpag"
-                     data-date-format="DD-MM-YYYY" min="01-01-2000">
+                     data-date-format="DD-MM-YYYY" min="01-01-1900" max="01-01-2050">
                </div>
             </div>
             <div class="form-row">
@@ -63,11 +62,7 @@
                <div class="form-group col-md-4">
                   <label for="fechcob" style="color: aliceblue; text-align: center;">Fecha Cobro</label>
                   <input type="date" class="form-control" id="fechcob" v-model="registro.fechcob"
-                     data-date-format="DD-MM-YYYY" min="01-01-2000">
-               </div>
-               <div class="form-group col-md-3" style="text-align: center;">
-                  <label for="activo" style=" color: aliceblue;">Activo</label>
-                  <input type="checkbox" class="form-control inputform" id="activo" v-model="registro.activo">
+                     data-date-format="DD-MM-YYYY" min="01-01-1900" max="01-01-2050">
                </div>
             </div>
             <button class="btn btn-primary" v-on:click="mostraractivos()" style="margin-left: 30px;">Mostrar
@@ -86,61 +81,53 @@
          <template>
             <div class="container-fluid">
                <div class="row">
-                  <div class="col-md-12">
-                     <div class="table-responsive small table-striped  table-dark">
+
+                  <div class="table-responsive small table-striped  table-dark">
 
 
-                        <thead class="thead-dark" style="text-align: center;">
-                           <tr>
-                              <th scope="col">ID</th>
-                              <th scope="col">Nro. Cheque</th>
-                              <th scope="col">Importe</th>
-                              <th scope="col">Banco</th>
-                              <th scope="col">Moneda</th>
-                              <th scope="col">F.Emision</th>
-                              <th scope="col">F.Pago</th>
-                              <th scope="col">F.Cobro</th>
-                              <th scope="col">Activo</th>
-                              <th scope="col">Acciones</th>
-                              <th scope="col">Acciones</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr v-for="(cheque,index) in cheques" style="color: aquamarine;">
-                              <td style="text-align: center;">
-                                 <input class="inputtablasm" type="number" v-model="cheque.idcheq">
-                              </td>
-                              <td><input class="inputtabla" type="text" v-model="cheque.nrocheq"
-                                    title="Haga click para editar y luego presione el botón Modificar"></td>
-                              <td><input class="inputtabla" type="number" v-model="cheque.importe"
-                                    title="Haga click para editar y luego presione el botón Modificar"></td>
-                              <td><input class="inputtablasm" type="number" v-model="cheque.idbanco"
-                                    title="Haga click para editar y luego presione el botón Modificar"><input disabled
-                                    style="text-align: left;" class="inputtabla" type="text" v-model="cheque.banco">
-                              </td>
-                              <td style="text-align: center;">
-                                 <input class="inputtablasm" type="number" v-model="cheque.idmon"><input disabled
-                                    class="inputtabla" type="text" v-model="cheque.moneda" style="text-align: left;"></td>
-                              <td style="text-align: center;">
-                                 <input class="inputtabla" type="date" v-model="cheque.fechemi"></td>
-                              <td style="text-align: center;">
-                                 <input class="inputtabla" type="date" v-model="cheque.fechpag"
-                                    title="Haga click para editar y luego presione el botón Modificar"></td>
-                              <td style="text-align: center;">
-                                 <input class="inputtabla" type="date" v-model="cheque.fechcob"
-                                    title="Haga click para editar y luego presione el botón Modificar"></td>
-                              <td style="text-align: center;">
-                                 <input class="inputtabla" type="checkbox" v-model="cheque.activo"></td>
-                              <td><button class="btn btn-danger"
-                                    v-on:click="eliminarcheques(index,cheque.idcheq)">Elimina</button></td>
-                              <td><button class="btn btn-success"
-                                    v-on:click="actualizarcheques(index)">Modifica</button>
-                              </td>
-                           </tr>
-                        </tbody>
-
-
-                     </div>
+                     <thead class="thead-dark" style="text-align: center;">
+                        <tr>
+                           <th scope="col">ID</th>
+                           <th scope="col">Nro. Cheque</th>
+                           <th scope="col">Importe</th>
+                           <th scope="col">Banco</th>
+                           <th scope="col">F.Emision</th>
+                           <th scope="col">F.Pago</th>
+                           <th scope="col">F.Cobro</th>
+                           <th scope="col">Acciones</th>
+                           <th scope="col">Acciones</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr v-for="(cheque,index) in cheques" style="color: aquamarine;">
+                           <td style="text-align: center;">
+                              <input class="inputtablasm" type="number" v-model="cheque.idcheq">
+                           </td>
+                           <td><input class="inputtabla" type="text" v-model="cheque.nrocheq"
+                                 title="Haga click para editar y luego presione el botón Modificar"></td>
+                           <td><input class="inputtabla" type="number" v-model="cheque.importe"
+                                 title="Haga click para editar y luego presione el botón Modificar"></td>
+                           <td><input class="inputtablasm" type="number" v-model="cheque.idbanco"
+                                 title="Haga click para editar y luego presione el botón Modificar"><input disabled
+                                 style="text-align: left;" class="inputtabla" type="text" v-model="cheque.banco">
+                           </td>
+                           <td style="text-align: center;">
+                              <input class="inputtabla" type="date" v-model="cheque.fechemi"
+                                 data-date-format="DD-MM-YYYY" min="01-01-1900" max="01-01-2050"></td>
+                           <td style="text-align: center;">
+                              <input class="inputtabla" type="date" v-model="cheque.fechpag"
+                                 title="Haga click para editar y luego presione el botón Modificar"
+                                 data-date-format="DD-MM-YYYY" min="01-01-1900" max="01-01-2050"></td>
+                           <td style="text-align: center;">
+                              <input class="inputtabla" type="date" v-model="cheque.fechcob"
+                                 title="Haga click para editar y luego presione el botón Modificar"
+                                 data-date-format="DD-MM-YYYY" min="01-01-1900" max="01-01-2050"></td>
+                           <td><button class="btn btn-danger"
+                                 v-on:click="eliminarcheques(index,cheque.idcheq)">Elimina</button></td>
+                           <td><button class="btn btn-success" v-on:click="actualizarcheques(index)">Modifica</button>
+                           </td>
+                        </tr>
+                     </tbody>
                   </div>
                </div>
             </div>

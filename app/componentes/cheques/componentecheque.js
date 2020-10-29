@@ -59,7 +59,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                     //console.log("regsitro uqe viene del thml", this.registro)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
-                    if (this.registro.nrocheq !== "" & this.registro.fechemi !== "" & this.codigomoneda.idmon !== "" & this.codigobanco.idbanco !== "") {
+                    if (this.registro.nrocheq !== "" & this.registro.fechemi !== "" & this.registro.importe !== "" & this.codigobanco.idbanco !== "") {
                         axios.post(API + '/cheques/new', registro, headtoken).then((res) => {
                             axios.get(API + '/cheques/all', headtoken).then((res) => {
                                 let cheques = res.data.response;
@@ -74,7 +74,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                             }
                         })
                     } else {
-                        alert("Número de cheque, Fecha Emision, Moneda y Banco no pueden estar vacios");
+                        alert("Debe ingresar obligatoriamente: Número de cheque, Importe , Banco y Fecha Emision");
                     }
                 },
                 eliminarcheques: function (res, res2) {
@@ -84,7 +84,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     this.cheques.splice(idcheq, 1)
                     axios.put(API + '/cheques/delete/' + idcheq2, {}, headtoken).then((res) => {
-                        alert("Tipo de cheque eliminado correctamente");
+                        alert("Cheque eliminado correctamente");
 
                     })
 
@@ -114,7 +114,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.put(API + '/cheques/edit/' + modificocheque.idcheq, modificocheque, headtoken).then((res) => {
                         axios.get(API + '/cheques/all', headtoken).then((res) => {
-                            alert("cheque, modificado y activo en forma correcta.");
+                            alert("Cheque, modificado forma correcta.");
                             let cheques = res.data.response;
                             this.cheques = cheques
                         })
