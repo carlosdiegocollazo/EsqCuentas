@@ -9,24 +9,25 @@ let componentecotizacion = Vue.component('cotizaciones-component', function (res
                         fechcot: "",
                         moneda: "",
                         cotizacion: "",
-                        deldia: 0,
+                        deldia: 1,
                         activo: 1
                     },
                     devuelvomoneda: {
                         idmon: "",
                         moneda: "",
                         divide: "",
-                        activo: 1
+                        activo: "",
                     },
                     cotizaciones: {
                         idcot: "",
                         fechcot: "",
                         moneda: "",
                         cotizacion: "",
-                        deldia: 0,
+                        deldia: 1,
                         activo: 1
                     },
                     codigomoneda: "",
+                    limpiar:"",
                     codigocotizacion:"",
                     fecha:"",
 
@@ -50,9 +51,13 @@ let componentecotizacion = Vue.component('cotizaciones-component', function (res
                             axios.get(API + '/cotizacion/all', headtoken).then((res) => {
                                 let cotizaciones = res.data.response;
                                 this.cotizaciones = cotizaciones })
+                                axios.get(API + '/cotizacion/all', headtoken).then((res) => {
+                                    let cotizaciones = res.data.response;
+                                    this.cotizaciones = cotizaciones
+                                }),
                             alert("Tipo de cotizaciones creado correctamente");
                             if (resultado.response) {
-                                router.push({ path: '/cotizaciones' });
+                                router.push({ path: '/cotizacion' });
                             } else {
                                 alert(res.data.error);
                             }
@@ -108,6 +113,16 @@ let componentecotizacion = Vue.component('cotizaciones-component', function (res
                     })
 
                 },
+                limpiar: function () {
+                    this.registro = {
+                        idcot: "",
+                        fechcot: "",
+                        moneda: "",
+                        cotizacion: "",
+                        deldia: 0,
+                        activo: 1
+                    }
+                },
                 cerrarsesion: function () {
                     router.push('/mesa')
                 }
@@ -126,7 +141,6 @@ let componentecotizacion = Vue.component('cotizaciones-component', function (res
                 axios.get(API + '/cotizacion/all', headtoken).then((res) => {
                     let cotizaciones = res.data.response;
                     this.cotizaciones = cotizaciones
-
                 }),
                     axios.get(API + '/monedas/all', headtoken).then((res) => {
                         devuelvomoneda = res.data.response;

@@ -19,8 +19,8 @@ let cotizacion = {
 	
 	obtenercotizacion: async function(){
 		let sql 		= `
-							SELECT * FROM cotizacion where activo=1	
-						`
+		SELECT cotizacion.idcot,cotizacion.fechcot,cotizacion.moneda as idmon,monedas.moneda,cotizacion.cotizacion,cotizacion.deldia,cotizacion.activo FROM cotizacion INNER JOIN monedas ON cotizacion.moneda = monedas.idmon where cotizacion.activo =1 order by cotizacion.fechcot desc
+		`
 		let response 	= {error: "No se encontraron cotizaciones"}
 		let resultado 	= await conn.query(sql);
 		if (resultado.code) {
@@ -33,7 +33,8 @@ let cotizacion = {
 
 	obtenercotizacionall: async function(){
 		let sql 		= `
-							SELECT * FROM cotizacion
+		SELECT cotizacion.idcot,cotizacion.fechcot,cotizacion.moneda as idmon,monedas.moneda,cotizacion.cotizacion,cotizacion.deldia,cotizacion.activo FROM cotizacion INNER JOIN monedas ON cotizacion.moneda = monedas.idmon order by cotizacion.fechcot desc
+
 						`
 		let response 	= {error: "No se encontraron cotizaciones"}
 		let resultado 	= await conn.query(sql);

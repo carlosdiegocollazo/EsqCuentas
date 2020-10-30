@@ -6,17 +6,16 @@
       <div class="row justify-content-center align-items-center" style="margin-top: 100px;">
          <form>
             <H1 style="text-align-last: center; color: aliceblue;">Gestion de Monedas</H1>
-            <div class="form-group col-md-12"  style="text-align-last: center;">
+            <div class="form-group col-md-12" style="text-align-last: center;">
                <label for="monedas" style="color: aliceblue;" title="Ingrese el nombe de la moneda">Nombre de
                   Moneda</label>
                <input type="text" class="form-control" name="monedas" title="Ingrese el nombe de la monedas"
                   v-model="registro.monedas" placeholder="Descripcion" v-on:keyup.13="crearmonedas()" required>
             </div>
-
             <div class="form-group col-md-12" style="text-align: center;">
                <label for="divide" style=" color: aliceblue;">Para Cotizar</label>
                <input type="checkbox" class="form-control inputformu" id="divide" v-model="registro.divide">
-           </div>
+            </div>
             <div class="form-group col-md-3"></div>
             <div class="form-group col-md-12" style=" color: aliceblue; text-align: center;">
                <button type="@leave-cancelled=" class="btn btn-info" v-on:click="limpiar()">Limpiar</button>
@@ -32,7 +31,7 @@
                      <tr>
                         <th scope="col">ID</th>
                         <th scope="col">monedas</th>
-                        <th scope="col">Divide</th>
+                        <th scope="col">A Cotizar</th>
                         <th scope="col">Acciones</th>
                         <th scope="col">Acciones</th>
 
