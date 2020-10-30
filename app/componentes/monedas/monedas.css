@@ -5,7 +5,7 @@
     /* Centro */
     background-size: auto;
     /* Ajuste automático */
-    2background-size: cover;
+    background-size: cover;
     /* Escalar sin recortar */
     background-attachment: fixed;
     /*normalizar*/
@@ -18,7 +18,15 @@ input.inputtabla {
     border: none;
     background: transparent;
     color: white;
+    text-align: right;ç
+}
+
+input.inputtablasm {
+    border: none;
+    background: transparent;
+    color: white;
     text-align: right;
+    width: 50px;
 }
 
 input.inputtabla:hover {
@@ -33,4 +41,8 @@ input.inputform:focus-visible {
     border-color: rgb(0, 255, 13);
     background: #dfe;
     color: white;
+}
+
+.selectcombo{
+    width: 100%;
 }

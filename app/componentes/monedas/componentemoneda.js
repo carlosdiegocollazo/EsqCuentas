@@ -10,12 +10,12 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                         divide: 1,
                         activo: 1
                     },
-                    monedas: [],
-
+                    monedas: {},
+                    limpiar: {},
                 }
             },
             methods: {
-                crearmoneda: function () {
+                crearmonedas: function () {
                     let registro = {
                         monedas: this.registro.monedas,
                         divide: this.registro.divide,
@@ -23,12 +23,13 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                     }
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
-
                     if (this.registro.monedas !== "") {
-
                         axios.post(API + '/monedas/new', registro, headtoken).then((res) => {
                             let resultado = res.data;
-                            //       console.log("resultado", resultado)
+                            axios.get(API + '/monedas/all', headtoken).then((res) => {
+                                let monedas = res.data.response;
+                                this.monedas = monedas
+                            })
                             alert("Tipo de moneda creado correctamente");
                             if (resultado.response) {
                                 router.push({ path: '/monedas' });
@@ -79,7 +80,7 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.put(API + '/monedas/edit/' + modificomoneda.idmon, modificomoneda, headtoken).then((res) => {
                         axios.get(API + '/monedas/all', headtoken).then((res) => {
-                            alert("Moneda",modificomoneda,moneda," modificada correctamente");
+                            alert("Moneda", modificomoneda, moneda, " modificada correctamente");
                         })
                     })
                 },
@@ -91,7 +92,6 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.get(API + '/monedas/allall', headtoken).then((res) => {
                         let monedas = res.data.response;
-                        //   console.log("contenido del for", monedas)
                         this.monedas = monedas
                     })
                 },
@@ -103,9 +103,17 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.get(API + '/monedas/all', headtoken).then((res) => {
                         let monedas = res.data.response;
-                        // console.log("contenido del for", monedas)
                         this.monedas = monedas
                     })
+                },
+
+                limpiar: function () {
+                    this.registro = {
+                        idmon: "",
+                        monedas: "",
+                        divide: 1,
+                        activo: 1
+                    }
                 },
                 cerrarsesion: function () {
                     router.push('/mesa')
@@ -113,17 +121,13 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
             },// fin el method
 
             mounted: function () {
-                //console.log(this.$router)
                 let token = localStorage.getItem("token");
-
                 this.seguridad = localStorage.getItem("seguridad")
                 let id = localStorage.getItem("idusuario")
                 const headtoken = { headers: { "mytoken": `${token}` } }
                 axios.get(API + '/monedas/all', headtoken).then((res) => {
                     let monedas = res.data.response;
-                    //console.log("contenido del for", monedas)
                     this.monedas = monedas
-
                 })
             },//fin del mounted
         })
