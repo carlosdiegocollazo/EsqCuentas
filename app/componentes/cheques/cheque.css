@@ -43,6 +43,16 @@ input.inputform:focus-visible {
     color: white;
 }
 
-selectcombo{
+.selectcombo{
     width: 100%;
 }
+
+/*input:valid,
+textarea:valid {
+    background: green;
+}
+
+input:invalid,
+textarea:invalid {
+    background: red;
+}*/
