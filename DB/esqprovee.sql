@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 28-10-2020 a las 23:54:34
+-- Tiempo de generación: 30-10-2020 a las 21:44:09
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -36,15 +36,17 @@ CREATE TABLE IF NOT EXISTS `bancos` (
   `sucursal` text CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `activo` int NOT NULL,
   PRIMARY KEY (`idbanco`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `bancos`
 --
 
 INSERT INTO `bancos` (`idbanco`, `banco`, `moneda`, `cuenta`, `sucursal`, `activo`) VALUES
-(1, 'BROU Pesos', 0, '123456789101112', '001 - Centro', 1),
-(2, 'BROUDolares', 1, '987654321123', '001 - Centro', 1);
+(1, 'BROU $', 0, '123456789101112', '001 - Centro', 1),
+(2, 'Santander USD', 1, '987654321123', '001 - Centro', 1),
+(3, 'BROU USD', 1, '5454455454', '1', 1),
+(4, 'Santander $', 0, '4454545', '22', 1);
 
 -- --------------------------------------------------------
 
@@ -62,16 +64,18 @@ CREATE TABLE IF NOT EXISTS `cheques` (
   `fechemi` varchar(10) NOT NULL,
   `fechpag` varchar(10) NOT NULL,
   `fechcob` varchar(10) NOT NULL,
-  `activo` tinyint NOT NULL,
+  `activo` int NOT NULL,
   PRIMARY KEY (`idcheq`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `cheques`
 --
 
 INSERT INTO `cheques` (`idcheq`, `nrocheq`, `importe`, `banco`, `moneda`, `fechemi`, `fechpag`, `fechcob`, `activo`) VALUES
-(1, 1000, 0, 1, 0, '2020-12-20', '2021-01-01', '', 1);
+(9, 1, 1, 1, 0, '2001-01-01', '', '', 1),
+(10, 2, 2, 2, 1, '2002-01-02', '', '', 1),
+(11, 3, 33, 3, 1, '2000-01-01', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -147,7 +151,7 @@ INSERT INTO `monedas` (`idmon`, `moneda`, `divide`, `activo`) VALUES
 (3, 'definido', 1, 0),
 (4, 'Reales', 1, 1),
 (5, 'Euros', 1, 1),
-(1001, 'Cheque', 0, 1),
+(1001, 'Cheque', 0, 0),
 (1000, 'Cheque', 0, 1),
 (35, 'Realiños ', 1, 1),
 (34, 'Australes', 1, 1),
