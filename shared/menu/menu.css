@@ -2,3 +2,36 @@
     padding: 25px;
     animation-delay: -10ms;
 }
+.usernom{
+    color: whitesmoke;
+    text-align: right;
+    padding: 0px;
+    margin: 0px;
+    justify-content: flex-end;
+}
+.inputfec{
+    background-color: transparent;
+    border: none;
+    color: whitesmoke;
+    text-align: right;
+}
+.butsalir{
+    background-color: red;
+    color: antiquewhite;
+    text-align: center;
+    height: 25px;
+    width: 150px;
+    border-radius: 5px;
+    padding: 0;
+    margin: 0;
+}
+.h4nombre{
+    text-align: justify;
+}
+
+.menuitem:hover{
+    background-color: rgb(28, 146, 241);
+    border-radius: 5px;
+    border: none;
+    color: cornflowerblue;
+}

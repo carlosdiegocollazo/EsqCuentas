@@ -9,31 +9,31 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <router-link to="/movimientos" class="nav-link" href="movimientos">Movimientos</a>
+                <router-link to="/movimientos" class="nav-link menuitem" href="movimientos">Movimientos</a>
             </li>
             <li class="nav-item">
-                <router-link to="/cheques" class="nav-link" href="cheques">Cheques</a>
+                <router-link to="/cheques" class="nav-link menuitem" href="cheques">Cheques</a>
             </li>
             <li class="nav-item">
-                <router-link to="/monedas" class="nav-link" href="monedas">Monedas</a>
+                <router-link to="/monedas" class="nav-link menuitem" href="monedas">Monedas</a>
             </li>
             <li class="nav-item">
-                <router-link to="/cotizaciones" class="nav-link" href="cotizaciones">Cotizaciones</a>
+                <router-link to="/cotizaciones" class="nav-link menuitem" href="cotizaciones">Cotizaciones</a>
             </li>
             <li class="nav-item">
-                <router-link to="/bancos" class="nav-link" href="bancos">Bancos</a>
+                <router-link to="/bancos" class="nav-link menuitem" href="bancos">Bancos</a>
             </li>
             <li class="nav-item">
-                <router-link to="/documentos" class="nav-link" href="documentos">Documentos</a>
+                <router-link to="/documentos" class="nav-link menuitem" href="documentos">Documentos</a>
             </li>
             <li class="nav-item">
-                <router-link to="/proveedores" class="nav-link" href="proveedores">Proveedores</a>
+                <router-link to="/proveedores" class="nav-link menuitem" href="proveedores">Proveedores</a>
             </li>
             <li class="nav-item">
-                <router-link to="/usuarios" class="nav-link" href="usuarios">Usuarios</a>
+                <router-link to="/usuarios" class="nav-link menuitem" href="usuarios">Usuarios</a>
             </li>
             <li class="nav-item">
-                <router-link to="/seguridad" class="nav-link" href="seguridad">Seguridad</a>
+                <router-link to="/seguridad" class="nav-link menuitem" href="seguridad">Seguridad</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -41,7 +41,7 @@
                     más opciones
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <router-link to="/notfound" class="nav-link" href="#">Not Found</router-link>
+                    <router-link to="/notfound" class="nav-link menuitem" href="#">Not Found</router-link>
                     <router-link to="/usuarios" class="dropdown-item" href="usuarios">Usuarios</router-link>
                     <a class="dropdown-item" href="4">Documentos</a>
                     <a class="dropdown-item" href="5">Seguridad</a>
@@ -49,12 +49,16 @@
             </li>
 
         </ul>
-        <div class="container-fluid animate__animated animate__backInLeft " style="justify-content: flex-end;">
-            <h4 style="color: whitesmoke;"> {{nombreusuario}}</h4>
-            <li style="text-align: right; justify-content: flex-end;" class="nav-item">
-                <router-link to="/" class="nav-link" href="#">Salir</router-link>
-            </li>
-        </div>
+        <div class="container animate__animated animate__backInLeft " style="justify-content: flex-end;">
 
-    </div>
+            <div class="form-row">
+                <div class="form-group col-md-12 text-align: -webkit-right; usernom">
+                    <input class="inputfec" type="date" data-date-format="DD-MM-YYYY" disabled name="fecha"
+                        v-model="fecha">
+                    <h4 class="h4nombre"> {{nombreusuario}}</h4>
+                    <router-link to="/" class="nav-link butsalir" href="#" >SALIR</router-link>
+                </div>
+            </div>
+
+        </div>
 </nav>

@@ -42,6 +42,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                     },
                     codigomoneda: "",
                     codigobanco: "",
+                    limpiar:{},
                 }
             },
             methods: {
@@ -161,8 +162,22 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                         this.devuelvobanco = devuelvobanco
                     })
                 },
+                
+                limpiar: function () {
+                    this.registro = {
+                        idcheq: "",
+                        nrocheq: "",
+                        importe: "",
+                        banco: "",
+                        moneda: "",
+                        fechemi: "",
+                        fechpag: "",
+                        fechcob: "",
+                        activo: 1
+                    }
+                },
                 cerrarsesion: function () {
-                    router.push('/mesa')
+                    router.push('/mesa/')
                 }
             },// fin el method
 

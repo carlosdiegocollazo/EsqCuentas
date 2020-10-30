@@ -9,8 +9,17 @@ Vue.component('menu-item', function (resolve, reject) {
                     idusu: localStorage.getItem('idusu'),
                     nombreusuario: localStorage.getItem('nombreusuario'),
                     seguridad: localStorage.getItem('seguridad'),
-
+                    fecha: ","
                 }
+            },
+            methods: {
+                fecha: function () {
+                    fecha = this.fecha.fecha
+                }
+            },
+            mounted() {
+                fecha = new Date().toISOString().substr(0, 10)
+                this.fecha = fecha
             },
         })
     })

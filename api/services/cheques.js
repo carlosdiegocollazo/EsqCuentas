@@ -34,7 +34,7 @@ let cheques = {
 
 	obtenerchequesall: async function () {
 		let sql = `
-		SELECT cheques.idcheq,cheques.nrocheq,cheques.importe,bancos.idbanco,bancos.banco,monedas.moneda,cheques.fechemi,cheques.fechpag,cheques.fechcob,cheques.activo from cheques join monedas on monedas.idmon = cheques.moneda join bancos on bancos.idbanco = cheques.banco where order by fechemi desc
+		SELECT cheques.idcheq,cheques.nrocheq,cheques.importe,bancos.idbanco,bancos.banco,monedas.moneda,cheques.fechemi,cheques.fechpag,cheques.fechcob,cheques.activo from cheques join monedas on monedas.idmon = cheques.moneda join bancos on bancos.idbanco = cheques.banco order by fechemi desc
 						`
 		let response = { error: "No se encontraron cheques" }
 		let resultado = await conn.query(sql);
