@@ -8,7 +8,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                         idcheq: "",
                         nrocheq: "",
                         importe: "",
-                        banco:"",
+                        banco: "",
                         moneda: "",
                         fechemi: "",
                         fechpag: "",
@@ -33,7 +33,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                         idcheq: "",
                         nrocheq: "",
                         importe: "",
-                        banco:"",
+                        banco: "",
                         moneda: "",
                         fechemi: "",
                         fechpag: "",
@@ -50,13 +50,13 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                         nrocheq: this.registro.nrocheq,
                         importe: this.registro.importe,
                         banco: this.codigobanco.idbanco,
-                        moneda: this.codigomoneda.idmon,
+                        moneda: this.codigobanco.idmon,
                         fechemi: this.registro.fechemi,
                         fechpag: this.registro.fechpag,
                         fechcob: this.registro.fechcob,
                         activo: 1
                     }
-                    //console.log("regsitro uqe viene del thml", this.registro)
+                    console.log("registro que guarda",registro)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     if (this.registro.nrocheq !== "" & this.registro.fechemi !== "" & this.registro.importe !== "" & this.codigobanco.idbanco !== "") {
@@ -80,6 +80,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                 eliminarcheques: function (res, res2) {
                     let idcheq = res
                     let idcheq2 = res2
+                    // console.log("res y res2",res,res2)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     this.cheques.splice(idcheq, 1)
@@ -93,23 +94,24 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                     let modificocheque = {}
                     let cheques = this.cheques
                     console.log("cheuqes que trae del html", cheques)
+                    console.log("res del cheques a modificar", res)
                     for (let index = 0; index < cheques.length; index++) {
                         const element = cheques[index];
                         if (index == res) {
                             modificocheque = {
-                                idcheq:element.idcheq,
+                                idcheq: element.idcheq,
                                 nrocheq: element.nrocheq,
                                 importe: element.importe,
                                 banco: element.idbanco,
-                                moneda: element.idmoneda,
+                                moneda: element.moneda,
                                 fechemi: element.fechemi,
                                 fechpag: element.fechpag,
                                 fechcob: element.fechcob,
-                                activo: 1
+                                activo: 1,
                             }
                         }
                     }
-
+                    console.log("lo que se manda a modificar", modificocheque)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.put(API + '/cheques/edit/' + modificocheque.idcheq, modificocheque, headtoken).then((res) => {
@@ -171,6 +173,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                 axios.get(API + '/cheques/all', headtoken).then((res) => {
                     let cheques = res.data.response;
                     this.cheques = cheques
+                    console.log("cheques con que se arma la tabla", this.cheques)
                 }),
                     axios.get(API + '/monedas/all', headtoken).then((res) => {
                         devuelvomoneda = res.data.response;

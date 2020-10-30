@@ -19,7 +19,7 @@ let cheques = {
 
 	obtenercheques: async function () {
 		let sql = `
-		SELECT * from cheques inner JOIN monedas ON monedas.idmon = cheques.moneda inner JOIN bancos ON bancos.idbanco = cheques.banco where cheques.activo=1 order by cheques.fechemi DESC
+		SELECT cheques.idcheq,cheques.nrocheq,cheques.importe,bancos.idbanco,bancos.banco,monedas.moneda,cheques.fechemi,cheques.fechpag,cheques.fechcob,cheques.activo from cheques join monedas on monedas.idmon = cheques.moneda join bancos on bancos.idbanco = cheques.banco where cheques.activo=1 order by fechemi desc
 						`
 		let response = { error: "No se encontraron cheques" }
 		let resultado = await conn.query(sql);
@@ -29,11 +29,12 @@ let cheques = {
 			response = { response: resultado }
 		}
 		return response;
+		console.log("REsponse de la api",response)
 	},
 
 	obtenerchequesall: async function () {
 		let sql = `
-		SELECT * from cheques INNER JOIN monedas ON cheques.moneda = monedas.idmon JOIN bancos ON cheques.banco = bancos.idbanco order by cheques.fechemi DESC 		
+		SELECT cheques.idcheq,cheques.nrocheq,cheques.importe,bancos.idbanco,bancos.banco,monedas.moneda,cheques.fechemi,cheques.fechpag,cheques.fechcob,cheques.activo from cheques join monedas on monedas.idmon = cheques.moneda join bancos on bancos.idbanco = cheques.banco where order by fechemi desc
 						`
 		let response = { error: "No se encontraron cheques" }
 		let resultado = await conn.query(sql);
@@ -98,7 +99,8 @@ let cheques = {
 		return response;
 	},
 
-	actualizarcheques: async function (cheque, id) {
+	actualizarcheque: async function (cheque, id) {
+		console.log("lo que recibo de la app para uopdatear:",cheque,id)
 		let sql = `
 					UPDATE cheques
 					SET
@@ -109,7 +111,7 @@ let cheques = {
 					fechemi			='${cheque.fechemi}',
 					fechpag			='${cheque.fechpag}',
 					fechcob			='${cheque.fechcob}',
-					activo			=1
+					activo			='${cheque.activo}',
 					WHERE
 					cheques.idcheq = '${id}'
 				`
@@ -130,7 +132,7 @@ let cheques = {
 		return response;
 	},
 
-	eliminarcheque: async function (id) {
+	eliminarcheques: async function (id) {
 		let sql = `
 							UPDATE cheques 
 							SET 

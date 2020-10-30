@@ -5,56 +5,48 @@
       <!-- Div contenendor general-->
       <div class="row justify-content-center align-items-center" style="margin-top: 100px;">
          <form>
-            <div class="row" class="login">
+     
                <H1 style="text-align-last: center; color: aliceblue;">Gestion de Bancos</H1>
                <div>
-                  <label for="banco" style=" color: aliceblue; text-align: center;"
-                     title="Ingrese Nombre del Banco">Nombre del Banco</label>
+
                   <input type="text" class="form-control" name="banco" title="Nombre del Banco" v-model="registro.banco"
-                     placeholder="Ingrese el nombre del Banco" style="text-align: left;">
+                     placeholder="Ingrese el nombre del Banco" style="text-align: left; margin-top: 10px;">
                </div>
                <div>
-                  <label for="cuenta" style=" color: aliceblue; text-align: center;"
-                     title="Num de cuenta bancaria">Número de cuenta</label>
+
+
                   <input type="text" class="form-control" name="cuenta" title="Numero de cuenta"
-                     v-model="registro.cuenta" placeholder="Num. Cuenta Bancaria">
+                     v-model="registro.cuenta" placeholder="Num. Cuenta Bancaria"  style="text-align: left; margin-top: 10px;" >
                </div>
                <div>
-                  <label for="sucursal" style=" color: aliceblue; text-align: center;"
-                     title="Num y Nombre de sucursal bancaria">Número y Nombre de sucursal</label>
+
+
                   <input type="text" class="form-control" name="sucursal" title="Número y Nombre de sucursal"
-                     v-model="registro.sucursal" placeholder="Número y Nombre de sucursal">
+                     v-model="registro.sucursal" placeholder="Número y Nombre de sucursal"  style="text-align: left; margin-top: 10px;">
                </div>
-               br
-               <label for="codigomoneda" style=" color: aliceblue; text-align: center;margin-top: 20px;">Moneda</label>
-               <select v-model="codigomoneda">
-                  <option disabled value="">Seleccione</option>
+
+               <select v-model="codigomoneda" class="form-control" style="width: 50%; margin-bottom: 10px;margin-top: 10px;">
+                  <option disabled value="">Seleccione Moneda de cuenta</option>
                   <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
                      {{codigomoneda.idmon}} {{codigomoneda.moneda}}
                   </option>
                </select>
-               <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" name="activo" v-model="registro.activo">
-                  <label class="form-check-label" for="activo"
-                     style=" color: aliceblue; text-align: center;">Activo</label>
-               </div row justify-items-center align-items-center>
+
                <button class="btn btn-primary" v-on:click="mostraractivos()" style="margin-left: 30px;">Mostrar
                   Activos</button>
                <button class="btn btn-primary" v-on:click="mostrartodos()" style="margin-left: 30px;">Mostrar
                   Todos</button>
                <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()"
                   style="margin-left: 30px;">Cancelar</button>
-               <button type="submit" class="btn btn-success" style="margin-left: 30px;"
+               <button type="submit" class="btn btn-success" style="margin-left: 30px;margin-bottom: 20px;"
                   v-on:click="crearbancos()">Ingresar</button>
-               <br><br>
-            </div>
          </form>
          <div class="container-fluid" style="margin-top: 50;">
             <!--comienzo de de tabla-->
             <template>
                <div class="container-fluid">
                   <div class="row">
-                     <div class="col-md-12">
+                     <div class="col-md-8">
                         <div class="table-responsive small table-striped  table-dark">
 
                            <table class="table">
@@ -65,7 +57,6 @@
                                     <th scope="col">Moneda</th>
                                     <th scope="col">Num Cuenta</th>
                                     <th scope="col">Num y Nom. Sucursal</th>
-                                    <th scope="col">Activo</th>
                                     <th scope="col">Acciones</th>
                                     <th scope="col">Acciones</th>
 
@@ -78,13 +69,16 @@
                                     <td><input class="inputtabla" type="text" v-model="banco.banco"
                                           title="Haga click para editar y luego presione el botón Modificar"></td>
                                     <td style="text-align: center;">
-                                       <input class="inputtabla" type="text" v-model="banco.moneda"></td>
+                                       <input class="inputtablasm" type="number" v-model="banco.idmon"
+                                          title="Haga click para editar y luego presione el botón Modificar"><input
+                                          disabled style="text-align: left;" class="inputtabla" type="text"
+                                          v-model="banco.moneda">
+                                    </td>
                                     <td style="text-align: center;">
-                                    <input class="inputtabla" type="text" v-model="banco.cuenta"></td>
+                                       <input class="inputtabla" type="text" v-model="banco.cuenta"></td>
                                     <td><input class="inputtabla" type="text" v-model="banco.sucursal"
                                           title="Haga click para editar y luego presione el botón Modificar"></td>
                                     <td style="text-align: center;">
-                                    <td><input class="inputtabla" type="checkbox" v-model="banco.activo"></td>
                                     <td><button class="btn btn-danger"
                                           v-on:click="eliminarbancos(index,banco.idbanco)">Elimina</button></td>
                                     <td><button class="btn btn-success"

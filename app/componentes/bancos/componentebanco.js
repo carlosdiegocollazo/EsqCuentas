@@ -78,7 +78,7 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                             modificobanco = {
                                 idbanco: element.idbanco,
                                 banco: element.banco,
-                                moneda: element.moneda,
+                                moneda: element.idmon,
                                 cuenta: element.cuenta,
                                 sucursal: element.sucursal,
                                 activo: 1

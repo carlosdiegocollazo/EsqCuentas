@@ -2,6 +2,7 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
     axios.get('./app/componentes/movimientos/vistamovimiento.html').then(function (view) {
         resolve({
             template: view.data,
+
             data: function () {
                 return {
                     registro: {
@@ -39,7 +40,7 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                     devuelvocheque: {
                         idcheq: "",
                         nrocheq: "",
-                        importe:"",
+                        importe: "",
                         banco: "",
                         moneda: "",
                         fechemi: "",
@@ -48,7 +49,7 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         activo: 1
                     },
                     devuelvoproveedor: {
-                        idprov:"",
+                        idprov: "",
                         rutced: "",
                         razon: "",
                         fantasia: "",
@@ -113,8 +114,11 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                     codigocheque: "",
                     codigoproveedor: "",
                     codigodocumento: "",
-                    fecha:"",
+                    fecha: "",
+                    ventana: "",
                 }
+
+
             },
             methods: {
                 registUser: function () {
@@ -276,16 +280,28 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                     })
                 },
 
+                ventana:function () {
+                                       this.ventana=true
+                                       ventana=true
+                                 console.log("ventana",ventana)
+                                 console.log("ventana this",ventana)
+                },
+                cerrarmodal: function () {
+                    ventana = false;
+                },
                 cerrarsesion: function () {
                     router.push('/mesa')
                 }
             },// fin el method
 
             mounted: function () {
-                fecha=new Date().toISOString().substr(0,10)
-                this.registro.feching=fecha
-                console.log("today",fecha)
+                fecha = new Date().toISOString().substr(0, 10)
+                this.registro.feching = fecha
 
+                ventana=false,
+                this.ventana=false,
+                                console.log("ventana this", this.ventana)
+                                console.log("ventana", ventana)
 
                 let token = localStorage.getItem("token");
                 this.seguridad = localStorage.getItem("seguridad")
@@ -303,16 +319,16 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         devuelvocheque = res.data.response;
                         this.devuelvocheque = devuelvocheque
                     }),
-                    
+
                     axios.get(API + '/documentos/all', headtoken).then((res) => {
                         devuelvodocumento = res.data.response;
                         this.devuelvodocumento = devuelvodocumento
                     })
 
-                    axios.get(API + '/monedas/all', headtoken).then((res) => {
-                        devuelvomoneda = res.data.response;
-                        this.devuelvomoneda = devuelvomoneda
-                    })
+                axios.get(API + '/monedas/all', headtoken).then((res) => {
+                    devuelvomoneda = res.data.response;
+                    this.devuelvomoneda = devuelvomoneda
+                })
             },//fin del mounted
         }) //fin del resolve
     })
