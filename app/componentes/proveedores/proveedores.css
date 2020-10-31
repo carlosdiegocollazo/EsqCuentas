@@ -34,3 +34,9 @@ input.inputformu:focus-visible {
     background: lightgreen;
     color: black;
 }
+
+.table td.fit, 
+.table th.fit {
+       white-space: nowrap;
+       width: 1%;
+}

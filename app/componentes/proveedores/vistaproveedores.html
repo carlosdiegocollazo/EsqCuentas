@@ -76,18 +76,18 @@
                     <input type="checkbox" class="form-control inputformu" id="retactivo" v-model="registro.retactivo">
                 </div>
                 
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-1">
                         <label required for="saldoincial" style=" color: aliceblue; text-align: center;">Saldo Inicial</label>
                         <input type="number" class="form-control inputformu" id="saldoincial"
                             v-model="registro.saldoincial" v-model="registro.saldoincial">
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-1">
                         <label for="saldototal" style=" color: aliceblue; text-align: center;">Saldo Total o
                             Actual</label>
                         <input type="number" class="form-control inputformu" id="saldototal"
                             v-model="registro.saldototal" v-model="registro.saldototal">
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-1">
                         <label for="codigomoneda" style="color: aliceblue;" title="x 1">Moneda</label>
                         <select required v-model="codigomoneda" class="form-control" style="width: 100%;" required>
                             <option disabled value="">Seleccione</option>
@@ -96,7 +96,7 @@
                             </option>
                         </select>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-9">
                         <label for="observaciones" style=" color: aliceblue; text-align: center;">Observaciones</label>
                         <input type="text" class="form-control inputformu" id="observaciones"
                             placeholder="Ingrese observaciones o comentarios" v-model="registro.observaciones">
