@@ -90,6 +90,8 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.put(API + '/bancos/edit/' + modificobanco.idbanco, modificobanco, headtoken).then((res) => {
                         axios.get(API + '/bancos/all', headtoken).then((res) => {
+                            let bancos = res.data.response;
+                            this.bancos = bancos
                             alert("BANCO, modificado y activo en forma correcta.");
                         })
                     })
@@ -140,7 +142,6 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                 const headtoken = { headers: { "mytoken": `${token}` } }
                 axios.get(API + '/bancos/all', headtoken).then((res) => {
                     let bancos = res.data.response;
-                    //console.log("Bancos que devuevle el axios", bancos)
                     this.bancos = bancos
 
                 }),

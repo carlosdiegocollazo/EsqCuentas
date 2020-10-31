@@ -9,17 +9,17 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="rutced" style=" color: aliceblue; text-align: center;">R.U.T. - Cedula</label>
-                    <input type="number" class="form-control inputformu" name="rutced" v-model="registro.rutced"
+                    <input required type="number" class="form-control inputformu" name="rutced" v-model="registro.rutced"
                         placeholder="Ingrese RUT o Cedula del proveedor">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="razon" style=" color: aliceblue; text-align: center;">Razon Social</label>
-                    <input type="text" class="form-control inputformu" name="razon"
+                    <input required type="text" class="form-control inputformu" name="razon"
                         placeholder="Razón Social del Proveedor" v-model="registro.razon">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="fantasia" style=" color: aliceblue; text-align: center;">Nombre Fantasia</label>
-                    <input type="text" class="form-control inputformu" name="fantasia"
+                    <input required type="text" class="form-control inputformu" name="fantasia"
                         placeholder="Nombre Fantasia del proveedor" v-model="registro.fantasia">
                 </div>
                 <div class="form-group col-md-3">
@@ -42,17 +42,17 @@
                 <div class="form-group col-md-3">
                     <label for="feching" style=" color: aliceblue; text-align: center;">Fecha Ingreso</label>
                     <input type="date" class="form-control inputformu" id="feching" v-model="registro.feching"
-                        v-model="registro.feching" data-date-format="DD-MM-YYYY" min="01-01-2000">
+                        v-model="registro.feching" data-date-format="DD-MM-YYYY" min="1900-01-01" max="2050-31-12" minlength="10" maxlength="10">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="fechret" style=" color: aliceblue; text-align: center;">Fecha Retorno</label>
                     <input type="date" class="form-control inputformu" id="fechret" v-model="registro.fechret"
-                        v-model="registro.fechret" data-date-format="DD-MM-YYYY" min="01-01-2000" max="31-12-2020">
+                        v-model="registro.fechret" data-date-format="DD-MM-YYYY" min="1900-01-01" max="2050-31-12" minlength="10" maxlength="10">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
-                    <label for="telefono" style=" color: aliceblue; text-align: center;">Telefono</label>
+                    <label required for="telefono" style=" color: aliceblue; text-align: center;">Telefono</label>
                     <input type="tel" class="form-control inputformu" name="telefono" placeholder="Ingrese telefono"
                         v-model="registro.telefono">
                 </div>
@@ -75,9 +75,9 @@
                     <label for="retactivo" style=" color: aliceblue; text-align: center;">Retorno Activo</label>
                     <input type="checkbox" class="form-control inputformu" id="retactivo" v-model="registro.retactivo">
                 </div>
-                <div class="form-row">
+                
                     <div class="form-group col-md-3">
-                        <label for="saldoincial" style=" color: aliceblue; text-align: center;">Saldo Inicial</label>
+                        <label required for="saldoincial" style=" color: aliceblue; text-align: center;">Saldo Inicial</label>
                         <input type="number" class="form-control inputformu" id="saldoincial"
                             v-model="registro.saldoincial" v-model="registro.saldoincial">
                     </div>
@@ -87,39 +87,30 @@
                         <input type="number" class="form-control inputformu" id="saldototal"
                             v-model="registro.saldototal" v-model="registro.saldototal">
                     </div>
-                    <div class="form-group col-md-3" style="text-align: center;">
-                        <label for="codigomoneda" style=" color: aliceblue; text-align: center;">Moneda
-                            predeterminada</label>
-                        <select v-model="codigomoneda">
-                            <option disabled value="">Moneda del Proveedor</option>
+                    <div class="form-group col-md-3">
+                        <label for="codigomoneda" style="color: aliceblue;" title="x 1">Moneda</label>
+                        <select required v-model="codigomoneda" class="form-control" style="width: 100%;" required>
+                            <option disabled value="">Seleccione</option>
                             <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
                                 {{codigomoneda.idmon}} {{codigomoneda.moneda}}
                             </option>
                         </select>
                     </div>
-                    <div class="form-group col-md-3" style="text-align: center;">
-                        <label for="activo" style=" color: aliceblue;">Activo</label>
-                        <input type="checkbox" class="form-control inputformu" id="activo" v-model="registro.activo">
+                    <div class="form-group col-md-3">
+                        <label for="observaciones" style=" color: aliceblue; text-align: center;">Observaciones</label>
+                        <input type="text" class="form-control inputformu" id="observaciones"
+                            placeholder="Ingrese observaciones o comentarios" v-model="registro.observaciones">
                     </div>
-                </div>
+                
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="observaciones" style=" color: aliceblue; text-align: center;">Observaciones</label>
-                    <input type="text" class="form-control inputformu" id="observaciones"
-                        placeholder="Ingrese observaciones o comentarios" v-model="registro.observaciones">
-                </div>
-
-                <button class="btn btn-primary" v-on:click="mostraractivos()" style="margin-left: 30px;">Mostrar
-                    Activos</button>
-                <button class="btn btn-primary" v-on:click="mostrartodos()" style="margin-left: 30px;">Mostrar
-                    Todos</button>
-                <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="limpiar()"
-                    style="margin-left: 30px;">Cancelar</button>
-                <button type="submit" class="btn btn-success"
-                    v-on:click="registUser(registro,codigomoneda.devuelvoseguridad)"
-                    style="margin-left: 30px;">Ingresar</button>
-
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3"></div>
+        <div class="form-group col-md-12" style=" color: aliceblue; text-align: center;">
+            <button type="@leave-cancelled=" class="btn btn-info" v-on:click="limpiar()">Limpiar</button>
+            <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()">Volver</button>
+            <button type="submit" class="btn btn-success" v-on:click="registUser()">Ingresar</button>
+        </div>
         </form>
         <br>
 
@@ -151,7 +142,6 @@
                                             <th scope="col">% Ret.</th>
                                             <th scope="col">Ret.Activo</th>
                                             <th scope="col">Observaciones</th>
-                                            <th scope="col">Activo</th>
                                             <th scope="col">Gestion</th>
                                             <th scope="col">Gestion</th>
                                         </tr>
@@ -181,10 +171,10 @@
                                             </td>
                                             <td><input class="inputtabla" type="date" v-model="proveedores.feching"
                                                     title="Haga click para editar y luego presione el botón Modificar"
-                                                    data-date-format="DD-MM-YYYY"></td>
+                                                    data-date-format="DD-MM-YYYY" min="1900-01-01" max="2050-31-12" minlength="10" maxlength="10"></td>
                                             <td><input class="inputtabla" type="date" v-model="proveedores.fechret"
                                                     title="Haga click para editar y luego presione el botón Modificar"
-                                                    data-date-format="DD-MM-YYYY"></td>
+                                                    data-date-format="DD-MM-YYYY" min="1900-01-01" max="2050-31-12" minlength="10" maxlength="10"></td>
                                             <td><input class="inputtabla" type="tel" v-model="proveedores.telefono"
                                                     title="Haga click para editar y luego presione el botón Modificar">
                                             </td>
@@ -207,14 +197,12 @@
                                             <td><input class="inputtabla" type="text" v-model="proveedores.retorno"
                                                     title="Haga click para editar y luego presione el botón Modificar">
                                             </td>
-                                            <td><input class="inputtabla" type="checkbox" v-model="proveedores.retactivo"
-                                                title="Haga click para editar y luego presione el botón Modificar">
+                                            <td><input class="inputtabla" type="checkbox"
+                                                    v-model="proveedores.retactivo"
+                                                    title="Haga click para editar y luego presione el botón Modificar">
                                             </td>
                                             <td><input class="inputtabla" type="text"
                                                     v-model="proveedores.observaciones"
-                                                    title="Haga click para editar y luego presione el botón Modificar">
-                                            </td>
-                                            <td><input class="inputtabla" type="checkbox" v-model="proveedores.activo"
                                                     title="Haga click para editar y luego presione el botón Modificar">
                                             </td>
                                             <td><button class="btn btn-danger"

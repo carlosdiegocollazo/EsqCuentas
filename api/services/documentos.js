@@ -19,7 +19,7 @@ let documentos = {
 
 	obtenerdocumentos: async function () {
 		let sql = `
-							SELECT * FROM documentos INNER JOIN monedas ON documentos.moneda = monedas.idmon where monedas.activo =1 order by documentos.idtipdoc asc
+		SELECT documentos.idtipdoc,documentos.tipodoc,documentos.moneda as idmon,monedas.moneda, documentos.activo FROM documentos INNER JOIN monedas ON documentos.moneda = monedas.idmon where documentos.activo =1 order by documentos.idtipdoc asc
 						`
 		let response = { error: "No se encontraron documentos" }
 		let resultado = await conn.query(sql);
@@ -33,7 +33,7 @@ let documentos = {
 
 	obtenerdocumentosall: async function () {
 		let sql = `
-					SELECT * FROM documentos INNER JOIN monedas ON documentos.moneda = monedas.idmon order by documentos.idtipdoc asc
+		SELECT documentos.idtipdoc,documentos.tipodoc,documentos.moneda as idmon,monedas.moneda, documentos.activo FROM documentos INNER JOIN monedas ON documentos.moneda = monedas.idmon order by documentos.idtipdoc asc
 						`
 		let response = { error: "No se encontraron documentos" }
 		let resultado = await conn.query(sql);

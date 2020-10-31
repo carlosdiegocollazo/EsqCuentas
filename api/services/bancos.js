@@ -19,7 +19,7 @@ let bancos = {
 
 	obtenerbancos: async function () {
 		let sql = `
-		SELECT * FROM bancos INNER JOIN monedas ON bancos.moneda = monedas.idmon where BANCOS.activo =1 order by BANCOS.idbanco asc
+		SELECT bancos.idbanco,bancos.banco,bancos.moneda as idmon,monedas.moneda,bancos.cuenta,bancos.sucursal,bancos.activo FROM bancos INNER JOIN monedas ON bancos.moneda = monedas.idmon where BANCOS.activo =1 order by BANCOS.idbanco asc
 						`
 		let response = { error: "No se encontraron bancos" }
 		let resultado = await conn.query(sql);
@@ -33,7 +33,7 @@ let bancos = {
 
 	obtenerbancosall: async function () {
 		let sql = `
-		SELECT * FROM bancos INNER JOIN monedas ON bancos.moneda = monedas.idmon order by BANCOS.idbanco asc
+		SELECT bancos.idbanco,bancos.banco,bancos.moneda as idmon,monedas.moneda,bancos.cuenta,bancos.sucursal,bancos.activo FROM bancos INNER JOIN monedas ON bancos.moneda = monedas.idmon  order by BANCOS.idbanco asc
 						`
 		let response = { error: "No se encontraron bancos" }
 		let resultado = await conn.query(sql);

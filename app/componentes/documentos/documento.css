@@ -34,3 +34,10 @@ input.inputform:focus-visible {
     background: #dfe;
     color: white;
 }
+input.inputtablasm {
+    border: none;
+    background: transparent;
+    color: white;
+    text-align: right;
+    width: 50px;
+}

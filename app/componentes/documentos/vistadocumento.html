@@ -5,40 +5,32 @@
       <!-- Div contenendor general-->
       <div class="row justify-content-center align-items-center" style="margin-top: 100px;">
          <form>
-            <div class="row" class="login">
-               <div>
-                  <H1 style="text-align-last: center; color: aliceblue;">Gestion de Documentos</H1>
+            <H1 style="text-align-last: center; color: aliceblue;">Gestion de Documentos</H1>
+            <div class="row">
+               <div class="form-group col-md-3"></div>
+               <div class="form-group col-md-6">
                   <label for="tipodoc" style=" color: aliceblue; text-align: center;"
                      title="Ingrese el tipo de Documento">Tipo de Documento</label>
                   <input type="text" class="form-control" name="tipodoc" title="Ingrese el tipo de documento"
-                     v-model="registro.tipodoc" placeholder="Descripcion del documento">
+                     v-model="registro.tipodoc" placeholder="Descripcion del documento" required>
+               </div>
+               <div class="form-group col-md-4"></div>
+               <div class="form-group col-md-4">
+                  <select v-model="codigomoneda" class="form-control" required>
+                     <option disabled value="">Moneda del documento</option>
+                     <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
+                        {{codigomoneda.idmon}} {{codigomoneda.moneda}}
+                     </option>
+                  </select>
                </div>
 
-               <br>
-               <label for="codigomoneda" style=" color: aliceblue; text-align: center;">Moneda predeterminada</label>
-               <select v-model="codigomoneda">
-                  <option disabled value="">Seleccione</option>
-                  <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
-                     {{codigomoneda.idmon}} {{codigomoneda.moneda}}
-                  </option>
-               </select>
 
-               <div class="form-group form-check">
-
-                  <input type="checkbox" class="form-check-input" name="activo" v-model="registro.activo">
-                  <label class="form-check-label" for="activo"
-                     style=" color: aliceblue; text-align: center;">Activo</label>
-               </div row justify-items-center align-items-center>
-               <button class="btn btn-primary" v-on:click="mostraractivos()" style="margin-left: 30px;">Mostrar
-                  Activos</button>
-               <button class="btn btn-primary" v-on:click="mostrartodos()" style="margin-left: 30px;">Mostrar
-                  Todos</button>
-               <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()"
-                  style="margin-left: 30px;">Cancelar</button>
-               <button type="submit" class="btn btn-success" style="margin-left: 30px;"
-                  v-on:click="creardocumentos()">Ingresar</button>
-               <br><br>
-            </div>
+               <div class="form-group col-md-3"></div>
+               <div class="form-group col-md-12" style=" color: aliceblue; text-align: center;">
+                  <button type="@leave-cancelled=" class="btn btn-info" v-on:click="limpiar()">Limpiar</button>
+                  <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()">Volver</button>
+                  <button type="submit" class="btn btn-success" v-on:click="creardocumentos()">Ingresar</button>
+               </div>
          </form>
          <div class="container-fluid" style="margin-top: 50;">
             <!--comienzo de de tabla-->
@@ -53,8 +45,7 @@
                                  <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Documento</th>
-                                    <th scope="col">Moneda</th>
-                                    <th scope="col">Activo</th>
+                                    <th scope="col">Cod - Moneda</th>
                                     <th scope="col">Acciones</th>
                                     <th scope="col">Acciones</th>
 
@@ -68,9 +59,11 @@
                                     <td><input class="inputtabla" type="text" v-model="documento.tipodoc"
                                           title="Haga click para editar y luego presione el botón Modificar"></td>
                                     <td style="text-align: center;">
-
-                                       <input class="inputtabla" type="text" v-model="documento.moneda" disabled></td>
-                                    <td><input class="inputtabla" type="checkbox" v-model="documento.activo"></td>
+                                       <input class="inputtablasm" type="number" v-model="documento.idmon"
+                                          title="Haga click para editar y luego presione el botón Modificar"><input
+                                          disabled style="text-align: left;" class="inputtabla" type="text"
+                                          v-model="documento.moneda">
+                                    </td>
                                     <td><button class="btn btn-danger"
                                           v-on:click="eliminardocumentos(index,documento.idtipdoc)">Elimina</button>
                                     </td>

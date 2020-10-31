@@ -5,8 +5,8 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
             data: function () {
                 return {
                     registro: {
-                        idcot: "",
-                        tipodfehcaoc: "",
+                        idtipdoc: "",
+                        tipodoc: "",
                         moneda: "",
                         activo: 1
                     },
@@ -23,7 +23,7 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                         activo: ""
                     },
                     codigomoneda: "",
-                    tipodoc: [],
+                    tipodoc: {},
 
                 }
             },
@@ -73,8 +73,8 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                             modificodocumento = {
                                 idtipdoc: element.idtipdoc,
                                 tipodoc: element.tipodoc,
-                                moneda: element.moneda,
-                                activo: element.activo,
+                                moneda: element.idmon,
+                                activo: 1,
                             }
                         }
                     }
@@ -116,6 +116,14 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                         this.devuelvomoneda = devuelvomoneda
                     })
 
+                },
+                limpiar: function () {
+                    this.registro = {
+                        idtipdoc: "",
+                        tipodoc: "",
+                        moneda: "",
+                        activo: 1
+                    }
                 },
                 cerrarsesion: function () {
                     router.push('/mesa')
