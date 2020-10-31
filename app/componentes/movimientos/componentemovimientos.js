@@ -115,13 +115,13 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                     codigoproveedor: "",
                     codigodocumento: "",
                     fecha: "",
-                    ventana: "",
+                    
                 }
 
 
             },
             methods: {
-                registUser: function () {
+                crearmovimientos: function () {
                     let registro = {
                         proveedor: this.devuelvoproveedor.idpro,
                         tipdoc: this.registro.tipdoc,
@@ -279,13 +279,6 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         this.movimientos = movimientos
                     })
                 },
-
-                ventana:function () {
-                                       this.ventana=true
-                                       ventana=true
-                                 console.log("ventana",ventana)
-                                 console.log("ventana this",ventana)
-                },
                 cerrarmodal: function () {
                     ventana = false;
                 },
@@ -298,10 +291,10 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                 fecha = new Date().toISOString().substr(0, 10)
                 this.registro.feching = fecha
 
-                ventana=false,
-                this.ventana=false,
-                                console.log("ventana this", this.ventana)
-                                console.log("ventana", ventana)
+                ventana = true,
+                    this.ventana = true,
+                    console.log("ventana this", this.ventana)
+                console.log("ventana", ventana)
 
                 let token = localStorage.getItem("token");
                 this.seguridad = localStorage.getItem("seguridad")
