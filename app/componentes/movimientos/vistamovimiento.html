@@ -3,6 +3,7 @@
         <menu-item></menu-item>
         <router-view></router-view>
         <br>
+        <!--{{$data}}-->
         <br>
         <H1 style="text-align-last: center; color: aliceblue;">Ingreso de Movimientos por:</H1>
         <form style=" color: aliceblue; text-align: center;">
@@ -17,29 +18,79 @@
                         </option>
                     </select>
                 </div>
-                <div class="form-group col-md-2">
-                    <select v-model="codigodocumento" title="Seleccione el tipo de documento" style="width:100%;">
-                        <option disabled value="">Tipo Documento</option>
+                <div class="form-group col-md-1">
+                    <select v-model="codigodocumento" title="Seleccione el tipo de documento"
+                        style="width:100%; text-align: center;">
+                        <option disabled value="">T. Doc</option>
                         <option v-for="(codigodocumento,index) in devuelvodocumento" v-bind:value="codigodocumento">
                             {{codigodocumento.idtipdoc}} | {{codigodocumento.tipodoc}}
                         </option>
                     </select>
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-1">
                     <input type="text" style="text-align: center;" class="form-control movimientofrm" name="nrofac"
-                        v-model="registro.nrofac" placeholder="Ingrese Nº Factura" title="Ingresar número de factura">
+                        v-model="registro.nrofac" placeholder="Nº Factura" title="Ingresar número de factura">
                 </div>
-                <div class="form-group col-md-2">
-                    <input type="date" style="text-align: center;" class="form-control movimientofrm" name="feching"
-                        v-model="registro.feching" placeholder="Fecha Ingreso"
+                <div class="form-group col-md-1">
+                    <input type="date" style="text-align: center; width: 100%;" class="form-control movimientofrm"
+                        name="feching" v-model="registro.feching" placeholder="Fecha Ingreso"
                         title="Ingresar fecha de ingreso de factura">
                 </div>
-                <div class="form-group col-md-2">
-                    <input type="date" style="text-align: center;" class="form-control movimientofrm" name="fechpag"
-                        v-model="registro.fechpag" placeholder="Fecha Ingreso"
+                <div class="form-group col-md-1">
+                    <input type="date" style="text-align: center;width: 100%;" class="form-control movimientofrm"
+                        name="fechpag" v-model="registro.fechpag" placeholder="Fecha Ingreso"
                         title="Ingresar fecha en que pago de la factura">
                 </div>
-                <div class="form-group col-md-2" style="text-align: center; margin-left: 0px;">
+                <!---Dispara Cheques o Monedas-->
+                <div class="form-group col-md-1" style="text-align: center;">
+                    <div class="checkbox">
+                        <label class="Checkbox-inline">Cheque</label>
+                        <input type="checkbox" v-model="ventana.cheque" value="false">
+                    </div>
+                    <!---Fin de Dispara Cheques o Monedas-->
+                </div>
+                <!-- comienzo de cheques-->
+                <template v-if="ventana.cheque">
+                    <div class="form-group col-md-1" style=" color: aliceblue; text-align: center;">
+                        <input type="text" class="form-control movimientofrm " name="nrocheq" title="Numero de Cheque"
+                            v-model="registro.nrocheq" placeholder="Nº de Cheque" style="text-align: center;" required>
+                    </div>
+                    <div class="form-group col-md-1" style=" color: aliceblue; text-align: center;">
+                        <input type="number" class="form-control movimientofrm" name="importe"
+                            title="Importe del Cheque" v-model="registro.importe" placeholder="Imp.Cheque"
+                            style="text-align: center;" required>
+                    </div>
+                    <div class="form-group col-md-2" style=" color: aliceblue; text-align: center;">
+                        <select v-model="codigobanco" style="width: 100%; text-align: center;">
+                            <option style="text-align: center;" disabled value="">Cuenta</option>
+                            <option v-for="(codigobanco,index) in devuelvobanco" v-bind:value="codigobanco" required>
+                                {{codigobanco.idbanco}} {{codigobanco.banco}} - {{codigobanco.moneda}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-1" style=" color: aliceblue; text-align: center;">
+                        <input type="date" style="text-align: center; width: 100%;" title="Fecha Emision del Cheque"
+                            class="form-control movimientofrm" id="fechemi" v-model="registro.fechemi"
+                            data-date-format="DD-MM-YYYY" min="1900-01-01" max="2050-31-12" minlength="10"
+                            maxlength="10" required>
+                    </div>
+                    <div class="form-group col-md-1" style=" color: aliceblue; text-align: center;">
+                        <input type="date" title="Fecha de PAgo el cheque Emitido / Entregado"
+                            style="text-align: center; width: 100%;" class="form-control movimientofrm" id="fechpag"
+                            v-model="registro.fechpag" data-date-format="DD-MM-YYYY" min="1900-01-01" max="2050-31-12"
+                            minlength="10" maxlength="10">
+                    </div>
+                    <div class="form-group col-md-1"></div>
+                    <div v-if="ventana.cobro" class="form-group col-md-1"
+                        style=" color: aliceblue; text-align: center;">
+                        <input type="date" style="text-align: center; width: 100%;" class="form-control movimientofrm"
+                            id="fechcob" v-model="registro.fechcob" data-date-format="DD-MM-YYYY" min="1900-01-01"
+                            max="2050-31-12" minlength="10" maxlength="10">
+                    </div>
+                </template>
+                <!--fin de cheques-->
+                <div v-if="ventana.cheque==false" class="form-group col-md-1"
+                    style="text-align: center; margin-left: 0px;">
                     <select v-model="codigomoneda" title="Seleccionar moneda de la factura" style="width:100%;"
                         v-on:focus="obtenerproveedor(codigoproveedor.idpro,codigoproveedor.razon,codigoproveedor.moneda,codigoproveedor.saldototal)">
                         <option disabled value="">Moneda</option>
@@ -49,24 +100,16 @@
                     </select>
                 </div>
                 <div class="form-group col-md-1">
-                    <input type="text" style="text-align: center;" class="form-control movimientofrm" name="nrocheq"
-                        v-on:focus="" v-model="registro.nrocheq" placeholder="Nª Cheque" title="Numero de cheque">
-                </div>
-                <div class="form-group col-md-1">
-                    <input type="date" style="text-align: center;" class="form-control movimientofrm" name="fechcheq"
-                        v-model="registro.fechcheq" placeholder="Fecha Cheque" title="Fecha del cheque">
-                </div>
-                <div class="form-group col-md-1">
                     <input type="number" style="text-align: center;" class="form-control movimientofrm" name="debe"
-                        v-model="registro.debe" placeholder="Debe" title="Debe">
+                        v-model="registro.debe" placeholder="Debe" title="Importe a pagar de la factura del proveedor">
                 </div>
                 <div class="form-group col-md-1">
                     <input type="number" style="text-align: center;" class="form-control movimientofrm" name="haber"
                         v-model="registro.haber" placeholder="Haber" title="Haber">
                 </div>
                 <div class="form-group col-md-1">
-                    <input type="number" style="text-align: center;" class="form-control movimientofrm" name="saldo"
-                        v-model="registro.saldo" placeholder="Saldo" title="Saldo">
+                    <input type="number" style="text-align: center;" class="form-control movimientofrm" id="saldo"
+                        name="saldo" v-model="registro.saldo" placeholder="Saldo" title="Saldo">
                 </div>
                 <div class="form-group col-md-1">
                     <input type="number" style="text-align: center;" class="form-control movimientofrm" name="nrorec"
@@ -76,7 +119,7 @@
                     <input type="text" class="form-control inputform movimientofrm" id="observaciones"
                         placeholder="Ingrese observaciones o comentarios" v-model="registro.observaciones">
                 </div>
-            </div>
+            </div> <!-- fin del panel superior-->
     </div>
     <div class="form-row">
         <div class="form-group col-md-3"></div>
@@ -167,7 +210,7 @@
                                         </td>
                                         <!--    <td><input class="inputtabla" type="text" v-model="proveedores.saldototal"
                                                 title="Haga click para editar y luego presione el botón Modificar">
-                                        </td>-->
+                                            </td>-->
                                         <td><input class="inputtabla" type="text" v-model="proveedores.retorno"
                                                 title="Haga click para editar y luego presione el botón Modificar">
                                         </td>
@@ -196,8 +239,6 @@
 
     </div>
     <!--find de tabla-->
-
+    <!-- Div contenendor general-->
 </div>
-</div>
-<!-- Div contenendor general-->
 </div>

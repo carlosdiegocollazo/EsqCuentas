@@ -5,6 +5,9 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
 
             data: function () {
                 return {
+                    ventana: {
+                        cheque: false,
+                    },
                     registro: {
                         idmov: "",
                         proveedor: "",
@@ -15,10 +18,10 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         moneda: "",
                         nrocheq: "",
                         fechcheq: "",
-                        debe: "",
-                        haber: "",
-                        saldo: "",
-                        saldtot: "",
+                        debe: 0,
+                        haber: 0,
+                        saldo: 0,
+                        saldtot: 0,
                         nrorec: "",
                         fechret: "",
                         retactivo: "",
@@ -61,9 +64,9 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         direccion: "",
                         ciudad: "",
                         moneda: "",
-                        saldoincial: "",
-                        saldototal: "",
-                        retorno: "",
+                        saldoincial: 0,
+                        saldototal: 0,
+                        retorno: 0,
                         fechret: "",
                         retactivo: "",
                         observaciones: "",
@@ -79,10 +82,10 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         moneda: "",
                         nrocheq: "",
                         fechcheq: "",
-                        debe: "",
-                        haber: "",
-                        saldo: "",
-                        saldtot: "",
+                        debe: 0,
+                        haber: 0,
+                        saldo: 0,
+                        saldtot: 0,
                         nrorec: "",
                         fechret: "",
                         retactivo: "",
@@ -100,22 +103,36 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         moneda: "",
                         nrocheq: "",
                         fechcheq: "",
-                        debe: "",
-                        haber: "",
-                        saldo: "",
-                        saldtot: "",
+                        debe: 0,
+                        haber: 0,
+                        saldo: 0,
+                        saldtot: 0,
                         nrorec: "",
                         fechret: "",
                         retactivo: "",
                         observaciones: "",
                         activo: 1
                     },
+
+                    bancos: {
+                        idbanco: "",
+                        banco: "",
+                        moneda: "",
+                        cuenta: "",
+                        sucursal: "",
+                        activo: 1
+                    },
+
+
+                    devuelvobanco: {},
+
                     codigomoneda: "",
                     codigocheque: "",
                     codigoproveedor: "",
                     codigodocumento: "",
+                    codigobanco: "",
                     fecha: "",
-                    
+
                 }
 
 
@@ -129,7 +146,7 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         fechemi: this.registro.fechemi,
                         fechpag: this.registro.fechpag,
                         moneda: this.devuelvomoneda.idmon,
-                        nrocheq: this.devuelvocheque.nrocheq,
+                        nrocheq: this.registro.nrocheq,
                         fechcheq: this.devuelvocheque.fechcheq,
                         debe: this.registro.debe,
                         haber: this.registro.haber,
@@ -165,10 +182,10 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         moneda: "",
                         nrocheq: "",
                         fechcheq: "",
-                        debe: "",
-                        haber: "",
-                        saldo: "",
-                        saldtot: "",
+                        debe: 0,
+                        haber: 0,
+                        saldo: 0,
+                        saldtot: 0,
                         nrorec: "",
                         fechret: "",
                         retactivo: "",
@@ -279,9 +296,17 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         this.movimientos = movimientos
                     })
                 },
-                cerrarmodal: function () {
-                    ventana = false;
+                saldo: function(){
+                    let saldoenvivo=0;
+                    debe = parseFloat(this.registro.debe)
+                    haber= parseFloat(this.registro.haber)
+                    saldoenvivo=debe-haber
+                    this.registro.saldo=saldoenvivo
+                    console.log("haber",haber)
+                    console.log("debe",debe)
+                    console.log("saldo",saldo)
                 },
+
                 cerrarsesion: function () {
                     router.push('/mesa')
                 }
@@ -290,28 +315,30 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
             mounted: function () {
                 fecha = new Date().toISOString().substr(0, 10)
                 this.registro.feching = fecha
-
-                ventana = true,
-                    this.ventana = true,
-                    console.log("ventana this", this.ventana)
-                console.log("ventana", ventana)
-
                 let token = localStorage.getItem("token");
+                this.registro.saldo=this.registro.de-this.registro.haber
                 this.seguridad = localStorage.getItem("seguridad")
                 const headtoken = { headers: { "mytoken": `${token}` } }
                 axios.get(API + '/movimientos/all', headtoken).then((res) => {
                     let movimientos = res.data.response;
                     this.movimientos = movimientos
                 }),
-                    axios.get(API + '/proveedores/all', headtoken).then((res) => {
-                        devuelvoproveedor = res.data.response;
-                        this.devuelvoproveedor = devuelvoproveedor
-                    }),
+
+                console.log("thisregistro saldo",this.registro.saldo)
+                    axios.get(API + '/bancos/all', headtoken).then((res) => {
+                        devuelvobanco = res.data.response;
+                        this.devuelvobanco = devuelvobanco
+                    })
+                axios.get(API + '/proveedores/all', headtoken).then((res) => {
+                    devuelvoproveedor = res.data.response;
+                    this.devuelvoproveedor = devuelvoproveedor
+                }),
 
                     axios.get(API + '/cheques/all', headtoken).then((res) => {
                         devuelvocheque = res.data.response;
                         this.devuelvocheque = devuelvocheque
                     }),
+
 
                     axios.get(API + '/documentos/all', headtoken).then((res) => {
                         devuelvodocumento = res.data.response;
