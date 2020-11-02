@@ -12,14 +12,14 @@
                   <label for="nrocheq" style=" color: aliceblue; text-align: center;"
                      title="Ingrese Numero de Cheque">Numero de Cheque</label>
                   <input type="text" class="form-control" name="nrocheq" title="Numero de Cheque"
-                     v-model="registro.nrocheq" placeholder="Numero de Cheque" style="text-align: left;" required>
+                     v-model="registro.nrocheq" placeholder="Numero de Cheque" style="text-align: left;"  >
                </div>
 
                <div class="form-group col-md-4" style=" color: aliceblue; text-align: center;">
                   <label for="importe" style=" color: aliceblue; text-align: center;"
                      title="Importe del cheque">Importe</label>
                   <input type="number" class="form-control" name="importe" title="Importe del Cheque"
-                     v-model="registro.importe" placeholder="Importe" style="text-align: left;" required>
+                     v-model="registro.importe" placeholder="Importe" style="text-align: left;"  >
                </div>
             </div>
             <div class="form-row">
@@ -28,7 +28,7 @@
                   <label for="codigobanco" style=" color: aliceblue; text-align: center;">Banco</label>
                   <select v-model="codigobanco" class="form-control selectcombo">
                      <option disabled value="">Seleccione</option>
-                     <option v-for="(codigobanco,index) in devuelvobanco" v-bind:value="codigobanco" required>
+                     <option v-for="(codigobanco,index) in devuelvobanco" v-bind:value="codigobanco"  >
                         {{codigobanco.idbanco}} {{codigobanco.banco}} - {{codigobanco.moneda}}
                      </option>
                   </select>
@@ -36,7 +36,7 @@
                <div class="form-group col-md-4" style=" color: aliceblue; text-align: center;">
                   <label for="fechemi" style="color: aliceblue; text-align: center;">Fecha Emision</label>
                   <input type="date" class="form-control" id="fechemi" v-model="registro.fechemi"
-                     data-date-format="DD-MM-YYYY" min="1900-01-01" max="2050-31-12" minlength="10" maxlength="10" required >
+                     data-date-format="DD-MM-YYYY" min="1900-01-01" max="2050-31-12" minlength="10" maxlength="10"   >
                  </div>
             </div>
             <div class="form-row">
@@ -105,7 +105,7 @@
                            </td>
                            <td style="text-align: center;">
                               <input class="inputtabla" type="date" v-model="cheque.fechemi"
-                              data-date-format="DD-MM-YYYY" min="1900-01-01" max="2050-31-12" minlength="10" maxlength="10" required ></td>
+                              data-date-format="DD-MM-YYYY" min="1900-01-01" max="2050-31-12" minlength="10" maxlength="10"   ></td>
                            <td style="text-align: center;">
                               <input class="inputtabla" type="date" v-model="cheque.fechpag"
                                  title="Haga click para editar y luego presione el botón Modificar"
