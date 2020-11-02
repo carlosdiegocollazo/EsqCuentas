@@ -169,7 +169,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                 },
                 
                 limpiar: function () {
-                    this.registro = {
+                /*this.registro = {
                         idcheq: "",
                         nrocheq: "",
                         importe: "",
@@ -179,7 +179,8 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                         fechpag: "",
                         fechcob: "",
                         activo: 1
-                    }
+                    }*/
+                    router.push('/cheques/')
                 },
                 cerrarsesion: function () {
                     router.push('/mesa/')

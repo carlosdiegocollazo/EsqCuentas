@@ -139,13 +139,14 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
             },
             methods: {
                 crearmovimientos: function () {
+
                     let registro = {
-                        proveedor: this.devuelvoproveedor.idpro,
-                        tipdoc: this.registro.tipdoc,
+                        proveedor: this.codigoproveedor.idpro,
+                        tipdoc: this.codigodocumento.idtipdoc,
                         nrofac: this.registro.nrofac,
-                        fechemi: this.registro.fechemi,
+                        fechemi: this.registro.feching,
                         fechpag: this.registro.fechpag,
-                        moneda: this.devuelvomoneda.idmon,
+                        moneda: this.codigomoneda.idmon,
                         nrocheq: this.registro.nrocheq,
                         fechcheq: this.devuelvocheque.fechcheq,
                         debe: this.registro.debe,
@@ -156,7 +157,9 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         observaciones: this.registro.observaciones,
                         activo: 1,
                     }
-                    console.log("lo que guarda en usuario", registro)
+
+
+                    console.log("lo que guarda al cambiar el REgistro", registro)
                     if (this.registro.nrofac !== "" & this.registro.tipdoc !== "" & this.registro.fechpag !== "" & this.devuelvomoneda.idmon !== "" & this.registro.nrorec !== "") {
                         axios.post(API + '/movimientos/new/', registro).then((res) => {
                             let resultado = res.data;
@@ -312,9 +315,11 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
             mounted: function () {
                 fecha = new Date().toISOString().substr(0, 10)
                 this.registro.feching = fecha
+                
                 let token = localStorage.getItem("token");
                 this.seguridad = localStorage.getItem("seguridad")
                 const headtoken = { headers: { "mytoken": `${token}` } }
+                
                 axios.get(API + '/movimientos/all', headtoken).then((res) => {
                     let movimientos = res.data.response;
                     this.movimientos = movimientos

@@ -9,7 +9,7 @@
         <form style=" color: aliceblue; text-align: center;">
             <div v-on:focus="saldo()" class="form-row">
                 <div class="form-group col-md-12">
-                    <select v-on:focus="saldo()" v-model="codigoproveedor" title="Proveedor que sera asociado a estas facturas ingresadas"
+                    <select v-on:focus="saldo()" required v-model="codigoproveedor" title="Proveedor que sera asociado a estas facturas ingresadas"
                         class="form-control muestroprov">
                         <option disabled value="">Selecione Proveedor</option>
                         <option v-for="(codigoproveedor,index) in devuelvoproveedor" v-bind:value="codigoproveedor">
@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group col-md-1">
                     <label for="tipodoc">Tipo Doc.</label>
-                    <select v-on:focus="saldo()" v-model="codigodocumento" id="tipodoc" title="Seleccione el tipo de documento"
+                    <select v-on:focus="saldo()" required v-model="codigodocumento" id="tipodoc" title="Seleccione el tipo de documento"
                         style="width:100%; text-align: center;">
                         <option disabled value="">T. Doc</option>
                         <option v-for="(codigodocumento,index) in devuelvodocumento" v-bind:value="codigodocumento">
@@ -30,12 +30,12 @@
                 </div>
                 <div class="form-group col-md-1">
                     <label for="nrofac">Nº Fac.</label>
-                    <input type="text" style="text-align: center;" class="form-control movimientofrm" name="nrofac"
+                    <input type="text"required style="text-align: center;" class="form-control movimientofrm" name="nrofac"
                         v-model="registro.nrofac" placeholder="Nº Factura" title="Ingresar número de factura">
                 </div>
                 <div class="form-group col-md-1">
                     <label for="feching">F. Ingreso</label>
-                    <input type="date" style="text-align: center; width: 100%;" class="form-control movimientofrm"
+                    <input type="date" required style="text-align: center; width: 100%;" class="form-control movimientofrm"
                         name="feching" v-model="registro.feching" placeholder="Fecha Ingreso"
                         title="Ingresar fecha de ingreso de factura">
                 </div>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="form-group col-md-1">
                     <label for="haber">Importe Fac</label>
-                    <input v-on:focus="saldo()" type="number" style="text-align: center;"
+                    <input required v-on:focus="saldo()" type="number" style="text-align: center;"
                         class="form-control movimientofrm" name="haber" v-model="registro.haber" placeholder="Haber"
                         title="Importe a pagar">
                 </div>
@@ -63,18 +63,18 @@
                 <template v-if="ventana.cheque">
                     <div class="form-group col-md-1" style=" color: aliceblue; text-align: center;">
                         <label for="nrocheq">Nº Cheque</label>
-                        <input type="text" class="form-control movimientofrm " name="nrocheq" title="Numero de Cheque"
+                        <input required type="text" class="form-control movimientofrm " name="nrocheq" title="Numero de Cheque"
                             v-model="registro.nrocheq" placeholder="Nº de Cheque" style="text-align: center;" required>
                     </div>
                     <div class="form-group col-md-1" style=" color: aliceblue; text-align: center;">
                         <label for="importe">Importe</label>
-                        <input  v-on:focus="saldo()"  type="number" class="form-control movimientofrm" name="importe"
+                        <input required v-on:focus="saldo()"  type="number" class="form-control movimientofrm" name="importe"
                             title="Importe del Cheque" v-model="registro.importe" placeholder="Imp.Cheque"
                             style="text-align: center;" required>
                     </div>
                     <div v-on:focus="saldo()" class="form-group col-md-2" style=" color: aliceblue; text-align: center;">
                         <label for="bancocuenta">Banco, Moneda</label>
-                        <select v-model="codigobanco" id="bancocuenta" style="width: 100%; text-align: center;">
+                        <select required v-model="codigobanco" id="bancocuenta" style="width: 100%; text-align: center;">
                             <option style="text-align: center;" disabled value="">Cuenta</option>
                             <option v-for="(codigobanco,index) in devuelvobanco" v-bind:value="codigobanco" required>
                                 {{codigobanco.idbanco}} {{codigobanco.banco}} - {{codigobanco.moneda}}
@@ -83,13 +83,13 @@
                     </div>
                     <div class="form-group col-md-1" style=" color: aliceblue; text-align: center;">
                         <label for="fechemi">F. Emision</label>
-                        <input type="date" style="text-align: center; width: 100%;" title="Fecha Emision del Cheque"
+                        <input required type="date" style="text-align: center; width: 100%;" title="Fecha Emision del Cheque"
                             class="form-control movimientofrm" id="fechemi" v-model="registro.fechemi"
                             data-date-format="DD-MM-YYYY" min="1900-01-01" max="2050-31-12" minlength="10"
                             maxlength="10" required>
                     </div>
                     <div class="form-group col-md-1" style=" color: aliceblue; text-align: center;">
-                        <label for="fechpag">F. Pago</label>
+                        <label required for="fechpag">F. Pago</label>
                         <input type="date" title="Fecha de Pago el cheque Emitido / Entregado"
                             style="text-align: center; width: 100%;" class="form-control movimientofrm" id="fechpag"
                             v-model="registro.fechpag" data-date-format="DD-MM-YYYY" min="1900-01-01" max="2050-31-12"
@@ -108,8 +108,7 @@
                 <div v-if="ventana.cheque==false" class="form-group col-md-1"
                     style="text-align: center; margin-left: 0px;">
                     <label for="moneda">Paga en</label>
-                    <select v-on:focus="saldo()" v-model="codigomoneda" title="Seleccionar moneda de la factura" style="width:100%;"
-                        v-on:focus="obtenerproveedor(codigoproveedor.idpro,codigoproveedor.razon,codigoproveedor.moneda,codigoproveedor.saldototal)">
+                    <select required v-on:focus="saldo()" v-model="codigomoneda" title="Seleccionar en que moneda paga" style="width:100%;">
                         <option disabled value="">Moneda</option>
                         <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
                             {{codigomoneda.idmon}} {{codigomoneda.moneda}}
@@ -118,7 +117,7 @@
                 </div>
                 <div v-if="ventana.cheque==false" class="form-group col-md-1">
                     <label for="debe">A Pagar</label>
-                    <input v-on:focus="saldo()"  type="number" style="text-align: center;"
+                    <input required v-on:focus="saldo()"  type="number" style="text-align: center;"
                         class="form-control movimientofrm" name="debe" v-model="registro.debe" placeholder="Debe"
                         title="Importe a pagar de la factura del proveedor">
                 </div>
@@ -130,7 +129,7 @@
                 </div>
                 <div class="form-group col-md-1">
                     <label for="nrorec">Recibo</label>
-                    <input type="number" style="text-align: center;" class="form-control movimientofrm" name="nrorec"
+                    <input  required type="number" style="text-align: center;" class="form-control movimientofrm" name="nrorec"
                         v-model="registro.nrorec" placeholder="Recibo Nº" title="Recibo Nº">
                 </div>
                 <div class="form-group col-md-8">
