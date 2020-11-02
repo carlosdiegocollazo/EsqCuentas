@@ -190,6 +190,43 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         alert("Debe ingresar Nro de factura, tpo de documento, fecha que se pago");
                     }
                 },
+                crearcheques: function () {
+                    registrocheque = {
+                        nrocheq: this.registro.nrocheq,
+                        importe: this.registro.importe,
+                        banco: this.codigobanco.idbanco,
+                        moneda: this.codigomoneda.idmon,
+                        fechemi: this.registro.fechemi,
+                        fechpag: this.registro.fechpag,
+                        fechcob: this.registro.fechcob,
+                        activo: 1
+                    }
+                    //console.log("registro que guarda",registro)
+                    let token = localStorage.getItem("token");
+                    const headtoken = { headers: { "mytoken": `${token}` } }
+                    if (this.registro.fechcob !== "" & this.registro.fechpag !== "") {
+                            this.registro.importe=""
+                            this.registro.fechcob=""
+                            this.registro.fechpag=""
+                        alert("El Cheque no puede ser para cobrar y pagar")}
+                    if (this.registro.nrocheq !== "" & this.registro.fechemi !== "" & this.registro.importe !== "" & this.codigobanco.idbanco !== "") {
+                        axios.post(API + '/cheques/new', registro, headtoken).then((res) => {
+                            axios.get(API + '/cheques/all', headtoken).then((res) => {
+                                let cheques = res.data.response;
+                                this.cheques = cheques
+                            })
+                            let resultado = res.data;
+                            alert("cheque creado correctamente");
+                            if (resultado.response) {
+                                router.push({ path: '/mesa/' });
+                            } else {
+                                alert(res.data.error);
+                            }
+                        })
+                    } else {
+                        alert("Nº de Cheque, Importe, Banco y Fecha de Emision son requeridos");
+                    }
+                },
 
                 limpiar: function () {
                     this.registro = {

@@ -83,6 +83,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                         alert("Nº de Cheque, Importe, Banco y Fecha de Emision son requeridos");
                     }
                 },
+                
                 eliminarcheques: function (res, res2) {
                     let idcheq = res
                     let idcheq2 = res2
