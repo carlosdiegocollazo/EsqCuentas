@@ -27,20 +27,18 @@ input.inputtabla:hover {
     color: white;
 }
 
-input.inputformu:focus-visible {
-    border-style: solid;
-    border: 0;
-    border-color: rgb(0, 255, 13);
-    background: rgb(255, 255, 255);
-    color: rgb(4, 0, 255);
-}
 input.movimientofrm{
-    border: none;
     height: 25px;
-    border-radius: 0;
+    border-radius: 5px;
     margin: 0;
     padding: 0;
+    border-style: solid;
+    border: 0;
+    border-color: rgb(255, 123, 0);
+    background: rgb(255, 255, 255);
+    color: rgb(135, 133, 233);
 }
+
 
  .muestroprov{
     color: #ea02ff;
@@ -68,7 +66,18 @@ input.movimientofrm{
     padding: 0;
     position: fixed
  }
- .modal{
-     width: 500px;
-     margin: 40px auto;
- }
+.fechamov{
+    border: none;
+    height: 25px;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 72%;
+}
+
+.combobaja{
+    border-radius: 5px;
+    width:100%;
+    text-align: center;"
+}

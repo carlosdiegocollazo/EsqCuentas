@@ -30,7 +30,7 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                                 let monedas = res.data.response;
                                 this.monedas = monedas
                             })
-                            alert("Tipo de moneda creado correctamente");
+                            alert("Moneda creada en forma correcta");
                             if (resultado.response) {
                                 router.push({ path: '/monedas' });
                             } else {
@@ -50,7 +50,7 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     this.monedas.splice(idmon, 1) //elimina la linea de la table y espues de la base
                     axios.put(API + '/monedas/delete/' + idmon2, {}, headtoken).then((res) => {
-                        alert("Moneda eliminada correcatmente.");
+                        alert("Moneda eliminada correctamente.");
                         //    console.log("resdat delntro del xios", res.data)
                     })
 
@@ -81,6 +81,7 @@ let componentemoneda = Vue.component('monedas-component', function (resolve) {
                     axios.put(API + '/monedas/edit/' + modificomoneda.idmon, modificomoneda, headtoken).then((res) => {
                         axios.get(API + '/monedas/all', headtoken).then((res) => {
                             alert("Moneda", modificomoneda, moneda, " modificada correctamente");
+                            alert("Moneda modificada correctamente.");
                         })
                     })
                 },

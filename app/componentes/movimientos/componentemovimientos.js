@@ -28,6 +28,17 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         observaciones: "",
                         activo: 1
                     },
+                    registrocheque: {
+                        idcheq: "",
+                        nrocheq: "",
+                        importe: "",
+                        banco: "",
+                        moneda: "",
+                        fechemi: "",
+                        fechpag: "",
+                        fechcob: "",
+                        activo: 1
+                    },
                     devuelvomoneda: {
                         idmon: "",
                         moneda: "",
@@ -133,13 +144,13 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                     codigobanco: "",
                     fecha: "",
 
+
                 }
 
 
             },
             methods: {
                 crearmovimientos: function () {
-
                     let registro = {
                         proveedor: this.codigoproveedor.idpro,
                         tipdoc: this.codigodocumento.idtipdoc,
@@ -148,7 +159,7 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         fechpag: this.registro.fechpag,
                         moneda: this.codigomoneda.idmon,
                         nrocheq: this.registro.nrocheq,
-                        fechcheq: this.devuelvocheque.fechcheq,
+                        fechcheq: this.registro.fechemi,
                         debe: this.registro.debe,
                         haber: this.registro.haber,
                         saldo: this.registro.saldo,
@@ -156,11 +167,17 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         nrorec: this.registro.nrorec,
                         observaciones: this.registro.observaciones,
                         activo: 1,
+
                     }
 
+                    console.log("registro", registro)
+                    console.log("proveedor", this.codigoproveedor)
+                    console.log("banco", this.codigobanco)
+                    console.log("Moneda", this.codigomoneda)
+                    console.log("cheque", this.registrocheque)
 
                     console.log("lo que guarda al cambiar el REgistro", registro)
-                    if (this.registro.nrofac !== "" & this.registro.tipdoc !== "" & this.registro.fechpag !== "" & this.devuelvomoneda.idmon !== "" & this.registro.nrorec !== "") {
+                    if (this.registro.nrofac !== "" & this.registro.tipdoc !== "" & this.registro.fechpag !== "") {
                         axios.post(API + '/movimientos/new/', registro).then((res) => {
                             let resultado = res.data;
                             if (!res.data.error) {
@@ -170,7 +187,7 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                             }
                         })
                     } else {
-                        alert("Debe ingresar Nro de factura, tpo de documento, fecha que se pago, moneda y nro de recibo");
+                        alert("Debe ingresar Nro de factura, tpo de documento, fecha que se pago");
                     }
                 },
 
@@ -303,7 +320,7 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                     let saldoenvivo = 0;
                     debe = parseFloat(this.registro.debe)
                     haber = parseFloat(this.registro.haber)
-                    saldoenvivo = debe - haber
+                    saldoenvivo = haber - debe
                     this.registro.saldo = saldoenvivo
                 },
 
@@ -315,11 +332,11 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
             mounted: function () {
                 fecha = new Date().toISOString().substr(0, 10)
                 this.registro.feching = fecha
-                
+
                 let token = localStorage.getItem("token");
                 this.seguridad = localStorage.getItem("seguridad")
                 const headtoken = { headers: { "mytoken": `${token}` } }
-                
+
                 axios.get(API + '/movimientos/all', headtoken).then((res) => {
                     let movimientos = res.data.response;
                     this.movimientos = movimientos

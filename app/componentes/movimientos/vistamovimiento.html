@@ -21,7 +21,7 @@
                 <div class="form-group col-md-1">
                     <label for="tipodoc">Tipo Doc.</label>
                     <select v-on:focus="saldo()" required v-model="codigodocumento" id="tipodoc" title="Seleccione el tipo de documento"
-                        style="width:100%; text-align: center;">
+                        class="combobaja">
                         <option disabled value="">T. Doc</option>
                         <option v-for="(codigodocumento,index) in devuelvodocumento" v-bind:value="codigodocumento">
                             {{codigodocumento.idtipdoc}} | {{codigodocumento.tipodoc}}
@@ -72,12 +72,22 @@
                             title="Importe del Cheque" v-model="registro.importe" placeholder="Imp.Cheque"
                             style="text-align: center;" required>
                     </div>
-                    <div v-on:focus="saldo()" class="form-group col-md-2" style=" color: aliceblue; text-align: center;">
-                        <label for="bancocuenta">Banco, Moneda</label>
-                        <select required v-model="codigobanco" id="bancocuenta" style="width: 100%; text-align: center;">
-                            <option style="text-align: center;" disabled value="">Cuenta</option>
+                    <div class="form-group col-md-1"
+                    style="text-align: center; margin-left: 0px;">
+                    <label for="moneda">Cheque en</label>
+                    <select required v-on:focus="saldo()" v-model="codigomoneda" title="Seleccionar en que moneda paga"  class="combobaja">
+                        <option disabled value="">Moneda</option>
+                        <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
+                            {{codigomoneda.idmon}} {{codigomoneda.moneda}}
+                        </option>
+                    </select>
+                </div>
+                    <div v-on:focus="saldo()" class="form-group col-md-1" style="text-align: center; margin-left: 0px;">
+                        <label for="bancocuenta">Banco</label>
+                        <select required v-model="codigobanco" id="bancocuenta" class="combobaja">
+                            <option style="text-align: center;" disabled value="">Banco</option>
                             <option v-for="(codigobanco,index) in devuelvobanco" v-bind:value="codigobanco" required>
-                                {{codigobanco.idbanco}} {{codigobanco.banco}} - {{codigobanco.moneda}}
+                                {{codigobanco.idbanco}} {{codigobanco.banco}}
                             </option>
                         </select>
                     </div>
@@ -108,7 +118,7 @@
                 <div v-if="ventana.cheque==false" class="form-group col-md-1"
                     style="text-align: center; margin-left: 0px;">
                     <label for="moneda">Paga en</label>
-                    <select required v-on:focus="saldo()" v-model="codigomoneda" title="Seleccionar en que moneda paga" style="width:100%;">
+                    <select required v-on:focus="saldo()" v-model="codigomoneda" title="Seleccionar en que moneda paga"  class="combobaja">
                         <option disabled value="">Moneda</option>
                         <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
                             {{codigomoneda.idmon}} {{codigomoneda.moneda}}
