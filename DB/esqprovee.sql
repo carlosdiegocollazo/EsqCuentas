@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 30-10-2020 a las 21:44:09
+-- Tiempo de generación: 02-11-2020 a las 15:21:23
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `cheques` (
   `fechcob` varchar(10) NOT NULL,
   `activo` int NOT NULL,
   PRIMARY KEY (`idcheq`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `cheques`
@@ -75,7 +75,10 @@ CREATE TABLE IF NOT EXISTS `cheques` (
 INSERT INTO `cheques` (`idcheq`, `nrocheq`, `importe`, `banco`, `moneda`, `fechemi`, `fechpag`, `fechcob`, `activo`) VALUES
 (9, 1, 1, 1, 0, '2001-01-01', '', '', 1),
 (10, 2, 2, 2, 1, '2002-01-02', '', '', 1),
-(11, 3, 33, 3, 1, '2000-01-01', '', '', 1);
+(11, 3, 33, 3, 1, '2000-01-01', '', '', 1),
+(12, 1, 1, 1, 0, '1000-01-01', '', '', 1),
+(13, 4, 4, 2, 1, '2000-01-01', '3000-02-01', '10000-02-0', 1),
+(14, 4, 4, 4, 0, '2024-04-04', '2020-04-04', '2020-05-04', 1);
 
 -- --------------------------------------------------------
 
@@ -88,19 +91,21 @@ CREATE TABLE IF NOT EXISTS `cotizacion` (
   `idcot` int NOT NULL AUTO_INCREMENT,
   `fechcot` varchar(10) NOT NULL,
   `moneda` int NOT NULL,
-  `cotizacion` int NOT NULL,
+  `cotizacion` double NOT NULL,
   `deldia` tinyint NOT NULL,
   `activo` int NOT NULL,
   PRIMARY KEY (`idcot`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `cotizacion`
 --
 
 INSERT INTO `cotizacion` (`idcot`, `fechcot`, `moneda`, `cotizacion`, `deldia`, `activo`) VALUES
-(1, '2020-10-28', 2, 10, 0, 1),
-(2, '2020-10-28', 0, 4, 0, 1);
+(1, '2020-10-30', 1, 45, 0, 1),
+(2, '2020-10-30', 3, 0.005, 1, 1),
+(3, '2020-10-30', 3, 1, 1, 1),
+(4, '2020-10-30', 3, 0.019, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -123,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `documentos` (
 
 INSERT INTO `documentos` (`idtipdoc`, `tipodoc`, `moneda`, `activo`) VALUES
 (1, 'Factura Contado', 0, 1),
-(2, 'cambio de tareas', 0, 0),
+(2, 'Nota Credito', 0, 1),
 (3, 'Factura Credito', 0, 1);
 
 -- --------------------------------------------------------
@@ -139,25 +144,17 @@ CREATE TABLE IF NOT EXISTS `monedas` (
   `divide` int NOT NULL,
   `activo` int NOT NULL,
   PRIMARY KEY (`idmon`)
-) ENGINE=MyISAM AUTO_INCREMENT=1002 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `monedas`
 --
 
 INSERT INTO `monedas` (`idmon`, `moneda`, `divide`, `activo`) VALUES
-(0, 'Pesos', 1, 1),
-(2, 'Peso Argentino', 1, 1),
-(3, 'definido', 1, 0),
-(4, 'Reales', 1, 1),
-(5, 'Euros', 1, 1),
-(1001, 'Cheque', 0, 0),
-(1000, 'Cheque', 0, 1),
-(35, 'Realiños ', 1, 1),
-(34, 'Australes', 1, 1),
+(0, 'Pesos', 0, 1),
 (1, 'Dolares', 1, 1),
-(32, 'Libras esterlinas', 1, 1),
-(31, 'Patacones', 1, 1);
+(2, 'Reales', 1, 1),
+(3, 'Peso Argentino', 1, 1);
 
 -- --------------------------------------------------------
 
