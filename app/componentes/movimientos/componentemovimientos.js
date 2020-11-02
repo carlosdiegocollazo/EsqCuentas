@@ -296,15 +296,12 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         this.movimientos = movimientos
                     })
                 },
-                saldo: function(){
-                    let saldoenvivo=0;
+                saldo: function () {
+                    let saldoenvivo = 0;
                     debe = parseFloat(this.registro.debe)
-                    haber= parseFloat(this.registro.haber)
-                    saldoenvivo=debe-haber
-                    this.registro.saldo=saldoenvivo
-                    console.log("haber",haber)
-                    console.log("debe",debe)
-                    console.log("saldo",saldo)
+                    haber = parseFloat(this.registro.haber)
+                    saldoenvivo = debe - haber
+                    this.registro.saldo = saldoenvivo
                 },
 
                 cerrarsesion: function () {
@@ -316,15 +313,12 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                 fecha = new Date().toISOString().substr(0, 10)
                 this.registro.feching = fecha
                 let token = localStorage.getItem("token");
-                this.registro.saldo=this.registro.de-this.registro.haber
                 this.seguridad = localStorage.getItem("seguridad")
                 const headtoken = { headers: { "mytoken": `${token}` } }
                 axios.get(API + '/movimientos/all', headtoken).then((res) => {
                     let movimientos = res.data.response;
                     this.movimientos = movimientos
                 }),
-
-                console.log("thisregistro saldo",this.registro.saldo)
                     axios.get(API + '/bancos/all', headtoken).then((res) => {
                         devuelvobanco = res.data.response;
                         this.devuelvobanco = devuelvobanco
