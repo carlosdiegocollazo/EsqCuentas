@@ -80,7 +80,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                             }
                         })
                     } else {
-                        alert("Debe ingresar obligatoriamente: Número de cheque, Importe , Banco y Fecha Emision");
+                        alert("Verifiqeu informacion ingresada");
                     }
                 },
                 eliminarcheques: function (res, res2) {
@@ -100,7 +100,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                     let modificocheque = {}
                     let cheques = this.cheques
                     //console.log("cheuqes que trae del html", cheques)
-                    //console.log("res del cheques a modificar", res)
+                    
                     for (let index = 0; index < cheques.length; index++) {
                         const element = cheques[index];
                         if (index == res) {
@@ -115,6 +115,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                                 fechcob: element.fechcob,
                                 activo: 1,
                             }
+                            console.log("res del cheques a modificar", modificocheque.nrocheq)
                         }
                     }
                     //console.log("lo que se manda a modificar", modificocheque)
@@ -169,7 +170,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                 },
                 
                 limpiar: function () {
-                /*this.registro = {
+                this.registro = {
                         idcheq: "",
                         nrocheq: "",
                         importe: "",
@@ -179,8 +180,8 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                         fechpag: "",
                         fechcob: "",
                         activo: 1
-                    }*/
-                    router.push('/cheques/')
+                    }
+
                 },
                 cerrarsesion: function () {
                     router.push('/mesa/')

@@ -111,7 +111,7 @@ let cheques = {
 					fechemi			='${cheque.fechemi}',
 					fechpag			='${cheque.fechpag}',
 					fechcob			='${cheque.fechcob}',
-					activo			='${cheque.activo}',
+					activo			='${cheque.activo}'
 					WHERE
 					cheques.idcheq = '${id}'
 				`

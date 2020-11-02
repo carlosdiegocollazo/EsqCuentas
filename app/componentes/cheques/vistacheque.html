@@ -3,7 +3,7 @@
       <menu-item></menu-item>
       <router-view></router-view>
       <!-- Div contenendor general-->
-      <H1 style="text-align-last: center; color: aliceblue;">Cheques en cuenta</H1>
+      <H1 style="text-align-last: center; color: aliceblue;">Cheques</H1>
       <div class="row justify-content-center align-items-center">
          <form>
             <div class="form-row">
@@ -115,7 +115,7 @@
                                  title="Haga click para editar y luego presione el botón Modificar"
                                  data-date-format="DD-MM-YYYY" min="1900-01-01" max="2050-31-12" minlength="10" maxlength="10" ></td>
                            <td><button class="btn btn-danger"
-                                 v-on:click="eliminarcheques(index,cheque.idcheq)">Elimina</button></td>
+                                 v-on:click="eliminarcheques(index,cheque.idcheq)">Terminado</button></td>
                            <td><button class="btn btn-success" v-on:click="actualizarcheques(index)">Modifica</button>
                            </td>
                         </tr>
