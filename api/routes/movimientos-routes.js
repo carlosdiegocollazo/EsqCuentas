@@ -65,7 +65,7 @@ module.exports = function(app){
 	app.post('/movimiento/new', midd.rutasProtegidas, async function(req, res){
 		let movimiento = req.body;
 		let movimientos = require('../services/movimientos.js');
-		let response = await movimiento.crearmovimiento(movimiento);
+		let response = await movimientos.crearmovimiento(movimiento);
 		res.set('Content-Type', 'aplication/json');
 		res.send(response);
 	})

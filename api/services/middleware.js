@@ -80,12 +80,12 @@ let Middleware = {
       "/cheques/delete/:id": "Acceso Permitido",
 
           //movimientos
-      "/movimientos/all": "Acceso Permitido",
-      "/movimientos/allall": "Acceso Permitido",
-      "/movimientos/:id": "Acceso Permitido",
-      "/movimientos/new": "Acceso Permitido",
-      "/movimientos/edit/:id": "Acceso Permitido",
-      "/movimientos/delete/:id": "Acceso Permitido"
+      "/movimiento/all": "Acceso Permitido",
+      "/movimiento/allall": "Acceso Permitido",
+      "/movimiento/:id": "Acceso Permitido",
+      "/movimiento/new": "Acceso Permitido",
+      "/movimiento/edit/:id": "Acceso Permitido",
+      "/movimiento/delete/:id": "Acceso Permitido"
     },
     {
       //Rol 1 Administrativo

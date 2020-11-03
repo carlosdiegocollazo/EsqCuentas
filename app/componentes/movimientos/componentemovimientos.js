@@ -155,7 +155,7 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
 
             },
             methods: {
-                
+
                 crearmovimientos: function () {
                     let registro = {
                         proveedor: this.codigoproveedor.idpro,
@@ -163,7 +163,7 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         nrofac: this.registro.nrofac,
                         fechemi: this.registro.feching,
                         fechpag: this.registro.fechpag,
-                        moneda: this.codigobanco.idmon,
+                        moneda: this.codigomoneda.idmon,
                         nrocheq: this.registro.nrocheq,
                         fechcheq: this.registro.fechemi,
                         debe: this.registro.debe,
@@ -174,212 +174,223 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         observaciones: this.registro.observaciones,
                         activo: 1,
                     }
-                    crearcheques: function () {
-                        let registro = {
-                            nrocheq: this.registro.nrocheq,
-                            importe: this.registro.importe,
-                            banco: this.codigobanco.idbanco,
-                            moneda: this.codigobanco.idmon,
-                            fechemi: this.registro.feching,
-                            fechpagc: this.registro.fechpagc,
-                            fechcob: this.registro.fechcom,
-                            activo: 1,
-                        }
-                        console.log("lo que guarda al cambiar el REgistro", registro)
-                if (this.registro.nrocheq!=="") {
-                    axios.post(API + '/cheques/new/', crearcheques).then((res) => {
-                        
-                        if (this.registro.nrofac !== "") {
-                            axios.post(API + '/movimientos/new/', registro).then((res) => {
-                                let resultado = res.data;
-                                if (!res.data.error) {
-                                    router.push({ path: '/mesa/' });
-                                } else {
-                                    alert(res.data.error);
-                                }
-                            })
-                        } 
-                        else {
-                            alert("Debe ingresar Nro de factura, tpo de documento, fecha que se pago");
-                        }
-                                            },
-
-                    limpiar: function () {
-                        this.registro = {
-                            idmov: "",
-                            proveedor: "",
-                            tipdoc: "",
-                            nrofac: "",
-                            fechemi: "",
-                            fechpagc: "", fechpag: "",
-                            moneda: "",
-                            nrocheq: "",
-                            fechcheq: "",
-                            debe: 0,
-                            haber: 0,
-                            saldo: 0,
-                            saldtot: 0,
-                            nrorec: "",
-                            fechret: "",
-                            retactivo: "",
-                            observaciones: "",
-                            activo: 1
-                        }
-                    },
-
-                    eliiminarmovimiento: function (res, res2) {
-                        let idmov = res
-                        let idmov2 = res2
-                        //console.log("recorro el data", idpro, idpro2)
+                    let crearcheques = {
+                        nrocheq: this.registro.nrocheq,
+                        importe: this.registro.importe,
+                        banco: this.codigobanco.idbanco,
+                        moneda: this.codigobanco.idmon,
+                        fechemi: this.registro.feching,
+                        fechpagc: this.registro.fechpagc,
+                        fechcob: this.registro.fechcom,
+                        activo: 1,
+                    }
+                    console.log("lo que guarda al cambiar el REgistro", registro)
+                    console.log("lo que guarda al cambiar el REgistro cheques", crearcheques)
+                    let token = localStorage.getItem("token");
+                    const headtoken = { headers: { "mytoken": `${token}` } }
+                    if (this.registro.nrocheq !== "") {
+                        axios.post(API + '/cheques/new/', crearcheques,headtoken).then((res) => {
+                            console.log("entro a cheques")
+                            if (!res.data.error) {
+                                alert("Cheque ingresado en forma correcta")
+                            }
+                        }) 
+                    }
+                    if (this.registro.nrofac !== "") {
                         let token = localStorage.getItem("token");
                         const headtoken = { headers: { "mytoken": `${token}` } }
-                        this.movimientos.splice(idmov, 1) //elimina la linea de la table y espues de la base
-                        axios.put(API + '/movimientos/delete/' + idmov2, {}, headtoken).then((res) => {
+                        axios.post(API + '/movimiento/new/', registro,headtoken).then((res) => {
+                            console.log("entro a registro")
+                            let resultado = res.data;
+                            if (!res.data.error) {
+                                alert("Documento ingresado en forma correcta")
+                                /*router.push({ path: '/movimiento' });*/
+                            } else {
+                                alert(res.data.error);
+                            }
                         })
-                    },
+                    }
+                    else {
+                        alert("Debe ingresar Nro de factura, tpo de documento, fecha que se pago");
+                    }
 
-                    actualizarmovimiento: function (res2) {
-                        let movimientos = this.movimientos
-                        for (let index = 0; index < movimientos.length; index++) {
-                            const element = movimientos[index];
-                            if (index == res2) {
-                                modificomovimiento = {
-                                    proveedor: this.devuelvoproveedor.idpro,
-                                    tipdoc: element.tipdoc,
-                                    nrofac: element.nrofac,
-                                    fechemi: element.fechemi,
-                                    fechpag: element.fechpag,
-                                    fechpagc: element.fechpagc,
-                                    moneda: this.devuelvomoneda.idmon,
-                                    nrocheq: this.devuelvocheque.nrocheq,
-                                    fechcheq: this.devuelvocheque.fechcheq,
-                                    debe: element.debe,
-                                    haber: element.haber,
-                                    saldo: element.saldo,
-                                    saldtot: element.saldtot,
-                                    nrorec: element.nrorec,
-                                    observaciones: element.observaciones,
-                                    activo: 1,
-                                }
+                },
+                limpiar: function () {
+                    this.registro = {
+                        idmov: "",
+                        proveedor: "",
+                        tipdoc: "",
+                        nrofac: "",
+                        fechemi: "",
+                        fechpagc: "", fechpag: "",
+                        moneda: "",
+                        nrocheq: "",
+                        fechcheq: "",
+                        debe: 0,
+                        haber: 0,
+                        saldo: 0,
+                        saldtot: 0,
+                        nrorec: "",
+                        fechret: "",
+                        retactivo: "",
+                        observaciones: "",
+                        activo: 1
+                    }
+                },
+
+                eliiminarmovimiento: function (res, res2) {
+                    let idmov = res
+                    let idmov2 = res2
+
+                    let token = localStorage.getItem("token");
+                    const headtoken = { headers: { "mytoken": `${token}` } }
+                    this.movimientos.splice(idmov, 1) //elimina la linea de la table y espues de la base
+                    axios.put(API + '/movimientos/delete/' + idmov2, {}, headtoken).then((res) => {
+                    })
+                },
+
+                actualizarmovimiento: function (res2) {
+                    let movimientos = this.movimientos
+                    for (let index = 0; index < movimientos.length; index++) {
+                        const element = movimientos[index];
+                        if (index == res2) {
+                            modificomovimiento = {
+                                proveedor: this.devuelvoproveedor.idpro,
+                                tipdoc: element.tipdoc,
+                                nrofac: element.nrofac,
+                                fechemi: element.fechemi,
+                                fechpag: element.fechpag,
+                                fechpagc: element.fechpagc,
+                                moneda: this.devuelvomoneda.idmon,
+                                nrocheq: this.devuelvocheque.nrocheq,
+                                fechcheq: this.devuelvocheque.fechcheq,
+                                debe: element.debe,
+                                haber: element.haber,
+                                saldo: element.saldo,
+                                saldtot: element.saldtot,
+                                nrorec: element.nrorec,
+                                observaciones: element.observaciones,
+                                activo: 1,
                             }
                         }
-                        let token = localStorage.getItem("token");
-                        const headtoken = { headers: { "mytoken": `${token}` } }
-                        axios.put(API + '/movimientos/edit/' + modificomovimiento.idpro, modificomovimiento, headtoken).then((res) => {
-                            axios.get(API + '/movimientos/all', headtoken).then((res) => {
-                            })
-                        })
-                    },
-
-                    obtenermoneda: function () {
-                        let token = localStorage.getItem("token");
-                        this.seguridad = localStorage.getItem("seguridad")
-                        const headtoken = { headers: { "mytoken": `${token}` } }
-                        axios.get(API + '/monedas/all', headtoken).then((res) => {
-                            devuelvomoneda = res.data.response;
-                            this.devuelvomoneda = devuelvomoneda
-                        })
-                    },
-
-                    obtenercheque: function () {
-                        let token = localStorage.getItem("token");
-                        this.seguridad = localStorage.getItem("seguridad")
-                        const headtoken = { headers: { "mytoken": `${token}` } }
-                        axios.get(API + '/cheques/all', headtoken).then((res) => {
-                            devuelvocheque = res.data.response;
-                            this.devuelvocheque = devuelvocheque
-                        })
-                    },
-
-                    obtenerproveedor: function () {
-                        let token = localStorage.getItem("token");
-                        this.seguridad = localStorage.getItem("seguridad")
-                        const headtoken = { headers: { "mytoken": `${token}` } }
-                        axios.get(API + '/proveedores/all', headtoken).then((res) => {
-                            devuelvoproveedor = res.data.response;
-                            this.devuelvoproveedor = devuelvoproveedor
-                        })
-                    },
-
-                    obtenerdocumento: function () {
-                        let token = localStorage.getItem("token");
-                        this.seguridad = localStorage.getItem("seguridad")
-                        const headtoken = { headers: { "mytoken": `${token}` } }
-                        axios.get(API + '/documentos/all', headtoken).then((res) => {
-                            devuelvodocumento = res.data.response;
-                            this.devuelvodocumento = devuelvodocumento
-                        })
-                    },
-                    mostrartodos: function () {
-                        let token = localStorage.getItem("token");
-                        this.seguridad = localStorage.getItem("seguridad")
-                        const headtoken = { headers: { "mytoken": `${token}` } }
-                        axios.get(API + '/movimientos/allall', headtoken).then((res) => {
-                            let movimientos = res.data.response;
-
-                            this.movimientos = movimientos
-                        })
-                    },
-                    mostraractivos: function () {
-                        let token = localStorage.getItem("token");
-                        this.seguridad = localStorage.getItem("seguridad")
-                        const headtoken = { headers: { "mytoken": `${token}` } }
-                        axios.get(API + '/movimientos/all', headtoken).then((res) => {
-                            let movimientos = res.data.response;
-
-                            this.movimientos = movimientos
-                        })
-                    },
-                    saldo: function () {
-                        let saldoenvivo = 0;
-                        debe = parseFloat(this.registro.debe)
-                        haber = parseFloat(this.registro.haber)
-                        saldoenvivo = haber - debe
-                        this.registro.saldo = saldoenvivo
-                    },
-
-                    cerrarsesion: function () {
-                        router.push('/mesa')
                     }
-                },// fin el method
+                    let token = localStorage.getItem("token");
+                    const headtoken = { headers: { "mytoken": `${token}` } }
+                    axios.put(API + '/movimientos/edit/' + modificomovimiento.idpro, modificomovimiento, headtoken).then((res) => {
+                        axios.get(API + '/movimientos/all', headtoken).then((res) => {
+                        })
+                    })
+                },
 
-                mounted: function () {
-                    fecha = new Date().toISOString().substr(0, 10)
-                    this.registro.feching = fecha
-
+                obtenermoneda: function () {
                     let token = localStorage.getItem("token");
                     this.seguridad = localStorage.getItem("seguridad")
                     const headtoken = { headers: { "mytoken": `${token}` } }
-
-                    axios.get(API + '/movimientos/all', headtoken).then((res) => {
-                        let movimientos = res.data.response;
-                        this.movimientos = movimientos
-                    }),
-                        axios.get(API + '/bancos/all', headtoken).then((res) => {
-                            devuelvobanco = res.data.response;
-                            this.devuelvobanco = devuelvobanco
-                        })
-                    axios.get(API + '/proveedores/all', headtoken).then((res) => {
-                        devuelvoproveedor = res.data.response;
-                        this.devuelvoproveedor = devuelvoproveedor
-                    }),
-
-                        axios.get(API + '/cheques/all', headtoken).then((res) => {
-                            devuelvocheque = res.data.response;
-                            this.devuelvocheque = devuelvocheque
-                        }),
-
-
-                        axios.get(API + '/documentos/all', headtoken).then((res) => {
-                            devuelvodocumento = res.data.response;
-                            this.devuelvodocumento = devuelvodocumento
-                        })
-
                     axios.get(API + '/monedas/all', headtoken).then((res) => {
                         devuelvomoneda = res.data.response;
                         this.devuelvomoneda = devuelvomoneda
                     })
-                },//fin del mounted
-            }) //fin del resolve
+                },
+
+                obtenercheque: function () {
+                    let token = localStorage.getItem("token");
+                    this.seguridad = localStorage.getItem("seguridad")
+                    const headtoken = { headers: { "mytoken": `${token}` } }
+                    axios.get(API + '/cheques/all', headtoken).then((res) => {
+                        devuelvocheque = res.data.response;
+                        this.devuelvocheque = devuelvocheque
+                    })
+                },
+
+                obtenerproveedor: function () {
+                    let token = localStorage.getItem("token");
+                    this.seguridad = localStorage.getItem("seguridad")
+                    const headtoken = { headers: { "mytoken": `${token}` } }
+                    axios.get(API + '/proveedores/all', headtoken).then((res) => {
+                        devuelvoproveedor = res.data.response;
+                        this.devuelvoproveedor = devuelvoproveedor
+                    })
+                },
+
+                obtenerdocumento: function () {
+                    let token = localStorage.getItem("token");
+                    this.seguridad = localStorage.getItem("seguridad")
+                    const headtoken = { headers: { "mytoken": `${token}` } }
+                    axios.get(API + '/documentos/all', headtoken).then((res) => {
+                        devuelvodocumento = res.data.response;
+                        this.devuelvodocumento = devuelvodocumento
+                    })
+                },
+                mostrartodos: function () {
+                    let token = localStorage.getItem("token");
+                    this.seguridad = localStorage.getItem("seguridad")
+                    const headtoken = { headers: { "mytoken": `${token}` } }
+                    axios.get(API + '/movimientos/allall', headtoken).then((res) => {
+                        let movimientos = res.data.response;
+
+                        this.movimientos = movimientos
+                    })
+                },
+                mostraractivos: function () {
+                    let token = localStorage.getItem("token");
+                    this.seguridad = localStorage.getItem("seguridad")
+                    const headtoken = { headers: { "mytoken": `${token}` } }
+                    axios.get(API + '/movimientos/all', headtoken).then((res) => {
+                        let movimientos = res.data.response;
+
+                        this.movimientos = movimientos
+                    })
+                },
+                saldo: function () {
+                    let saldoenvivo = 0;
+                    debe = parseFloat(this.registro.debe)
+                    haber = parseFloat(this.registro.haber)
+                    saldoenvivo = haber - debe
+                    this.registro.saldo = saldoenvivo
+                },
+
+                cerrarsesion: function () {
+                    router.push('/mesa')
+                }
+            },// fin el method
+
+            mounted: function () {
+                fecha = new Date().toISOString().substr(0, 10)
+                this.registro.feching = fecha
+
+                let token = localStorage.getItem("token");
+                this.seguridad = localStorage.getItem("seguridad")
+                const headtoken = { headers: { "mytoken": `${token}` } }
+
+                axios.get(API + '/movimientos/all', headtoken).then((res) => {
+                    let movimientos = res.data.response;
+                    this.movimientos = movimientos
+                }),
+                    axios.get(API + '/bancos/all', headtoken).then((res) => {
+                        devuelvobanco = res.data.response;
+                        this.devuelvobanco = devuelvobanco
+                    })
+                axios.get(API + '/proveedores/all', headtoken).then((res) => {
+                    devuelvoproveedor = res.data.response;
+                    this.devuelvoproveedor = devuelvoproveedor
+                }),
+
+                    axios.get(API + '/cheques/all', headtoken).then((res) => {
+                        devuelvocheque = res.data.response;
+                        this.devuelvocheque = devuelvocheque
+                    }),
+
+
+                    axios.get(API + '/documentos/all', headtoken).then((res) => {
+                        devuelvodocumento = res.data.response;
+                        this.devuelvodocumento = devuelvodocumento
+                    })
+
+                axios.get(API + '/monedas/all', headtoken).then((res) => {
+                    devuelvomoneda = res.data.response;
+                    this.devuelvomoneda = devuelvomoneda
+                })
+            },//fin del mounted
+        }) //fin del resolve
     })
 })

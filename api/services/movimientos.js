@@ -201,7 +201,7 @@ let movimiento = {
 					tipdoc,					
 					nrofac,
 					fechemi,
-					fechpagc,
+					fechpag,
 					moneda,
 					nrocheq,
 					fechcheq,
@@ -219,7 +219,7 @@ let movimiento = {
 					'${movimiento.tipdoc}',
 					'${movimiento.nrofac}',
 					'${movimiento.fechemi}',
-					'${movimiento.fechpagc}',
+					'${movimiento.fechpag}',
 					'${movimiento.moneda}',
 					'${movimiento.nrocheq}',
 					'${movimiento.fechcheq}',
@@ -249,7 +249,7 @@ let movimiento = {
 					proveedor 	= '${movimiento.proveedor}',
 					tipdoc		= '${movimiento.tipdoc}',
 					fechemi		= '${movimiento.fechemi}',
-					fechpagc		= '${movimiento.fechpagc}',
+					fechpag		= '${movimiento.fechpag}',
 					moneda		= '${movimiento.moneda}',
 					nrocheq		= '${movimiento.nrocheq}',
 					fechcheq	= '${movimiento.fechcheq}',
@@ -290,11 +290,11 @@ let movimiento = {
 							&&
 							movimientos.fechemi = '${parametro1}'
 							&&
-							movimientos.fechpagc like '%${consultaArray[0]}%'
+							movimientos.fechpag like '%${consultaArray[0]}%'
 							`
 		for(let i=1; i<consultaArray.length; i++){
 		    if(consultaArray[i]) {
-			     sql += ` OR movimientos.fechpagc like '%${consultaArray[i]}%'`;
+			     sql += ` OR movimientos.fechpag like '%${consultaArray[i]}%'`;
 			}
 		}
 		let response 		= {error: "No se encontraron movimientos para esta búsqueda"}
@@ -322,12 +322,12 @@ let movimiento = {
 							&&
 							movimientos.fechemi = '${parametro1}'
 							&&
-							(movimientos.fechpagc like '%${consultaArray[0]}%'
+							(movimientos.fechpag like '%${consultaArray[0]}%'
 						`
 		if (consultaArray.length>1) {
 			for(let i=1; i<consultaArray.length; i++){
 			    if(consultaArray[i]) {
-				    sql += ` OR movimientos.fechpagc like '%${consultaArray[i]}%'`;
+				    sql += ` OR movimientos.fechpag like '%${consultaArray[i]}%'`;
 				}
 			}
 			sql += ` )`;
@@ -380,14 +380,14 @@ let movimiento = {
 							WHERE
 							movimientos.activo = 1
 							&&
-							(movimientos.fechpagc like '%${consultaArray[0]}%'
+							(movimientos.fechpag like '%${consultaArray[0]}%'
 							OR
 							movimientos.fechcheq like '%${consultaArray[0]}%'
 						`
 		if (consultaArray.length>1) {
 			for(let i=1; i<consultaArray.length; i++){
 			    if(consultaArray[i]) {
-				    sql += ` OR movimientos.fechpagc like '%${consultaArray[i]}%'`;
+				    sql += ` OR movimientos.fechpag like '%${consultaArray[i]}%'`;
 					sql += ` OR movimientos.fechcheq like '%${consultaArray[i]}%'`;
 				}
 			}

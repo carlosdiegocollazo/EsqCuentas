@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 03-11-2020 a las 12:25:46
+-- Tiempo de generación: 03-11-2020 a las 13:05:39
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `cheques` (
   `fechcob` varchar(10) NOT NULL,
   `activo` int NOT NULL,
   PRIMARY KEY (`idcheq`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `cheques`
@@ -78,7 +78,10 @@ INSERT INTO `cheques` (`idcheq`, `nrocheq`, `importe`, `banco`, `moneda`, `feche
 (11, 3, 33, 3, 1, '2000-01-01', '', '', 1),
 (12, 1, 1, 1, 0, '1000-01-01', '', '', 1),
 (13, 4, 4, 2, 1, '2000-01-01', '3000-02-01', '10000-02-0', 1),
-(14, 4, 4, 4, 0, '2024-04-04', '2020-04-04', '2020-05-04', 1);
+(14, 4, 4, 4, 0, '2024-04-04', '2020-04-04', '2020-05-04', 1),
+(15, 2, 2, 2, 1, '2020-11-03', '2020-11-05', 'undefined', 1),
+(16, 2, 2, 2, 1, '2020-11-03', '2020-11-05', 'undefined', 1),
+(17, 3, 3, 3, 1, '2020-11-03', '2020-11-13', 'undefined', 1);
 
 -- --------------------------------------------------------
 
@@ -169,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `movimientos` (
   `tipdoc` int NOT NULL,
   `nrofac` int NOT NULL,
   `fechemi` varchar(10) NOT NULL,
-  `fechpag` varchar(10) NOT NULL,
+  `fechpag` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `moneda` int NOT NULL,
   `nrocheq` int NOT NULL,
   `fechcheq` varchar(10) NOT NULL,
@@ -181,7 +184,18 @@ CREATE TABLE IF NOT EXISTS `movimientos` (
   `observaciones` text NOT NULL,
   `activo` tinyint NOT NULL,
   PRIMARY KEY (`idmov`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `movimientos`
+--
+
+INSERT INTO `movimientos` (`idmov`, `proveedor`, `tipdoc`, `nrofac`, `fechemi`, `fechpag`, `moneda`, `nrocheq`, `fechcheq`, `debe`, `haber`, `saldo`, `saldtot`, `nrorec`, `observaciones`, `activo`) VALUES
+(1, 5, 1, 1, '2020-11-03', '2020-11-04', 1, 0, '', 1, 1, 1, 0, 11, '1', 1),
+(2, 5, 1, 2, '2020-11-03', '2020-11-05', 0, 2, '2020-11-04', 0, 2, 2, 0, 2, '2', 1),
+(3, 5, 1, 2, '2020-11-03', '2020-11-05', 0, 2, '2020-11-04', 0, 2, 2, 0, 2, '2', 1),
+(4, 5, 3, 3, '2020-11-03', '2020-11-11', 2, 0, '', 3, 3, 3, 0, 3, '3', 1),
+(5, 5, 3, 3, '2020-11-03', '2020-11-11', 2, 3, '2020-11-15', 3, 3, 3, 0, 3, '33', 1);
 
 -- --------------------------------------------------------
 

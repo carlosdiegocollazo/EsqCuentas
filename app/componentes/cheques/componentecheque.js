@@ -57,7 +57,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                         fechcob: this.registro.fechcob,
                         activo: 1
                     }
-                    //console.log("registro que guarda",registro)
+                    
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     if (this.registro.fechcob !== "" & this.registro.fechpagc !== "") {
