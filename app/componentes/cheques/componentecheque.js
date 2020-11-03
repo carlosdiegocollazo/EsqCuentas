@@ -11,7 +11,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                         banco: "",
                         moneda: "",
                         fechemi: "",
-                        fechpag: "",
+                        fechpagc: "",
                         fechcob: "",
                         activo: 1
                     },
@@ -36,7 +36,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                         banco: "",
                         moneda: "",
                         fechemi: "",
-                        fechpag: "",
+                        fechpagc: "",
                         fechcob: "",
                         activo: 1
                     },
@@ -53,17 +53,17 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                         banco: this.codigobanco.idbanco,
                         moneda: this.codigobanco.idmon,
                         fechemi: this.registro.fechemi,
-                        fechpag: this.registro.fechpag,
+                        fechpagc: this.registro.fechpagc,
                         fechcob: this.registro.fechcob,
                         activo: 1
                     }
                     //console.log("registro que guarda",registro)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
-                    if (this.registro.fechcob !== "" & this.registro.fechpag !== "") {
+                    if (this.registro.fechcob !== "" & this.registro.fechpagc !== "") {
                             this.registro.importe=""
                             this.registro.fechcob=""
-                            this.registro.fechpag=""
+                            this.registro.fechpagc=""
                         alert("El Cheque no puede ser para cobrar y pagar")}
                     if (this.registro.nrocheq !== "" & this.registro.fechemi !== "" & this.registro.importe !== "" & this.codigobanco.idbanco !== "") {
                         axios.post(API + '/cheques/new', registro, headtoken).then((res) => {
@@ -112,7 +112,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                                 banco: element.idbanco,
                                 moneda: element.moneda,
                                 fechemi: element.fechemi,
-                                fechpag: element.fechpag,
+                                fechpagc: element.fechpagc,
                                 fechcob: element.fechcob,
                                 activo: 1,
                             }
@@ -178,7 +178,7 @@ let componentecheque = Vue.component('cheques-component', function (resolve) {
                         banco: "",
                         moneda: "",
                         fechemi: "",
-                        fechpag: "",
+                        fechpagc: "",
                         fechcob: "",
                         activo: 1
                     }

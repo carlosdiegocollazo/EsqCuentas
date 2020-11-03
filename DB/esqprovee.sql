@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 02-11-2020 a las 15:21:23
+-- Tiempo de generación: 03-11-2020 a las 12:25:46
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `cheques` (
   `banco` int NOT NULL,
   `moneda` int NOT NULL,
   `fechemi` varchar(10) NOT NULL,
-  `fechpag` varchar(10) NOT NULL,
+  `fechpagc` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `fechcob` varchar(10) NOT NULL,
   `activo` int NOT NULL,
   PRIMARY KEY (`idcheq`)
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `cheques` (
 -- Volcado de datos para la tabla `cheques`
 --
 
-INSERT INTO `cheques` (`idcheq`, `nrocheq`, `importe`, `banco`, `moneda`, `fechemi`, `fechpag`, `fechcob`, `activo`) VALUES
+INSERT INTO `cheques` (`idcheq`, `nrocheq`, `importe`, `banco`, `moneda`, `fechemi`, `fechpagc`, `fechcob`, `activo`) VALUES
 (9, 1, 1, 1, 0, '2001-01-01', '', '', 1),
 (10, 2, 2, 2, 1, '2002-01-02', '', '', 1),
 (11, 3, 33, 3, 1, '2000-01-01', '', '', 1),
@@ -154,7 +154,7 @@ INSERT INTO `monedas` (`idmon`, `moneda`, `divide`, `activo`) VALUES
 (0, 'Pesos', 0, 1),
 (1, 'Dolares', 1, 1),
 (2, 'Reales', 1, 1),
-(3, 'Peso Argentino', 1, 1);
+(3, 'Australes', 1, 1);
 
 -- --------------------------------------------------------
 
