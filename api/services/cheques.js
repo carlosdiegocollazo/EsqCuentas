@@ -19,7 +19,7 @@ let cheques = {
 
 	obtenercheques: async function () {
 		let sql = `
-		SELECT cheques.idcheq,cheques.nrocheq,cheques.importe,bancos.idbanco,bancos.banco,monedas.moneda,cheques.fechemi,cheques.fechpag,cheques.fechcob,cheques.activo from cheques join monedas on monedas.idmon = cheques.moneda join bancos on bancos.idbanco = cheques.banco where cheques.activo=1 order by fechemi desc
+		SELECT cheques.idcheq,cheques.nrocheq,cheques.importe,bancos.idbanco,bancos.banco,monedas.moneda,cheques.fechemi,cheques.fechpagc,cheques.fechcob,cheques.activo from cheques join monedas on monedas.idmon = cheques.moneda join bancos on bancos.idbanco = cheques.banco where cheques.activo=1 order by fechemi desc
 						`
 		let response = { error: "No se encontraron cheques" }
 		let resultado = await conn.query(sql);
@@ -34,7 +34,7 @@ let cheques = {
 
 	obtenerchequesall: async function () {
 		let sql = `
-		SELECT cheques.idcheq,cheques.nrocheq,cheques.importe,bancos.idbanco,bancos.banco,monedas.moneda,cheques.fechemi,cheques.fechpag,cheques.fechcob,cheques.activo from cheques join monedas on monedas.idmon = cheques.moneda join bancos on bancos.idbanco = cheques.banco order by fechemi desc
+		SELECT cheques.idcheq,cheques.nrocheq,cheques.importe,bancos.idbanco,bancos.banco,monedas.moneda,cheques.fechemi,cheques.fechpagc,cheques.fechcob,cheques.activo from cheques join monedas on monedas.idmon = cheques.moneda join bancos on bancos.idbanco = cheques.banco order by fechemi desc
 						`
 		let response = { error: "No se encontraron cheques" }
 		let resultado = await conn.query(sql);
@@ -72,7 +72,7 @@ let cheques = {
 					banco,
 					moneda,
 					fechemi,
-					fechpag,					
+					fechpagc,					
 					fechcob,
 					activo
 					)
@@ -83,7 +83,7 @@ let cheques = {
 					'${cheque.banco}',
 					'${cheque.moneda}',
 					'${cheque.fechemi}',
-					'${cheque.fechpag}',
+					'${cheque.fechpagc}',
 					'${cheque.fechcob}',
 					1
 					)		
@@ -109,7 +109,7 @@ let cheques = {
 					banco			='${cheque.banco}',
 					moneda			='${cheque.moneda}',
 					fechemi			='${cheque.fechemi}',
-					fechpag			='${cheque.fechpag}',
+					fechpagc			='${cheque.fechpagc}',
 					fechcob			='${cheque.fechcob}',
 					activo			='${cheque.activo}'
 					WHERE
