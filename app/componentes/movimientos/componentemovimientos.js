@@ -204,7 +204,7 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                             let resultado = res.data;
                             if (!res.data.error) {
                                 alert("Documento ingresado en forma correcta")
-                                /*router.push({ path: '/movimiento' });*/
+                                router.push({ path: '/movimiento' });
                             } else {
                                 alert(res.data.error);
                             }

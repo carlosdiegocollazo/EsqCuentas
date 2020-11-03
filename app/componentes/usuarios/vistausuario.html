@@ -64,14 +64,15 @@
                 <input type="date" class="form-control" id="feching" v-model="registro.feching"
                     v-model="registro.feching" data-date-format="DD-MM-YYYY" min="01-01-2000">
             </div>
-            <div class="form-group col-md-2" style="text-align: center;">
+            <div class="form-group col-md-2" style="text-align: center; ">
 
                 <label for="codigoseguridad" style="color: aliceblue;" v-model="codigoseguridad.categoria">Seguridad
                     tipo: {{ codigoseguridad.categoria }}</label>
                 <br>
-                <select v-model="codigoseguridad">
+                <select v-model="codigoseguridad" style="width: 80%;">
+                    <option disabled value="">Seleccione</option>
                     <option v-for="(codigoseguridad,index) in devuelvoseguridad" v-bind:value="codigoseguridad">
-                        {{codigoseguridad.descripcion}}
+                        {{codigoseguridad.idseg}} | {{codigoseguridad.descripcion}}
                     </option>
                 </select>
 

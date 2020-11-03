@@ -71,7 +71,7 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                         telefono: this.registro.telefono,
                         direccion: this.registro.direccion,
                         ciudad: this.registro.ciudad,
-                        seguridad: this.codigoseguridad.categoria,
+                        seguridad: this.codigoseguridad.idseg,
                         fechnac: this.registro.fechnac,
                         feching: this.registro.feching,
                         observaciones: this.registro.observaciones,
