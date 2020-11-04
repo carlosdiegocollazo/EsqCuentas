@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 03-11-2020 a las 13:49:52
+-- Tiempo de generación: 03-11-2020 a las 15:55:18
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.3.21
 
@@ -235,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
 --
 
 INSERT INTO `proveedores` (`idpro`, `rutced`, `razon`, `fantasia`, `email`, `nombre`, `apellido`, `feching`, `telefono`, `direccion`, `ciudad`, `moneda`, `saldoinicial`, `saldototal`, `retorno`, `fechret`, `retactivo`, `observaciones`, `activo`) VALUES
-(5, '123456789', 'Correa Hnos', 'Supermercado 18', 'mail@mail.com', 'Sergio ', 'Correa', '1985-01-01', '2413075', 'Sarandi y 18 de Julio', 'Rosario', 0, 0, 1500, 5, '2020-12-31', 0, '', 1),
+(5, '123456789', 'Correa Hnos', 'Supermercado 18', 'mail@mail.com', 'Sergio ', 'Correa', '1985-01-01', '2413075', 'Sarandi y 18 de Julio', 'Rosario', 0, 500, 0, 5, '2020-12-31', 0, '', 1),
 (6, '2313212332132165465', 'FNC', 'FNC', 'unmail@mail', 'Fabrica Nacional decErvezas', 'FNC', '2020-01-01', '321231321', '2313213', 'Montevideo', 0, 0, 0, 10, '2020-01-01', 0, '', 1);
 
 -- --------------------------------------------------------
@@ -295,7 +295,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 INSERT INTO `usuarios` (`idusu`, `email`, `pass`, `apellidos`, `nombres`, `telefono`, `direccion`, `ciudad`, `seguridad`, `fechnac`, `feching`, `observaciones`, `activo`) VALUES
 (1, 'admin@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Collazo', 'Carlos Diego', '099550624', 'Salto1262', 'Montevideo', 0, '2000-01-01', '2000-01-01', '', 1),
 (2, 'admini@mail.com', '5e543256c480ac577d30f76f9120eb74', 'Collazo', 'Diego', '099550624', 'Salto1262', 'Montevideo', 0, '2000-02-02', '2000-01-02', '', 1),
-(10, 'email@email', '5e543256c480ac577d30f76f9120eb74', 'Ledesma', 'Pablo', '', '', '', 0, '', '', '', 1),
+(10, 'email@email', 'c4ca4238a0b923820dcc509a6f75849b', 'Ledesma', 'Pablo', '', '', '', 0, '', '', '', 1),
 (9, 'administrativo@mail.com', '5e543256c480ac577d30f76f9120eb74', 'De Turno', 'Administrativo', '45522093', 'Sarandi y Treinta y tres', 'Rosario', 1, '1975-02-18', '2020-10-01', 'Usuario para probar seguridad de administrativo', 1);
 COMMIT;
 

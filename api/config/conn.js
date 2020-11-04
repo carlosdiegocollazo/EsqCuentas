@@ -1,9 +1,9 @@
 const mysql = require('mysql');
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
+    host: 'ls-c793b1e226886e3fad5c95e189bba252847c7ae6.c0d8wzdbck0g.us-east-1.rds.amazonaws.com',
+    user: 'dbmasteruser',
     //password: 'vw;_eDk8=3n)',
-    password: '',
+    password: 'GZsuBQ7Yr}lru[&d6YzIn;.C)TJ(j;E8',
     database: 'esqprovee'
 });
 

@@ -73,7 +73,7 @@ let componentecotizacion = Vue.component('cotizaciones-component', function (res
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     this.cotizaciones.splice(idcot, 1) //elimina la linea de la table y espues de la base
                     axios.put(API + '/cotizacion/delete/' + idcot2, {}, headtoken).then((res) => {
-                        alert("cotizaciones", idcot2, " eliminada correcatmente.");
+                        alert("Cotizacion eliminada correcatmente.");
 
                     })
 

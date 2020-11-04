@@ -189,17 +189,17 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     if (this.registro.nrocheq !== "") {
-                        axios.post(API + '/cheques/new/', crearcheques,headtoken).then((res) => {
+                        axios.post(API + '/cheques/new/', crearcheques, headtoken).then((res) => {
                             console.log("entro a cheques")
                             if (!res.data.error) {
                                 alert("Cheque ingresado en forma correcta")
                             }
-                        }) 
+                        })
                     }
                     if (this.registro.nrofac !== "") {
                         let token = localStorage.getItem("token");
                         const headtoken = { headers: { "mytoken": `${token}` } }
-                        axios.post(API + '/movimiento/new/', registro,headtoken).then((res) => {
+                        axios.post(API + '/movimiento/new/', registro, headtoken).then((res) => {
                             console.log("entro a registro")
                             let resultado = res.data;
                             if (!res.data.error) {
@@ -342,11 +342,51 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                     })
                 },
                 saldo: function () {
-                    let saldoenvivo = 0;
+
+                    saldoini = 0
+                    saldoenvivo = 0
+                    saldofinal = 0
+                    saldototal = 0
+
+
                     debe = parseFloat(this.registro.debe)
+                    importe = parseFloat(this.registro.importe)
                     haber = parseFloat(this.registro.haber)
                     saldoenvivo = haber - debe
+
                     this.registro.saldo = saldoenvivo
+                    saldoini = parseFloat(this.codigoproveedor.saldoinicial)
+                    saldototal = parseFloat(this.codigoproveedor.saldototal)
+
+                    console.log("improte de cheque", this.registro.importe)
+
+                    if (this.registro.nrocheq !== "" && this.registro.nrofac !== "") {
+                        console.log("entro porque es cheque")
+                        if (saldoini == 0) {
+                            debe = 0
+                            saldototal = saldototal + haber - importe
+                            saldoenvivo = haber - importe
+                        } else {
+                            saldototal = saldoini + haber - importe
+                            saldoenvivo = haber - importe
+                        }
+                        this.codigoproveedor.saldototal = saldototal
+                        this.registro.saldototal = saldototal
+                        console.log("saldo cheque inicial", saldoini)
+                        console.log("saldo cheque total", saldototal)
+                    } else {
+                        if (saldoini == 0) {
+                            saldototal = saldototal + haber - debe
+                            saldoenvivo = haber - importe
+                        } else {
+                            saldototal = saldoini + haber - debe
+                            saldoenvivo = haber - importe
+                        }
+                        this.codigoproveedor.saldototal = saldototal
+                        this.registro.saldototal = saldototal
+                        console.log("saldoinicial", saldoini)
+                        console.log("saldototal", saldototal)
+                    }
                 },
 
                 cerrarsesion: function () {
