@@ -33,7 +33,7 @@ try {
 	env = require('./env');
 } catch(e){
 	env = {
-		port: 50
+		port: 3000
 	}
 }
 
