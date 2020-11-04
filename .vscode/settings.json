@@ -5,13 +5,16 @@
                 "authProtocol": "default"
             },
             "previewLimit": 50,
-            "server": "localhost",
+            "server": "ls-c793b1e226886e3fad5c95e189bba252847c7ae6.c0d8wzdbck0g.us-east-1.rds.amazonaws.com",
+            //"server": "localhost",
             "port": 3306,
             "driver": "MySQL",
             "name": "esqprovee",
             "database": "esqprovee",
-            "username": "root",
-            "password": ""
+            "username": "dbmasteruser",
+            //"username": "root",
+            "password": "GZsuBQ7Yr}lru[&d6YzIn;.C)TJ(j;E8"
+            //"password": ""
         }
     ]
 }
