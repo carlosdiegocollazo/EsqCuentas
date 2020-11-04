@@ -13,8 +13,7 @@ const movimientos = componentemovimientos;
 const cotizacion = componentecotizacion;
 
 //const API = "https://server134-school.lexartlabs.com/api-or-dev/";
-//const API = "http://localhost:3000";
-const API = "http://localhost"
+const API = "http://localhost:3000"
 //const API = "http://54.211.140.81:3000";
 
 const routes = [
