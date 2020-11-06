@@ -8,7 +8,6 @@ let Middleware = {
 
       //usuarios
       "/usuarios/all": "Acceso Permitido",
-      "/usuarios/login": "Acceso Permitido",
       "/usuarios/allall": "Acceso Permitido",
       "/usuarios/:id": "Acceso Permitido",
       "/usuarios/new": "Acceso Permitido",
@@ -94,7 +93,6 @@ let Middleware = {
 
       //usuarios
       "/usuarios/all": "Acceso Permitido",
-      "/usuarios/login": "Acceso Permitido",
       "/usuarios/allall": "Acceso Permitido",
       "/usuarios/:id": "Acceso Permitido",
       "/usuarios/new": "Acceso Permitido",
