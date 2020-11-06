@@ -7,7 +7,7 @@ module.exports = function(app){
 	//Procedimiento para la validación de credenciales de usuario (usuarioEmail y usuarioPassword)
 	// para el ingreso al sistema. Caso de éxito devuele objeto usuario asociado a cuenta de mail 
 	// ingresada y token de sesión generado. Caso de error retorna mensaje correspondiente.
-	app.post('/usuarios/login', async function(req, res){
+	app.post('usuarios/login', async function(req, res){
 		let usuarioLog 		= req.body;
 		const Usuario 		= require('../services/usuarios.js');
 		let response 		= await Usuario.usuarioLogin(usuarioLog.usuarioEmail, usuarioLog.usuarioPass);
