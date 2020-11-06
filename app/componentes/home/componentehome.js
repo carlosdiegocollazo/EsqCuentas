@@ -17,7 +17,7 @@ let componentehome = Vue.component('home-component', function (resolve) {
                         usuarioEmail: this.usuario.email,
                         usuarioPass: this.usuario.password
                     }
-                    axios.post(API + '/usuarios/login/', usuario).then((res) => {
+                    axios.post(API + '/usuarios/login', usuario).then((res) => {
                         let resultado = res.data;
 
                         if (resultado.response) {
