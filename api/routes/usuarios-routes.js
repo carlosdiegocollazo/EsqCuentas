@@ -16,7 +16,7 @@ module.exports = function(app){
 	})	
 
 	//Devuelve JSON con la colección de objetos "usuario" activos.
-	app.get('/usuarios/all', midd.rutasProtegidas, async function(req, res){
+	app.get('usuarios/all', midd.rutasProtegidas, async function(req, res){
 		let Usuario 	= require ('../services/usuarios.js');
 		let response 	= await Usuario.obtenerUsuarios();
 		res.set('Content-Type', 'aplication/json');
@@ -24,7 +24,7 @@ module.exports = function(app){
 	})
 
 		//Devuelve JSON con la colección de objetos "usuario" activos e inactivos
-		app.get('/usuarios/allall', midd.rutasProtegidas, async function(req, res){
+		app.get('usuarios/allall', midd.rutasProtegidas, async function(req, res){
 			let Usuario 	= require ('../services/usuarios.js');
 			let response 	= await Usuario.obtenerUsuariosall();
 			res.set('Content-Type', 'aplication/json');
@@ -33,7 +33,7 @@ module.exports = function(app){
 
 	//Devuelve JSON con objeto "usuario" seleccionado por el valor de su campo Id.
 	//si se encuentra activo.
-	app.get('/usuarios/:id', midd.rutasProtegidas, async function (req, res) {
+	app.get('usuarios/:id', midd.rutasProtegidas, async function (req, res) {
 		let id 			= req.params.id;
 		let Usuario 	= require('../services/usuarios');
 		let response 	= await Usuario.obtenerUsuarioPorId(id);
@@ -42,7 +42,7 @@ module.exports = function(app){
 	});
 
 	//Devuelve JSON con objeto "usuarioEmail" seleccionado por el valor de su campo Email.
-	app.get('/usuarios/mail/find', midd.rutasProtegidas, async function (req, res) {
+	app.get('usuarios/mail/find', midd.rutasProtegidas, async function (req, res) {
 		let mail 		= req.body.usuarioEmail;
 		let Usuario 	= require('../services/usuarios');
 		let response 	= await Usuario.obtenerUsuarioPorEmail(mail);
@@ -51,7 +51,7 @@ module.exports = function(app){
 	});
 
 	//Permite dar de alta a un nuevo registo usuario.
-	app.post('/usuarios/new', async function (req, res) {
+	app.post('usuarios/new', async function (req, res) {
 		 let usuario	= req.body;
 		 let Usuario 	= require('../services/usuarios');
 		 let response	= await Usuario.ingresarUsuario(usuario);
@@ -61,7 +61,7 @@ module.exports = function(app){
 
 	//Permite editar los valores de los atributos del usuario seleccionado
 	// a partir del valor de su campo Id.
-	app.put('/usuarios/edit/:id', midd.rutasProtegidas, async function(req, res){
+	app.put('usuarios/edit/:id', midd.rutasProtegidas, async function(req, res){
 		let id 			= req.params.id;
 		let usuario		= req.body;
 		let Usuario 	= require('../services/usuarios.js');
@@ -72,7 +72,7 @@ module.exports = function(app){
 
 	//Permite borrar de manera lógia al usuario identificado por el valor de su campo Id.
 	//(pasa a inactivo).
-	app.put('/usuarios/delete/:id', midd.rutasProtegidas, async function(req, res){
+	app.put('usuarios/delete/:id', midd.rutasProtegidas, async function(req, res){
 		let id 			= req.params.id;
 		let Usuario 	= require('../services/usuarios.js');
 		let response 	= await Usuario.eliminarUsuario(id);
