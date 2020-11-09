@@ -9,7 +9,7 @@
             //"server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "esqprovee",
+            "name": "esqcuentas",
             "database": "esqprovee",
             "username": "dbmasteruser",
             //"username": "root",
