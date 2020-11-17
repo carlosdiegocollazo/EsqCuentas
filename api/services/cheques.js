@@ -29,7 +29,7 @@ let cheques = {
 			response = { response: resultado }
 		}
 		return response;
-		console.log("REsponse de la api",response)
+		//console.log("REsponse de la api",response)
 	},
 
 	obtenerchequesall: async function () {
@@ -90,7 +90,7 @@ let cheques = {
 				`
 		let response = { error: "No se pudo crear cheque" }
 		let resultado = await conn.query(sql);
-		console.log(resultado);
+		//console.log(resultado);
 		if (resultado.code) {
 			response = { error: "Error en consulta SQL" };
 		} else if (resultado.insertId) {
@@ -100,7 +100,7 @@ let cheques = {
 	},
 
 	actualizarcheque: async function (cheque, id) {
-		console.log("lo que recibo de la app para uopdatear:",cheque,id)
+		//console.log("lo que recibo de la app para uopdatear:",cheque,id)
 		let sql = `
 					UPDATE cheques
 					SET

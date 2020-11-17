@@ -128,7 +128,7 @@ module.exports = function(app){
 		let busqueda 			= req.body;
 		let consultaStr 		= busqueda.buscar;
 		let consultaArray 		= consultaStr.split(" ");
-		console.log("consultaArray enviado a services de busqueda :: ", consultaArray);
+		//console.log("consultaArray enviado a services de busqueda :: ", consultaArray);
 		let consultaArrayClean 	= consultaArray.filter(Boolean);
 		let movimiento 			= require('../services/movimientos.js');
 		let response 			= await movimiento.buscarmovimientosFullFlex(consultaArrayClean);

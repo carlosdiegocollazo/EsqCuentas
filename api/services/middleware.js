@@ -181,7 +181,7 @@ let Middleware = {
           }
         });
       } catch (e) {
-        console.log(e);
+        //console.log(e);
       }
     } else {
       res.send({ error: "Token no provisto" });

@@ -138,7 +138,7 @@ let proveedor = {
 					response 	= {response: "proveedor creado correctamente"}
 				}
 			} catch(error) {
-				console.log(error);
+				//console.log(error);
 				}
 		}else {
 			response 			= {error: `Ya existe proveedor con email : ${mail}`}

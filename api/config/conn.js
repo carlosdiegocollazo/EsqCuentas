@@ -15,7 +15,7 @@ connection.connect(function (err) {
         console.error("Error al conectar a Data Base ::", err.stack);
         return;
     }
-    console.log("Conectado a Data Base con Id. :: ", connection.threadId)
+    //console.log("Conectado a Data Base con Id. :: ", connection.threadId)
 });
 
 let query = (sql) => {

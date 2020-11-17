@@ -79,7 +79,7 @@ let monedas = {
 				`
 		let response 	= {error: "No se pudo crear moneda"}
 		let resultado 	= await conn.query(sql);
-		console.log(resultado);
+		//console.log(resultado);
 		if (resultado.code) {
 	 		response 	= {error: "Error en consulta SQL"};
 	 	}else if (resultado.insertId) {

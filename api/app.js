@@ -40,5 +40,5 @@ try {
 
 //LEVANTAR LA API
 app.listen(env.port,function(){
-	console.log(`EsQProvee en puerto ${env.port}`);
+	//console.log(`EsQProvee en puerto ${env.port}`);
 })	

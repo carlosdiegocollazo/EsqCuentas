@@ -38,7 +38,7 @@ let Usuario = {
                 response = { response: usuario, token: token };
             }
         } catch (e) {
-            console.log(e);
+            //console.log(e);
         }
         return response;
     },
@@ -153,7 +153,7 @@ let Usuario = {
                     response = { response: "Usuario creado correctamente" }
                 }
             } catch (error) {
-                console.log(error);
+                //console.log(error);
             }
         } else {
             response = { error: `Ya existe usuario con email : ${mail}` }
@@ -162,7 +162,7 @@ let Usuario = {
     },
 
     actualizarUsuario: async function(usuario, id) {
-        console.log("lo que llega de app",usuario)
+        //console.log("lo que llega de app",usuario)
         let sql = `
 							UPDATE usuarios 
 							SET 

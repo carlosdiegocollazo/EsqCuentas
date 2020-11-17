@@ -63,7 +63,7 @@ let bancos = {
 	},
 
 	crearbancos: async function (bancos) {
-		//console.log("viene de html",this.crearbancos)
+		////console.log("viene de html",this.crearbancos)
 		let sql = `
 					INSERT INTO bancos
 					(
@@ -84,7 +84,7 @@ let bancos = {
 				`
 		let response = { error: "No se pudo crear bancos" }
 		let resultado = await conn.query(sql);
-		//console.log(resultado);
+		////console.log(resultado);
 		if (resultado.code) {
 			response = { error: "Error en consulta SQL" };
 		} else if (resultado.insertId) {
@@ -121,7 +121,7 @@ let bancos = {
 			response = { error: `No existe bancos con Id: ${id}` }
 		}
 		return response;
-		//console.log("respose de api",response)
+		////console.log("respose de api",response)
 	},
 
 	eliminarbancos: async function (id) {

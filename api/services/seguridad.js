@@ -63,7 +63,7 @@ let seguridad = {
 	},
 
 	crearseguridad: async function(seguridad){
-		console.log("Seguridad que vbinen de la app",seguridad)
+		//console.log("Seguridad que vbinen de la app",seguridad)
 		let sql = `
 					INSERT INTO seguridad
 					(
@@ -80,7 +80,7 @@ let seguridad = {
 				`
 		let response 	= {error: "No se pudo crear seguridad"}
 		let resultado 	= await conn.query(sql);
-		console.log(resultado);
+		//console.log(resultado);
 		if (resultado.code) {
 	 		response 	= {error: "Error en consulta SQL"};
 	 	}else if (resultado.insertId) {

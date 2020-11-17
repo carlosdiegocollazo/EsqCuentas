@@ -45,9 +45,9 @@ module.exports = function(app){
 	// a partir del valor de su campo Id.
 	app.put('/bancos/edit/:id', midd.rutasProtegidas, async function(req, res){
 		let banco 	= req.body;
-		console.log("docuemtno dentro del routes",banco)
+		//console.log("docuemtno dentro del routes",banco)
 		let id 			= req.params.id;
-		console.log("parametro de id que llega",id)
+		//console.log("parametro de id que llega",id)
 		let bancos 	= require('../services/bancos.js');
 		let response 	= await bancos.actualizarbancos(banco, id);
 		res.set('Content-Type', 'aplication/json');

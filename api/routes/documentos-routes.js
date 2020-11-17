@@ -44,9 +44,9 @@ module.exports = function(app){
 	// a partir del valor de su campo Id.
 	app.put('/documentos/edit/:id', midd.rutasProtegidas, async function(req, res){
 		let documento 	= req.body;
-		console.log("docuemtno dentro del routes",documento)
+		//console.log("docuemtno dentro del routes",documento)
 		let id 			= req.params.id;
-		console.log("parametro de id que llega",id)
+		//console.log("parametro de id que llega",id)
 		let documentos 	= require('../services/documentos.js');
 		let response 	= await documentos.actualizardocumentos(documento, id);
 		res.set('Content-Type', 'aplication/json');
