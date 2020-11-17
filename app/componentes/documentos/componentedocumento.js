@@ -34,14 +34,14 @@ let componentedocumento = Vue.component('documentos-component', function (resolv
                         moneda: this.codigomoneda.idmon,
                         activo: this.registro.activo
                     }
-                    //  ////console.log("registro que viene desde el html", registro)
+                    //  //////console.log("registro que viene desde el html", registro)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     if (this.registro.tipodoc !== "" & this.codigomoneda.idmon !== "") {
-                        //////console.log("resultado antes del axios", registro)
+                        ////////console.log("resultado antes del axios", registro)
                         axios.post(API + '/documentos/new', registro, headtoken).then((res) => {
                             let resultado = res.data;
-                            ////console.log("lo que resutla del axios despues", resultado)
+                            //////console.log("lo que resutla del axios despues", resultado)
                             alert("Tipo de documentos creado correctamente");
                             if (resultado.response) {
                                 router.push({ path: '/mesa/' });

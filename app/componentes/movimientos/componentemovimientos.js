@@ -184,13 +184,13 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         fechcob: this.registro.fechcom,
                         activo: 1,
                     }
-                    console.log("lo que guarda al cambiar el REgistro", registro)
-                    console.log("lo que guarda al cambiar el REgistro cheques", crearcheques)
+                    //console.log("lo que guarda al cambiar el REgistro", registro)
+                    //console.log("lo que guarda al cambiar el REgistro cheques", crearcheques)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     if (this.registro.nrocheq !== "") {
                         axios.post(API + '/cheques/new/', crearcheques, headtoken).then((res) => {
-                            console.log("entro a cheques")
+                            //console.log("entro a cheques")
                             if (!res.data.error) {
                                 alert("Cheque ingresado en forma correcta")
                             }
@@ -200,7 +200,7 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         let token = localStorage.getItem("token");
                         const headtoken = { headers: { "mytoken": `${token}` } }
                         axios.post(API + '/movimiento/new/', registro, headtoken).then((res) => {
-                            console.log("entro a registro")
+                            //console.log("entro a registro")
                             let resultado = res.data;
                             if (!res.data.error) {
                                 alert("Documento ingresado en forma correcta")
@@ -358,10 +358,10 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                     saldoini = parseFloat(this.codigoproveedor.saldoinicial)
                     saldototal = parseFloat(this.codigoproveedor.saldototal)
 
-                    console.log("improte de cheque", this.registro.importe)
+                    //console.log("improte de cheque", this.registro.importe)
 
                     if (this.registro.nrocheq !== "" && this.registro.nrofac !== "") {
-                        console.log("entro porque es cheque")
+                        //console.log("entro porque es cheque")
                         if (saldoini == 0) {
                             debe = 0
                             saldototal = saldototal + haber - importe
@@ -372,8 +372,8 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         }
                         this.codigoproveedor.saldototal = saldototal
                         this.registro.saldototal = saldototal
-                        console.log("saldo cheque inicial", saldoini)
-                        console.log("saldo cheque total", saldototal)
+                        //console.log("saldo cheque inicial", saldoini)
+                        //console.log("saldo cheque total", saldototal)
                     } else {
                         if (saldoini == 0) {
                             saldototal = saldototal + haber - debe
@@ -384,8 +384,8 @@ let componentemovimientos = Vue.component('proveedor-component', function (resol
                         }
                         this.codigoproveedor.saldototal = saldototal
                         this.registro.saldototal = saldototal
-                        console.log("saldoinicial", saldoini)
-                        console.log("saldototal", saldototal)
+                        //console.log("saldoinicial", saldoini)
+                        //console.log("saldototal", saldototal)
                     }
                 },
 

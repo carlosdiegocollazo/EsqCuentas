@@ -39,7 +39,7 @@ let componentebanco = Vue.component('bancos-component', function (resolve) {
                         sucursal: this.registro.sucursal,
                         activo: this.registro.activo
                     }
-                    //console.log("regsitro uqe viene del thml", this.registro)
+                    ////console.log("regsitro uqe viene del thml", this.registro)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     if (this.registro.banco !== "" & this.registro.cuenta !== "" & this.codigomoneda.idmon !== "") {

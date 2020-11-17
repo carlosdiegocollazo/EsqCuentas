@@ -77,7 +77,7 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                         observaciones: this.registro.observaciones,
                         activo: 1,
                     }
-                    console.log("lo que guarda en usuario", registro)
+                    //console.log("lo que guarda en usuario", registro)
                     if (this.registro.nombres !== "" & this.registro.apellidos !== "" & this.registro.email !== "" & this.codigoseguridad.categoria !== "") {
                         if (this.registro.pwd !== "" & this.registro.pwd == this.registro.rpwd) {
                             if (this.registro.activo == true) {
@@ -119,27 +119,27 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                 eliminarusuario: function (res, res2) {
                     let idusu = res
                     let idusu2 = res2
-                    //console.log("recorro el data", idusu, idusu2)
+                    ////console.log("recorro el data", idusu, idusu2)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     this.usuarios.splice(idusu, 1) //elimina la linea de la table y espues de la base
                     axios.put(API + '/usuarios/delete/' + idusu2, {}, headtoken).then((res) => {
 
-                        //    console.log("resdat delntro del xios", res.data)
+                        //    //console.log("resdat delntro del xios", res.data)
                     })
                 },
 
                 actualizarusuario: function (res2) {
                     let usuarios = this.usuarios
-                    console.log("esto devuelve de ususarios", usuarios)
+                    //console.log("esto devuelve de ususarios", usuarios)
                     for (let index = 0; index < usuarios.length; index++) {
                         const element = usuarios[index];
-                        console.log("contenido de element email", element.email)
+                        //console.log("contenido de element email", element.email)
                         if (element.activo == true) {
                             element.activo = 1
                         }
                         if (index == res2) {
-                            //console.log("contenido de element email dentro del if", element,index,res2)
+                            ////console.log("contenido de element email dentro del if", element,index,res2)
                             modificousuario = {
                                 idusu: element.idusu,
                                 email: element.email,
@@ -158,11 +158,11 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                     }
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
-                    console.log("antes del axios", modificousuario, modificousuario.idusu, modificousuario.email)
+                    //console.log("antes del axios", modificousuario, modificousuario.idusu, modificousuario.email)
                     axios.put(API + '/usuarios/edit/' + modificousuario.idusu, modificousuario, headtoken).then((res) => {
-                            console.log("dentro del put",res)
+                            //console.log("dentro del put",res)
                         axios.get(API + '/usuarios/all', headtoken).then((res) => {
-                            console.log("dentro del get",res)
+                            //console.log("dentro del get",res)
                         })
                     })
                 },
@@ -174,7 +174,7 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.get(API + '/usuarios/allall', headtoken).then((res) => {
                         let usuarios = res.data.response;
-                        //   console.log("contenido del for", usuarios)
+                        //   //console.log("contenido del for", usuarios)
                         this.usuarios = usuarios
                     })
                 },
@@ -184,7 +184,7 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     axios.get(API + '/usuarios/all', headtoken).then((res) => {
                         let usuarios = res.data.response;
-                        // console.log("contenido del for", usuarios)
+                        // //console.log("contenido del for", usuarios)
                         this.usuarios = usuarios
                     })
                 },
@@ -195,8 +195,8 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                     axios.get(API + '/seguridad/all', headtoken).then((res) => {
                         devuelvoseguridad = res.data.response;
                         this.devuelvoseguridad = devuelvoseguridad
-                        console.log("devuelvoseguridad", devuelvoseguridad)
-                        console.log("la devoucion de lo que selecciona", this.obtenerseguridad.codigoseguridad)
+                        //console.log("devuelvoseguridad", devuelvoseguridad)
+                        //console.log("la devoucion de lo que selecciona", this.obtenerseguridad.codigoseguridad)
                     })
 
                 },
@@ -206,20 +206,20 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
             },// fin el method
 
             mounted: function () {
-                //console.log(this.$router)
+                ////console.log(this.$router)
                 let token = localStorage.getItem("token");
                 this.seguridad = localStorage.getItem("seguridad")
                 const headtoken = { headers: { "mytoken": `${token}` } }
 
                 axios.get(API + '/usuarios/all', headtoken).then((res) => {
                     let usuarios = res.data.response;
-                    //console.log("contenido del for", usuarios)
+                    ////console.log("contenido del for", usuarios)
                     this.usuarios = usuarios
                 })
 
                 axios.get(API + '/seguridad/all', headtoken).then((res) => {
                     devuelvoseguridad = res.data.response;
-                    // console.log("contenido del for devuelvo", devuelvoseguridad)
+                    // //console.log("contenido del for devuelvo", devuelvoseguridad)
                     this.devuelvoseguridad = devuelvoseguridad
                 })
 
