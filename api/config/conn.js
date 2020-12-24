@@ -1,13 +1,21 @@
 const mysql = require('mysql');
 const connection = mysql.createConnection({
+<<<<<<< HEAD
     /*host: 'ls-c793b1e226886e3fad5c95e189bba252847c7ae6.c0d8wzdbck0g.us-east-1.rds.amazonaws.com',
+=======
+   /* host: 'ls-c793b1e226886e3fad5c95e189bba252847c7ae6.c0d8wzdbck0g.us-east-1.rds.amazonaws.com',
+>>>>>>> 539be294c379130430715fdf6d52609db0bdeda2
     user: 'dbmasteruser',
     password: 'GZsuBQ7Yr}lru[&d6YzIn;.C)TJ(j;E8',
     database: 'esqprovee'*/
     host: '127.0.0.1',
     user: 'root',
     password: '',
+<<<<<<< HEAD
     database: 'esqprovee' 
+=======
+    database: 'esqprovee'
+>>>>>>> 539be294c379130430715fdf6d52609db0bdeda2
 });
 
 connection.connect(function (err) {

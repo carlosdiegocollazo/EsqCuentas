@@ -33,7 +33,8 @@ let componentehome = Vue.component('home-component', function (resolve) {
                         } else {
                             console.log(usuario)
                             alert("Usuario / Contraseña incorrectos");
-                            this.usuario.email = {};
+                            this.usuario={};
+                            localStorage.clear();
                         }
                     })
                 },
