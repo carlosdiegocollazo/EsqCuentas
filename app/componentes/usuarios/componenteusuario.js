@@ -65,7 +65,7 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                 registUser: function () {
                     let registro = {
                         email: this.registro.email,
-                        password: this.registro.pwd,
+                        pass: this.registro.pwd,
                         apellidos: this.registro.apellidos,
                         nombres: this.registro.nombres,
                         telefono: this.registro.telefono,
