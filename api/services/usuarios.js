@@ -130,7 +130,7 @@ let Usuario = {
 		  			VALUES
 		  					(
 							'${usuario.email}',
-							MD5('${usuario.pass}'),
+							MD5('${usuario.pwd}'),
 							'${usuario.apellidos}',
 							'${usuario.nombres}',
 							'${usuario.telefono}',
@@ -171,7 +171,7 @@ let Usuario = {
 							UPDATE usuarios 
 							SET 
 								email 			= '${usuario.email}',
-								pass 			= MD5('${usuario.pass}'),
+								pass 			= MD5('${usuario.pwd}'),
 								nombres 		= '${usuario.nombres}',
 								apellidos 		= '${usuario.apellidos}',
 								telefono	 	= '${usuario.telefono}',
