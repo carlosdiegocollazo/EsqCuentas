@@ -25,7 +25,7 @@ let Usuario = {
 				FROM usuarios 
 				WHERE usuarios.email = '${usuario}'
 				AND
-				usuarios.pass =MD5('${password}')
+				usuarios.pass =MD5('${pwd}')
 				AND
 				usuarios.activo = 1
 			`
@@ -130,7 +130,7 @@ let Usuario = {
 		  			VALUES
 		  					(
 							'${usuario.email}',
-							MD5('${usuario.pwd}'),
+							MD5('${usuario.pass}'),
 							'${usuario.apellidos}',
 							'${usuario.nombres}',
 							'${usuario.telefono}',
@@ -171,7 +171,7 @@ let Usuario = {
 							UPDATE usuarios 
 							SET 
 								email 			= '${usuario.email}',
-								pass 			= MD5('${usuario.pwd}'),
+								pass 			= MD5('${usuario.pass}'),
 								nombres 		= '${usuario.nombres}',
 								apellidos 		= '${usuario.apellidos}',
 								telefono	 	= '${usuario.telefono}',
