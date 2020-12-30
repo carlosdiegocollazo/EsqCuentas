@@ -25,7 +25,7 @@ let Usuario = {
 				FROM usuarios 
 				WHERE usuarios.email = '${usuario}'
 				AND
-				usuarios.pass =MD5('${pass}')
+				usuarios.pass =MD5('${password}')
 				AND
 				usuarios.activo = 1
 			`
