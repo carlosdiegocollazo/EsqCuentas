@@ -6,8 +6,8 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                 return {
                     registro: {
                         email: "",
-                        pwd: "",
-                        rpwd: "",
+                        pass: "",
+                        rpass: "",
                         apellidos: "",
                         nombres: "",
                         telefono: "",
@@ -27,8 +27,8 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                     },
                     usuarios: {
                         email: "",
-                        pwd: "",
-                        rpwd: "",
+                        pass: "",
+                        rpass: "",
                         apellidos: "",
                         nombres: "",
                         telefono: "",
@@ -43,8 +43,8 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
 
                     modificousuario: {
                         email: "",
-                        pwd: "",
-                        rpwd: "",
+                        pass: "",
+                        rpass: "",
                         apellidos: "",
                         nombres: "",
                         telefono: "",
@@ -65,7 +65,7 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                 registUser: function () {
                     let registro = {
                         email: this.registro.email,
-                        pass: this.registro.pwd,
+                        pass: this.registro.pass,
                         apellidos: this.registro.apellidos,
                         nombres: this.registro.nombres,
                         telefono: this.registro.telefono,
@@ -79,7 +79,7 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                     }
                     //console.log("lo que guarda en usuario", registro)
                     if (this.registro.nombres !== "" & this.registro.apellidos !== "" & this.registro.email !== "" & this.codigoseguridad.categoria !== "") {
-                        if (this.registro.pwd !== "" & this.registro.pwd == this.registro.rpwd) {
+                        if (this.registro.pass !== "" & this.registro.pass == this.registro.rpass) {
                             if (this.registro.activo == true) {
                                 this.registro.activo = 1
                             }
@@ -101,8 +101,8 @@ let componenteusuario = Vue.component('usuario-component', function (resolve) {
                 limpiar: function () {
                     this.registro = {
                         email: "",
-                        pwd: "",
-                        rpwd: "",
+                        pass: "",
+                        rpass: "",
                         apellidos: "",
                         nombres: "",
                         telefono: "",

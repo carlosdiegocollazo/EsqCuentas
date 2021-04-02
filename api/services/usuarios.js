@@ -18,8 +18,8 @@ let Usuario = {
     },
 
     usuarioLogin: async function(usuario, password) {
-        console.log("Usuario que viene",usuario)
-        console.log("Pass  que viene",password)
+        //console.log("Usuario que viene",usuario)
+        //console.log("Pass  que viene",password)
         let sql = `
 				SELECT * 
 				FROM usuarios 
@@ -29,7 +29,7 @@ let Usuario = {
 				AND
 				usuarios.activo = 1
 			`
-            console.log("sql", sql)
+            //console.log("sql", sql)
         let response = { error: "RdA - Usuario / Contraseña incorrectos - " }
         let usuarios = await conn.query(sql);
         try {
@@ -144,7 +144,7 @@ let Usuario = {
 							)
 				`
 
-                console.log("sql que inserta",sql)
+                //console.log("sql que inserta",sql)
         let response = { error: "No se pudo crear el usuario" }
         let mail = usuario.email;
         let existeUsuario = await this.obtenerUsuarioPorEmail(mail);
