@@ -12,8 +12,8 @@ const proveedores = componenteproveedores;
 const movimientos = componentemovimientos;
 const cotizacion = componentecotizacion;
 
-const API = "http://127.0.0.1:3000"
-//const API = "http://34.195.112.254:3000";
+//const API = "http://127.0.0.1:3000"
+const API = "http://34.195.112.254:3000";
 
 const routes = [
     { path: '*',name:"NotFound", component: notfound },
