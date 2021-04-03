@@ -1,4 +1,4 @@
-let componentesegurida= Vue.component('seguridad-component', function (resolve) {
+let componenteseguridad= Vue.component('seguridad-component', function (resolve) {
     axios.get('./app/componentes/seguridad/vistaseguridad.html').then(function (view) {
         resolve({
             template: view.data,
